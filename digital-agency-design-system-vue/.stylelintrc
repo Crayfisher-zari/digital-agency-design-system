@@ -1,0 +1,38 @@
+{
+  "extends": [
+    "stylelint-config-standard-scss",
+    "stylelint-config-recess-order",
+    "stylelint-config-recommended-vue/scss",
+    "stylelint-config-prettier"
+  ],
+  "customSyntax": "postcss-scss",
+  "overrides": [
+    {
+      "files": ["**/*.vue"],
+      "customSyntax": "postcss-html"
+    }
+  ],
+  "rules": {
+    "color-function-notation": "legacy",
+    "media-feature-name-no-vendor-prefix": null,
+    "no-descending-specificity": null,
+    "value-no-vendor-prefix": null,
+    "property-no-vendor-prefix": null,
+    "function-name-case": null,
+    "font-family-no-missing-generic-family-keyword":[true,{"ignoreFontFamilies":["Lato"]}],
+    "at-rule-no-unknown": [
+      true,
+      {
+        "ignoreAtRules": [
+          "include",
+          "mixin",
+          "use",
+          "forward",
+          "function",
+          "return",
+          "for"
+        ]
+      }
+    ]
+  }
+}
