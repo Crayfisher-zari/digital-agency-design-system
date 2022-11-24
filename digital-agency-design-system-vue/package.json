@@ -9,7 +9,6 @@
     "preview": "vite preview",
     "lint": "eslint src/**/*.{ts,vue} && stylelint src/**/*.{scss,vue} && prettier src/**/*.{scss,vue}",
     "lint:fix": "eslint src/**/*.{ts,vue} --fix && stylelint src/**/*.{scss,vue} --fix && prettier src/**/*.{scss,vue} --write"
-    
   },
   "dependencies": {
     "vue": "3.2.45"
@@ -24,6 +23,7 @@
     "eslint-plugin-vue": "9.7.0",
     "postcss-html": "1.5.0",
     "prettier": "2.7.1",
+    "sass": "1.56.1",
     "stylelint": "14.15.0",
     "stylelint-config-prettier": "9.0.4",
     "stylelint-config-recess-order": "3.0.0",
