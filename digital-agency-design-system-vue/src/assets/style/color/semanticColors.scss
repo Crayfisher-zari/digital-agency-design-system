@@ -3,5 +3,75 @@
  */
 
 :root {
-  --color-text-light-body: var(--color-sumi-900)
+  /* text */
+  --color-text-light-body: var(--color-sumi-900);
+  --color-text-dark-body: var(--color-white-1000);
+  --color-text-body: var(--color-sumi-900);
+  @media (prefer-color-scheme: dark) {
+    --color-text-body: var(--color-white-1000);
+  }
+
+  --color-text-light-description: var(--color-sumi-700);
+  --color-text-dark-description: var(--color-sumi-400);
+  --color-text-description: var(--color-sumi-700);
+  @media (prefer-color-scheme: dark) {
+    --color-text-description: var(--color-sumi-400);
+  }
+
+  --color-text-light-placeHolder: var(--color-sumi-600);
+  --color-text-dark-placeHolder: var(--color-sumi-500);
+  --color-text-placeHolder: var(--color-sumi-600);
+  @media (prefer-color-scheme: dark) {
+    --color-text-placeHolder: var(--color-sumi-500);
+  }
+
+  --color-text-light-onFill: var(--color-white-1000);
+  --color-text-dark-onFill: var(--color-white-1000);
+  --color-text-onFill: var(--color-white-1000);
+  @media (prefer-color-scheme: dark) {
+    --color-text-onFill: var(--color-white-1000);
+  }
+
+  --color-text-light-link: var(--color-sea-600);
+  --color-text-dark-link: var(--color-sea-300);
+  --color-text-link: var(--color-sea-600);
+  @media (prefer-color-scheme: dark) {
+    --color-text-link: var(--color-sea-300);
+  }
+
+  --color-text-light-visited: var(--color-sea-900);
+  --color-text-dark-visited: var(--color-sea-200);
+  --color-text-visited: var(--color-sea-900);
+  @media (prefer-color-scheme: dark) {
+    --color-text-visited: var(--color-sea-200);
+  }
+
+  --color-text-light-alert: var(--color-sun-800);
+  --color-text-dark-alert: var(--color-sun-500);
+  --color-text-alert: var(--color-sun-800);
+  @media (prefer-color-scheme: dark) {
+    --color-text-alert: var(--color-sun-500);
+  }
+
+  --color-text-light-disabled: var(--color-sumi-500);
+  --color-text-dark-disabled: var(--color-sumi-600);
+  --color-text-disabled: var(--color-sumi-500);
+  @media (prefer-color-scheme: dark) {
+    --color-text-disabled: var(--color-sumi-600);
+  }
+
+  /* Icon */
+  --color-icon-light-label: var(--color-sumi-900);
+  --color-icon-dark-label: var(--color-white-1000);
+  --color-icon-label: var(--color-sumi-900);
+  @media (prefer-color-scheme: dark) {
+    --color-icon-label: var(--color-white-1000);
+  }
+
+  --color-icon-light-active: var(--color-sea-600);
+  --color-icon-dark-active: var(--color-sea-300);
+  --color-icon-active: var(--color-sea-600);
+  @media (prefer-color-scheme: dark) {
+    --color-icon-active: var(--color-sea-300);
+  }
 }
