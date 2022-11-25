@@ -88,4 +88,58 @@
   @media (prefer-color-scheme: dark) {
     --color-icon-disabled: var(--color-sumi-600);
   }
+
+  /* button */
+  --color-button-light-normal: var(--sea-600);
+  --color-button-dark-normal: var(--sea-300);
+  --color-button-normal: var(--sea-600);
+  @media (prefer-color-scheme: dark) {
+    --color-button-normal: var(--sea-300);
+  }
+
+  --color-button-light-hover: var(--sea-700);
+  --color-button-dark-hover: var(--sea-400);
+  --color-button-hover: var(--sea-700);
+  @media (prefer-color-scheme: dark) {
+    --color-button-hover: var(--sea-400);
+  }
+
+  --color-button-light-active: var(--sea-700);
+  --color-button-dark-active: var(--sea-400);
+  --color-button-active: var(--sea-700);
+  @media (prefer-color-scheme: dark) {
+    --color-button-active: var(--sea-400);
+  }
+
+  --color-button-light-disabled: var(--color-sumi-500);
+  --color-button-dark-disabled: var(--color-sumi-600);
+  --color-button-disabled: var(--color-sumi-500);
+  @media (prefer-color-scheme: dark) {
+    --color-button-disabled: var(--color-sumi-600);
+  }
+
+  /* background */
+  --color-background-light-primary: var(--color-white-1000);
+  --color-background-dark-primary: var(--color-sumi-900);
+  --color-background-primary: var(--color-white-1000);
+  @media (prefer-color-scheme: dark) {
+    --color-background-primary: var(--color-sumi-900);
+  }
+
+  --color-background-light-secondary: var(--color-sumi-100);
+  --color-background-dark-secondary: var(--color-sumi-700);
+  --color-background-secondary: var(--color-sumi-100);
+  @media (prefer-color-scheme: dark) {
+    --color-background-secondary: var(--color-sumi-700);
+  }
+
+  --color-background-light-tertiary: var(--color-sumi-50);
+  --color-background-dark-tertiary: var(--color-sumi-800);
+  --color-background-tertiary: var(--color-sumi-50);
+  @media (prefer-color-scheme: dark) {
+    --color-background-tertiary: var(--color-sumi-800);
+  }
+
+  /* border */
+  --color-border-light-field: var(--color-sumi-900);
 }
