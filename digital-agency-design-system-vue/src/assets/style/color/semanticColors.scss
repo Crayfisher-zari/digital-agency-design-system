@@ -74,4 +74,18 @@
   @media (prefer-color-scheme: dark) {
     --color-icon-active: var(--color-sea-300);
   }
+
+  --color-icon-light-alert: var(--color-sun-800);
+  --color-icon-dark-alert: var(--color-sun-500);
+  --color-icon-alert: var(--color-sun-800);
+  @media (prefer-color-scheme: dark) {
+    --color-icon-alert: var(--color-sun-500);
+  }
+
+  --color-icon-light-disabled: var(--color-sumi-500);
+  --color-icon-dark-disabled: var(--color-sumi-600);
+  --color-icon-disabled: var(--color-sumi-500);
+  @media (prefer-color-scheme: dark) {
+    --color-icon-disabled: var(--color-sumi-600);
+  }
 }
