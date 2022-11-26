@@ -1,3 +1,6 @@
 /** Color Scheme */
 @use "./color/primitiveColors";
 @use "./color/semanticColors.scss";
+
+/** Fonts */
+@use "./fonts/font.scss";
