@@ -7,8 +7,8 @@
     "dev": "vite",
     "build": "vue-tsc && vite build",
     "preview": "vite preview",
-    "lint": "eslint src/**/*.vue && stylelint src/**/*.{scss,vue} && prettier src/**/*.{scss,vue}",
-    "lint:fix": "eslint src/**/*.vue --fix && stylelint src/**/*.{scss,vue} --fix && prettier src/**/*.{scss,vue} --write"
+    "lint": "eslint src/**/*.{ts,vue} && stylelint src/**/*.{scss,vue} && prettier src/**/*.{scss,vue} --check",
+    "lint:fix": "eslint src/**/*.{vue,ts} --fix && stylelint src/**/*.{scss,vue} --fix && prettier src/**/*.{scss,vue} --write"
   },
   "dependencies": {
     "vue": "3.2.45"
