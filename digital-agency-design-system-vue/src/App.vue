@@ -2,8 +2,7 @@
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
 import HelloWorld from "./components/HelloWorld.vue";
-// import Heading from "./components/_Heading.vue"
-import Heading from "./components/Heading";
+import Heading from "./components/Heading.vue";
 </script>
 
 <template>
@@ -16,7 +15,12 @@ import Heading from "./components/Heading";
     </a>
   </div>
   <HelloWorld msg="Vite + Vue" />
-  <Heading :headingLevel="2"> Hello </Heading>
+  <Heading :headingLevel="1">H1 / Bold(700) / 1.5</Heading>
+  <Heading :headingLevel="2">H2 / Bold(700) / 1.5</Heading>
+  <Heading :headingLevel="3">H2 / Bold(700) / 1.5</Heading>
+  <Heading :headingLevel="4">H2 / Bold(700) / 1.5</Heading>
+  <Heading :headingLevel="5">H2 / Bold(700) / 1.5</Heading>
+  <Heading :headingLevel="6">H2 / Bold(700) / 1.5</Heading>
 </template>
 
 <style scoped>
