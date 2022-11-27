@@ -1,0 +1,24 @@
+@use "../variables/variables.scss" as *;
+
+$breakPoints: (
+  mobile: $mobileBreakPoint,
+  tablet: $tabletBreakPoint,
+);
+
+/**
+ * 規定のブレークポイントより下のメディアクエリです
+ */
+@mixin mediaQueryDown($breakPoint: mobile) {
+  @media screen and (max-width: map-get($breakPoints,$breakPoint)) {
+    @content;
+  }
+}
+
+/**
+ * 規定のブレークポイントより上のメディアクエリです
+ */
+@mixin mediaQueryUp($breakPoint: mobile) {
+  @media screen and (min-width: map-get($breakPoints,$breakPoint)) {
+    @content;
+  }
+}
