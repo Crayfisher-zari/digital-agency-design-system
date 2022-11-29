@@ -1,5 +1,10 @@
 <script setup lang="ts">
 import Heading from "./components/Heading.vue";
+import BasicButton from "./components/BasicButton.vue";
+
+const handleClick = () => {
+  console.log("click");
+};
 </script>
 
 <template>
@@ -17,6 +22,7 @@ import Heading from "./components/Heading.vue";
   <Heading :headingLevel="4">H4 / Bold(700) / 1.5</Heading>
   <Heading :headingLevel="5">H5 / Bold(700) / 1.5</Heading>
   <Heading :headingLevel="6">H6 / Bold(700) / 1.5</Heading>
+  <BasicButton label="ボタン" type="secondary" @click="handleClick"></BasicButton>
 </template>
 
 <style scoped>
