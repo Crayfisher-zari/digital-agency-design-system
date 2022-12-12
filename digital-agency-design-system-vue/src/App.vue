@@ -22,7 +22,9 @@ const handleClick = () => {
   <Heading :headingLevel="4">H4 / Bold(700) / 1.5</Heading>
   <Heading :headingLevel="5">H5 / Bold(700) / 1.5</Heading>
   <Heading :headingLevel="6">H6 / Bold(700) / 1.5</Heading>
+  <BasicButton label="ボタン"  @click="handleClick"></BasicButton>
   <BasicButton label="ボタン" type="secondary" @click="handleClick"></BasicButton>
+  <BasicButton label="ボタン" type="tertiary" @click="handleClick"></BasicButton>
 </template>
 
 <style scoped>
