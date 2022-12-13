@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import Heading from "./components/Heading.vue";
 import BasicButton from "./components/BasicButton.vue";
+import TextInput from "./components/TextInput.vue";
 
 const handleClick = () => {
   console.log("click");
@@ -25,6 +26,7 @@ const handleClick = () => {
   <BasicButton label="ボタン"  @click="handleClick"></BasicButton>
   <BasicButton label="ボタン" type="secondary" @click="handleClick"></BasicButton>
   <BasicButton label="ボタン" type="tertiary" @click="handleClick"></BasicButton>
+  <TextInput label="ラベル" placeHolder="プレースホルダ" :isRequired="true" />
 </template>
 
 <style scoped>
