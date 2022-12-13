@@ -18,9 +18,11 @@ const props = withDefaults(defineProps<Props>(), {
 </template>
 
 <style lang="scss">
+$transition-duration: 0.3s;
+
 button {
   display: block;
-  padding: 16px 32px;
+  padding: 15px 32px;
   font-family: inherit;
   font-size: 1rem;
   font-weight: bold;
@@ -30,7 +32,9 @@ button {
   border: 1px solid var(--color-button-normal);
   border-radius: 8px;
   appearance: none;
-  transition: background-color 0.2s;
+  transition: background-color $transition-duration var(--easing-out-expo),
+    color $transition-duration var(--easing-out-expo),
+    border-color $transition-duration var(--easing-out-expo);
 
   .labelText {
     color: inherit;
@@ -41,15 +45,22 @@ button {
     outline-offset: 2px;
   }
 
-  &:hover {
+  &:not(:disabled):hover {
     background-color: var(--color-button-hover);
+    border-color: var(--color-button-hover);
+  }
+
+  &:disabled {
+    cursor: auto;
+    background-color: var(--color-button-disabled);
+    border-color: var(--color-button-disabled);
   }
 
   &.secondary {
     color: var(--color-button-normal);
     background-color: transparent;
 
-    &:hover {
+    &:not(:disabled):hover {
       color: var(--color-button-hover);
       background-color: var(--color-sea-50);
     }
@@ -58,6 +69,11 @@ button {
       border-color: transparent;
       outline-offset: -1px;
     }
+
+    &:disabled {
+      color: var(--color-button-disabled);
+      border-color: var(--color-button-disabled);
+    }
   }
 
   &.tertiary {
@@ -65,12 +81,18 @@ button {
     background-color: transparent;
     border-color: transparent;
 
-    &:hover {
+    &:not(:disabled):hover {
       color: var(--color-button-hover);
+      background-color: transparent;
+      border-color: transparent;
     }
 
     &:focus-visible {
       outline-offset: -1px;
+    }
+
+    &:disabled {
+      color: var(--color-button-disabled);
     }
 
     .labelText {
