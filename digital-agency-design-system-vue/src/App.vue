@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import {ref} from "vue"
 import Heading from "./components/Heading.vue";
 import BasicButton from "./components/BasicButton.vue";
 import TextInput from "./components/TextInput.vue";
@@ -6,6 +7,9 @@ import TextInput from "./components/TextInput.vue";
 const handleClick = () => {
   console.log("click");
 };
+
+const name = ref("あああ");
+
 </script>
 
 <template>
@@ -26,21 +30,8 @@ const handleClick = () => {
   <BasicButton label="ボタン"  @click="handleClick"></BasicButton>
   <BasicButton label="ボタン" type="secondary" @click="handleClick"></BasicButton>
   <BasicButton label="ボタン" type="tertiary" @click="handleClick"></BasicButton>
-  <TextInput label="ラベル" placeHolder="プレースホルダ" :isRequired="true" />
+  <TextInput v-model="name" type="text" label="ラベル" placeHolder="プレースホルダ" :isRequired="true"/>
 </template>
 
 <style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-}
-
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
 </style>
