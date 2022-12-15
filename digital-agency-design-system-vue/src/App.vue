@@ -30,7 +30,7 @@ const name = ref("あああ");
   <BasicButton label="ボタン"  @click="handleClick"></BasicButton>
   <BasicButton label="ボタン" type="secondary" @click="handleClick"></BasicButton>
   <BasicButton label="ボタン" type="tertiary" @click="handleClick"></BasicButton>
-  <TextInput v-model="name" type="text" label="ラベル" placeHolder="プレースホルダ" :isRequired="true"/>
+  <TextInput v-model="name" type="text" label="ラベル" placeHolder="プレースホルダ" :isRequired="true" errorText="エラー文言" supportText="サポートテキスト" :isValid="false"/>
 </template>
 
 <style scoped>

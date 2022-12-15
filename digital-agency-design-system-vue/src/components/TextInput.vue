@@ -15,6 +15,10 @@ type Props = {
     | "datetime-local";
   /** プレースホルダのテキストです */
   placeHolder?: string;
+  /** 内容を補足するサポートテキスト */
+  supportText?: string;
+  /** エラー時に表示するテキスト */
+  errorText?: string;
   /** 必須かどうか。未指定の場合はfalse */
   isRequired?: boolean;
   /** 妥当性 */
@@ -48,6 +52,14 @@ const handleInput = (e: Event) => {
       :placeholder="props.placeHolder"
       :onInput="handleInput"
     />
+    <span v-if="props.supportText !== undefined" class="supportText">{{
+      props.supportText
+    }}</span>
+    <span v-if="props.errorText !== undefined">
+      <span v-show="!props.isValid" class="errorText">{{
+        props.errorText
+      }}</span>
+    </span>
   </label>
 </template>
 
@@ -58,8 +70,8 @@ const handleInput = (e: Event) => {
 
 .labelWrapper {
   display: flex;
-  justify-content: flex-start;
   align-items: center;
+  justify-content: flex-start;
 }
 
 .label {
@@ -67,17 +79,35 @@ const handleInput = (e: Event) => {
 }
 
 .requiredText {
+  margin-left: 8px;
   font-size: 0.75rem;
   color: var(--color-text-alert);
-  margin-left: 8px;
 }
 
 .textInput {
-  border-radius: 8px;
   padding: 12px 16px;
+  margin-top: 8px;
+  border: 1px solid var(--color-border-field);
+  border-radius: 8px;
 
   &:invalid {
     border-color: var(--color-status-alert);
   }
+}
+
+.supportText {
+  display: block;
+  margin-top: 8px;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: var(--color-text-description);
+}
+
+.errorText {
+  display: block;
+  margin-top: 8px;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: var(--color-text-alert);
 }
 </style>
