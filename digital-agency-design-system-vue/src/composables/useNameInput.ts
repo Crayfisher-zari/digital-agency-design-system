@@ -1,22 +1,57 @@
-import { h, ref } from "vue";
+import { computed, defineComponent, h, readonly, ref, watch } from "vue";
 import TextInput from "../components/TextInput.vue";
 
-export const useNameInput = (arg: {
+type Arg = {
   label: string;
-  placeholder?: string;
+  placeHolder?: string;
   supportText?: string;
   errorText?: string;
   isRequired: boolean;
-}) => {
-  const name = ref<string>();
+};
+export const useNameInput = ({
+  label,
+  placeHolder,
+  supportText,
+  errorText,
+  isRequired,
+}: Arg) => {
+  const name = ref<string>("");
   const isChanged = ref<boolean>(false);
+  const isValid = computed<boolean>(() => {
+    // 必須事項でない場合はつねにtrue
+    if (!isRequired) {
+      return true;
+    }
+    // 内容が変更されて、空の場合はinvalid
+    if (isChanged.value && name.value === "") {
+      return false;
+    }
+    // 上記以外ではvalid
+    return true;
+  });
+
+  watch(name, () => {
+    // 入力内容が変更されたらisChangedをtrueにする
+    if (!isChanged.value && name.value !== "") {
+      isChanged.value = true;
+    }
+  });
+
+  // コンポーネント描画関数
   const render = () =>
     h(TextInput, {
       type: "text",
-      modelValue: name,
-      placeholder: arg.placeholder,
-      supportText: arg.supportText,
-      errorText: arg.errorText,
+      label,
+      modelValue: name.value,
+      placeHolder,
+      supportText,
+      errorText,
+      isValid: isValid.value,
+      "onUpdate:modelValue": (value: string) => {
+        name.value = value;
+      },
     });
-  return { name, render };
+
+  const UseNameInputComponent = defineComponent({ render });
+  return { name: readonly(name), UseNameInputComponent };
 };

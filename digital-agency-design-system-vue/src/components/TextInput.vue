@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 type Props = {
-  /** 値（v-modelで双方向する想定） */
+  /** 値（v-modelでも使える） */
   modelValue: string;
   /** インプットのラベルです */
   label: string;
@@ -16,13 +16,15 @@ type Props = {
   /** プレースホルダのテキストです */
   placeHolder?: string;
   /** 内容を補足するサポートテキスト */
-  supportText?: string;
+  supportText?: string | null;
   /** エラー時に表示するテキスト */
-  errorText?: string;
+  errorText?: string | null;
   /** 必須かどうか。未指定の場合はfalse */
   isRequired?: boolean;
   /** 妥当性 */
   isValid?: boolean;
+  /** フォーカスアウト時のコールバック関数 */
+  onBlur?: (() => void) | null;
 };
 
 type Emits = { (e: "update:modelValue", value: string): void };
@@ -31,11 +33,16 @@ const props = withDefaults(defineProps<Props>(), {
   type: "text",
   isRequired: false,
   isValid: true,
+  placeHolder: "",
+  supportText: null,
+  errorText: null,
+  onBlur: null,
 });
 
 const emits = defineEmits<Emits>();
 
 const handleInput = (e: Event) => {
+  console.log((e.target as HTMLInputElement).value);
   emits("update:modelValue", (e.target as HTMLInputElement).value);
 };
 </script>
@@ -52,10 +59,10 @@ const handleInput = (e: Event) => {
       :placeholder="props.placeHolder"
       :onInput="handleInput"
     />
-    <span v-if="props.supportText !== undefined" class="supportText">{{
+    <span v-if="props.supportText !== null" class="supportText">{{
       props.supportText
     }}</span>
-    <span v-if="props.errorText !== undefined">
+    <span v-if="props.errorText !== null">
       <span v-show="!props.isValid" class="errorText">{{
         props.errorText
       }}</span>
