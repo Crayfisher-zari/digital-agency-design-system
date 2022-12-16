@@ -47,18 +47,24 @@ const handleInput = (e: Event) => {
 };
 </script>
 <template>
-  <label class="textInputWrapper" :class="!props.isValid ? 'isInvalid' : null">
-    <span class="labelWrapper"
-      ><span class="label">{{ props.label }}</span
-      ><span v-show="props.isRequired" class="requiredText">必須</span></span
+  <div>
+    <label
+      class="textInputWrapper"
+      :class="!props.isValid ? 'isInvalid' : null"
     >
-    <input
-      class="textInput"
-      :value="props.modelValue"
-      :type="props.type"
-      :placeholder="props.placeHolder"
-      :onInput="handleInput"
-    />
+      <span class="labelWrapper"
+        ><span class="label">{{ props.label }}</span
+        ><span v-show="props.isRequired" class="requiredText">必須</span></span
+      >
+      <input
+        class="textInput"
+        :value="props.modelValue"
+        :type="props.type"
+        :placeholder="props.placeHolder"
+        :onInput="handleInput"
+        :required="props.isRequired"
+      />
+    </label>
     <span v-if="props.supportText !== null" class="supportText">{{
       props.supportText
     }}</span>
@@ -67,7 +73,7 @@ const handleInput = (e: Event) => {
         props.errorText
       }}</span>
     </span>
-  </label>
+  </div>
 </template>
 
 <style lang="scss" scoped>
@@ -96,10 +102,6 @@ const handleInput = (e: Event) => {
   margin-top: 8px;
   border: 1px solid var(--color-border-field);
   border-radius: 8px;
-
-  &:invalid {
-    border-color: var(--color-status-alert);
-  }
 }
 
 .supportText {

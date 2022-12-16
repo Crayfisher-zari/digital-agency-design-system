@@ -46,6 +46,7 @@ export const useNameInput = ({
       placeHolder,
       supportText,
       errorText,
+      isRequired,
       isValid: isValid.value,
       "onUpdate:modelValue": (value: string) => {
         name.value = value;
