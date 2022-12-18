@@ -49,6 +49,7 @@ export const useTelInput = () => {
         tel.value = value;
       },
       onBlur: handleBlur,
+      isDisabled:true
     });
 
   const UseTelInputComponent = defineComponent({ render });

@@ -29,7 +29,7 @@ type Props = {
   /** フォーカスアウト時のコールバック関数 */
   onBlur?: (() => void) | undefined;
   /** ボタンが非活性状態か。未指定の場合はfalse */
-  isDisabled?:boolean
+  isDisabled?: boolean;
 };
 
 type Emits = { (e: "update:modelValue", value: string): void };
@@ -42,25 +42,24 @@ const props = withDefaults(defineProps<Props>(), {
   supportText: null,
   errorText: null,
   onBlur: undefined,
-  isDisabled:false
+  isDisabled: false,
 });
 
 const emits = defineEmits<Emits>();
-
 
 // aria-describledby用のエラー文言のid名です
 const errorIdName = `textInput${getSerialNumber()}`;
 
 // 状態に応じたクラス名を返します
-const stateClassName = computed<string|null>(()=>{
-  if(props.isDisabled){
-    return "isDisabled"
+const stateClassName = computed<string | null>(() => {
+  if (props.isDisabled) {
+    return "isDisabled";
   }
-  if(!props.isValid){
-    return "isInvalid"
+  if (!props.isValid) {
+    return "isInvalid";
   }
-  return null
-})
+  return null;
+});
 
 // 入力時のコールバック関数です。入力内容をemitして親に伝えられます。
 const handleInput = (e: Event) => {
@@ -84,6 +83,7 @@ const handleInput = (e: Event) => {
         :aria-invalid="!isValid"
         :aria-describedby="errorIdName"
         :onBlur="onBlur"
+        :disabled="props.isDisabled"
       />
     </label>
     <span v-if="props.supportText !== null" class="supportText">{{
