@@ -37,13 +37,21 @@ const { UseTelInputComponent: UseTelInputComponent } = useTelInput();
       type="tertiary"
       @click="handleClick"
     ></BasicButton>
-    <FamilyNameInput />
-    <UseTelInputComponent />
+    <div class="inputWrapper">
+      <FamilyNameInput />
+      <UseTelInputComponent />
+    </div>
   </div>
 </template>
 
 <style scoped>
 .wrapper {
   padding: 20px;
+}
+
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
 }
 </style>
