@@ -18,5 +18,8 @@
     "project": "./tsconfig.json",
     "sourceType": "module"
   },
-  "ignorePatterns":["*.d.ts"]
+  "ignorePatterns": ["*.d.ts"],
+  "rules": {
+    "vue/attribute-hyphenation": 0
+  }
 }
