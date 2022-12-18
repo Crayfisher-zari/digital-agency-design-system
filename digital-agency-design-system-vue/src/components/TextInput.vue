@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { computed } from "@vue/reactivity";
 import { getSerialNumber } from "../utils/getSerialNumber";
 
 type Props = {
@@ -26,7 +27,9 @@ type Props = {
   /** 妥当性 */
   isValid?: boolean;
   /** フォーカスアウト時のコールバック関数 */
-  onBlur?: (() => void) | null;
+  onBlur?: (() => void) | undefined;
+  /** ボタンが非活性状態か。未指定の場合はfalse */
+  isDisabled?:boolean
 };
 
 type Emits = { (e: "update:modelValue", value: string): void };
@@ -38,19 +41,34 @@ const props = withDefaults(defineProps<Props>(), {
   placeHolder: "",
   supportText: null,
   errorText: null,
-  onBlur: null,
+  onBlur: undefined,
+  isDisabled:false
 });
-
-const errorIdName = `textInput${getSerialNumber()}`;
 
 const emits = defineEmits<Emits>();
 
+
+// aria-describledby用のエラー文言のid名です
+const errorIdName = `textInput${getSerialNumber()}`;
+
+// 状態に応じたクラス名を返します
+const stateClassName = computed<string|null>(()=>{
+  if(props.isDisabled){
+    return "isDisabled"
+  }
+  if(!props.isValid){
+    return "isInvalid"
+  }
+  return null
+})
+
+// 入力時のコールバック関数です。入力内容をemitして親に伝えられます。
 const handleInput = (e: Event) => {
   emits("update:modelValue", (e.target as HTMLInputElement).value);
 };
 </script>
 <template>
-  <div :class="!props.isValid ? 'isInvalid' : null">
+  <div :class="stateClassName">
     <label class="textInputWrapper">
       <span class="labelWrapper"
         ><span class="label">{{ props.label }}</span
@@ -65,6 +83,7 @@ const handleInput = (e: Event) => {
         :required="props.isRequired"
         :aria-invalid="!isValid"
         :aria-describedby="errorIdName"
+        :onBlur="onBlur"
       />
     </label>
     <span v-if="props.supportText !== null" class="supportText">{{

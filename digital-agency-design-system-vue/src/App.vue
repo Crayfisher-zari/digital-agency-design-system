@@ -1,15 +1,12 @@
 <script setup lang="ts">
-import { ref } from "vue";
 import Heading from "./components/Heading.vue";
 import BasicButton from "./components/BasicButton.vue";
-import TextInput from "./components/TextInput.vue";
 import { useNameInput } from "./composables/useNameInput";
+import { useTelInput } from "./composables/useTelInput";
 
 const handleClick = () => {
   console.log("click");
 };
-
-const name = ref("あああ");
 
 const { name: familyName, UseNameInputComponent: FamilyNameInput } =
   useNameInput({
@@ -18,6 +15,7 @@ const { name: familyName, UseNameInputComponent: FamilyNameInput } =
     supportText: "住民票に記載された姓を記入します。",
     placeHolder: "山田",
   });
+const { UseTelInputComponent: UseTelInputComponent } = useTelInput();
 </script>
 
 <template>
@@ -40,6 +38,7 @@ const { name: familyName, UseNameInputComponent: FamilyNameInput } =
       @click="handleClick"
     ></BasicButton>
     <FamilyNameInput />
+    <UseTelInputComponent />
   </div>
 </template>
 
