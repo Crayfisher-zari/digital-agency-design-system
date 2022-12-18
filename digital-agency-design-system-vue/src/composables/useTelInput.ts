@@ -1,6 +1,9 @@
 import { computed, defineComponent, h, readonly, ref, watch } from "vue";
 import TextInput from "../components/TextInput.vue";
 
+/**
+ * 電話番号のインプットコンポーネントを作成するcomposableです
+ */
 export const useTelInput = () => {
   const tel = ref<string>("");
   const isChanged = ref<boolean>(false);
@@ -49,7 +52,7 @@ export const useTelInput = () => {
         tel.value = value;
       },
       onBlur: handleBlur,
-      isDisabled:true
+      isDisabled: true,
     });
 
   const UseTelInputComponent = defineComponent({ render });

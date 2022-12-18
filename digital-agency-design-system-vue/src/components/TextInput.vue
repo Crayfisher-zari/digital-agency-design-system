@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { computed } from "@vue/reactivity";
+import { computed } from "vue";
 import { getSerialNumber } from "../utils/getSerialNumber";
 
 type Props = {
@@ -124,6 +124,10 @@ const handleInput = (e: Event) => {
   border: 1px solid var(--color-border-field);
   border-radius: 8px;
 
+  &::placeholder {
+    color: var(--color-text-placeHolder);
+  }
+
   &:focus-visible {
     border-color: var(--color-border-focused) !important;
     outline: 1px solid var(--color-border-focused);
@@ -146,6 +150,7 @@ const handleInput = (e: Event) => {
   color: var(--color-text-alert);
 }
 
+// エラー時のスタイル
 .isInvalid {
   .label {
     color: var(--color-text-alert);
@@ -153,6 +158,22 @@ const handleInput = (e: Event) => {
 
   .textInput {
     border-color: var(--color-border-alert);
+  }
+}
+
+// 非活性時のスタイル
+.isDisabled {
+  .label {
+    color: var(--color-text-disabled);
+  }
+
+  .textInput {
+    background-color: var(--color-background-secondary);
+    border-color: var(--color-border-disabled);
+
+    &::placeholder {
+      // color: var(--color-text-disabled);
+    }
   }
 }
 </style>

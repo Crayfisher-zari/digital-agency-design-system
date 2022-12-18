@@ -7,6 +7,10 @@ type Arg = {
   supportText?: string;
   isRequired: boolean;
 };
+
+/**
+ * 氏名のインプットコンポーネントを作成するcomposableです
+ */
 export const useNameInput = ({
   label,
   placeHolder,
@@ -43,7 +47,7 @@ export const useNameInput = ({
       modelValue: name.value,
       placeHolder,
       supportText,
-      errorText:"必須項目です",
+      errorText: "必須項目です",
       isRequired,
       isValid: isValid.value,
       "onUpdate:modelValue": (value: string) => {
