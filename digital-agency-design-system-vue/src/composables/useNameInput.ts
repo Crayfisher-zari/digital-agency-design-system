@@ -5,14 +5,12 @@ type Arg = {
   label: string;
   placeHolder?: string;
   supportText?: string;
-  errorText?: string;
   isRequired: boolean;
 };
 export const useNameInput = ({
   label,
   placeHolder,
   supportText,
-  errorText,
   isRequired,
 }: Arg) => {
   const name = ref<string>("");
@@ -45,7 +43,7 @@ export const useNameInput = ({
       modelValue: name.value,
       placeHolder,
       supportText,
-      errorText,
+      errorText:"必須項目です",
       isRequired,
       isValid: isValid.value,
       "onUpdate:modelValue": (value: string) => {

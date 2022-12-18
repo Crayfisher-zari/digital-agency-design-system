@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { getSerialNumber } from "../utils/getSerialNumber";
+
 type Props = {
   /** 値（v-modelでも使える） */
   modelValue: string;
@@ -39,19 +41,17 @@ const props = withDefaults(defineProps<Props>(), {
   onBlur: null,
 });
 
+const errorIdName = `textInput${getSerialNumber()}`;
+
 const emits = defineEmits<Emits>();
 
 const handleInput = (e: Event) => {
-  console.log((e.target as HTMLInputElement).value);
   emits("update:modelValue", (e.target as HTMLInputElement).value);
 };
 </script>
 <template>
-  <div>
-    <label
-      class="textInputWrapper"
-      :class="!props.isValid ? 'isInvalid' : null"
-    >
+  <div :class="!props.isValid ? 'isInvalid' : null">
+    <label class="textInputWrapper">
       <span class="labelWrapper"
         ><span class="label">{{ props.label }}</span
         ><span v-show="props.isRequired" class="requiredText">必須</span></span
@@ -63,13 +63,15 @@ const handleInput = (e: Event) => {
         :placeholder="props.placeHolder"
         :onInput="handleInput"
         :required="props.isRequired"
+        :aria-invalid="!isValid"
+        :aria-describedby="errorIdName"
       />
     </label>
     <span v-if="props.supportText !== null" class="supportText">{{
       props.supportText
     }}</span>
     <span v-if="props.errorText !== null">
-      <span v-show="!props.isValid" class="errorText">{{
+      <span v-show="!props.isValid" :id="errorIdName" class="errorText">{{
         props.errorText
       }}</span>
     </span>
@@ -102,6 +104,11 @@ const handleInput = (e: Event) => {
   margin-top: 8px;
   border: 1px solid var(--color-border-field);
   border-radius: 8px;
+
+  &:focus-visible {
+    border-color: var(--color-border-focused) !important;
+    outline: 1px solid var(--color-border-focused);
+  }
 }
 
 .supportText {
@@ -118,5 +125,15 @@ const handleInput = (e: Event) => {
   font-size: 0.75rem;
   line-height: 1.5;
   color: var(--color-text-alert);
+}
+
+.isInvalid {
+  .label {
+    color: var(--color-text-alert);
+  }
+
+  .textInput {
+    border-color: var(--color-border-alert);
+  }
 }
 </style>
