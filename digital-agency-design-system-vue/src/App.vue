@@ -1,10 +1,9 @@
 <script setup lang="ts">
 import Heading from "./components/Heading.vue";
 import BasicButton from "./components/BasicButton.vue";
-import TextAreaInput from "./components/TextAreaInput.vue";
 import { useNameInput } from "./composables/useNameInput";
 import { useTelInput } from "./composables/useTelInput";
-import { ref } from "vue";
+import { useTextAreaInput } from "./composables/useTextAreaInput";
 
 const handleClick = () => {
   console.log("click");
@@ -17,7 +16,7 @@ const { UseNameInputComponent: FamilyNameInput } = useNameInput({
   placeHolder: "山田",
 });
 const { UseTelInputComponent: UseTelInputComponent } = useTelInput();
-const textarea = ref();
+const { UseTextAreaInputComponent } = useTextAreaInput();
 </script>
 
 <template>
@@ -42,12 +41,8 @@ const textarea = ref();
     <div class="inputWrapper">
       <FamilyNameInput />
       <UseTelInputComponent />
+      <UseTextAreaInputComponent />
     </div>
-    <TextAreaInput
-      v-model="textarea"
-      label="お問い合わせ詳細"
-      :isRequired="true"
-    />
   </div>
 </template>
 
@@ -60,5 +55,6 @@ const textarea = ref();
   display: flex;
   flex-direction: column;
   row-gap: 24px;
+  width: 300px;
 }
 </style>

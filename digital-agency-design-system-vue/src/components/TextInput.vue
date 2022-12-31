@@ -119,6 +119,7 @@ const handleInput = (e: Event) => {
 }
 
 .textInput {
+  width: 100%;
   padding: 12px 16px;
   margin-top: 8px;
   border: 1px solid var(--color-border-field);
