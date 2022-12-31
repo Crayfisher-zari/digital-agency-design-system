@@ -4,6 +4,8 @@ import BasicButton from "./components/BasicButton.vue";
 import { useNameInput } from "./composables/useNameInput";
 import { useTelInput } from "./composables/useTelInput";
 import { useTextAreaInput } from "./composables/useTextAreaInput";
+import RadioButton from "./components/RadioButton.vue";
+import { ref } from "vue";
 
 const handleClick = () => {
   console.log("click");
@@ -17,6 +19,8 @@ const { UseNameInputComponent: FamilyNameInput } = useNameInput({
 });
 const { UseTelInputComponent: UseTelInputComponent } = useTelInput();
 const { UseTextAreaInputComponent } = useTextAreaInput();
+
+const v = ref();
 </script>
 
 <template>
@@ -42,6 +46,11 @@ const { UseTextAreaInputComponent } = useTextAreaInput();
       <FamilyNameInput />
       <UseTelInputComponent />
       <UseTextAreaInputComponent />
+      <div>
+        <RadioButton v-model="v" label="あ" radioValue="a" name="z" />
+        <RadioButton v-model="v" label="い" radioValue="b" name="z" />
+        <RadioButton v-model="v" label="う" radioValue="c" name="z" />
+      </div>
     </div>
   </div>
 </template>
