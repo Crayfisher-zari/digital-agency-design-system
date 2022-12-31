@@ -15,7 +15,10 @@ type Props = {
     | "number"
     | "password"
     | "date"
-    | "datetime-local";
+    | "datetime-local"
+    | "search"
+    | "url"
+    | "week";
   /** プレースホルダのテキストです */
   placeHolder?: string;
   /** 内容を補足するサポートテキスト */
