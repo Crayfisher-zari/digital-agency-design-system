@@ -1,21 +1,23 @@
 <script setup lang="ts">
 import Heading from "./components/Heading.vue";
 import BasicButton from "./components/BasicButton.vue";
+import TextAreaInput from "./components/TextAreaInput.vue";
 import { useNameInput } from "./composables/useNameInput";
 import { useTelInput } from "./composables/useTelInput";
+import { ref } from "vue";
 
 const handleClick = () => {
   console.log("click");
 };
 
-const { name: familyName, UseNameInputComponent: FamilyNameInput } =
-  useNameInput({
-    label: "姓",
-    isRequired: true,
-    supportText: "住民票に記載された姓を記入します。",
-    placeHolder: "山田",
-  });
+const { UseNameInputComponent: FamilyNameInput } = useNameInput({
+  label: "姓",
+  isRequired: true,
+  supportText: "住民票に記載された姓を記入します。",
+  placeHolder: "山田",
+});
 const { UseTelInputComponent: UseTelInputComponent } = useTelInput();
+const textarea = ref();
 </script>
 
 <template>
@@ -41,6 +43,11 @@ const { UseTelInputComponent: UseTelInputComponent } = useTelInput();
       <FamilyNameInput />
       <UseTelInputComponent />
     </div>
+    <TextAreaInput
+      v-model="textarea"
+      label="お問い合わせ詳細"
+      :isRequired="true"
+    />
   </div>
 </template>
 
