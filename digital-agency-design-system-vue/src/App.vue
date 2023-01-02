@@ -5,6 +5,7 @@ import { useNameInput } from "./composables/useNameInput";
 import { useTelInput } from "./composables/useTelInput";
 import { useTextAreaInput } from "./composables/useTextAreaInput";
 import RadioButton from "./components/RadioButton.vue";
+import RadioGroup from "./components/RadioGroup.vue";
 import { ref } from "vue";
 
 const handleClick = () => {
@@ -21,6 +22,7 @@ const { UseTelInputComponent: UseTelInputComponent } = useTelInput();
 const { UseTextAreaInputComponent } = useTextAreaInput();
 
 const v = ref();
+const selected = ref();
 </script>
 
 <template>
@@ -50,6 +52,17 @@ const v = ref();
         <RadioButton v-model="v" label="選択肢1" radioValue="a" name="z" />
         <RadioButton v-model="v" label="選択肢2" radioValue="b" name="z" />
         <RadioButton v-model="v" label="選択肢3" radioValue="c" name="z" />
+      </div>
+      <div>
+        <RadioGroup
+          v-model="selected"
+          groupLabel="ラベル"
+          :labels="['1', '2', '3']"
+          :values="['1', '2', '3']"
+          helpText="ヘルプテキスト"
+          errorText="エラーテキスト"
+          name="group"
+        />
       </div>
     </div>
   </div>

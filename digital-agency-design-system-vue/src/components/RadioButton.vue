@@ -1,18 +1,20 @@
 <script lang="ts" setup>
 type Props = {
   /** 格納するリアクティブな値（v-modelでも使える） */
-  modelValue: string;
+  modelValue: string | undefined;
   /** 選択肢固有の値です */
   radioValue: string;
   /** ボタンのラベルです */
   label: string;
   /** name属性の値です */
   name: string;
+  /** ボタンが非活性状態か。未指定の場合はfalse */
+  isDisabled?: boolean;
 };
 
 type Emits = { (e: "update:modelValue", value: string): void };
 
-const props = defineProps<Props>();
+withDefaults(defineProps<Props>(), { isDisabled: false });
 const emits = defineEmits<Emits>();
 // 入力時のコールバック関数です。入力内容をemitして親に伝えられます。
 const handleInput = (e: Event) => {
@@ -20,13 +22,14 @@ const handleInput = (e: Event) => {
 };
 </script>
 <template>
-  <label>
+  <label :class="isDisabled ? 'isDisabled' : null">
     <input
       type="radio"
       class="sr-only"
       :value="radioValue"
       :onInput="handleInput"
       :name="name"
+      :disabled="isDisabled"
     />{{ label }}
     <span class="radioIcon"></span>
   </label>
@@ -36,7 +39,8 @@ label {
   position: relative;
   display: flex;
   align-items: center;
-  padding:8px 0 8px 40px;
+  padding: 8px 0 8px 40px;
+  font-size: 1rem;
 }
 .radioIcon {
   width: 19px;
@@ -47,8 +51,8 @@ label {
   border: 2px solid var(--color-icon-label);
   border-radius: 50%;
   background-color: #fff;
-  &:after{
-    content: '';
+  &:after {
+    content: "";
     display: block;
     position: absolute;
     width: 9px;
@@ -59,9 +63,9 @@ label {
     background-color: transparent;
   }
 }
-input:checked ~ .radioIcon{
+input:checked ~ .radioIcon {
   border-color: var(--color-icon-active);
-  &:after{
+  &:after {
     background-color: var(--color-icon-active);
   }
 }
