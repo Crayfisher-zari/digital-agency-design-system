@@ -47,9 +47,9 @@ const v = ref();
       <UseTelInputComponent />
       <UseTextAreaInputComponent />
       <div>
-        <RadioButton v-model="v" label="あ" radioValue="a" name="z" />
-        <RadioButton v-model="v" label="い" radioValue="b" name="z" />
-        <RadioButton v-model="v" label="う" radioValue="c" name="z" />
+        <RadioButton v-model="v" label="選択肢1" radioValue="a" name="z" />
+        <RadioButton v-model="v" label="選択肢2" radioValue="b" name="z" />
+        <RadioButton v-model="v" label="選択肢3" radioValue="c" name="z" />
       </div>
     </div>
   </div>

@@ -16,3 +16,14 @@ html {
   color: var(--color-text-body);
   background-color: var(--color-background-primary);
 }
+
+/* 見た目には不可視だが、スクリーンリーダーには読み上げられるようにするスタイル */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  clip-path: polygon(0 0, 0 0, 0 0, 0 0);
+  border: 0;
+}
