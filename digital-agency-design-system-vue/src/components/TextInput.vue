@@ -20,19 +20,19 @@ type Props = {
     | "url"
     | "week";
   /** プレースホルダのテキストです */
-  placeHolder?: string;
+  placeHolder: string;
   /** 内容を補足するサポートテキスト */
-  supportText?: string | null;
+  supportText?: string;
   /** エラー時に表示するテキスト */
-  errorText?: string | null;
+  errorText?: string;
   /** 必須かどうか。未指定の場合はfalse */
-  isRequired?: boolean;
+  isRequired: boolean;
   /** 妥当性 */
-  isValid?: boolean;
+  isValid: boolean;
   /** フォーカスアウト時のコールバック関数 */
-  onBlur?: (() => void) | undefined;
+  onBlur?: () => void;
   /** ボタンが非活性状態か。未指定の場合はfalse */
-  isDisabled?: boolean;
+  isDisabled: boolean;
 };
 
 type Emits = { (e: "update:modelValue", value: string): void };
@@ -42,9 +42,6 @@ const props = withDefaults(defineProps<Props>(), {
   isRequired: false,
   isValid: true,
   placeHolder: "",
-  supportText: null,
-  errorText: null,
-  onBlur: undefined,
   isDisabled: false,
 });
 
@@ -89,14 +86,16 @@ const handleInput = (e: Event) => {
         :disabled="props.isDisabled"
       />
     </label>
-    <span v-if="props.supportText !== null" class="supportText">{{
+    <span v-if="props.supportText !== undefined" class="supportText">{{
       props.supportText
     }}</span>
-    <span v-if="props.errorText !== null">
-      <span v-show="!props.isValid" :id="errorIdName" class="errorText">{{
-        props.errorText
-      }}</span>
-    </span>
+    <span
+      v-if="props.errorText !== undefined"
+      v-show="!props.isValid"
+      :id="errorIdName"
+      class="errorText"
+      >{{ props.errorText }}</span
+    >
   </div>
 </template>
 

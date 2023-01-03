@@ -4,7 +4,6 @@ import BasicButton from "./components/BasicButton.vue";
 import { useNameInput } from "./composables/useNameInput";
 import { useTelInput } from "./composables/useTelInput";
 import { useTextAreaInput } from "./composables/useTextAreaInput";
-import RadioButton from "./components/RadioButton.vue";
 import RadioGroup from "./components/RadioGroup.vue";
 import { ref } from "vue";
 
@@ -49,19 +48,15 @@ const selected = ref();
       <UseTelInputComponent />
       <UseTextAreaInputComponent />
       <div>
-        <RadioButton v-model="v" label="選択肢1" radioValue="a" name="z" />
-        <RadioButton v-model="v" label="選択肢2" radioValue="b" name="z" />
-        <RadioButton v-model="v" label="選択肢3" radioValue="c" name="z" />
-      </div>
-      <div>
         <RadioGroup
           v-model="selected"
           groupLabel="ラベル"
-          :labels="['1', '2', '3']"
+          :labels="['選択肢1', '選択肢2', '選択肢3']"
           :values="['1', '2', '3']"
           helpText="ヘルプテキスト"
           errorText="エラーテキスト"
           name="group"
+          :isRequired="true"
         />
       </div>
     </div>

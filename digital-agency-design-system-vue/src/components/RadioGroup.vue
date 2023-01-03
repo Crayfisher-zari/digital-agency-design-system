@@ -16,33 +16,42 @@ type Props = {
   /** エラー時に表示するテキスト */
   errorText?: string;
   /** 必須かどうか。未指定の場合はfalse */
-  isRequired?: boolean;
+  isRequired: boolean;
   /** 妥当性 */
-  isValid?: boolean;
+  isValid: boolean;
   /** フォーカスアウト時のコールバック関数 */
   onBlur?: () => void;
   /** ボタンが非活性状態か。未指定の場合はfalse */
-  isDisabled?: boolean;
+  isDisabled: boolean;
 };
 type Emits = { (e: "update:modelValue", value: string | undefined): void };
 
-defineProps<Props>();
+withDefaults(defineProps<Props>(), {
+  isRequired: false,
+  isValid: true,
+  isDisabled: false,
+});
 const emits = defineEmits<Emits>();
 
+// 選択された値
 const selected = ref<string>();
+
 // 入力時のコールバック関数です。入力内容をemitして親に伝えられます。
 const handleInput = (v: string | undefined) => {
   emits("update:modelValue", v);
 };
+
+// 値の変更を監視し、変更があったら親へemitします
 watch(selected, (value) => {
   handleInput(value);
 });
 </script>
 <template>
-  <div class="radioGroup">
-    <p class="label">{{ groupLabel }}
-     <span v-if="isRequired" class="requiredText isRequired">必須</span>
-     <span v-else class="requiredText">任意</span>
+  <div class="radioGroup" :class="!isValid ? 'isError' : null">
+    <p class="label">
+      {{ groupLabel }}
+      <span v-if="isRequired" class="requiredText isRequired">必須</span>
+      <span v-else class="requiredText">任意</span>
     </p>
     <div class="buttons">
       <RadioButton
@@ -51,11 +60,44 @@ watch(selected, (value) => {
         :label="label"
         :radioValue="values[index]"
         :name="name"
+        :isValid="isValid"
       />
     </div>
     <p class="helpText" v-if="helpText !== undefined">{{ helpText }}</p>
-    <p class="errorText" v-if="errorText !== undefined">{{ errorText }}</p>
+    <p class="errorText" v-if="errorText !== undefined" v-show="!isValid">
+      {{ errorText }}
+    </p>
   </div>
 </template>
 <style lang="scss" scoped>
+.label {
+  display: flex;
+  font-size: 0.875rem;
+  color: var(--color-text-body);
+  align-items: center;
+}
+
+.requiredText {
+  font-size: 0.75rem;
+  color: var(--color-text-description);
+  margin-left: 8px;
+  &.isRequired {
+    color: var(--color-text-alert);
+  }
+}
+.helpText {
+  font-size: 0.75rem;
+  color: var(--color-text-description);
+}
+
+.errorText {
+  font-size: 0.75rem;
+  color: var(--color-text-alert);
+}
+
+.isError{
+  .label{
+    color: var(--color-text-alert);
+  }
+}
 </style>
