@@ -1,14 +1,19 @@
-<script lang="ts" setup>import { computed } from 'vue';
+<script lang="ts" setup>
+import { computed } from "vue";
 
 type Props = {
+  /** デフォルト型かタイル型か */
+  radioStyle: "default" | "tile";
   /** 格納するリアクティブな値（v-modelでも使える） */
-  modelValue: string | undefined;
+  modelValue: string | null;
   /** 選択肢固有の値です */
   radioValue: string;
   /** ボタンのラベルです */
   label: string;
   /** name属性の値です */
   name: string;
+  /** サブテキスト */
+  subText?:string
   /** 妥当性 */
   isValid: boolean;
   /** ボタンが非活性状態か。未指定の場合はfalse */
@@ -17,7 +22,11 @@ type Props = {
 
 type Emits = { (e: "update:modelValue", value: string): void };
 
-const props = withDefaults(defineProps<Props>(), { isDisabled: false, isValid: true });
+const props = withDefaults(defineProps<Props>(), {
+  radioStyle: "default",
+  isDisabled: false,
+  isValid: true,
+});
 const emits = defineEmits<Emits>();
 
 // 入力時のコールバック関数です。入力内容をemitして親に伝えられます。
@@ -37,7 +46,7 @@ const stateClassName = computed<string | null>(() => {
 });
 </script>
 <template>
-  <label :class="stateClassName">
+  <label :class="`${radioStyle} ${stateClassName ?? ''}`">
     <input
       type="radio"
       class="sr-only"
@@ -84,18 +93,27 @@ input:checked ~ .radioIcon {
     background-color: var(--color-icon-active);
   }
 }
-
-.isInvalid{
+.isInvalid {
   color: var(--color-text-alert);
-  .radioIcon{
+  .radioIcon {
     border-color: var(--color-border-alert);
   }
 }
 
-.isDisabled{
+.isDisabled {
   color: var(--color-text-disabled);
-  .radioIcon{
+  .radioIcon {
     border-color: var(--color-border-disabled);
+  }
+}
+
+.tile {
+  padding: 16px 0 16px 56px;
+  border: 1px solid var(--color-border-field);
+  border-radius: 8px;
+  background-color: var(--color-background-primary);
+  .radioIcon {
+    left: 20px;
   }
 }
 </style>

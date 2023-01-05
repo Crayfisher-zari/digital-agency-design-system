@@ -21,7 +21,7 @@ const { UseTelInputComponent: UseTelInputComponent } = useTelInput();
 const { UseTextAreaInputComponent } = useTextAreaInput();
 
 const v = ref();
-const selected = ref();
+const selected = ref<string | null>(null);
 </script>
 
 <template>
@@ -50,6 +50,7 @@ const selected = ref();
       <div>
         <RadioGroup
           v-model="selected"
+          radioStyle="tile"
           groupLabel="ラベル"
           :labels="['選択肢1', '選択肢2', '選択肢3']"
           :values="['1', '2', '3']"
@@ -57,8 +58,6 @@ const selected = ref();
           errorText="エラーテキスト"
           name="group"
           :isRequired="true"
-          :isValid="false"
-          :isDisabled="true"
         />
       </div>
     </div>

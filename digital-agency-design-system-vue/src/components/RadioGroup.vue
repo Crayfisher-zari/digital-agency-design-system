@@ -5,6 +5,8 @@ import RadioButton from "./RadioButton.vue";
 type Props = {
   /** ラジオボタングループのラベル */
   groupLabel: string;
+  /** デフォルト型かタイル型か */
+  radioStyle: "default" | "tile";
   /** ラジオボタンを紐付けるname属性 */
   name: string;
   /** 各選択肢の文字列 */
@@ -24,9 +26,10 @@ type Props = {
   /** ボタンが非活性状態か。未指定の場合はfalse */
   isDisabled: boolean;
 };
-type Emits = { (e: "update:modelValue", value: string | undefined): void };
+type Emits = { (e: "update:modelValue", value: string | null): void };
 
 withDefaults(defineProps<Props>(), {
+  radioStyle: "default",
   isRequired: false,
   isValid: true,
   isDisabled: false,
@@ -34,15 +37,15 @@ withDefaults(defineProps<Props>(), {
 const emits = defineEmits<Emits>();
 
 // 選択された値
-const selected = ref<string>();
+const modelValue = ref<string|null>(null);
 
 // 入力時のコールバック関数です。入力内容をemitして親に伝えられます。
-const handleInput = (v: string | undefined) => {
+const handleInput = (v: string | null) => {
   emits("update:modelValue", v);
 };
 
 // 値の変更を監視し、変更があったら親へemitします
-watch(selected, (value) => {
+watch(modelValue, (value) => {
   handleInput(value);
 });
 </script>
@@ -56,7 +59,8 @@ watch(selected, (value) => {
     <div class="buttons">
       <RadioButton
         v-for="(label, index) in labels"
-        v-model="selected"
+        v-model="modelValue"
+        :radioStyle="radioStyle"
         :label="label"
         :radioValue="values[index]"
         :name="name"

@@ -4,15 +4,15 @@ type Props = {
   /** ボタンのテキストです */
   label: string;
   /** ボタンのタイプです。未指定の場合はprimaryになります */
-  type: "primary" | "secondary" | "tertiary";
+  type?: "primary" | "secondary" | "tertiary";
 };
 
-const props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
   type: "primary",
 });
 </script>
 <template>
-  <button :class="props.type">
+  <button :class="type">
     <span class="labelText">{{ label }}</span>
   </button>
 </template>

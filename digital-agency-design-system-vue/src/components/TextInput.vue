@@ -26,13 +26,13 @@ type Props = {
   /** エラー時に表示するテキスト */
   errorText?: string;
   /** 必須かどうか。未指定の場合はfalse */
-  isRequired: boolean;
+  isRequired?: boolean;
   /** 妥当性 */
-  isValid: boolean;
+  isValid?: boolean;
   /** フォーカスアウト時のコールバック関数 */
   onBlur?: () => void;
   /** ボタンが非活性状態か。未指定の場合はfalse */
-  isDisabled: boolean;
+  isDisabled?: boolean;
 };
 
 type Emits = { (e: "update:modelValue", value: string): void };
