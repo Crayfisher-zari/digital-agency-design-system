@@ -57,6 +57,8 @@ const selected = ref();
           errorText="エラーテキスト"
           name="group"
           :isRequired="true"
+          :isValid="false"
+          :isDisabled="true"
         />
       </div>
     </div>

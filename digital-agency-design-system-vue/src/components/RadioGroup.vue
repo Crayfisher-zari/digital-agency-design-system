@@ -61,6 +61,7 @@ watch(selected, (value) => {
         :radioValue="values[index]"
         :name="name"
         :isValid="isValid"
+        :isDisabled="isDisabled"
       />
     </div>
     <p class="helpText" v-if="helpText !== undefined">{{ helpText }}</p>

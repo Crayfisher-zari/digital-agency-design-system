@@ -91,4 +91,11 @@ input:checked ~ .radioIcon {
     border-color: var(--color-border-alert);
   }
 }
+
+.isDisabled{
+  color: var(--color-text-disabled);
+  .radioIcon{
+    border-color: var(--color-border-disabled);
+  }
+}
 </style>
