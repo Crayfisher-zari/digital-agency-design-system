@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { computed } from "vue";
+import { computed, onMounted, ref } from "vue";
 
 type Props = {
   /** デフォルト型かタイル型か */
@@ -13,7 +13,7 @@ type Props = {
   /** name属性の値です */
   name: string;
   /** サブテキスト */
-  subText?:string
+  subText?: string;
   /** 妥当性 */
   isValid: boolean;
   /** ボタンが非活性状態か。未指定の場合はfalse */
@@ -28,6 +28,8 @@ const props = withDefaults(defineProps<Props>(), {
   isValid: true,
 });
 const emits = defineEmits<Emits>();
+
+const checked = computed<boolean>(() => props.modelValue === props.radioValue);
 
 // 入力時のコールバック関数です。入力内容をemitして親に伝えられます。
 const handleInput = (e: Event) => {
@@ -46,26 +48,34 @@ const stateClassName = computed<string | null>(() => {
 });
 </script>
 <template>
-  <label :class="`${radioStyle} ${stateClassName ?? ''}`">
+  <label
+    :class="`${radioStyle} ${stateClassName ?? ''} ${checked ? 'checked' : ''}`"
+  >
     <input
       type="radio"
       class="sr-only"
       :value="radioValue"
-      :onInput="handleInput"
+      :onChange="handleInput"
       :name="name"
       :disabled="isDisabled"
+      :checked="checked"
     />{{ label }}
+    <span
+      v-if="radioStyle === 'tile' && subText !== undefined"
+      class="subText"
+      >{{ subText }}</span
+    >
     <span class="radioIcon"></span>
   </label>
 </template>
 <style lang="scss" scoped>
 label {
   position: relative;
-  display: flex;
-  align-items: center;
+
   padding: 8px 0 8px 40px;
   font-size: 1rem;
 }
+
 .radioIcon {
   width: 19px;
   height: 19px;
@@ -93,6 +103,16 @@ input:checked ~ .radioIcon {
     background-color: var(--color-icon-active);
   }
 }
+
+input:disabled ~ .radioIcon {
+  border-color: var(--color-border-disabled);
+}
+
+input:disabled:checked ~ .radioIcon {
+  &:after {
+    background-color: var(--color-border-disabled);
+  }
+}
 .isInvalid {
   color: var(--color-text-alert);
   .radioIcon {
@@ -102,18 +122,40 @@ input:checked ~ .radioIcon {
 
 .isDisabled {
   color: var(--color-text-disabled);
-  .radioIcon {
-    border-color: var(--color-border-disabled);
-  }
+}
+
+.subText {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--color-text-description);
+}
+
+.default {
+  display: flex;
+  align-items: center;
 }
 
 .tile {
+  display: grid;
   padding: 16px 0 16px 56px;
-  border: 1px solid var(--color-border-field);
+  border: 2px solid var(--color-border-field);
   border-radius: 8px;
   background-color: var(--color-background-primary);
   .radioIcon {
     left: 20px;
+    align-self: center;
+  }
+  &.isInvalid {
+    border-color: var(--color-border-alert);
+  }
+  &.checked {
+    border-color: var(--color-border-selected);
+  }
+  &.isDisabled {
+    border-color: var(--color-border-disabled);
+    .subText {
+      color: var(--color-text-disabled);
+    }
   }
 }
 </style>

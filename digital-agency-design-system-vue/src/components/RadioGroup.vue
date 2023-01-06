@@ -3,32 +3,36 @@ import { ref, watch } from "vue";
 import RadioButton from "./RadioButton.vue";
 
 type Props = {
+  /** 格納するリアクティブな値（v-modelでも使える） */
+  modelValue: string | null;
   /** ラジオボタングループのラベル */
   groupLabel: string;
-  /** デフォルト型かタイル型か */
-  radioStyle: "default" | "tile";
+  /** デフォルトスタイルかタイルスタイルか */
+  radioStyle?: "default" | "tile";
   /** ラジオボタンを紐付けるname属性 */
   name: string;
   /** 各選択肢の文字列 */
   labels: string[];
   /** 各選択肢の値 */
   values: string[];
+  /** 各選択肢のサブテキスト（タイルスタイル用） */
+  subTexts?: string[];
   /** 内容を補足するヘルプテキスト */
   helpText?: string;
   /** エラー時に表示するテキスト */
   errorText?: string;
   /** 必須かどうか。未指定の場合はfalse */
-  isRequired: boolean;
+  isRequired?: boolean;
   /** 妥当性 */
-  isValid: boolean;
+  isValid?: boolean;
   /** フォーカスアウト時のコールバック関数 */
   onBlur?: () => void;
   /** ボタンが非活性状態か。未指定の場合はfalse */
-  isDisabled: boolean;
+  isDisabled?: boolean;
 };
 type Emits = { (e: "update:modelValue", value: string | null): void };
 
-withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Props>(), {
   radioStyle: "default",
   isRequired: false,
   isValid: true,
@@ -37,7 +41,7 @@ withDefaults(defineProps<Props>(), {
 const emits = defineEmits<Emits>();
 
 // 選択された値
-const modelValue = ref<string|null>(null);
+const modelValue = ref<string | null>(props.modelValue);
 
 // 入力時のコールバック関数です。入力内容をemitして親に伝えられます。
 const handleInput = (v: string | null) => {
@@ -50,7 +54,7 @@ watch(modelValue, (value) => {
 });
 </script>
 <template>
-  <div class="radioGroup" :class="!isValid ? 'isError' : null">
+  <div class="radioGroup" :class="`${!isValid ? 'isError' : ''} ${radioStyle}`">
     <p class="label">
       {{ groupLabel }}
       <span v-if="isRequired" class="requiredText isRequired">必須</span>
@@ -63,6 +67,7 @@ watch(modelValue, (value) => {
         :radioStyle="radioStyle"
         :label="label"
         :radioValue="values[index]"
+        :subText="subTexts ? subTexts[index] : undefined"
         :name="name"
         :isValid="isValid"
         :isDisabled="isDisabled"
@@ -75,6 +80,15 @@ watch(modelValue, (value) => {
   </div>
 </template>
 <style lang="scss" scoped>
+.radioGroup.tile {
+  .buttons {
+    display: grid;
+    grid-auto-flow: row;
+    grid-auto-rows: auto;
+    row-gap: 8px;
+    margin: 8px 0;
+  }
+}
 .label {
   display: flex;
   font-size: 0.875rem;
@@ -100,8 +114,8 @@ watch(modelValue, (value) => {
   color: var(--color-text-alert);
 }
 
-.isError{
-  .label{
+.isError {
+  .label {
     color: var(--color-text-alert);
   }
 }

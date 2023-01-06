@@ -22,6 +22,7 @@ const { UseTextAreaInputComponent } = useTextAreaInput();
 
 const v = ref();
 const selected = ref<string | null>(null);
+const selected2 = ref<string | null>("3");
 </script>
 
 <template>
@@ -50,13 +51,26 @@ const selected = ref<string | null>(null);
       <div>
         <RadioGroup
           v-model="selected"
-          radioStyle="tile"
           groupLabel="ラベル"
           :labels="['選択肢1', '選択肢2', '選択肢3']"
           :values="['1', '2', '3']"
           helpText="ヘルプテキスト"
           errorText="エラーテキスト"
           name="group"
+          :isRequired="true"
+        />
+      </div>
+      <div>
+        <RadioGroup
+          v-model="selected2"
+          radioStyle="tile"
+          groupLabel="ラベル"
+          :labels="['選択肢1', '選択肢2', '選択肢3']"
+          :subTexts="['補足説明1', '補足説明2', '補足説明3']"
+          :values="['1', '2', '3']"
+          helpText="ヘルプテキスト"
+          errorText="エラーテキスト"
+          name="group2"
           :isRequired="true"
         />
       </div>
