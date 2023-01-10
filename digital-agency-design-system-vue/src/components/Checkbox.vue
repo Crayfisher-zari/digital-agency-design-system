@@ -24,10 +24,12 @@ const props = withDefaults(defineProps<Props>(), {
 });
 const emits = defineEmits<Emits>();
 
-const checked = computed<boolean>(() => props.modelValue === props.checkValue);
+// const checked = computed<boolean>(() => props.modelValue === props.checkValue);
 
 // 入力時のコールバック関数です。入力内容をemitして親に伝えられます。
 const handleInput = (e: Event) => {
+    console.log(props.modelValue)
+
   emits("update:modelValue", (e.target as HTMLInputElement).value);
 };
 
@@ -44,7 +46,7 @@ const stateClassName = computed<string | null>(() => {
 </script>
 <template>
   <label
-    :class="`${stateClassName ?? ''} ${checked ? 'checked' : ''}`"
+    :class="`${stateClassName ?? ''} `"
   >
     <input
       type="checkbox"
@@ -74,7 +76,7 @@ label {
   position: absolute;
   left: 4px;
   border: 2px solid var(--color-icon-label);
-  border-radius: 2px;
+  border-radius: 3px;
   background-color: #fff;
   &:after {
     content: "";
