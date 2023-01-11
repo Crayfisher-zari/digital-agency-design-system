@@ -4,7 +4,7 @@ import Checkbox from "./Checkbox.vue";
 
 type Props = {
   /** 格納するリアクティブな値（v-modelでも使える） */
-  modelValue: [] | null;
+  modelValue: [] | string[];
   /** ラジオボタングループのラベル */
   groupLabel: string;
   /** ラジオボタンを紐付けるname属性 */
@@ -26,7 +26,7 @@ type Props = {
   /** ボタンが非活性状態か。未指定の場合はfalse */
   isDisabled?: boolean;
 };
-type Emits = { (e: "update:modelValue", value: string | null): void };
+type Emits = { (e: "update:modelValue", value: [] | string[]): void };
 
 const props = withDefaults(defineProps<Props>(), {
   isRequired: false,
@@ -36,10 +36,10 @@ const props = withDefaults(defineProps<Props>(), {
 const emits = defineEmits<Emits>();
 
 // 選択された値
-const modelValue = ref<[] | null>(props.modelValue);
+const modelValue = ref<[] | string[]>(props.modelValue);
 
 // 入力時のコールバック関数です。入力内容をemitして親に伝えられます。
-const handleInput = (v: string | null) => {
+const handleInput = (v: [] | string[]) => {
   emits("update:modelValue", v);
 };
 
@@ -60,7 +60,7 @@ watch(modelValue, (value) => {
         v-for="(label, index) in labels"
         v-model="modelValue"
         :label="label"
-        :checkValue="values[index]"
+        :value="values[index]"
         :name="name"
         :isValid="isValid"
         :isDisabled="isDisabled"

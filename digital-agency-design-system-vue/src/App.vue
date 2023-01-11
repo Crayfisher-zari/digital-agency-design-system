@@ -6,6 +6,7 @@ import { useTelInput } from "./composables/useTelInput";
 import { useTextAreaInput } from "./composables/useTextAreaInput";
 import RadioGroup from "./components/RadioGroup.vue";
 import CheckboxGroup from "./components/CheckboxGroup.vue";
+import Checkbox from "./components/Checkbox.vue";
 import { ref } from "vue";
 
 const handleClick = () => {
@@ -24,7 +25,7 @@ const { UseTextAreaInputComponent } = useTextAreaInput();
 const v = ref();
 const selected = ref<string | null>(null);
 const selected2 = ref<string | null>("3");
-const checked = ref(["","",""]);
+const checked = ref([]);
 </script>
 
 <template>
@@ -86,6 +87,9 @@ const checked = ref(["","",""]);
           errorText="エラーテキスト"
           name="group3"
         />
+        <!-- <Checkbox v-model="checked" label="1" value="a" name="z" />
+        <Checkbox v-model="checked" label="2" value="b" name="z" />
+        <Checkbox v-model="checked" label="3" value="c" name="z"/> -->
         {{ checked }}
       </div>
     </div>

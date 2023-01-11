@@ -1,11 +1,11 @@
 <script lang="ts" setup>
-import { computed } from "vue";
+import { computed, ref } from "vue";
 
 type Props = {
   /** 格納するリアクティブな値（v-modelでも使える） */
-  modelValue: string | null;
+  modelValue: [] | string[] | boolean;
   /** 選択肢固有の値です */
-  checkValue: string;
+  value: string;
   /** ボタンのラベルです */
   label: string;
   /** name属性の値です */
@@ -16,7 +16,8 @@ type Props = {
   isDisabled?: boolean;
 };
 
-type Emits = { (e: "update:modelValue", value: string): void };
+
+type Emits = { (e: "update:modelValue", value: any): void };
 
 const props = withDefaults(defineProps<Props>(), {
   isDisabled: false,
@@ -24,13 +25,39 @@ const props = withDefaults(defineProps<Props>(), {
 });
 const emits = defineEmits<Emits>();
 
-// const checked = computed<boolean>(() => props.modelValue === props.checkValue);
-
 // 入力時のコールバック関数です。入力内容をemitして親に伝えられます。
 const handleInput = (e: Event) => {
-    console.log(props.modelValue)
+  // checkboxのv-modelの挙動の参考 https://github.com/vuejs/core/blob/49023549257d8962c6e059808067b1b67b398534/packages/runtime-dom/src/directives/vModel.ts#L105
+  const checked = (e.target as HTMLInputElement).checked;
+  const value = (e.target as HTMLInputElement).value;
+  let newValue: [] | string[] | boolean;
 
-  emits("update:modelValue", (e.target as HTMLInputElement).value);
+  // リアクティブな値が配列の場合（複数チェックボックス想定）
+  if (Array.isArray(props.modelValue)) {
+    const findIndex = props.modelValue.findIndex(
+      (item) => item === props.value
+    );
+    const find = findIndex !== -1;
+
+    console.log(findIndex,[...props.modelValue])
+
+    if (!find && checked) {
+      // 配列になく、チェックが入った場合は追加
+      newValue = [...props.modelValue].concat([value]);
+    } else if (find && !checked) {
+      console.log("削除")
+      // 配列にあり、チェックがない場合は削除
+      newValue = [...props.modelValue]
+      newValue.splice(findIndex, 1);
+    } else {
+      // 上記以外は変更なし
+      newValue = [...props.modelValue];
+    }
+  }else{
+    newValue = checked
+  }
+  console.log(newValue)
+  emits("update:modelValue", newValue);
 };
 
 // 状態に応じたクラス名を返します
@@ -45,17 +72,14 @@ const stateClassName = computed<string | null>(() => {
 });
 </script>
 <template>
-  <label
-    :class="`${stateClassName ?? ''} `"
-  >
+  <label :class="`${stateClassName ?? ''} `">
     <input
       type="checkbox"
       class="sr-only"
-      :value="checkValue"
-      :onChange="handleInput"
+      :value="value"
       :name="name"
       :disabled="isDisabled"
-      :checked="checked"
+      :onChange="handleInput"
     />{{ label }}
     <span class="checkIcon"></span>
   </label>
@@ -118,5 +142,4 @@ input:disabled:checked ~ .checkIcon {
 .isDisabled {
   color: var(--color-text-disabled);
 }
-
 </style>
