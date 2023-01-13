@@ -27,8 +27,8 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    defaults:
-      run:
+    #defaults:
+     # run:
         # working-directory: digital-agency-design-system-vue
 
     # strategy:
