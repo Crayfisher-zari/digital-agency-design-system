@@ -4,6 +4,7 @@ import vue from "@vitejs/plugin-vue";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [vue()],
+  base: "/digital-agency-design-system/",
   resolve: {
     alias: {
       "@": `${__dirname}/src/`,
