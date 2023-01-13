@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc && vite build",
+    "build": "yarn run vue-tsc && vite build",
     "preview": "vite preview",
     "lint": "eslint ./**/*.{ts,vue} && stylelint ./**/*.{scss,vue} && prettier ./**/*.{scss,vue,ts} --check",
     "lint:fix": "eslint ./**/*.{vue,ts} --fix && stylelint ./**/*.{scss,vue} --fix && prettier ./**/*.{scss,vue,ts} --write"
