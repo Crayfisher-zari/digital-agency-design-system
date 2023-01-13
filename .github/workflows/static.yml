@@ -31,12 +31,13 @@ jobs:
       run:
         working-directory: digital-agency-design-system-vue
 
-    strategy:
-      matrix:
-        node-version: [16.x, 18.x]
+    # strategy:
+     # matrix:
+       # node-version: [16.x, 18.x]
     
     steps:
-      - name: Use Node.js ${{ matrix.node-version }}
+      - run: ls
+      - name: Use Node.js v16
         uses: actions/setup-node@v3
         with:
           node-version: 16
