@@ -27,6 +27,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
+    
 
     strategy:
       matrix:
@@ -37,8 +38,8 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'npm'
-          cache-dependency-path: ./digital-agency-design-system-vue/yarn.lock
+          cache: 'yarn'
+          cache-dependency-path: './digital-agency-design-system-vue/yarn.lock'
       - run: cd ./digital-agency-design-system-vue/
       - run: npm ci
       - run: npm run build --if-present
