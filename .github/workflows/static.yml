@@ -44,7 +44,6 @@ jobs:
           node-version: 16
           cache: yarn
           cache-dependency-path: digital-agency-design-system-vue/yarn.lock
-      - run: cd ./digital-agency-design-system-vue/
       - run: yarn run build --if-present
       - name: Setup Pages
         uses: actions/configure-pages@v2
