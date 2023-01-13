@@ -29,14 +29,13 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: digital-agency-design-system-vue
+        # working-directory: digital-agency-design-system-vue
 
     # strategy:
      # matrix:
        # node-version: [16.x, 18.x]
     
     steps:
-      - run: ls
       - name: Use Node.js v16
         uses: actions/setup-node@v3
         with:
