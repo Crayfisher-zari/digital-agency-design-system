@@ -7,7 +7,7 @@ import TextInput from "../components/TextInput.vue";
 export const useTelInput = () => {
   const tel = ref<string>("");
   const isChanged = ref<boolean>(false);
-  const errorText = ref<string | null>(null);
+  const errorText = ref<string | undefined>();
   const validate = () => {
     // 内容が変更されて、空の場合はinvalid
     if (isChanged.value && tel.value === "") {
@@ -19,10 +19,10 @@ export const useTelInput = () => {
       return;
     }
     // 上記以外ではvalid
-    errorText.value = null;
+    errorText.value = undefined;
   };
 
-  const isValid = computed(() => errorText.value === null);
+  const isValid = computed(() => errorText.value === undefined);
 
   // フォーカスアウト時にハイフン削除とバリデートを行う
   const handleBlur = () => {

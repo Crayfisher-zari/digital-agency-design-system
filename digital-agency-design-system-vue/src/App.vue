@@ -4,6 +4,10 @@ import BasicButton from "./components/BasicButton.vue";
 import { useNameInput } from "./composables/useNameInput";
 import { useTelInput } from "./composables/useTelInput";
 import { useTextAreaInput } from "./composables/useTextAreaInput";
+import RadioGroup from "./components/RadioGroup.vue";
+import CheckboxGroup from "./components/CheckboxGroup.vue";
+import Checkbox from "./components/Checkbox.vue";
+import { ref } from "vue";
 
 const handleClick = () => {
   console.log("click");
@@ -17,6 +21,11 @@ const { UseNameInputComponent: FamilyNameInput } = useNameInput({
 });
 const { UseTelInputComponent: UseTelInputComponent } = useTelInput();
 const { UseTextAreaInputComponent } = useTextAreaInput();
+
+const selected = ref<string | null>(null);
+const selected2 = ref<string | null>("3");
+const checked = ref(["2"]);
+const checked2 = ref(true);
 </script>
 
 <template>
@@ -42,6 +51,46 @@ const { UseTextAreaInputComponent } = useTextAreaInput();
       <FamilyNameInput />
       <UseTelInputComponent />
       <UseTextAreaInputComponent />
+      <div>
+        <RadioGroup
+          v-model="selected"
+          groupLabel="ラベル"
+          :labels="['選択肢1', '選択肢2', '選択肢3']"
+          :values="['1', '2', '3']"
+          helpText="ヘルプテキスト"
+          errorText="エラーテキスト"
+          name="group"
+          :isRequired="true"
+        />
+      </div>
+      <div>
+        <RadioGroup
+          v-model="selected2"
+          radioStyle="tile"
+          groupLabel="ラベル"
+          :labels="['選択肢1', '選択肢2', '選択肢3']"
+          :subTexts="['補足説明1', '補足説明2', '補足説明3']"
+          :values="['1', '2', '3']"
+          helpText="ヘルプテキスト"
+          errorText="エラーテキスト"
+          name="group2"
+          :isRequired="true"
+        />
+      </div>
+      <div>
+        <CheckboxGroup
+          v-model="checked"
+          groupLabel="ラベル"
+          :labels="['選択肢1', '選択肢2', '選択肢3']"
+          :values="['1', '2', '3']"
+          helpText="ヘルプテキスト"
+          errorText="エラーテキスト"
+          name="group3"
+        />
+      </div>
+      <div>
+        <Checkbox v-model="checked2" label="真偽値1" />
+      </div>
     </div>
   </div>
 </template>
