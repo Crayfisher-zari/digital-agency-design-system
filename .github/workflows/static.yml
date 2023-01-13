@@ -45,7 +45,7 @@ jobs:
           cache: yarn
           cache-dependency-path: digital-agency-design-system-vue/yarn.lock
       - run: yarn install --frozen-lockfile
-      - run: yarn run build --if-present
+      - run: yarn run build
       - name: Setup Pages
         uses: actions/configure-pages@v2
       - name: Upload artifact
