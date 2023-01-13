@@ -22,7 +22,6 @@ const { UseNameInputComponent: FamilyNameInput } = useNameInput({
 const { UseTelInputComponent: UseTelInputComponent } = useTelInput();
 const { UseTextAreaInputComponent } = useTextAreaInput();
 
-const v = ref();
 const selected = ref<string | null>(null);
 const selected2 = ref<string | null>("3");
 const checked = ref(["2"]);
