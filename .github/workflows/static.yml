@@ -29,7 +29,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: './digital-agency-design-system-vue'
+        working-directory: digital-agency-design-system-vue
 
     strategy:
       matrix:
@@ -39,9 +39,9 @@ jobs:
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
-          cache: 'yarn'
-          cache-dependency-path: './yarn.lock'
+          node-version: 16
+          cache: yarn
+          cache-dependency-path: digital-agency-design-system-vue/yarn.lock
       - run: cd ./digital-agency-design-system-vue/
       - run: npm ci
       - run: npm run build --if-present
