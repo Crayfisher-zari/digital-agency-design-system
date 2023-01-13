@@ -25,7 +25,8 @@ const { UseTextAreaInputComponent } = useTextAreaInput();
 const v = ref();
 const selected = ref<string | null>(null);
 const selected2 = ref<string | null>("3");
-const checked = ref([]);
+const checked = ref(["2"]);
+const checked2 = ref(true);
 </script>
 
 <template>
@@ -87,10 +88,9 @@ const checked = ref([]);
           errorText="エラーテキスト"
           name="group3"
         />
-        <!-- <Checkbox v-model="checked" label="1" value="a" name="z" />
-        <Checkbox v-model="checked" label="2" value="b" name="z" />
-        <Checkbox v-model="checked" label="3" value="c" name="z"/> -->
-        {{ checked }}
+      </div>
+      <div>
+        <Checkbox v-model="checked2" label="真偽値1" />
       </div>
     </div>
   </div>

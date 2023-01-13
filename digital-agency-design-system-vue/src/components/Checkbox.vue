@@ -1,29 +1,40 @@
 <script lang="ts" setup>
-import { computed, ref } from "vue";
+import { computed } from "vue";
 
 type Props = {
   /** 格納するリアクティブな値（v-modelでも使える） */
   modelValue: [] | string[] | boolean;
   /** 選択肢固有の値です */
-  value: string;
+  value?: string;
   /** ボタンのラベルです */
   label: string;
   /** name属性の値です */
-  name: string;
+  name?: string;
   /** 妥当性 */
   isValid?: boolean;
   /** ボタンが非活性状態か。未指定の場合はfalse */
   isDisabled?: boolean;
 };
 
-
 type Emits = { (e: "update:modelValue", value: any): void };
 
 const props = withDefaults(defineProps<Props>(), {
   isDisabled: false,
   isValid: true,
+  value: "on",
 });
 const emits = defineEmits<Emits>();
+
+const isChecked = computed<boolean>(() => {
+  if (Array.isArray(props.modelValue)) {
+    if (props.modelValue.length === 0 || props.value === undefined) {
+      return false;
+    }
+    return (props.modelValue as string[]).includes(props.value);
+  } else {
+    return props.modelValue;
+  }
+});
 
 // 入力時のコールバック関数です。入力内容をemitして親に伝えられます。
 const handleInput = (e: Event) => {
@@ -39,24 +50,20 @@ const handleInput = (e: Event) => {
     );
     const find = findIndex !== -1;
 
-    console.log(findIndex,[...props.modelValue])
-
     if (!find && checked) {
       // 配列になく、チェックが入った場合は追加
       newValue = [...props.modelValue].concat([value]);
     } else if (find && !checked) {
-      console.log("削除")
       // 配列にあり、チェックがない場合は削除
-      newValue = [...props.modelValue]
+      newValue = [...props.modelValue];
       newValue.splice(findIndex, 1);
     } else {
       // 上記以外は変更なし
       newValue = [...props.modelValue];
     }
-  }else{
-    newValue = checked
+  } else {
+    newValue = checked;
   }
-  console.log(newValue)
   emits("update:modelValue", newValue);
 };
 
@@ -80,6 +87,7 @@ const stateClassName = computed<string | null>(() => {
       :name="name"
       :disabled="isDisabled"
       :onChange="handleInput"
+      :checked="isChecked"
     />{{ label }}
     <span class="checkIcon"></span>
   </label>
