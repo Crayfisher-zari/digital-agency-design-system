@@ -39,7 +39,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'yarn'
-          cache-dependency-path: './digital-agency-design-system-vue/yarn.lock'
+          cache-dependency-path: ./digital-agency-design-system-vue/yarn.lock
       - run: cd ./digital-agency-design-system-vue/
       - run: npm ci
       - run: npm run build --if-present
