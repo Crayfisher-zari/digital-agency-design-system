@@ -91,6 +91,36 @@ const checked2 = ref(true);
       <div>
         <Checkbox v-model="checked2" label="真偽値1" />
       </div>
+      <div>
+        <table>
+          <tbody>
+            <tr>
+              <th>見出し</th>
+              <td>あ</td>
+              <td>あ</td>
+              <td>あ</td>
+              <td>あ</td>
+            </tr>
+            <tr>
+              <th>見出し</th>
+              <td colspan="2" rowspan="2">い</td>
+              <td>い</td>
+              <td>い</td>
+            </tr>
+            <tr>
+              <th>見出し</th>
+              <td rowspan="2">う</td>
+              <td>う</td>
+            </tr>
+            <tr>
+              <th>見出し</th>
+              <td>え</td>
+              <td>え</td>
+              <td>え</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </template>

@@ -27,3 +27,21 @@ html {
   clip-path: polygon(0 0, 0 0, 0 0, 0 0);
   border: 0;
 }
+
+/* テーブル */
+table{
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+
+th,td{
+  border: 1px solid var(--color-border-divider);
+  min-height: 80px;
+  padding: 8px;
+}
+
+th{
+  background-color: var(--color-background-tertiary);
+  font-weight: normal;
+}
