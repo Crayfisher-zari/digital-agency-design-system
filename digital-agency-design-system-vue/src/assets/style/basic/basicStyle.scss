@@ -28,17 +28,19 @@ html {
   border: 0;
 }
 
-/* テーブル */
+/* テーブルの基本スタイル */
 table{
   table-layout: fixed;
   border-collapse: collapse;
+  color: var(--color-text-body);
+  font-size: 1rem;
 }
 
 
 th,td{
   border: 1px solid var(--color-border-divider);
-  min-height: 80px;
-  padding: 8px;
+  padding: 26px 8px;
+  text-align: left;
 }
 
 th{

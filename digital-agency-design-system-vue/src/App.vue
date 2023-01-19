@@ -92,11 +92,11 @@ const checked2 = ref(true);
         <Checkbox v-model="checked2" label="真偽値1" />
       </div>
       <div>
-        <table>
+        <table class="customTable">
           <tbody>
             <tr>
               <th>見出し</th>
-              <td>あ</td>
+              <td></td>
               <td>あ</td>
               <td>あ</td>
               <td>あ</td>
@@ -104,7 +104,7 @@ const checked2 = ref(true);
             <tr>
               <th>見出し</th>
               <td colspan="2" rowspan="2">い</td>
-              <td>い</td>
+              <td>Table Dataあああ</td>
               <td>い</td>
             </tr>
             <tr>
@@ -125,7 +125,7 @@ const checked2 = ref(true);
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .wrapper {
   padding: 20px;
 }
@@ -135,5 +135,11 @@ const checked2 = ref(true);
   flex-direction: column;
   row-gap: 24px;
   width: 300px;
+}
+
+.customTable{
+  td{
+    min-width: 200px;
+  }
 }
 </style>
