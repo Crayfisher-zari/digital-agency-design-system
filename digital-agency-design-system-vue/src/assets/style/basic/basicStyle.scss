@@ -29,21 +29,23 @@ html {
 }
 
 /* テーブルの基本スタイル */
-table{
+table {
+  font-size: 1rem;
+  color: var(--color-text-body);
   table-layout: fixed;
   border-collapse: collapse;
-  color: var(--color-text-body);
-  font-size: 1rem;
 }
 
-
-th,td{
-  border: 1px solid var(--color-border-divider);
-  padding: 26px 8px;
+th,
+td {
+  min-width: 190px;
+  height: 80px;
+  padding: 8px;
   text-align: left;
+  border: 1px solid var(--color-border-divider);
 }
 
-th{
-  background-color: var(--color-background-tertiary);
+th {
   font-weight: normal;
+  background-color: var(--color-background-tertiary);
 }

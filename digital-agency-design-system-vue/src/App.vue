@@ -91,36 +91,54 @@ const checked2 = ref(true);
       <div>
         <Checkbox v-model="checked2" label="真偽値1" />
       </div>
-      <div>
-        <table class="customTable">
-          <tbody>
-            <tr>
-              <th>見出し</th>
-              <td></td>
-              <td>あ</td>
-              <td>あ</td>
-              <td>あ</td>
-            </tr>
-            <tr>
-              <th>見出し</th>
-              <td colspan="2" rowspan="2">い</td>
-              <td>Table Dataあああ</td>
-              <td>い</td>
-            </tr>
-            <tr>
-              <th>見出し</th>
-              <td rowspan="2">う</td>
-              <td>う</td>
-            </tr>
-            <tr>
-              <th>見出し</th>
-              <td>え</td>
-              <td>え</td>
-              <td>え</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+    </div>
+    <div class="tableWrapper">
+      <table class="customTable">
+        <thead>
+          <th>Table Hader</th>
+          <th>Table Hader</th>
+          <th>Table Hader</th>
+          <th>Table Hader</th>
+          <th>Table Hader</th>
+        </thead>
+        <tbody>
+          <tr>
+            <th>Table Hader</th>
+            <td>Table Data</td>
+            <td>Table Data</td>
+            <td>Table Data</td>
+            <td>Table Data</td>
+          </tr>
+          <tr>
+            <th>Table Hader</th>
+            <td>Table Data</td>
+            <td>Table Data</td>
+            <td>Table Data</td>
+            <td>Table Data</td>
+          </tr>
+          <tr>
+            <th>Table Hader</th>
+            <td>Table Data</td>
+            <td>Table Data</td>
+            <td>Table Data</td>
+            <td>Table Data</td>
+          </tr>
+          <tr>
+            <th>Table Hader</th>
+            <td>Table Data</td>
+            <td>Table Data</td>
+            <td>Table Data</td>
+            <td>Table Data</td>
+          </tr>
+          <tr>
+            <th>Table Hader</th>
+            <td>Table Data</td>
+            <td>Table Data</td>
+            <td>Table Data</td>
+            <td>Table Data</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </template>
@@ -137,9 +155,7 @@ const checked2 = ref(true);
   width: 300px;
 }
 
-.customTable{
-  td{
-    min-width: 200px;
-  }
+.tableWrapper {
+  overflow: scroll;
 }
 </style>
