@@ -43,6 +43,9 @@ const props = withDefaults(defineProps<Props>(), {
   isValid: true,
   placeHolder: "",
   isDisabled: false,
+  supportText: undefined,
+  errorText: undefined,
+  onBlur: undefined,
 });
 
 const emits = defineEmits<Emits>();

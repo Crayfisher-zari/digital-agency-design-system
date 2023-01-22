@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { computed} from "vue";
+import { computed } from "vue";
 
 type Props = {
   /** デフォルト型かタイル型か */
@@ -26,6 +26,7 @@ const props = withDefaults(defineProps<Props>(), {
   radioStyle: "default",
   isDisabled: false,
   isValid: true,
+  subText: undefined,
 });
 const emits = defineEmits<Emits>();
 
@@ -71,35 +72,37 @@ const stateClassName = computed<string | null>(() => {
 <style lang="scss" scoped>
 label {
   position: relative;
-
   padding: 8px 0 8px 40px;
   font-size: 1rem;
 }
 
 .radioIcon {
-  width: 19px;
-  height: 19px;
-  display: block;
   position: absolute;
   left: 4px;
+  display: block;
+  width: 19px;
+  height: 19px;
+  background-color: #fff;
   border: 2px solid var(--color-icon-label);
   border-radius: 50%;
-  background-color: #fff;
-  &:after {
-    content: "";
-    display: block;
+
+  &::after {
     position: absolute;
-    width: 9px;
-    height: 9px;
     top: 3px;
     left: 3px;
-    border-radius: 50%;
+    display: block;
+    width: 9px;
+    height: 9px;
+    content: "";
     background-color: transparent;
+    border-radius: 50%;
   }
 }
+
 input:checked ~ .radioIcon {
   border-color: var(--color-icon-active);
-  &:after {
+
+  &::after {
     background-color: var(--color-icon-active);
   }
 }
@@ -109,12 +112,14 @@ input:disabled ~ .radioIcon {
 }
 
 input:disabled:checked ~ .radioIcon {
-  &:after {
+  &::after {
     background-color: var(--color-border-disabled);
   }
 }
+
 .isInvalid {
   color: var(--color-text-alert);
+
   .radioIcon {
     border-color: var(--color-border-alert);
   }
@@ -138,21 +143,26 @@ input:disabled:checked ~ .radioIcon {
 .tile {
   display: grid;
   padding: 16px 0 16px 56px;
+  background-color: var(--color-background-primary);
   border: 2px solid var(--color-border-field);
   border-radius: 8px;
-  background-color: var(--color-background-primary);
+
   .radioIcon {
     left: 20px;
     align-self: center;
   }
+
   &.isInvalid {
     border-color: var(--color-border-alert);
   }
+
   &.checked {
     border-color: var(--color-border-selected);
   }
+
   &.isDisabled {
     border-color: var(--color-border-disabled);
+
     .subText {
       color: var(--color-text-disabled);
     }

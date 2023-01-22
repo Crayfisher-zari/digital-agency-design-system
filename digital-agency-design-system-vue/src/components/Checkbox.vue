@@ -16,12 +16,13 @@ type Props = {
   isDisabled?: boolean;
 };
 
-type Emits = { (e: "update:modelValue", value: any): void };
+type Emits = { (e: "update:modelValue", value: [] | string[] | boolean): void };
 
 const props = withDefaults(defineProps<Props>(), {
   isDisabled: false,
   isValid: true,
   value: "on",
+  name: undefined,
 });
 const emits = defineEmits<Emits>();
 
@@ -102,31 +103,34 @@ label {
 }
 
 .checkIcon {
-  width: 19px;
-  height: 19px;
-  display: block;
   position: absolute;
   left: 4px;
+  display: block;
+  width: 19px;
+  height: 19px;
+  background-color: #fff;
   border: 2px solid var(--color-icon-label);
   border-radius: 3px;
-  background-color: #fff;
-  &:after {
-    content: "";
-    display: block;
+
+  &::after {
     position: absolute;
-    width: 100%;
-    height: 100%;
     top: 0;
     left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    content: "";
     background-image: url("@/assets/images/icon_check.svg");
-    background-size: 18px 18px;
     background-position: center center;
+    background-size: 18px 18px;
   }
 }
+
 input:checked ~ .checkIcon {
-  border-color: var(--color-icon-active);
   background-color: var(--color-icon-active);
-  &:after {
+  border-color: var(--color-icon-active);
+
+  &::after {
     background-color: var(--color-icon-active);
   }
 }
@@ -136,12 +140,14 @@ input:disabled ~ .checkIcon {
 }
 
 input:disabled:checked ~ .checkIcon {
-  &:after {
+  &::after {
     background-color: var(--color-border-disabled);
   }
 }
+
 .isInvalid {
   color: var(--color-text-alert);
+
   .checkIcon {
     border-color: var(--color-border-alert);
   }

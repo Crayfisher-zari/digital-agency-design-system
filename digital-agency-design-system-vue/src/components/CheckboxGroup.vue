@@ -32,6 +32,9 @@ const props = withDefaults(defineProps<Props>(), {
   isRequired: false,
   isValid: true,
   isDisabled: false,
+  helpText: undefined,
+  errorText: undefined,
+  onBlur: undefined,
 });
 const emits = defineEmits<Emits>();
 
@@ -58,6 +61,7 @@ watch(modelValue, (value) => {
     <div class="buttons">
       <Checkbox
         v-for="(label, index) in labels"
+        :key="values[index]"
         v-model="modelValue"
         :label="label"
         :value="values[index]"
@@ -66,8 +70,8 @@ watch(modelValue, (value) => {
         :isDisabled="isDisabled"
       />
     </div>
-    <p class="helpText" v-if="helpText !== undefined">{{ helpText }}</p>
-    <p class="errorText" v-if="errorText !== undefined" v-show="!isValid">
+    <p v-if="helpText !== undefined" class="helpText">{{ helpText }}</p>
+    <p v-if="errorText !== undefined" v-show="!isValid" class="errorText">
       {{ errorText }}
     </p>
   </div>
@@ -75,19 +79,21 @@ watch(modelValue, (value) => {
 <style lang="scss" scoped>
 .label {
   display: flex;
+  align-items: center;
   font-size: 0.875rem;
   color: var(--color-text-body);
-  align-items: center;
 }
 
 .requiredText {
+  margin-left: 8px;
   font-size: 0.75rem;
   color: var(--color-text-description);
-  margin-left: 8px;
+
   &.isRequired {
     color: var(--color-text-alert);
   }
 }
+
 .helpText {
   font-size: 0.75rem;
   color: var(--color-text-description);

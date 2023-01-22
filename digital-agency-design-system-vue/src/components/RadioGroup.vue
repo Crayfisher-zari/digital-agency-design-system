@@ -37,6 +37,10 @@ const props = withDefaults(defineProps<Props>(), {
   isRequired: false,
   isValid: true,
   isDisabled: false,
+  subTexts: undefined,
+  helpText: undefined,
+  errorText: undefined,
+  onBlur: undefined,
 });
 const emits = defineEmits<Emits>();
 
@@ -63,6 +67,7 @@ watch(modelValue, (value) => {
     <div class="buttons">
       <RadioButton
         v-for="(label, index) in labels"
+        :key="values[index]"
         v-model="modelValue"
         :radioStyle="radioStyle"
         :label="label"
@@ -73,8 +78,8 @@ watch(modelValue, (value) => {
         :isDisabled="isDisabled"
       />
     </div>
-    <p class="helpText" v-if="helpText !== undefined">{{ helpText }}</p>
-    <p class="errorText" v-if="errorText !== undefined" v-show="!isValid">
+    <p v-if="helpText !== undefined" class="helpText">{{ helpText }}</p>
+    <p v-if="errorText !== undefined" v-show="!isValid" class="errorText">
       {{ errorText }}
     </p>
   </div>
@@ -83,27 +88,30 @@ watch(modelValue, (value) => {
 .radioGroup.tile {
   .buttons {
     display: grid;
-    grid-auto-flow: row;
     grid-auto-rows: auto;
+    grid-auto-flow: row;
     row-gap: 8px;
     margin: 8px 0;
   }
 }
+
 .label {
   display: flex;
+  align-items: center;
   font-size: 0.875rem;
   color: var(--color-text-body);
-  align-items: center;
 }
 
 .requiredText {
+  margin-left: 8px;
   font-size: 0.75rem;
   color: var(--color-text-description);
-  margin-left: 8px;
+
   &.isRequired {
     color: var(--color-text-alert);
   }
 }
+
 .helpText {
   font-size: 0.75rem;
   color: var(--color-text-description);
