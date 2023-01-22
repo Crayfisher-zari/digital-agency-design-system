@@ -20,6 +20,7 @@
   },
   "ignorePatterns": ["*.d.ts","vite.config.ts"],
   "rules": {
-    "vue/attribute-hyphenation": 0
+    "vue/attribute-hyphenation": 0,
+    "vue/multi-word-component-names" : 0
   }
 }
