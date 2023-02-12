@@ -8,6 +8,7 @@ import RadioGroup from "./components/RadioGroup.vue";
 import CheckboxGroup from "./components/CheckboxGroup.vue";
 import Checkbox from "./components/Checkbox.vue";
 import { ref } from "vue";
+import Pagination from "./components/Pagination.vue";
 
 const handleClick = () => {
   console.log("click");
@@ -141,6 +142,7 @@ const checked2 = ref(true);
       </table>
     </div>
   </div>
+  <Pagination />
 </template>
 
 <style scoped lang="scss">

@@ -17,7 +17,7 @@ withDefaults(defineProps<Props>(), {
   </button>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 $transition-duration: 0.3s;
 
 button {
