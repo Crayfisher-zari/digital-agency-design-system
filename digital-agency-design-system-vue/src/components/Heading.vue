@@ -21,7 +21,7 @@ const Heading = (props: Props, context: SetupContext) => {
 
 export default Heading;
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 @use "@/assets/style/utils/utils.scss" as *;
 
 .heading1 {
