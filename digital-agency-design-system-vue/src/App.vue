@@ -8,7 +8,7 @@ import RadioGroup from "./components/RadioGroup.vue";
 import CheckboxGroup from "./components/CheckboxGroup.vue";
 import Checkbox from "./components/Checkbox.vue";
 import { ref } from "vue";
-import Pagination from "./components/Pagination.vue";
+import Pagination, { PageList } from "./components/Pagination.vue";
 
 const handleClick = () => {
   console.log("click");
@@ -27,6 +27,8 @@ const selected = ref<string | null>(null);
 const selected2 = ref<string | null>("3");
 const checked = ref(["2"]);
 const checked2 = ref(true);
+
+const pageList: PageList = [992, 993, 994, 995, 996, 997, 998];
 </script>
 
 <template>
@@ -142,7 +144,7 @@ const checked2 = ref(true);
       </table>
     </div>
   </div>
-  <Pagination />
+  <Pagination :pageList="pageList" />
 </template>
 
 <style scoped lang="scss">
