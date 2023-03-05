@@ -1,19 +1,19 @@
 <script lang="ts" setup>
 import { withDefaults } from "vue";
-export type PageList = [number, number, number, number, number, number, number]
 type Props = {
   type: "simple" | "basic";
-  pageList: PageList;
-  // max: number;
-  // onClickNumber: (n: number) => void;
-  // onClickNext: () => void;
-  // onClickPrevious: () => void;
+  current: number;
+  max: number;
+  onClickNumber: (n: number) => void;
+  onClickNext: () => void;
+  onClickPrevious: () => void;
   // onClickFirst: () => void;
   // onClickEnd: () => void;
 };
 withDefaults(defineProps<Props>(), {
   type: "basic",
 });
+
 </script>
 <template>
   <div class="pagination" :class="type === 'simple' ? 'simple' : null">
@@ -32,7 +32,7 @@ withDefaults(defineProps<Props>(), {
         />
       </picture>
     </button>
-    <button class="previous">
+    <button class="previous" @click="onClickPrevious">
       <picture>
         <source
           srcset="@/assets/images/icon_arrow_left_dark.svg"
@@ -48,15 +48,15 @@ withDefaults(defineProps<Props>(), {
       </picture>
     </button>
     <div>...</div>
-    <button class="pageNumber">{{ pageList[0] }}</button>
-    <button class="pageNumber">{{ pageList[1] }}</button>
-    <button class="pageNumber">{{ pageList[2] }}</button>
-    <p class="current">{{ pageList[4] }}/{{ max }}</p>
-    <button class="pageNumber">{{ pageList[4] }}</button>
-    <button class="pageNumber">{{ pageList[5] }}</button>
-    <button class="pageNumber">{{ pageList[6] }}</button>
+    <button class="pageNumber">{{ current - 3 }}</button>
+    <button class="pageNumber">{{ current - 2 }}</button>
+    <button class="pageNumber">{{ current - 1 }}</button>
+    <p class="current">{{ current }}/{{ max }}</p>
+    <button class="pageNumber" v-show="current + 1 <= max">{{ current + 1 }}</button>
+    <button class="pageNumber" v-show="current + 2 <= max">{{ current + 2 }}</button>
+    <button class="pageNumber" v-show="current + 3 <= max">{{ current + 3 }}</button>
     <div>...</div>
-    <button class="next">
+    <button class="next" @click="onClickNext">
       <picture>
         <source
           srcset="@/assets/images/icon_arrow_right_dark.svg"
@@ -91,6 +91,7 @@ withDefaults(defineProps<Props>(), {
 <style lang="scss" scoped>
 .pagination {
   display: grid;
+  grid-template-columns: repeat(13, auto);
   grid-auto-flow: column;
   align-items: center;
   justify-content: center;
