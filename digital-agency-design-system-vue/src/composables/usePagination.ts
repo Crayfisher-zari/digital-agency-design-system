@@ -1,8 +1,7 @@
-import { defineComponent, h, ref } from "vue";
+import { defineComponent, h, readonly, ref } from "vue";
 import Pagination from "../components/Pagination.vue";
 
 export const usePagination = () => {
-  const pageList = [992, 993, 994, 995, 996, 997, 998];
   const current = ref(995);
   const handleNext = () => {
     current.value++;
@@ -13,17 +12,27 @@ export const usePagination = () => {
   const handleClickNumber = (number: number) => {
     current.value = number;
   };
+  const handleClickFirst = () => {
+    current.value = 1;
+  };
+  const handleClickEnd = () => {
+    current.value = 999;
+  };
   const render = () =>
     h(Pagination, {
-      type:"basic",
+      type: "basic",
       current: current.value,
+      min: 1,
       max: 999,
       onClickNumber: handleClickNumber,
       onClickNext: handleNext,
       onClickPrevious: handlePrevious,
+      onClickFirst: handleClickFirst,
+      onClickEnd: handleClickEnd,
     });
   const UsePaginationComponent = defineComponent({ render });
   return {
+    pageNumber: readonly(current),
     UsePaginationComponent,
   };
 };

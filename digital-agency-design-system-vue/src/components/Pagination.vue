@@ -3,21 +3,21 @@ import { withDefaults } from "vue";
 type Props = {
   type: "simple" | "basic";
   current: number;
+  min: number;
   max: number;
   onClickNumber: (n: number) => void;
   onClickNext: () => void;
   onClickPrevious: () => void;
-  // onClickFirst: () => void;
-  // onClickEnd: () => void;
+  onClickFirst: () => void;
+  onClickEnd: () => void;
 };
 withDefaults(defineProps<Props>(), {
   type: "basic",
 });
-
 </script>
 <template>
   <div class="pagination" :class="type === 'simple' ? 'simple' : null">
-    <button class="fistPage">
+    <button class="fistPage" @click="onClickFirst">
       <picture>
         <source
           srcset="@/assets/images/icon_firstPage_dark.svg"
@@ -47,15 +47,27 @@ withDefaults(defineProps<Props>(), {
         />
       </picture>
     </button>
-    <div>...</div>
-    <button class="pageNumber">{{ current - 3 }}</button>
-    <button class="pageNumber">{{ current - 2 }}</button>
-    <button class="pageNumber">{{ current - 1 }}</button>
+    <div class="dotPrevious" v-if="current - 4 >= min">...</div>
+    <button class="pageNumber" v-if="current - 3 >= min" style="grid-column:4/5">
+      {{ current - 3 }}
+    </button>
+    <button class="pageNumber" v-if="current - 2 >= min" style="grid-column:5/6">
+      {{ current - 2 }}
+    </button>
+    <button class="pageNumber" v-if="current - 1 >= min" style="grid-column:6/7">
+      {{ current - 1 }}
+    </button>
     <p class="current">{{ current }}/{{ max }}</p>
-    <button class="pageNumber" v-show="current + 1 <= max">{{ current + 1 }}</button>
-    <button class="pageNumber" v-show="current + 2 <= max">{{ current + 2 }}</button>
-    <button class="pageNumber" v-show="current + 3 <= max">{{ current + 3 }}</button>
-    <div>...</div>
+    <button class="pageNumber" v-if="current + 1 <= max" style="grid-column:8/9">
+      {{ current + 1 }}
+    </button>
+    <button class="pageNumber" v-if="current + 2 <= max" style="grid-column:9/10">
+      {{ current + 2 }}
+    </button>
+    <button class="pageNumber" v-if="current + 3 <= max" style="grid-column:10/11">
+      {{ current + 3 }}
+    </button>
+    <div class="dotNext" v-if="current + 4 <= max">...</div>
     <button class="next" @click="onClickNext">
       <picture>
         <source
@@ -71,7 +83,7 @@ withDefaults(defineProps<Props>(), {
         />
       </picture>
     </button>
-    <button class="endPage">
+    <button class="endPage" @click="onClickEnd">
       <picture>
         <source
           srcset="@/assets/images/icon_endPage_dark.svg"
@@ -91,7 +103,7 @@ withDefaults(defineProps<Props>(), {
 <style lang="scss" scoped>
 .pagination {
   display: grid;
-  grid-template-columns: repeat(13, auto);
+  grid-template-columns: 48px 48px 24px 48px 48px 48px 48px 48px 48px 48px 24px 48px 48px;
   grid-auto-flow: column;
   align-items: center;
   justify-content: center;
@@ -117,5 +129,27 @@ button {
 .current {
   font-size: 0.75rem;
   letter-spacing: 0.04em;
+  grid-column: 7/8;
+}
+
+.fistPage {
+  grid-column: 1/2;
+}
+.previous {
+  grid-column: 2/3;
+}
+.dotPrevious {
+  grid-column: 3/4;
+}
+
+.dotNext {
+  grid-column: 11/12;
+}
+.next {
+  grid-column: 12/13;
+}
+
+.endPage {
+  grid-column: 13/14;
 }
 </style>
