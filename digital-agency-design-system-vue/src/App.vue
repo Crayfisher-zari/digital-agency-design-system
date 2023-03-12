@@ -28,7 +28,7 @@ const selected2 = ref<string | null>("3");
 const checked = ref(["2"]);
 const checked2 = ref(true);
 
-const { UsePaginationComponent } = usePagination();
+const { UsePaginationComponent, pageNumber } = usePagination();
 </script>
 
 <template>
@@ -143,8 +143,16 @@ const { UsePaginationComponent } = usePagination();
         </tbody>
       </table>
     </div>
+    <div>
+      <img
+        :src="`https://picsum.photos/id/${pageNumber}/200/200`"
+        alt=""
+        width="200"
+        height="200"
+      />
+      <UsePaginationComponent />
+    </div>
   </div>
-  <UsePaginationComponent />
 </template>
 
 <style scoped lang="scss">

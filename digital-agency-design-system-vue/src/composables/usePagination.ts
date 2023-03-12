@@ -39,6 +39,7 @@ export const usePagination = () => {
       onClickEnd: handleClickEnd,
     });
   const UsePaginationComponent = defineComponent({ render });
+
   return {
     pageNumber: readonly(current),
     UsePaginationComponent,
