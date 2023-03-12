@@ -30,6 +30,8 @@ const checked = ref(["2"]);
 const checked2 = ref(true);
 
 const { UsePaginationComponent, pageNumber } = usePagination();
+
+const isShown = ref(false);
 </script>
 
 <template>
@@ -154,8 +156,22 @@ const { UsePaginationComponent, pageNumber } = usePagination();
       <UsePaginationComponent />
     </div>
     <div>
-      <BasicButton label="モーダルを表示" @click="handleClick"></BasicButton>
-      <Modal />
+      <BasicButton
+        label="モーダルを表示"
+        @click="
+          () => {
+            isShown = true;
+          }
+        "
+      ></BasicButton>
+      <!-- <UseModalComponent /> -->
+      <Modal
+        v-model="isShown"
+        title="タイトル"
+        text="テキスト"
+        :onClickPositive="handleClick"
+        :onClickNegative="handleClick"
+      />
     </div>
   </div>
 </template>

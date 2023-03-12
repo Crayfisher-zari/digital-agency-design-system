@@ -1,23 +1,41 @@
 <script lang="ts" setup>
-import { ref } from "vue";
+import { ref, defineProps, Ref } from "vue";
+import BasicButton from "../components/BasicButton.vue"
 type Props = {
-  onClick:()=>void;
-}
+  title: string;
+  text: string;
+  modelValue: boolean;
+  onClickPositive: () => void;
+  onClickNegative?: () => void;
+};
 
-const isShown = ref(false);
-const handleClick = () => {
-  console.log();
+type Emits = { (e: "update:modelValue", value: Boolean): void };
+
+const props = defineProps<Props>();
+const emits = defineEmits<Emits>();
+
+const handleClickPositive = () => {
+  props.onClickPositive();
+  emits("update:modelValue", false);
+};
+
+const handleClickNegative = () => {
+  if (!props.onClickNegative) {
+    return;
+  }
+  props.onClickNegative();
+  emits("update:modelValue", false);
 };
 </script>
 <template>
   <Teleport to="body">
-    <div class="modalBg" v-show="isShown">
+    <div class="modalBg" v-show="modelValue">
       <div class="modal">
         <h1>ダイアログ</h1>
         <BasicButton
           label="ボタン"
           type="secondary"
-          @click="handleClick"
+          @click="handleClickPositive"
         ></BasicButton>
       </div>
     </div>
