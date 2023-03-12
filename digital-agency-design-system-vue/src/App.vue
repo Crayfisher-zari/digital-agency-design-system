@@ -9,6 +9,7 @@ import CheckboxGroup from "./components/CheckboxGroup.vue";
 import Checkbox from "./components/Checkbox.vue";
 import { ref } from "vue";
 import { usePagination } from "./composables/usePagination";
+import Modal from "./components/Modal.vue";
 
 const handleClick = () => {
   console.log("click");
@@ -151,6 +152,10 @@ const { UsePaginationComponent, pageNumber } = usePagination();
         height="200"
       />
       <UsePaginationComponent />
+    </div>
+    <div>
+      <BasicButton label="モーダルを表示" @click="handleClick"></BasicButton>
+      <Modal />
     </div>
   </div>
 </template>
