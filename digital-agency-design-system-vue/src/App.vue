@@ -169,8 +169,10 @@ const isShown = ref(false);
         v-model="isShown"
         title="タイトル"
         text="テキスト"
-        :onClickPositive="handleClick"
-        :onClickNegative="handleClick"
+        labelPrimary="ボタン1"
+        labelSecondary="ボタン2"
+        :onClickPrimary="handleClick"
+        :onClickSecondary="handleClick"
       />
     </div>
   </div>

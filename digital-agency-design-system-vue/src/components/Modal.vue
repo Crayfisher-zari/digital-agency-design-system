@@ -1,29 +1,33 @@
 <script lang="ts" setup>
 import { ref, defineProps, Ref } from "vue";
-import BasicButton from "../components/BasicButton.vue"
+import BasicButton from "../components/BasicButton.vue";
 type Props = {
   title: string;
   text: string;
+  labelPrimary: string;
+  labelSecondary?: string;
   modelValue: boolean;
-  onClickPositive: () => void;
-  onClickNegative?: () => void;
+  onClickPrimary: () => void;
+  onClickSecondary?: () => void;
 };
 
 type Emits = { (e: "update:modelValue", value: Boolean): void };
 
-const props = defineProps<Props>();
+const props = withDefaults(defineProps<Props>(), {
+  labelSecondary: "",
+});
 const emits = defineEmits<Emits>();
 
-const handleClickPositive = () => {
-  props.onClickPositive();
+const handleClickPrimary = () => {
+  props.onClickPrimary();
   emits("update:modelValue", false);
 };
 
-const handleClickNegative = () => {
-  if (!props.onClickNegative) {
+const handleClickSecondary = () => {
+  if (!props.onClickSecondary) {
     return;
   }
-  props.onClickNegative();
+  props.onClickSecondary();
   emits("update:modelValue", false);
 };
 </script>
@@ -31,11 +35,18 @@ const handleClickNegative = () => {
   <Teleport to="body">
     <div class="modalBg" v-show="modelValue">
       <div class="modal">
-        <h1>ダイアログ</h1>
+        <h1>{{ title }}</h1>
+        <p>{{ text }}</p>
         <BasicButton
-          label="ボタン"
+          :label="labelPrimary"
+          type="primary"
+          @click="handleClickPrimary"
+        ></BasicButton>
+        <BasicButton
+          v-if="handleClickPrimary"
+          :label="labelSecondary"
           type="secondary"
-          @click="handleClickPositive"
+          @click="handleClickPrimary"
         ></BasicButton>
       </div>
     </div>
@@ -50,5 +61,9 @@ const handleClickNegative = () => {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.9);
+}
+
+.modal{
+  background-color: var(--color-background-primary);
 }
 </style>
