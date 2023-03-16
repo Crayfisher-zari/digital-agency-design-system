@@ -157,11 +157,23 @@ const { UsePaginationComponent, pageNumber } = usePagination();
     </div>
   </Layout>
   <Layout>
-    <div class="layoutBlock colspan-3">4分の1</div>
-    <div class="layoutBlock colspan-3">4分の1</div>
-    <div class="layoutBlock colspan-3">4分の1</div>
-    <div class="layoutBlock colspan-3">4分の1</div>
-    <div class="layoutBlock colspan-3">4分の1</div>
+    <div class="layoutBlock colSpan-3">4分の1</div>
+    <div class="layoutBlock colSpan-6">4分の2</div>
+    <div class="layoutBlock colSpan-3">4分の1</div>
+
+    <div class="layoutBlock colSpan-3">4分の1</div>
+    <div class="layoutBlock colSpan-3">4分の1</div>
+    <div class="layoutBlock colSpan-3 colSpanTablet-1">4分の1</div>
+    <div class="layoutBlock colSpan-3 colSpanTablet-1">4分の1</div>
+
+    <div class="layoutBlock colSpan-9">4分の3</div>
+    <div class="layoutBlock colSpan-3">4分の1</div>
+
+    <div class="layoutBlock colSpan-9">4分の3</div>
+
+    <div class="layoutBlock colSpan-4">3分の1</div>
+    <div class="layoutBlock colSpan-4">3分の1</div>
+    <div class="layoutBlock colSpan-4">3分の1</div>
   </Layout>
 </template>
 
@@ -182,8 +194,14 @@ const { UsePaginationComponent, pageNumber } = usePagination();
 }
 
 .layoutBlock {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: auto;
   height: 120px;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
   background-color: var(--color-background-secondary);
 }
 </style>
