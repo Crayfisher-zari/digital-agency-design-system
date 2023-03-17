@@ -33,153 +33,168 @@ const { UsePaginationComponent, pageNumber } = usePagination();
 </script>
 
 <template>
-  <Layout>
-    <div class="colspan-12">
-      <Heading :headingLevel="1">H1 / Bold(700) / 1.5</Heading>
-      <Heading :headingLevel="2">H2 / Bold(700) / 1.5</Heading>
-      <Heading :headingLevel="3">H3 / Bold(700) / 1.5</Heading>
-      <Heading :headingLevel="4">H4 / Bold(700) / 1.5</Heading>
-      <Heading :headingLevel="5">H5 / Bold(700) / 1.5</Heading>
-      <Heading :headingLevel="6">H6 / Bold(700) / 1.5</Heading>
-      <BasicButton label="ボタン" @click="handleClick"></BasicButton>
-      <BasicButton
-        label="ボタン"
-        type="secondary"
-        @click="handleClick"
-      ></BasicButton>
-      <BasicButton
-        label="ボタン"
-        type="tertiary"
-        @click="handleClick"
-      ></BasicButton>
-      <div class="inputWrapper">
-        <FamilyNameInput />
-        <UseTelInputComponent />
-        <UseTextAreaInputComponent />
-        <div>
-          <RadioGroup
-            v-model="selected"
-            groupLabel="ラベル"
-            :labels="['選択肢1', '選択肢2', '選択肢3']"
-            :values="['1', '2', '3']"
-            helpText="ヘルプテキスト"
-            errorText="エラーテキスト"
-            name="group"
-            :isRequired="true"
-          />
-        </div>
-        <div>
-          <RadioGroup
-            v-model="selected2"
-            radioStyle="tile"
-            groupLabel="ラベル"
-            :labels="['選択肢1', '選択肢2', '選択肢3']"
-            :subTexts="['補足説明1', '補足説明2', '補足説明3']"
-            :values="['1', '2', '3']"
-            helpText="ヘルプテキスト"
-            errorText="エラーテキスト"
-            name="group2"
-            :isRequired="true"
-          />
-        </div>
-        <div>
-          <CheckboxGroup
-            v-model="checked"
-            groupLabel="ラベル"
-            :labels="['選択肢1', '選択肢2', '選択肢3']"
-            :values="['1', '2', '3']"
-            helpText="ヘルプテキスト"
-            errorText="エラーテキスト"
-            name="group3"
-          />
-        </div>
-        <div>
-          <Checkbox v-model="checked2" label="真偽値1" />
-        </div>
-      </div>
-      <div class="tableWrapper">
-        <table class="customTable">
-          <thead>
-            <th>Table Hader</th>
-            <th>Table Hader</th>
-            <th>Table Hader</th>
-            <th>Table Hader</th>
-            <th>Table Hader</th>
-          </thead>
-          <tbody>
-            <tr>
-              <th>Table Hader</th>
-              <td>Table Data</td>
-              <td>Table Data</td>
-              <td>Table Data</td>
-              <td>Table Data</td>
-            </tr>
-            <tr>
-              <th>Table Hader</th>
-              <td>Table Data</td>
-              <td>Table Data</td>
-              <td>Table Data</td>
-              <td>Table Data</td>
-            </tr>
-            <tr>
-              <th>Table Hader</th>
-              <td>Table Data</td>
-              <td>Table Data</td>
-              <td>Table Data</td>
-              <td>Table Data</td>
-            </tr>
-            <tr>
-              <th>Table Hader</th>
-              <td>Table Data</td>
-              <td>Table Data</td>
-              <td>Table Data</td>
-              <td>Table Data</td>
-            </tr>
-            <tr>
-              <th>Table Hader</th>
-              <td>Table Data</td>
-              <td>Table Data</td>
-              <td>Table Data</td>
-              <td>Table Data</td>
-            </tr>
-          </tbody>
-        </table>
+  <div class="globalWrapper">
+    <Heading :headingLevel="1">H1 / Bold(700) / 1.5</Heading>
+    <Heading :headingLevel="2">H2 / Bold(700) / 1.5</Heading>
+    <Heading :headingLevel="3">H3 / Bold(700) / 1.5</Heading>
+    <Heading :headingLevel="4">H4 / Bold(700) / 1.5</Heading>
+    <Heading :headingLevel="5">H5 / Bold(700) / 1.5</Heading>
+    <Heading :headingLevel="6">H6 / Bold(700) / 1.5</Heading>
+    <BasicButton label="ボタン" @click="handleClick"></BasicButton>
+    <BasicButton
+      label="ボタン"
+      type="secondary"
+      @click="handleClick"
+    ></BasicButton>
+    <BasicButton
+      label="ボタン"
+      type="tertiary"
+      @click="handleClick"
+    ></BasicButton>
+    <div class="inputWrapper">
+      <FamilyNameInput />
+      <UseTelInputComponent />
+      <UseTextAreaInputComponent />
+      <div>
+        <RadioGroup
+          v-model="selected"
+          groupLabel="ラベル"
+          :labels="['選択肢1', '選択肢2', '選択肢3']"
+          :values="['1', '2', '3']"
+          helpText="ヘルプテキスト"
+          errorText="エラーテキスト"
+          name="group"
+          :isRequired="true"
+        />
       </div>
       <div>
-        <img
-          :src="`https://picsum.photos/id/${pageNumber}/200/200`"
-          alt=""
-          width="200"
-          height="200"
+        <RadioGroup
+          v-model="selected2"
+          radioStyle="tile"
+          groupLabel="ラベル"
+          :labels="['選択肢1', '選択肢2', '選択肢3']"
+          :subTexts="['補足説明1', '補足説明2', '補足説明3']"
+          :values="['1', '2', '3']"
+          helpText="ヘルプテキスト"
+          errorText="エラーテキスト"
+          name="group2"
+          :isRequired="true"
         />
-        <UsePaginationComponent />
+      </div>
+      <div>
+        <CheckboxGroup
+          v-model="checked"
+          groupLabel="ラベル"
+          :labels="['選択肢1', '選択肢2', '選択肢3']"
+          :values="['1', '2', '3']"
+          helpText="ヘルプテキスト"
+          errorText="エラーテキスト"
+          name="group3"
+        />
+      </div>
+      <div>
+        <Checkbox v-model="checked2" label="真偽値1" />
       </div>
     </div>
-  </Layout>
-  <Layout>
-    <div class="layoutBlock colSpan-3">4分の1</div>
-    <div class="layoutBlock colSpan-6">4分の2</div>
-    <div class="layoutBlock colSpan-3">4分の1</div>
+    <div class="tableWrapper">
+      <table class="customTable">
+        <thead>
+          <th>Table Hader</th>
+          <th>Table Hader</th>
+          <th>Table Hader</th>
+          <th>Table Hader</th>
+          <th>Table Hader</th>
+        </thead>
+        <tbody>
+          <tr>
+            <th>Table Hader</th>
+            <td>Table Data</td>
+            <td>Table Data</td>
+            <td>Table Data</td>
+            <td>Table Data</td>
+          </tr>
+          <tr>
+            <th>Table Hader</th>
+            <td>Table Data</td>
+            <td>Table Data</td>
+            <td>Table Data</td>
+            <td>Table Data</td>
+          </tr>
+          <tr>
+            <th>Table Hader</th>
+            <td>Table Data</td>
+            <td>Table Data</td>
+            <td>Table Data</td>
+            <td>Table Data</td>
+          </tr>
+          <tr>
+            <th>Table Hader</th>
+            <td>Table Data</td>
+            <td>Table Data</td>
+            <td>Table Data</td>
+            <td>Table Data</td>
+          </tr>
+          <tr>
+            <th>Table Hader</th>
+            <td>Table Data</td>
+            <td>Table Data</td>
+            <td>Table Data</td>
+            <td>Table Data</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <img
+        :src="`https://picsum.photos/id/${pageNumber}/200/200`"
+        alt=""
+        width="200"
+        height="200"
+      />
+      <UsePaginationComponent />
+    </div>
 
-    <div class="layoutBlock colSpan-3">4分の1</div>
-    <div class="layoutBlock colSpan-3">4分の1</div>
-    <div class="layoutBlock colSpan-3 colSpanTablet-1">4分の1</div>
-    <div class="layoutBlock colSpan-3 colSpanTablet-1">4分の1</div>
+    <Layout>
+      <div class="layoutBlock colSpan-3">4分の1</div>
+      <div class="layoutBlock colSpan-6">4分の2</div>
+      <div class="layoutBlock colSpan-3">4分の1</div>
 
-    <div class="layoutBlock colSpan-9">4分の3</div>
-    <div class="layoutBlock colSpan-3">4分の1</div>
+      <div class="layoutBlock colSpan-3">4分の1</div>
+      <div class="layoutBlock colSpan-3">4分の1</div>
+      <div class="layoutBlock colSpan-3">4分の1</div>
+      <div class="layoutBlock colSpan-3">4分の1</div>
 
-    <div class="layoutBlock colSpan-9">4分の3</div>
+      <div class="layoutBlock colSpan-9">4分の3</div>
+      <div class="layoutBlock colSpan-3">4分の1</div>
 
-    <div class="layoutBlock colSpan-4">3分の1</div>
-    <div class="layoutBlock colSpan-4">3分の1</div>
-    <div class="layoutBlock colSpan-4">3分の1</div>
-  </Layout>
+      <div class="layoutBlock colSpan-9">4分の3</div>
+
+      <div class="layoutBlock colSpan-4">3分の1</div>
+      <div class="layoutBlock colSpan-4">3分の1</div>
+      <div class="layoutBlock colSpan-4">3分の1</div>
+    </Layout>
+    <p>タブレットは2列にする</p>
+    <Layout>
+      <div class="layoutBlock colSpan-6 colSpanTablet-1">4分の2</div>
+      <div class="layoutBlock colSpan-6 colSpanTablet-1">4分の2</div>
+    </Layout>
+    <p>真ん中半分だけ使う</p>
+    <Layout>
+      <div class="layoutBlock colStart-4 colEnd-10">4分の2</div>
+    </Layout>
+  </div>
 </template>
 
 <style scoped lang="scss">
-.wrapper {
-  padding: 20px;
+@use "@/assets/style/utils/utils.scss" as *;
+
+.globalWrapper {
+  max-width: 1104px;
+  padding: 0 40px;
+  margin: 0 auto;
+  @include mediaQueryDown {
+    padding: 0 16px;
+  }
 }
 
 .inputWrapper {

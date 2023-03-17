@@ -8,8 +8,7 @@
 @use "@/assets/style/utils/utils.scss" as *;
 
 .layout {
-  max-width: 1104px;
-  padding: 0 40px;
+  max-width: 1024px;
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
@@ -24,6 +23,15 @@
     .colSpan-#{$i} {
       grid-column: span $i / span $i;
     }
+    .colStart-#{$i} {
+      grid-column-start: $i;
+    }
+    .colEnd-#{$i} {
+      grid-column-end: $i;
+    }
+    .colEnd-13 {
+      grid-column-end: 13;
+    }
   }
 }
 
@@ -35,12 +43,33 @@
     .colSpan-#{$i} {
       grid-column: span 2 / span 2;
     }
+    .colStart-#{$i} {
+      grid-column-start: 1;
+    }
+    .colEnd-#{$i} {
+      grid-column-end: 3;
+    }
+    .colEnd-13 {
+      grid-column-end: 3;
+    }
   }
   .colSpanTablet-1 {
     grid-column: span 1 / span 1;
   }
   .colSpanTablet-2 {
     grid-column: span 2 / span 2;
+  }
+  .colStartTablet-1 {
+    grid-column-start: 1;
+  }
+  .colStartTablet-2 {
+    grid-column-start: 2;
+  }
+  .colEndTablet-2 {
+    grid-column-end: 2;
+  }
+  .colEndTablet-3 {
+    grid-column-end: 3;
   }
 }
 
