@@ -166,8 +166,4 @@ const { UsePaginationComponent, pageNumber } = usePagination();
   row-gap: 24px;
   width: 300px;
 }
-
-.tableWrapper {
-  overflow: scroll;
-}
 </style>
