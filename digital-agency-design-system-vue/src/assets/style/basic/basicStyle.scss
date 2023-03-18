@@ -29,6 +29,12 @@ html {
 }
 
 /* テーブルの基本スタイル */
+.tableWrapper {
+  display: inline-block;
+  max-width: 100%;
+  overflow: auto;
+}
+
 table {
   font-size: 1rem;
   color: var(--color-text-body);

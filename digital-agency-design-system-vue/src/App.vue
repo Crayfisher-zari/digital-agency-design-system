@@ -204,10 +204,6 @@ const { UsePaginationComponent, pageNumber } = usePagination();
   width: 300px;
 }
 
-.tableWrapper {
-  overflow: scroll;
-}
-
 .layoutBlock {
   display: flex;
   align-items: center;
