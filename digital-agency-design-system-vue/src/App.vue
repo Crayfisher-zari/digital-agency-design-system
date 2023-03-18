@@ -10,6 +10,7 @@ import Checkbox from "./components/Checkbox.vue";
 import { ref } from "vue";
 import { usePagination } from "./composables/usePagination";
 import Modal from "./components/Modal.vue";
+import Layout from "./components/Layout.vue";
 
 const handleClick = () => {
   console.log("click");
@@ -35,7 +36,7 @@ const isShown = ref(false);
 </script>
 
 <template>
-  <div class="wrapper">
+  <div class="globalWrapper">
     <Heading :headingLevel="1">H1 / Bold(700) / 1.5</Heading>
     <Heading :headingLevel="2">H2 / Bold(700) / 1.5</Heading>
     <Heading :headingLevel="3">H3 / Bold(700) / 1.5</Heading>
@@ -175,12 +176,48 @@ const isShown = ref(false);
         :onClickSecondary="handleClick"
       />
     </div>
+
+    <Layout>
+      <div class="layoutBlock colSpan-3">4分の1</div>
+      <div class="layoutBlock colSpan-6">4分の2</div>
+      <div class="layoutBlock colSpan-3">4分の1</div>
+
+      <div class="layoutBlock colSpan-3">4分の1</div>
+      <div class="layoutBlock colSpan-3">4分の1</div>
+      <div class="layoutBlock colSpan-3">4分の1</div>
+      <div class="layoutBlock colSpan-3">4分の1</div>
+
+      <div class="layoutBlock colSpan-9">4分の3</div>
+      <div class="layoutBlock colSpan-3">4分の1</div>
+
+      <div class="layoutBlock colSpan-9">4分の3</div>
+
+      <div class="layoutBlock colSpan-4">3分の1</div>
+      <div class="layoutBlock colSpan-4">3分の1</div>
+      <div class="layoutBlock colSpan-4">3分の1</div>
+    </Layout>
+    <p>タブレットは2列にする</p>
+    <Layout>
+      <div class="layoutBlock colSpan-6 colSpanTablet-1">4分の2</div>
+      <div class="layoutBlock colSpan-6 colSpanTablet-1">4分の2</div>
+    </Layout>
+    <p>真ん中半分だけ使う</p>
+    <Layout>
+      <div class="layoutBlock colStart-4 colEnd-10">4分の2</div>
+    </Layout>
   </div>
 </template>
 
 <style scoped lang="scss">
-.wrapper {
-  padding: 20px;
+@use "@/assets/style/utils/utils.scss" as *;
+
+.globalWrapper {
+  max-width: 1104px;
+  padding: 0 40px;
+  margin: 0 auto;
+  @include mediaQueryDown {
+    padding: 0 16px;
+  }
 }
 
 .inputWrapper {
@@ -190,7 +227,15 @@ const isShown = ref(false);
   width: 300px;
 }
 
-.tableWrapper {
-  overflow: scroll;
+.layoutBlock {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  height: 120px;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  background-color: var(--color-background-secondary);
 }
 </style>
