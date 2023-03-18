@@ -1,6 +1,7 @@
 <script lang="ts" setup>
-import { ref, defineProps, Ref } from "vue";
+import { ref, Ref } from "vue";
 import BasicButton from "../components/BasicButton.vue";
+import Layout from "../components/Layout.vue";
 type Props = {
   title: string;
   text: string;
@@ -34,21 +35,24 @@ const handleClickSecondary = () => {
 <template>
   <Teleport to="body">
     <div class="modalBg" v-show="modelValue">
-      <div class="modal">
-        <h1>{{ title }}</h1>
-        <p>{{ text }}</p>
-        <BasicButton
-          :label="labelPrimary"
-          type="primary"
-          @click="handleClickPrimary"
-        ></BasicButton>
-        <BasicButton
-          v-if="handleClickPrimary"
-          :label="labelSecondary"
-          type="secondary"
-          @click="handleClickPrimary"
-        ></BasicButton>
-      </div>
+      
+        <layout class="modalWrapper">
+          <div class="modal colStart-4 colEnd-10">
+            <h1>{{ title }}</h1>
+            <p>{{ text }}</p>
+            <BasicButton
+              :label="labelPrimary"
+              type="primary"
+              @click="handleClickPrimary"
+            ></BasicButton>
+            <BasicButton
+              v-if="handleClickPrimary"
+              :label="labelSecondary"
+              type="secondary"
+              @click="handleClickPrimary"
+            ></BasicButton>
+          </div>
+        </layout>
     </div>
   </Teleport>
 </template>
@@ -60,10 +64,15 @@ const handleClickSecondary = () => {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: rgba(0, 0, 0, 0.7);
 }
 
-.modal{
+.modalWrapper{
+  height: 100%;
+}
+
+.modal {
   background-color: var(--color-background-primary);
+  align-self: center;
 }
 </style>
