@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref, Ref } from "vue";
+import { ref, Ref, watch } from "vue";
 import BasicButton from "../components/BasicButton.vue";
 import Layout from "../components/Layout.vue";
 type Props = {
@@ -23,6 +23,35 @@ const handleClickPrimary = () => {
   props.onClickPrimary();
   emits("update:modelValue", false);
 };
+
+const lockScroll = () => {
+  document.body.style.overflow = "hidden";
+  // スクロールバーのガタツキ対策
+  const element = document.querySelector<HTMLElement>(".scrollbar-gutter");
+  if (element) {
+    element.style.scrollbarGutter = "stable";
+  }
+};
+
+const releaseScroll = () => {
+  document.body.style.overflow = "visible";
+  // スクロールバーのガタツキ対策
+  const element = document.querySelector<HTMLElement>(".scrollbar-gutter");
+  if (element) {
+    element.style.scrollbarGutter = "auto";
+  }
+};
+
+watch(
+  () => props.modelValue,
+  (modelValue) => {
+    if (modelValue) {
+      lockScroll();
+    } else {
+      releaseScroll();
+    }
+  }
+);
 
 const handleClickSecondary = () => {
   if (!props.onClickSecondary) {

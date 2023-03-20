@@ -44,7 +44,7 @@ const modalClick2 = () => {
 </script>
 
 <template>
-  <div class="globalWrapper" :class="isShown ? 'isModalOpen' : null">
+  <div class="globalWrapper">
     <Heading :headingLevel="1">H1 / Bold(700) / 1.5</Heading>
     <Heading :headingLevel="2">H2 / Bold(700) / 1.5</Heading>
     <Heading :headingLevel="3">H3 / Bold(700) / 1.5</Heading>

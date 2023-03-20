@@ -17,6 +17,11 @@ html {
   background-color: var(--color-background-primary);
 }
 
+/* スクロールバーのガタツキ対策。#appなどのコンテンツ全体のラッパーに適用する。js側で動的にscrollbar-gutterプロパティを入れる */
+.scrollbar-gutter {
+  overflow: auto;
+}
+
 /* 見た目には不可視だが、スクリーンリーダーには読み上げられるようにするスタイル */
 .sr-only {
   position: absolute;
