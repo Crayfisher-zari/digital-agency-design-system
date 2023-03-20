@@ -44,7 +44,7 @@ const modalClick2 = () => {
 </script>
 
 <template>
-  <div class="globalWrapper">
+  <div class="globalWrapper" :class="isShown ? 'isModalOpen' : null">
     <Heading :headingLevel="1">H1 / Bold(700) / 1.5</Heading>
     <Heading :headingLevel="2">H2 / Bold(700) / 1.5</Heading>
     <Heading :headingLevel="3">H3 / Bold(700) / 1.5</Heading>
@@ -225,6 +225,11 @@ const modalClick2 = () => {
   margin: 0 auto;
   @include mediaQueryDown {
     padding: 0 16px;
+  }
+
+  &.isModalOpen {
+    height: 100vh;
+    overflow: hidden;
   }
 }
 
