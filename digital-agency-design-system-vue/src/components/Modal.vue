@@ -35,24 +35,27 @@ const handleClickSecondary = () => {
 <template>
   <Teleport to="body">
     <div class="modalBg" v-show="modelValue">
-      
-        <layout class="modalWrapper">
-          <div class="modal colStart-4 colEnd-10">
-            <h1>{{ title }}</h1>
-            <p>{{ text }}</p>
+      <layout class="modalWrapper">
+        <div class="modal colStart-4 colEnd-10">
+          <h3 class="title">{{ title }}</h3>
+          <p class="text">{{ text }}</p>
+          <div class="buttonWrapper">
             <BasicButton
               :label="labelPrimary"
+              class="button"
               type="primary"
               @click="handleClickPrimary"
             ></BasicButton>
             <BasicButton
-              v-if="handleClickPrimary"
+              v-if="handleClickSecondary"
               :label="labelSecondary"
-              type="secondary"
-              @click="handleClickPrimary"
+              class="button"
+              type="tertiary"
+              @click="handleClickSecondary"
             ></BasicButton>
           </div>
-        </layout>
+        </div>
+      </layout>
     </div>
   </Teleport>
 </template>
@@ -67,12 +70,37 @@ const handleClickSecondary = () => {
   background-color: rgba(0, 0, 0, 0.7);
 }
 
-.modalWrapper{
+.modalWrapper {
   height: 100%;
 }
 
 .modal {
   background-color: var(--color-background-primary);
   align-self: center;
+  padding: 40px 56px;
+  border-radius: 12px;
+}
+
+.title {
+  margin-bottom: 16px;
+  font-size: 1.375rem;
+  font-weight: bold;
+}
+
+.text{
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.buttonWrapper{
+  margin-top: 40px;
+  display: grid;
+  grid-auto-flow: row;
+  row-gap: 8px;
+
+}
+
+.button{
+  width: 100%;
 }
 </style>

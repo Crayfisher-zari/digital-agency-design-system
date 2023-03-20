@@ -33,6 +33,14 @@ const checked2 = ref(true);
 const { UsePaginationComponent, pageNumber } = usePagination();
 
 const isShown = ref(false);
+
+const modalClick1 = () => {
+  console.log("ボタン1");
+};
+
+const modalClick2 = () => {
+  console.log("ボタン2");
+};
 </script>
 
 <template>
@@ -172,8 +180,8 @@ const isShown = ref(false);
         text="テキスト"
         labelPrimary="ボタン1"
         labelSecondary="ボタン2"
-        :onClickPrimary="handleClick"
-        :onClickSecondary="handleClick"
+        :onClickPrimary="modalClick1"
+        :onClickSecondary="modalClick2"
       />
     </div>
 
