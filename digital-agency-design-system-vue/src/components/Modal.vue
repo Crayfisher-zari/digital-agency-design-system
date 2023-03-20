@@ -34,23 +34,30 @@ const handleClickSecondary = () => {
 </script>
 <template>
   <Teleport to="body">
-    <div class="modalBg" v-show="modelValue">
+    <div
+      class="modalBg"
+      v-show="modelValue"
+      role="dialog"
+      :aria-modal="modelValue ? modelValue : undefined"
+      :aria-hidden="!modelValue"
+      tabindex="-1"
+    >
       <layout class="modalWrapper">
         <div class="modal colStart-4 colEnd-10">
-          <h3 class="title">{{ title }}</h3>
-          <p class="text">{{ text }}</p>
+          <h1>{{ title }}</h1>
+          <p>{{ text }}</p>
           <div class="buttonWrapper">
             <BasicButton
               :label="labelPrimary"
-              class="button"
               type="primary"
+              class="button"
               @click="handleClickPrimary"
             ></BasicButton>
             <BasicButton
               v-if="handleClickSecondary"
               :label="labelSecondary"
               class="button"
-              type="tertiary"
+              type="secondary"
               @click="handleClickSecondary"
             ></BasicButton>
           </div>
@@ -87,20 +94,19 @@ const handleClickSecondary = () => {
   font-weight: bold;
 }
 
-.text{
+.text {
   font-size: 1rem;
   line-height: 1.75;
 }
 
-.buttonWrapper{
+.buttonWrapper {
   margin-top: 40px;
   display: grid;
   grid-auto-flow: row;
   row-gap: 8px;
-
 }
 
-.button{
+.button {
   width: 100%;
 }
 </style>
