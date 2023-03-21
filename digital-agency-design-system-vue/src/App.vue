@@ -11,6 +11,7 @@ import { ref } from "vue";
 import { usePagination } from "./composables/usePagination";
 import Modal from "./components/Modal.vue";
 import Layout from "./components/Layout.vue";
+import Pankuzu from "./components/Pankuzu.vue";
 
 const handleClick = () => {
   console.log("click");
@@ -41,10 +42,18 @@ const modalClick1 = () => {
 const modalClick2 = () => {
   console.log("ボタン2");
 };
+
+const pankuzu = [
+  { text: "ホーム", url: "#!" },
+  { text: "政策", url: "#!" },
+  { text: "審議会・研究会", url: "#!" },
+  { text: "デジタル庁における入札制限等の在り方に関する検討会" },
+];
 </script>
 
 <template>
   <div class="globalWrapper">
+    <Pankuzu :list="pankuzu" />
     <Heading :headingLevel="1">H1 / Bold(700) / 1.5</Heading>
     <Heading :headingLevel="2">H2 / Bold(700) / 1.5</Heading>
     <Heading :headingLevel="3">H3 / Bold(700) / 1.5</Heading>
