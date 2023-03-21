@@ -12,6 +12,8 @@ import { usePagination } from "./composables/usePagination";
 import Modal from "./components/Modal.vue";
 import Layout from "./components/Layout.vue";
 import Pankuzu from "./components/Pankuzu.vue";
+import { useEmailInput } from "./composables/useEmailInput";
+import { usePasswordInput } from "./composables/usePasswordInput";
 
 const handleClick = () => {
   console.log("click");
@@ -49,6 +51,9 @@ const pankuzu = [
   { text: "審議会・研究会", url: "#!" },
   { text: "デジタル庁における入札制限等の在り方に関する検討会" },
 ];
+
+const { email, UseEmailInputComponent } = useEmailInput();
+const { password, UsePasswordInputComponent } = usePasswordInput();
 </script>
 
 <template>
@@ -223,6 +228,25 @@ const pankuzu = [
       <div class="layoutBlock colStart-4 colEnd-10">4分の2</div>
     </Layout>
   </div>
+  <div class="templates">
+    <Layout>
+    <div class="colSpan-9">
+      <Heading :headingLevel="1">ログイン</Heading>
+      <form action="#">
+        <div class="loginForm">
+          <UseEmailInputComponent />
+          <UsePasswordInputComponent />
+        </div>
+        <div class="loginButtons">
+          <BasicButton label="ログイン" />
+          <BasicButton label="新規登録" type="secondary" />
+          <BasicButton label="パスワードをお忘れの方" type="tertiary" />
+        </div>
+      </form>
+    </div>
+  </Layout>
+  </div>
+  
 </template>
 
 <style scoped lang="scss">
@@ -259,5 +283,22 @@ const pankuzu = [
   font-weight: bold;
   text-align: center;
   background-color: var(--color-background-secondary);
+}
+
+.templates{
+  padding: 120px 0;
+}
+
+.loginForm {
+  display: grid;
+  grid-auto-flow: row;
+  row-gap: 16px;
+}
+
+.loginButtons{
+  margin-top: 40px;
+  display: grid;
+  grid-auto-flow: row;
+  row-gap: 8px;
 }
 </style>
