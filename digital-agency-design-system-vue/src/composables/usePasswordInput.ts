@@ -7,7 +7,6 @@ export const usePasswordInput = () => {
 
   const isValid = computed(() => errorText.value === undefined);
 
-
   const render = () =>
     h(TextInput, {
       type: "password",

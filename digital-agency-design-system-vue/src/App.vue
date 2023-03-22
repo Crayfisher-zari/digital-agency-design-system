@@ -7,7 +7,7 @@ import { useTextAreaInput } from "./composables/useTextAreaInput";
 import RadioGroup from "./components/RadioGroup.vue";
 import CheckboxGroup from "./components/CheckboxGroup.vue";
 import Checkbox from "./components/Checkbox.vue";
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import { usePagination } from "./composables/usePagination";
 import Modal from "./components/Modal.vue";
 import Layout from "./components/Layout.vue";
@@ -54,6 +54,19 @@ const pankuzu = [
 
 const { email, UseEmailInputComponent } = useEmailInput();
 const { password, UsePasswordInputComponent } = usePasswordInput();
+
+const colorScheme = ref<"light" | "dark" | undefined>(undefined);
+
+watch(colorScheme, (color) => {
+  if (color === "light") {
+    document.body.classList.remove("color-scheme-dark");
+    document.body.classList.add("color-scheme-light");
+  }
+  if (color === "dark") {
+    document.body.classList.remove("color-scheme-light");
+    document.body.classList.add("color-scheme-dark");
+  }
+});
 </script>
 
 <template>
@@ -76,6 +89,17 @@ const { password, UsePasswordInputComponent } = usePasswordInput();
       type="tertiary"
       @click="handleClick"
     ></BasicButton>
+    <div class="colorScheme">
+      <RadioGroup
+        v-model="colorScheme"
+        groupLabel="テーマカラー"
+        :labels="['ライトモード', 'ダークモード']"
+        :values="['light', 'dark']"
+        helpText="サイトのテーマカラーを選択できます"
+        name="color"
+        :isRequired="false"
+      />
+    </div>
     <div class="inputWrapper">
       <FamilyNameInput />
       <UseTelInputComponent />
@@ -230,23 +254,22 @@ const { password, UsePasswordInputComponent } = usePasswordInput();
   </div>
   <div class="templates">
     <Layout>
-    <div class="colSpan-9">
-      <Heading :headingLevel="1">ログイン</Heading>
-      <form action="#">
-        <div class="loginForm">
-          <UseEmailInputComponent />
-          <UsePasswordInputComponent />
-        </div>
-        <div class="loginButtons">
-          <BasicButton label="ログイン" />
-          <BasicButton label="新規登録" type="secondary" />
-          <BasicButton label="パスワードをお忘れの方" type="tertiary" />
-        </div>
-      </form>
-    </div>
-  </Layout>
+      <div class="colSpan-9">
+        <Heading :headingLevel="1">ログイン</Heading>
+        <form action="#">
+          <div class="loginForm">
+            <UseEmailInputComponent />
+            <UsePasswordInputComponent />
+          </div>
+          <div class="loginButtons">
+            <BasicButton label="ログイン" />
+            <BasicButton label="新規登録" type="secondary" />
+            <BasicButton label="パスワードをお忘れの方" type="tertiary" />
+          </div>
+        </form>
+      </div>
+    </Layout>
   </div>
-  
 </template>
 
 <style scoped lang="scss">
@@ -264,6 +287,10 @@ const { password, UsePasswordInputComponent } = usePasswordInput();
     height: 100vh;
     overflow: hidden;
   }
+}
+
+.colorScheme {
+  margin: 36px 0;
 }
 
 .inputWrapper {
@@ -285,7 +312,7 @@ const { password, UsePasswordInputComponent } = usePasswordInput();
   background-color: var(--color-background-secondary);
 }
 
-.templates{
+.templates {
   padding: 120px 0;
 }
 
@@ -295,10 +322,10 @@ const { password, UsePasswordInputComponent } = usePasswordInput();
   row-gap: 16px;
 }
 
-.loginButtons{
-  margin-top: 40px;
+.loginButtons {
   display: grid;
   grid-auto-flow: row;
   row-gap: 8px;
+  margin-top: 40px;
 }
 </style>

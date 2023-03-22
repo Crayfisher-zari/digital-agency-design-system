@@ -48,26 +48,26 @@ withDefaults(defineProps<Props>(), {
           />
         </picture>
       </button>
-      <div class="dot dotPrevious" v-if="current - 4 >= min">...</div>
+      <div v-if="current - 4 >= min" class="dot dotPrevious">...</div>
       <button
-        class="pageNumber"
         v-if="current - 3 >= min"
+        class="pageNumber"
         style="grid-column: 4/5"
         @click="onClickNumber(current - 3)"
       >
         {{ current - 3 }}
       </button>
       <button
-        class="pageNumber"
         v-if="current - 2 >= min"
+        class="pageNumber"
         style="grid-column: 5/6"
         @click="onClickNumber(current - 2)"
       >
         {{ current - 2 }}
       </button>
       <button
-        class="pageNumber"
         v-if="current - 1 >= min"
+        class="pageNumber"
         style="grid-column: 6/7"
         @click="onClickNumber(current - 1)"
       >
@@ -75,30 +75,30 @@ withDefaults(defineProps<Props>(), {
       </button>
       <p class="current">{{ current }}/{{ max }}</p>
       <button
-        class="pageNumber"
         v-if="current + 1 <= max"
+        class="pageNumber"
         style="grid-column: 8/9"
         @click="onClickNumber(current + 1)"
       >
         {{ current + 1 }}
       </button>
       <button
-        class="pageNumber"
         v-if="current + 2 <= max"
+        class="pageNumber"
         style="grid-column: 9/10"
         @click="onClickNumber(current + 2)"
       >
         {{ current + 2 }}
       </button>
       <button
-        class="pageNumber"
         v-if="current + 3 <= max"
+        class="pageNumber"
         style="grid-column: 10/11"
         @click="onClickNumber(current + 3)"
       >
         {{ current + 3 }}
       </button>
-      <div class="dot dotNext" v-if="current + 4 <= max">...</div>
+      <div v-if="current + 4 <= max" class="dot dotNext">...</div>
       <button class="next" @click="onClickNext">
         <picture>
           <source
@@ -134,37 +134,40 @@ withDefaults(defineProps<Props>(), {
 </template>
 <style lang="scss" scoped>
 @use "@/assets/style/utils/utils.scss" as *;
+
 .pagination {
   display: grid;
   grid-template-columns: 48px 48px 24px 48px 48px 48px 48px 48px 48px 48px 24px 48px 48px;
   grid-auto-flow: column;
+  column-gap: 12px;
   align-items: center;
   justify-content: center;
-  column-gap: 12px;
 }
+
 button {
   display: block;
   justify-self: center;
   width: 48px;
   height: 48px;
-  border-radius: 50%;
-  cursor: pointer;
-  border: 1px solid var(--color-border-divider);
-  background-color: var(--color-background-primary);
-  text-align: center;
   color: var(--color-button-normal);
-  letter-spacing: 0.04em;
-}
-.current {
-  font-size: 0.75rem;
-  letter-spacing: 0.04em;
-  grid-column: 7/8;
   text-align: center;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  background-color: var(--color-background-primary);
+  border: 1px solid var(--color-border-divider);
+  border-radius: 50%;
+}
+
+.current {
+  grid-column: 7/8;
+  font-size: 0.75rem;
+  text-align: center;
+  letter-spacing: 0.04em;
 }
 
 .dot {
-  text-align: center;
   color: transparent;
+  text-align: center;
   background-image: radial-gradient(
       circle at 2px 2px,
       var(--color-text-body) 0,
@@ -172,28 +175,30 @@ button {
       transparent 1px
     ),
     radial-gradient(
-        circle at 8px 2px,
-        var(--color-text-body) 0,
-        var(--color-text-body) 1px,
-        transparent 1px
-      ),
-      radial-gradient(
-        circle at 14px 2px,
-        var(--color-text-body) 0,
-        var(--color-text-body) 1px,
-        transparent 1px
-      );
+      circle at 8px 2px,
+      var(--color-text-body) 0,
+      var(--color-text-body) 1px,
+      transparent 1px
+    ),
+    radial-gradient(
+      circle at 14px 2px,
+      var(--color-text-body) 0,
+      var(--color-text-body) 1px,
+      transparent 1px
+    );
   background-repeat: no-repeat;
-  background-size: 15px 2px;
   background-position: center;
+  background-size: 15px 2px;
 }
 
 .fistPage {
   grid-column: 1/2;
 }
+
 .previous {
   grid-column: 2/3;
 }
+
 .dotPrevious {
   grid-column: 3/4;
 }
@@ -201,6 +206,7 @@ button {
 .dotNext {
   grid-column: 11/12;
 }
+
 .next {
   grid-column: 12/13;
 }
@@ -215,16 +221,15 @@ button {
     grid-template-columns: 56px 56px 48px 56px 56px;
     column-gap: 16px;
   }
+
   .pageNumber {
     display: none;
   }
-  .fistPage {
-  }
-  .previous {
-  }
+
   .current {
     grid-column: 3/4;
   }
+
   .dotPrevious {
     display: none;
   }
@@ -232,6 +237,7 @@ button {
   .dotNext {
     display: none;
   }
+
   .next {
     grid-column: 4/5;
   }
@@ -242,9 +248,10 @@ button {
 }
 
 @include mediaQueryDown(tablet) {
-  @include simpleStyle();
+  @include simpleStyle;
 }
+
 .simple {
-  @include simpleStyle();
+  @include simpleStyle;
 }
 </style>

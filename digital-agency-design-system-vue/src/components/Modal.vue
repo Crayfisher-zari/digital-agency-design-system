@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref, Ref, watch } from "vue";
+import { watch } from "vue";
 import BasicButton from "../components/BasicButton.vue";
 import Layout from "../components/Layout.vue";
 type Props = {
@@ -12,10 +12,11 @@ type Props = {
   onClickSecondary?: () => void;
 };
 
-type Emits = { (e: "update:modelValue", value: Boolean): void };
+type Emits = { (e: "update:modelValue", value: boolean): void };
 
 const props = withDefaults(defineProps<Props>(), {
   labelSecondary: "",
+  onClickSecondary: undefined,
 });
 const emits = defineEmits<Emits>();
 
@@ -64,8 +65,8 @@ const handleClickSecondary = () => {
 <template>
   <Teleport to="body">
     <div
-      class="modalBg"
       v-show="modelValue"
+      class="modalBg"
       role="dialog"
       :aria-modal="modelValue ? modelValue : undefined"
       :aria-hidden="!modelValue"
@@ -98,12 +99,12 @@ const handleClickSecondary = () => {
 <style lang="scss">
 .modalBg {
   position: fixed;
-  z-index: 9999;
   top: 0;
   left: 0;
+  z-index: 9999;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 70%);
 }
 
 .modalWrapper {
@@ -111,9 +112,9 @@ const handleClickSecondary = () => {
 }
 
 .modal {
-  background-color: var(--color-background-primary);
   align-self: center;
   padding: 40px 56px;
+  background-color: var(--color-background-primary);
   border-radius: 12px;
 }
 
@@ -129,10 +130,10 @@ const handleClickSecondary = () => {
 }
 
 .buttonWrapper {
-  margin-top: 40px;
   display: grid;
   grid-auto-flow: row;
   row-gap: 8px;
+  margin-top: 40px;
 }
 
 .button {

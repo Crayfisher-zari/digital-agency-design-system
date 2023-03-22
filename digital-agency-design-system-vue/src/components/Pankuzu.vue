@@ -7,7 +7,7 @@ const props = defineProps<Props>();
 </script>
 <template>
   <ul>
-    <li v-for="pankuzu in props.list">
+    <li v-for="pankuzu in props.list" :key="pankuzu.text">
       <a v-if="pankuzu.url" :href="pankuzu.url">{{ pankuzu.text }}</a>
       <span v-else>{{ pankuzu.text }}</span>
     </li>
@@ -20,31 +20,32 @@ ul {
 }
 
 li {
-  list-style: none;
   display: inline-flex;
   align-items: center;
   font-size: 0.875rem;
   line-height: 2;
-  &:after {
-    content: "";
+  list-style: none;
+
+  &::after {
     display: block;
     width: 16px;
     height: 16px;
+    content: "";
     background-image: url("@/assets/images/icon_pankuzu.svg");
-    background-size: 5px;
     background-repeat: no-repeat;
     background-position: 50% 50%;
+    background-size: 5px;
   }
   @media (prefers-color-scheme: dark) {
-    &:after{
+    &::after {
       background-image: url("@/assets/images/icon_pankuzu_dark.svg");
     }
   }
+
   &:last-child {
     &::after {
       display: none;
     }
   }
- 
 }
 </style>
