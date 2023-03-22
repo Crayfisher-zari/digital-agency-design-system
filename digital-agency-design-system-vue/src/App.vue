@@ -52,11 +52,12 @@ const pankuzu = [
   { text: "デジタル庁における入札制限等の在り方に関する検討会" },
 ];
 
-const { email, UseEmailInputComponent } = useEmailInput();
-const { password, UsePasswordInputComponent } = usePasswordInput();
+const { UseEmailInputComponent } = useEmailInput();
+const { UsePasswordInputComponent } = usePasswordInput();
 
 const colorScheme = ref<"light" | "dark" | undefined>(undefined);
 
+// カラースキームの設定
 watch(colorScheme, (color) => {
   if (color === "light") {
     document.body.classList.remove("color-scheme-dark");

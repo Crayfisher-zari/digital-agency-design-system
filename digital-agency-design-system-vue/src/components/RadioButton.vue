@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { computed } from "vue";
+import { ref, computed } from "vue";
 
 type Props = {
   /** デフォルト型かタイル型か */
@@ -30,6 +30,8 @@ const props = withDefaults(defineProps<Props>(), {
 });
 const emits = defineEmits<Emits>();
 
+const focused = ref<boolean>(false);
+
 const checked = computed<boolean>(() => props.modelValue === props.radioValue);
 
 // 入力時のコールバック関数です。入力内容をemitして親に伝えられます。
@@ -47,11 +49,17 @@ const stateClassName = computed<string | null>(() => {
   }
   return null;
 });
+
+const handleFocusIn = () => {
+  focused.value = true;
+};
+
+const handleFocusOut = () => {
+  focused.value = false;
+};
 </script>
 <template>
-  <label
-    :class="`${radioStyle} ${stateClassName ?? ''} ${checked ? 'checked' : ''}`"
-  >
+  <label :class="[radioStyle, stateClassName, { checked }, { focused }]">
     <input
       type="radio"
       class="sr-only"
@@ -60,6 +68,8 @@ const stateClassName = computed<string | null>(() => {
       :name="name"
       :disabled="isDisabled"
       :checked="checked"
+      @focusin="handleFocusIn"
+      @focusout="handleFocusOut"
     />{{ label }}
     <span
       v-if="radioStyle === 'tile' && subText !== undefined"
@@ -105,6 +115,11 @@ input:checked ~ .radioIcon {
   &::after {
     background-color: var(--color-icon-active);
   }
+}
+
+label:not(.tile) input:focus-visible ~ .radioIcon {
+  outline: 2px solid var(--color-border-focused);
+  outline-offset: 2px;
 }
 
 input:disabled ~ .radioIcon {
@@ -166,6 +181,11 @@ input:disabled:checked ~ .radioIcon {
     .subText {
       color: var(--color-text-disabled);
     }
+  }
+
+  &.focused {
+    outline: 2px solid var(--color-border-focused);
+    outline-offset: 2px;
   }
 }
 </style>

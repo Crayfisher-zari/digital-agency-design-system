@@ -135,6 +135,11 @@ input:checked ~ .checkIcon {
   }
 }
 
+input:focus-visible ~ .checkIcon {
+  outline: 2px solid var(--color-border-focused);
+  outline-offset: 2px;
+}
+
 input:disabled ~ .checkIcon {
   border-color: var(--color-border-disabled);
 }
