@@ -58,7 +58,7 @@ watch(modelValue, (value) => {
 });
 </script>
 <template>
-  <div class="radioGroup" :class="`${!isValid ? 'isError' : ''} ${radioStyle}`">
+  <div class="radioGroup" :class="[{ isError: !isValid },radioStyle]">
     <p class="label">
       {{ groupLabel }}
       <span v-if="isRequired" class="requiredText isRequired">必須</span>

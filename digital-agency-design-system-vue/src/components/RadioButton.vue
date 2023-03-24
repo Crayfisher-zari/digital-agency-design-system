@@ -49,14 +49,6 @@ const stateClassName = computed<string | null>(() => {
   }
   return null;
 });
-
-const handleFocusIn = () => {
-  focused.value = true;
-};
-
-const handleFocusOut = () => {
-  focused.value = false;
-};
 </script>
 <template>
   <label :class="[radioStyle, stateClassName, { checked }, { focused }]">
@@ -68,8 +60,6 @@ const handleFocusOut = () => {
       :name="name"
       :disabled="isDisabled"
       :checked="checked"
-      @focusin="handleFocusIn"
-      @focusout="handleFocusOut"
     />{{ label }}
     <span
       v-if="radioStyle === 'tile' && subText !== undefined"
@@ -182,10 +172,17 @@ input:disabled:checked ~ .radioIcon {
       color: var(--color-text-disabled);
     }
   }
-
-  &.focused {
-    outline: 2px solid var(--color-border-focused);
-    outline-offset: 2px;
+  @supports selector(:has(*)) {
+    &:has(input:focus-visible) {
+      outline: 2px solid var(--color-border-focused);
+      outline-offset: 2px;
+    }
+  }
+  @supports not selector(:has(*)) {
+    &:focus-within {
+      outline: 2px solid var(--color-border-focused);
+      outline-offset: 2px;
+    }
   }
 }
 </style>

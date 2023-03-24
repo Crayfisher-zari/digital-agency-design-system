@@ -1,7 +1,12 @@
 /**
- * イージング関数の変数です
+ * アニメーションの秒数、イージング関数の変数です
  */
 :root {
+  --base-duration: 0.5s;
+  @media (prefer-reduce-motion) {
+    --base-duration: 0s;
+  }
+
   --easing-out-quat: cubic-bezier(0.25, 1, 0.5, 1);
   --easing-in-out-quat: cubic-bezier(0.76, 0, 0.24, 1);
   --easing-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
