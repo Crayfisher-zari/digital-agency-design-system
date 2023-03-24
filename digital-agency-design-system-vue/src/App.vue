@@ -55,7 +55,7 @@ const pankuzu = [
 const { UseEmailInputComponent } = useEmailInput();
 const { UsePasswordInputComponent } = usePasswordInput();
 
-const colorScheme = ref<"light" | "dark" | undefined>(undefined);
+const colorScheme = ref<"light" | "dark" | null>(null);
 
 // カラースキームの設定
 watch(colorScheme, (color) => {

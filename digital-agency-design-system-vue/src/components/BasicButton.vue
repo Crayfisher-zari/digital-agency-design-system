@@ -18,7 +18,7 @@ withDefaults(defineProps<Props>(), {
 </template>
 
 <style lang="scss" scoped>
-$transition-duration: 0.3s;
+
 
 button {
   display: block;
@@ -32,9 +32,9 @@ button {
   border: 1px solid var(--color-button-normal);
   border-radius: 8px;
   appearance: none;
-  transition: background-color $transition-duration var(--easing-out-expo),
-    color $transition-duration var(--easing-out-expo),
-    border-color $transition-duration var(--easing-out-expo);
+  transition: background-color var(--base-duration) var(--easing-out-expo),
+    color var(--base-duration) var(--easing-out-expo),
+    border-color var(--base-duration) var(--easing-out-expo);
 
   .labelText {
     color: inherit;
