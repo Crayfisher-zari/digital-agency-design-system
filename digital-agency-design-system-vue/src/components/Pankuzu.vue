@@ -36,15 +36,19 @@ li {
     background-position: 50% 50%;
     background-size: 5px;
   }
-  @media (prefers-color-scheme: dark) {
-    &::after {
-      background-image: url("@/assets/images/icon_pankuzu_dark.svg");
-    }
-  }
 
   &:last-child {
     &::after {
       display: none;
+    }
+  }
+}
+
+// ダークモード時
+body:not(.color-scheme-light) li {
+  @media (prefers-color-scheme: dark) {
+    &::after {
+      background-image: url("@/assets/images/icon_pankuzu_dark.svg");
     }
   }
 }
