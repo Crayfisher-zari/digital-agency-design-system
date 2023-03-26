@@ -129,14 +129,15 @@ const handleInput = (e: Event) => {
   margin-top: 8px;
   border: 1px solid var(--color-border-field);
   border-radius: 8px;
-
+  font-size: 1rem;
   &::placeholder {
     color: var(--color-text-placeHolder);
   }
 
   &:focus-visible {
     border-color: var(--color-border-focused) !important;
-    outline: 1px solid var(--color-border-focused);
+    box-shadow: 0 0 0 1px  var(--color-border-focused);
+    outline: none;
   }
 }
 

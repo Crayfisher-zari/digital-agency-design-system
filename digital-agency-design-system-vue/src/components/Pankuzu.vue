@@ -13,7 +13,7 @@ const props = defineProps<Props>();
     </li>
   </ul>
 </template>
-<style lang="scss">
+<style lang="scss" scoped>
 ul {
   display: flex;
   flex-wrap: wrap;
@@ -50,6 +50,11 @@ body:not(.color-scheme-light) li {
     &::after {
       background-image: url("@/assets/images/icon_pankuzu_dark.svg");
     }
+  }
+}
+body.color-scheme-dark li {
+  &::after {
+    background-image: url("@/assets/images/icon_pankuzu_dark.svg");
   }
 }
 </style>
