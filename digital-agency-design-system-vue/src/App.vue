@@ -73,23 +73,15 @@ watch(colorScheme, (color) => {
 <template>
   <div class="globalWrapper">
     <Pankuzu :list="pankuzu" />
-    <Heading :headingLevel="1">H1 / Bold(700) / 1.5</Heading>
-    <Heading :headingLevel="2">H2 / Bold(700) / 1.5</Heading>
-    <Heading :headingLevel="3">H3 / Bold(700) / 1.5</Heading>
-    <Heading :headingLevel="4">H4 / Bold(700) / 1.5</Heading>
-    <Heading :headingLevel="5">H5 / Bold(700) / 1.5</Heading>
-    <Heading :headingLevel="6">H6 / Bold(700) / 1.5</Heading>
-    <BasicButton label="ボタン" @click="handleClick"></BasicButton>
-    <BasicButton
-      label="ボタン"
-      type="secondary"
-      @click="handleClick"
-    ></BasicButton>
-    <BasicButton
-      label="ボタン"
-      type="tertiary"
-      @click="handleClick"
-    ></BasicButton>
+    <Heading :headingLevel="1"> H1 / Bold(700) / 1.5 </Heading>
+    <Heading :headingLevel="2"> H2 / Bold(700) / 1.5 </Heading>
+    <Heading :headingLevel="3"> H3 / Bold(700) / 1.5 </Heading>
+    <Heading :headingLevel="4"> H4 / Bold(700) / 1.5 </Heading>
+    <Heading :headingLevel="5"> H5 / Bold(700) / 1.5 </Heading>
+    <Heading :headingLevel="6"> H6 / Bold(700) / 1.5 </Heading>
+    <BasicButton label="ボタン" @click="handleClick" />
+    <BasicButton label="ボタン" type="secondary" @click="handleClick" />
+    <BasicButton label="ボタン" type="tertiary" @click="handleClick" />
     <div class="colorScheme">
       <RadioGroup
         v-model="colorScheme"
@@ -211,7 +203,7 @@ watch(colorScheme, (color) => {
             isShown = true;
           }
         "
-      ></BasicButton>
+      />
       <!-- <UseModalComponent /> -->
       <Modal
         v-model="isShown"
@@ -256,7 +248,7 @@ watch(colorScheme, (color) => {
   <div class="templates">
     <Layout>
       <div class="colSpan-9">
-        <Heading :headingLevel="1">ログイン</Heading>
+        <Heading :headingLevel="1"> ログイン </Heading>
         <form action="#">
           <div class="loginForm">
             <UseEmailInputComponent />
