@@ -52,6 +52,7 @@ body:not(.color-scheme-light) li {
     }
   }
 }
+
 body.color-scheme-dark li {
   &::after {
     background-image: url("@/assets/images/icon_pankuzu_dark.svg");

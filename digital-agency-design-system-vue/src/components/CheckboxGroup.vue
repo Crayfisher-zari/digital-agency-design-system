@@ -52,7 +52,7 @@ watch(modelValue, (value) => {
 });
 </script>
 <template>
-  <div class="checkboxGroup" :class="{'isError' : isValid}">
+  <div class="checkboxGroup" :class="{ isError: isValid }">
     <p class="label">
       {{ groupLabel }}
       <span v-if="isRequired" class="requiredText isRequired">必須</span>

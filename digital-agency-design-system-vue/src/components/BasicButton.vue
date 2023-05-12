@@ -18,8 +18,6 @@ withDefaults(defineProps<Props>(), {
 </template>
 
 <style lang="scss" scoped>
-
-
 button {
   display: block;
   padding: 15px 32px;

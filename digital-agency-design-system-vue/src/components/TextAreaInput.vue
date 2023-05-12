@@ -112,9 +112,9 @@ const handleInput = (e: Event) => {
   min-height: 120px;
   padding: 12px 16px;
   margin-top: 8px;
+  font-size: 1rem;
   border: 1px solid var(--color-border-field);
   border-radius: 8px;
-  font-size: 1rem;
 
   &::placeholder {
     color: var(--color-text-placeHolder);
@@ -122,8 +122,8 @@ const handleInput = (e: Event) => {
 
   &:focus-visible {
     border-color: var(--color-border-focused) !important;
-    box-shadow: 0 0 0 1px  var(--color-border-focused);
     outline: none;
+    box-shadow: 0 0 0 1px var(--color-border-focused);
   }
 }
 

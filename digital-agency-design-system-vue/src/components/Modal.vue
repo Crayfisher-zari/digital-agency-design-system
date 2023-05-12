@@ -107,16 +107,20 @@ const handleClickSecondary = () => {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 70%);
+
   &.v-enter-active,
   &.v-leave-active {
     transition: opacity var(--base-duration) var(--easing-out-quat);
+
     .modal {
       transition: transform var(--base-duration) var(--easing-out-quat);
     }
   }
+
   &.v-enter-from,
   &.v-leave-to {
     opacity: 0;
+
     .modal {
       transform: scale(0.8);
     }
