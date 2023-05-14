@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { withDefaults } from "vue";
 type Props = {
   type?: "simple" | "basic";
   current: number;
