@@ -1,6 +1,7 @@
 <script lang="ts" setup>
-import { computed } from "vue";
+import { ref, computed } from "vue";
 import { getSerialNumber } from "../utils/getSerialNumber";
+import { countCharacters } from "../utils/countCharacters";
 type Props = {
   /** 値（v-modelでも使える） */
   modelValue: string;
@@ -23,6 +24,10 @@ type Props = {
   /** ボタンが非活性状態か。未指定の場合はfalse */
   isDisabled?: boolean;
 };
+
+const input = ref("");
+
+const numberOfCharactor = computed(() => countCharacters(input.value));
 
 type Emits = { (e: "update:modelValue", value: string): void };
 
@@ -54,7 +59,9 @@ const stateClassName = computed<string | null>(() => {
 
 // 入力時のコールバック関数です。入力内容をemitして親に伝えられます。
 const handleInput = (e: Event) => {
-  emits("update:modelValue", (e.target as HTMLInputElement).value);
+  input.value = (e.target as HTMLInputElement).value;
+
+  emits("update:modelValue", input.value);
 };
 </script>
 
@@ -86,9 +93,10 @@ const handleInput = (e: Event) => {
           props.errorText
         }}</span>
       </span>
-      <span class="wordCount">
-        <span class="currntWord">280</span><span class="slash">/</span
-        ><span class="maxWord">256</span></span
+      <span class="wordCount" v-if="maxCount !== undefined">
+        <span class="currntWord">{{ numberOfCharactor }}</span
+        ><span class="slash">/</span
+        ><span class="maxWord">{{ maxCount }}</span></span
       >
     </div>
   </div>
@@ -135,10 +143,9 @@ const handleInput = (e: Event) => {
   }
 }
 
-.supportInfo{
+.supportInfo {
   display: grid;
   grid-auto-flow: column;
-
 }
 
 .supportText {
@@ -157,7 +164,7 @@ const handleInput = (e: Event) => {
   color: var(--color-text-alert);
 }
 
-.wordCount{
+.wordCount {
   display: block;
   justify-self: end;
   margin-top: 8px;

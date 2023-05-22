@@ -26,7 +26,18 @@ const { UseNameInputComponent: FamilyNameInput } = useNameInput({
   placeHolder: "山田",
 });
 const { UseTelInputComponent: UseTelInputComponent } = useTelInput();
-const { UseTextAreaInputComponent } = useTextAreaInput();
+const { UseTextAreaInputComponent } = useTextAreaInput({
+  label: "お問い合わせ詳細",
+  isRequired: true,
+  supportText: "できる限りくわしくお書きください",
+  placeHolder: "パスワードを忘れてしまった",
+});
+const { UseTextAreaInputComponent: MaxCountTextArea } = useTextAreaInput({
+  label: "困っていることを教えてください",
+  isRequired: true,
+  placeHolder: "パスワードを忘れてしまった",
+  maxCount: 256,
+});
 
 const selected = ref<string | null>(null);
 const selected2 = ref<string | null>("3");
@@ -97,6 +108,7 @@ watch(colorScheme, (color) => {
       <FamilyNameInput />
       <UseTelInputComponent />
       <UseTextAreaInputComponent />
+      <MaxCountTextArea />
       <div>
         <RadioGroup
           v-model="selected"

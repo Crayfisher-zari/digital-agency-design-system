@@ -1,7 +1,20 @@
 import { computed, defineComponent, h, readonly, ref, watch } from "vue";
 import TextAreaInput from "../components/TextAreaInput.vue";
 
-export const useTextAreaInput = () => {
+type Arg = {
+  label: string;
+  placeHolder?: string;
+  supportText?: string;
+  isRequired: boolean;
+  maxCount?: number;
+};
+export const useTextAreaInput = ({
+  label,
+  placeHolder,
+  supportText,
+  isRequired,
+  maxCount,
+}: Arg) => {
   const text = ref<string>("");
   const isChanged = ref<boolean>(false);
   const errorText = ref<string | null>(null);
@@ -32,13 +45,14 @@ export const useTextAreaInput = () => {
   // コンポーネント描画関数
   const render = () =>
     h(TextAreaInput, {
-      label: "お問い合わせ詳細",
+      label,
       modelValue: text.value,
-      placeHolder: "パスワードを忘れてしまった",
-      supportText: "できる限りくわしくお書きください",
+      placeHolder,
+      supportText,
       errorText: errorText.value,
-      isRequired: true,
+      isRequired,
       isValid: isValid.value,
+      maxCount,
       "onUpdate:modelValue": (value: string) => {
         text.value = value;
       },
