@@ -16,6 +16,8 @@ type Props = {
   isRequired?: boolean;
   /** 妥当性 */
   isValid?: boolean;
+  /** 最大文字数 */
+  maxCount?: number;
   /** フォーカスアウト時のコールバック関数 */
   onBlur?: (() => void) | undefined;
   /** ボタンが非活性状態か。未指定の場合はfalse */
@@ -75,14 +77,20 @@ const handleInput = (e: Event) => {
         :disabled="props.isDisabled"
       ></textarea>
     </label>
-    <span v-if="props.supportText !== null" class="supportText">{{
-      props.supportText
-    }}</span>
-    <span v-if="props.errorText !== null">
-      <span v-show="!props.isValid" :id="errorIdName" class="errorText">{{
-        props.errorText
+    <div class="supportInfo">
+      <span v-if="props.supportText !== null" class="supportText">{{
+        props.supportText
       }}</span>
-    </span>
+      <span v-if="props.errorText !== null">
+        <span v-show="!props.isValid" :id="errorIdName" class="errorText">{{
+          props.errorText
+        }}</span>
+      </span>
+      <span class="wordCount">
+        <span class="currntWord">280</span><span class="slash">/</span
+        ><span class="maxWord">256</span></span
+      >
+    </div>
   </div>
 </template>
 
@@ -127,6 +135,12 @@ const handleInput = (e: Event) => {
   }
 }
 
+.supportInfo{
+  display: grid;
+  grid-auto-flow: column;
+
+}
+
 .supportText {
   display: block;
   margin-top: 8px;
@@ -141,6 +155,16 @@ const handleInput = (e: Event) => {
   font-size: 0.75rem;
   line-height: 1.5;
   color: var(--color-text-alert);
+}
+
+.wordCount{
+  display: block;
+  justify-self: end;
+  margin-top: 8px;
+  flex-shrink: 0;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: var(--color-text-description);
 }
 
 // エラー時のスタイル
