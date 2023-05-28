@@ -1,5 +1,6 @@
 import { computed, defineComponent, h, readonly, ref, watch } from "vue";
 import TextAreaInput from "../components/TextAreaInput.vue";
+import { countCharacters } from "../utils/countCharacters";
 
 type Arg = {
   label: string;
@@ -16,19 +17,29 @@ export const useTextAreaInput = ({
   maxCount,
 }: Arg) => {
   const text = ref<string>("");
+  const numberOfCharacter = computed(() => countCharacters(text.value));
   const isChanged = ref<boolean>(false);
   const errorText = ref<string | null>(null);
+
   const validate = () => {
     // 内容が変更されて、空の場合はinvalid
     if (isChanged.value && text.value === "") {
       errorText.value = "入力必須項目です";
+      isValid.value = false;
+      return;
+    }
+    // 文字数が上限を超えた場合はinvalid
+    if (maxCount && numberOfCharacter.value > maxCount) {
+      // errorText.value ="最大文字数を超えています";
+      isValid.value = false;
       return;
     }
     // 上記以外ではvalid
+    isValid.value = true;
     errorText.value = null;
   };
 
-  const isValid = computed(() => errorText.value === null);
+  const isValid = ref(true);
 
   // フォーカスアウト時にバリデートを行う
   const handleBlur = () => {
@@ -53,6 +64,7 @@ export const useTextAreaInput = ({
       isRequired,
       isValid: isValid.value,
       maxCount,
+      numberOfCharacter: numberOfCharacter.value,
       "onUpdate:modelValue": (value: string) => {
         text.value = value;
       },

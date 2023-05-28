@@ -1,7 +1,6 @@
 <script lang="ts" setup>
-import { ref, computed } from "vue";
+import { computed } from "vue";
 import { getSerialNumber } from "../utils/getSerialNumber";
-import { countCharacters } from "../utils/countCharacters";
 type Props = {
   /** 値（v-modelでも使える） */
   modelValue: string;
@@ -19,15 +18,13 @@ type Props = {
   isValid?: boolean;
   /** 最大文字数 */
   maxCount?: number;
+  /** 入力された文字数 */
+  numberOfCharacter?: number;
   /** フォーカスアウト時のコールバック関数 */
   onBlur?: (() => void) | undefined;
   /** ボタンが非活性状態か。未指定の場合はfalse */
   isDisabled?: boolean;
 };
-
-const input = ref("");
-
-const numberOfCharactor = computed(() => countCharacters(input.value));
 
 type Emits = { (e: "update:modelValue", value: string): void };
 
@@ -42,6 +39,15 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 const emits = defineEmits<Emits>();
+
+// 文字数がオーバーしているか返します
+const isOverCharacter = computed<boolean>(() => {
+  if (props.maxCount == undefined || props.numberOfCharacter == undefined) {
+    return false;
+  }
+
+  return props.maxCount < props.numberOfCharacter;
+});
 
 // aria-describledby用のエラー文言のid名です
 const errorIdName = `textInput${getSerialNumber()}`;
@@ -59,9 +65,8 @@ const stateClassName = computed<string | null>(() => {
 
 // 入力時のコールバック関数です。入力内容をemitして親に伝えられます。
 const handleInput = (e: Event) => {
-  input.value = (e.target as HTMLInputElement).value;
-
-  emits("update:modelValue", input.value);
+  const value = (e.target as HTMLInputElement).value;
+  emits("update:modelValue", value);
 };
 </script>
 
@@ -93,8 +98,12 @@ const handleInput = (e: Event) => {
           props.errorText
         }}</span>
       </span>
-      <span class="wordCount" v-if="maxCount !== undefined">
-        <span class="currntWord">{{ numberOfCharactor }}</span
+      <span
+        class="wordCount"
+        :class="{ over: isOverCharacter }"
+        v-if="maxCount !== undefined && numberOfCharacter !== undefined"
+      >
+        <span class="currntWord">{{ numberOfCharacter }}</span
         ><span class="slash">/</span
         ><span class="maxWord">{{ maxCount }}</span></span
       >
@@ -172,6 +181,9 @@ const handleInput = (e: Event) => {
   font-size: 0.75rem;
   line-height: 1.5;
   color: var(--color-text-description);
+  &.over {
+    color: var(--color-text-alert);
+  }
 }
 
 // エラー時のスタイル
