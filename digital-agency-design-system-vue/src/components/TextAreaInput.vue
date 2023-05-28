@@ -99,9 +99,9 @@ const handleInput = (e: Event) => {
         }}</span>
       </span>
       <span
+        v-if="maxCount !== undefined && numberOfCharacter !== undefined"
         class="wordCount"
         :class="{ over: isOverCharacter }"
-        v-if="maxCount !== undefined && numberOfCharacter !== undefined"
       >
         <span class="currntWord">{{ numberOfCharacter }}</span
         ><span class="slash">/</span
@@ -175,12 +175,13 @@ const handleInput = (e: Event) => {
 
 .wordCount {
   display: block;
+  flex-shrink: 0;
   justify-self: end;
   margin-top: 8px;
-  flex-shrink: 0;
   font-size: 0.75rem;
   line-height: 1.5;
   color: var(--color-text-description);
+
   &.over {
     color: var(--color-text-alert);
   }

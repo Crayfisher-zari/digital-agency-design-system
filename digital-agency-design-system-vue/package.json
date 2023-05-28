@@ -7,8 +7,8 @@
     "dev": "vite --host",
     "build": "yarn run vue-tsc && vite build",
     "preview": "vite preview",
-    "lint": "eslint ./**/*.{ts,vue} && stylelint ./**/*.{scss,vue} && prettier ./**/*.{scss,vue,ts} --check",
-    "lint:fix": "eslint ./**/*.{vue,ts} --fix && stylelint ./**/*.{scss,vue} --fix && prettier ./**/*.{scss,vue,ts} --write"
+    "lint": "eslint './**/*.{ts,vue}' && 'stylelint ./**/*.{scss,vue}' && prettier './**/*.{scss,vue,ts}' --check",
+    "lint:fix": "eslint './**/*.{vue,ts}' --fix && stylelint './**/*.{scss,vue}' --fix && prettier './**/*.{scss,vue,ts}' --write"
   },
   "dependencies": {
     "vue": "3.3.2"
