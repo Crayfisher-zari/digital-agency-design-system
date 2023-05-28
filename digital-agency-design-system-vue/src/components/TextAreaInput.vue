@@ -36,6 +36,8 @@ const props = withDefaults(defineProps<Props>(), {
   errorText: null,
   onBlur: undefined,
   isDisabled: false,
+  maxCount: undefined,
+  numberOfCharacter: 0,
 });
 
 const emits = defineEmits<Emits>();
