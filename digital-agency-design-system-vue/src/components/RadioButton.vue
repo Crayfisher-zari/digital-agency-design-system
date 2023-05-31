@@ -55,7 +55,6 @@ const stateClassName = computed<string | null>(() => {
     <input
       type="radio"
       class="sr-only"
-     
       :name="name"
       :disabled="isDisabled"
       :checked="checked"
@@ -63,9 +62,8 @@ const stateClassName = computed<string | null>(() => {
       :onChange="handleInput"
     />{{ label }}
     <span
-    class="subText"
       v-if="radioStyle === 'tile' && subText !== undefined"
-
+      class="subText"
       >{{ subText }}</span
     >
     <span class="radioIcon"></span>
@@ -82,9 +80,9 @@ label {
   position: absolute;
   left: 4px;
   display: block;
-          width: 19px;
-          height: 19px;
-          background-color: #fff;
+  width: 19px;
+  height: 19px;
+  background-color: #fff;
   border: 2px solid var(--color-icon-label);
   border-radius: 50%;
 
@@ -176,16 +174,14 @@ input:disabled:checked ~ .radioIcon {
   }
   @supports selector(:has(*)) {
     &:has(input:focus-visible) {
-      outline-offset: 2px;
       outline: 2px solid var(--color-border-focused);
-
+      outline-offset: 2px;
     }
   }
   @supports not selector(:has(*)) {
     &:focus-within {
-      outline-offset: 2px;
       outline: 2px solid var(--color-border-focused);
-
+      outline-offset: 2px;
     }
   }
 }

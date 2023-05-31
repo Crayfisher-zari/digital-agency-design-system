@@ -16,9 +16,15 @@
   --color-text-light-onFill: var(--color-white);
   --color-text-dark-onFill: var(--color-white);
   --color-text-onFill: var(--color-white);
-  --color-text-light-link: var(--color-sea-600);
+  --color-text-light-link: var(--color-sea-800);
   --color-text-dark-link: var(--color-sea-300);
   --color-text-link: var(--color-sea-600);
+  --color-text-light-hover: var(--color-sea-900);
+  --color-text-dark-hover: var(--color-sea-200);
+  --color-text-hover: var(--color-sea-900);
+  --color-text-light-active: var(--color-sea-900);
+  --color-text-dark-active: var(--color-sea-200);
+  --color-text-active: var(--color-sea-900);
   --color-text-light-visited: var(--color-sea-900);
   --color-text-dark-visited: var(--color-sea-200);
   --color-text-visited: var(--color-sea-900);
@@ -33,9 +39,9 @@
   --color-icon-light-label: var(--color-sumi-900);
   --color-icon-dark-label: var(--color-white);
   --color-icon-label: var(--color-sumi-900);
-  --color-icon-light-active: var(--color-sea-600);
-  --color-icon-dark-active: var(--color-sea-300);
-  --color-icon-active: var(--color-sea-600);
+  --color-icon-light-active: var(--color-sumi-800);
+  --color-icon-dark-active: var(--color-sumi-300);
+  --color-icon-active: var(--color-sumi-800);
   --color-icon-light-alert: var(--color-sun-800);
   --color-icon-dark-alert: var(--color-sun-500);
   --color-icon-alert: var(--color-sun-800);
@@ -44,15 +50,15 @@
   --color-icon-disabled: var(--color-sumi-500);
 
   /* Button */
-  --color-button-light-normal: var(--color-sea-600);
+  --color-button-light-normal: var(--color-sea-800);
   --color-button-dark-normal: var(--color-sea-300);
-  --color-button-normal: var(--color-sea-600);
-  --color-button-light-hover: var(--color-sea-700);
-  --color-button-dark-hover: var(--color-sea-400);
-  --color-button-hover: var(--color-sea-700);
-  --color-button-light-active: var(--color-sea-600-dark);
+  --color-button-normal: var(--color-sea-800);
+  --color-button-light-hover: var(--color-sea-800-dark);
+  --color-button-dark-hover: var(--color-sea-300-dark);
+  --color-button-hover: var(--color-sea-800-dark);
+  --color-button-light-active: var(--color-sea-800-dark);
   --color-button-dark-active: var(--color-sea-300-dark);
-  --color-button-active: var(--color-sea-600-dark);
+  --color-button-active: var(--color-sea-800-dark);
   --color-button-light-disabled: var(--color-sumi-500);
   --color-button-dark-disabled: var(--color-sumi-600);
   --color-button-disabled: var(--color-sumi-500);
@@ -75,12 +81,12 @@
   --color-border-light-divider: var(--color-sumi-300);
   --color-border-dark-divider: var(--color-sumi-700);
   --color-border-divider: var(--color-sumi-300);
-  --color-border-light-focused: var(--color-wood-500);
-  --color-border-dark-focused: var(--color-wood-500);
-  --color-border-focused: var(--color-wood-500);
-  --color-border-light-selected: var(--color-sea-600);
+  --color-border-light-focused: var(--color-wood-600);
+  --color-border-dark-focused: var(--color-wood-600);
+  --color-border-focused: var(--color-wood-600);
+  --color-border-light-selected: var(--color-sea-800);
   --color-border-dark-selected: var(--color-sea-300);
-  --color-border-selected: var(--color-sea-600);
+  --color-border-selected: var(--color-sea-800);
   --color-border-light-alert: var(--color-sun-800);
   --color-border-dark-alert: var(--color-sun-500);
   --color-border-alert: var(--color-sun-800);
@@ -100,11 +106,11 @@
   --color-status-warning: var(--color-wood-800);
 
   /* Chart */
-  --color-chart-light-primary: var(--color-sea-600);
+  --color-chart-light-primary: var(--color-sea-800);
   --color-chart-dark-primary: var(--color-sea-100);
-  --color-chart-primary: var(--color-sea-600);
+  --color-chart-primary: var(--color-sea-800);
   --color-chart-light-secondary: var(--color-sea-400);
-  --color-chart-dark-secondary: var(--color-sea-100);
+  --color-chart-dark-secondary: var(--color-sea-300);
   --color-chart-secondary: var(--color-sea-400);
 
   @media (prefers-color-scheme: dark) {
@@ -114,6 +120,8 @@
     --color-text-placeHolder: var(--color-sumi-500);
     --color-text-onFill: var(--color-white);
     --color-text-link: var(--color-sea-300);
+    --color-text-hover: var(--color-sea-200);
+    --color-text-active: var(--color-sea-200);
     --color-text-visited: var(--color-sea-200);
     --color-text-alert: var(--color-sun-500);
     --color-text-disabled: var(--color-sumi-600);
@@ -126,9 +134,9 @@
 
     /* Button */
     --color-button-normal: var(--color-sea-300);
-    --color-button-hover: var(--color-sea-400);
+    --color-button-hover: var(--color-sea-300-dark);
     --color-button-active: var(--color-sea-300-dark);
-    --color-button-disabled: var(--color-sumi-600);
+    --color-button-disabled: var(--color-sumi-500);
 
     /* Background */
     --color-background-primary: var(--color-sumi-900);
@@ -138,7 +146,7 @@
     /* Border */
     --color-border-field: var(--color-white);
     --color-boder-divider: var(--color-sumi-700);
-    --color-border-focused: var(--color-wood-500);
+    --color-border-focused: var(--color-wood-600);
     --color-border-selected: var(--color-sea-300);
     --color-border-alert: var(--color-sun-500);
     --color-border-disabled: var(--color-sumi-300);
@@ -150,7 +158,7 @@
 
     /* Chart */
     --color-chart-primary: var(--color-sea-100);
-    --color-chart-secondary: var(--color-sea-100);
+    --color-chart-secondary: var(--color-sea-300);
   }
 }
 
@@ -160,21 +168,22 @@
   --color-text-description: var(--color-sumi-700);
   --color-text-placeHolder: var(--color-sumi-600);
   --color-text-onFill: var(--color-white);
-  --color-text-link: var(--color-sea-600);
+  --color-text-link: var(--color-sea-800);
+  --color-text-active: var(--color-sea-900);
   --color-text-visited: var(--color-sea-900);
   --color-text-alert: var(--color-sun-800);
   --color-text-disabled: var(--color-sumi-500);
 
   /* Icon */
   --color-icon-label: var(--color-sumi-900);
-  --color-icon-active: var(--color-sea-600);
+  --color-icon-active: var(--color-sea-800);
   --color-icon-alert: var(--color-sun-800);
   --color-icon-disabled: var(--color-sumi-500);
 
   /* Button */
-  --color-button-normal: var(--color-sea-600);
-  --color-button-hover: var(--color-sea-700);
-  --color-button-active: var(--color-sea-600-dark);
+  --color-button-normal: var(--color-sea-800);
+  --color-button-hover: var(--color-sea-800-dark);
+  --color-button-active: var(--color-sea-800-dark);
   --color-button-disabled: var(--color-sumi-500);
 
   /* Background */
@@ -185,8 +194,8 @@
   /* Border */
   --color-border-field: var(--color-sumi-900);
   --color-border-divider: var(--color-sumi-300);
-  --color-border-focused: var(--color-wood-500);
-  --color-border-selected: var(--color-sea-600);
+  --color-border-focused: var(--color-wood-600);
+  --color-border-selected: var(--color-sea-800);
   --color-border-alert: var(--color-sun-800);
   --color-border-disabled: var(--color-sumi-300);
 
@@ -207,6 +216,7 @@
   --color-text-placeHolder: var(--color-sumi-500);
   --color-text-onFill: var(--color-white);
   --color-text-link: var(--color-sea-300);
+  --color-text-active: var(--color-sea-200);
   --color-text-visited: var(--color-sea-200);
   --color-text-alert: var(--color-sun-500);
   --color-text-disabled: var(--color-sumi-600);
@@ -219,9 +229,9 @@
 
   /* Button */
   --color-button-normal: var(--color-sea-300);
-  --color-button-hover: var(--color-sea-400);
+  --color-button-hover: var(--color-sea-300-dark);
   --color-button-active: var(--color-sea-300-dark);
-  --color-button-disabled: var(--color-sumi-600);
+  --color-button-disabled: var(--color-sumi-500);
 
   /* Background */
   --color-background-primary: var(--color-sumi-900);
