@@ -84,17 +84,38 @@ watch(colorScheme, (color) => {
 <template>
   <div class="globalWrapper">
     <Pankuzu :list="pankuzu" />
-    <Heading :headingLevel="1" designLevel="XXL">見出しXXL</Heading>
-    <Heading :headingLevel="1" designLevel="XL">見出しXL</Heading>
-    <Heading :headingLevel="1"> 見出しL </Heading>
-    <Heading :headingLevel="2"> 見出しM </Heading>
-    <Heading :headingLevel="3"> 見出しS </Heading>
-    <Heading :headingLevel="4"> 見出しXS </Heading>
-    <Heading :headingLevel="5"> 見出しXXS </Heading>
 
-    <BasicButton label="ボタン" @click="handleClick" />
-    <BasicButton label="ボタン" type="secondary" @click="handleClick" />
-    <BasicButton label="ボタン" type="tertiary" @click="handleClick" />
+    <Layout>
+      <div class="colSpan-12">
+        <Heading :headingLevel="1" designLevel="XXL">見出しXXL</Heading>
+        <Heading :headingLevel="1" designLevel="XL">見出しXL</Heading>
+        <Heading :headingLevel="1"> 見出しL </Heading>
+        <Heading :headingLevel="2"> 見出しM </Heading>
+        <Heading :headingLevel="3"> 見出しS </Heading>
+        <Heading :headingLevel="4"> 見出しXS </Heading>
+        <Heading :headingLevel="5"> 見出しXXS </Heading>
+      </div>
+      <div class="colSpan-12">
+        <p class="fontTextL">本文L：デフォルトの本文テキスト。</p>
+        <p class="fontTextM">
+          本文M：テキストの多いとき、表示領域が限られているときに使用できます。
+        </p>
+        <p class="fontLabeLL">ラベルL：デフォルトのラベルテキスト。</p>
+        <p class="fontLabelM">
+          ラベルM：テキストの多いとき、表示領域が限られているときに使用できます。
+        </p>
+        <p class="fontSupportL">補足L：デフォルトの補足テキスト。</p>
+        <p class="fontSupportM">
+          補足M：テキストの多いとき、表示領域が限られているときに使用できます。
+        </p>
+      </div>
+      <div class="colSpan-12">
+        <BasicButton label="ボタン" @click="handleClick" />
+        <BasicButton label="ボタン" type="secondary" @click="handleClick" />
+        <BasicButton label="ボタン" type="tertiary" @click="handleClick" />
+      </div>
+    </Layout>
+
     <div class="colorScheme">
       <RadioGroup
         v-model="colorScheme"
