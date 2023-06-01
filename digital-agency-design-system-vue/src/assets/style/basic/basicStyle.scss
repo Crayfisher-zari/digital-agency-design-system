@@ -1,3 +1,5 @@
+@use "@/assets/style/utils/utils.scss" as *;
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -72,4 +74,129 @@ a {
     border-radius: 4px;
     outline: 2px solid var(--color-border-focused);
   }
+}
+
+/* タイポグラフィ */
+
+.headingXXL {
+  font-size: pxToRem(57);
+  font-weight: var(--weight-regular);
+  line-height: 1.4;
+  letter-spacing: 0.04em;
+}
+
+.headingXL {
+  font-size: pxToRem(45);
+  font-weight: var(--weight-regular);
+  line-height: 1.4;
+  letter-spacing: 0.04em;
+}
+
+.headingL {
+  font-size: pxToRem(36);
+  font-weight: var(--weight-regular);
+  line-height: 1.4;
+  letter-spacing: 0.04em;
+  @include mediaQueryDown {
+    font-size: pxToRem(32);
+    font-weight: var(--weight-medium);
+    line-height: 1.5;
+  }
+}
+
+.headingM {
+  font-size: pxToRem(32);
+  font-weight: var(--weight-regular);
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  @include mediaQueryDown {
+    font-size: pxToRem(28);
+    font-weight: var(--weight-medium);
+    line-height: 1.5;
+  }
+}
+
+.headingS {
+  font-size: pxToRem(28);
+  font-weight: var(--weight-regular);
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  @include mediaQueryDown {
+    font-size: pxToRem(24);
+    font-weight: var(--weight-medium);
+    line-height: 1.5;
+  }
+}
+
+.headingXS {
+  font-size: pxToRem(24);
+  font-weight: var(--weight-regular);
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  @include mediaQueryDown {
+    font-size: pxToRem(20);
+    font-weight: var(--weight-medium);
+    line-height: 1.5;
+  }
+}
+
+.headingXXS {
+  font-size: pxToRem(20);
+  font-weight: var(--weight-regular);
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  @include mediaQueryDown {
+    font-size: pxToRem(16);
+    font-weight: var(--weight-medium);
+    line-height: 1.7;
+  }
+}
+
+.fontTextL {
+  font-size: pxToRem(16);
+  font-weight: var(--weight-regular);
+  line-height: 1.7;
+  letter-spacing: 0.04em;
+}
+
+.fontTextM {
+  font-size: pxToRem(14);
+  font-weight: var(--weight-regular);
+  line-height: 1.7;
+  letter-spacing: 0.04em;
+}
+
+.fontLabelL {
+  font-size: pxToRem(14);
+  font-weight: var(--weight-medium);
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+}
+
+.fontLabelM {
+  font-size: pxToRem(12);
+  font-weight: var(--weight-medium);
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+}
+
+.fontSupportL {
+  font-size: pxToRem(12);
+  font-weight: var(--weight-regular);
+  line-height: 1.7;
+  letter-spacing: 0.02em;
+}
+
+.fontSupporM {
+  font-size: pxToRem(10);
+  font-weight: var(--weight-regular);
+  line-height: 1.7;
+  letter-spacing: 0.02em;
+}
+
+.fontButton {
+  font-size: pxToRem(16);
+  font-weight: var(--weight-bold);
+  line-height: 1.5;
+  letter-spacing: 0.04em;
 }

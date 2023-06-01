@@ -1,2 +1,11 @@
-@import "https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap";
+@import "https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap";
 @import "https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@40,300,0,0";
+
+/**
+ * フォントウェイトのセマンティクスな変数
+ */
+:root {
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-bold: 700;
+}
