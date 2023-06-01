@@ -4,7 +4,17 @@ type Props = {
   /** Hxにあたる見出しレベルです */
   headingLevel: 1 | 2 | 3 | 4 | 5 | 6;
   /** デザイン上のサイズレベルです */
-  designLevel?: 1 | 2 | 3 | 4 | 5 | 6;
+  designLevel?: "XXL" | "XL" | "L" | "M" | "S" | "XS" | "XXS";
+};
+
+// デフォルトの見出しサイズです
+const defaultHeadingLevelSize = {
+  1: "L",
+  2: "M",
+  3: "S",
+  4: "XS",
+  5: "XXS",
+  6: "XXS",
 };
 
 /**
@@ -15,7 +25,8 @@ type Props = {
  */
 const Heading = (props: Props, context: SetupContext) => {
   const child = context.slots.default ? context.slots.default() : "";
-  const designLevel = props.designLevel ?? props.headingLevel;
+  const designLevel =
+    props.designLevel ?? defaultHeadingLevelSize[props.headingLevel];
   return h(`h${props.headingLevel}`, { class: `heading${designLevel}` }, child);
 };
 
@@ -24,68 +35,29 @@ export default Heading;
 <style lang="scss" scoped>
 @use "@/assets/style/utils/utils.scss" as *;
 
-.heading1 {
+.headingXXL,
+.headingXL,
+.headingL {
   padding: 64px 0 24px;
-  font-size: 2.625rem;
-  font-weight: bold;
-  line-height: 1.5;
-  @include mediaQueryDown {
-    font-size: 1.625rem;
-  }
 }
 
-.heading2 {
+.headingM {
   padding: 64px 0 24px;
-  font-size: 2rem;
-  font-weight: bold;
-  line-height: 1.5;
-
-  @include mediaQueryDown {
-    font-size: 1.5rem;
-  }
 }
 
-.heading3 {
+.headingS {
   padding: 40px 0 24px;
-  font-size: 1.625rem;
-  font-weight: bold;
-  line-height: 1.5;
-
-  @include mediaQueryDown {
-    font-size: 1.375rem;
-  }
 }
 
-.heading4 {
+.headingXS {
   padding: 40px 0 16px;
-  font-size: 1.375rem;
-  font-weight: bold;
-  line-height: 1.5;
-
-  @include mediaQueryDown {
-    font-size: 1.25rem;
-  }
 }
 
-.heading5 {
+.headingXXS {
   padding: 40px 0 16px;
-  font-size: 1.25rem;
-  font-weight: bold;
-  line-height: 1.5;
-
-  @include mediaQueryDown {
-    font-size: 1.125rem;
-  }
 }
 
-.heading6 {
+h6.headingXXS {
   padding: 24px 0 16px;
-  font-size: 1.125rem;
-  font-weight: bold;
-  line-height: 1.5;
-
-  @include mediaQueryDown {
-    font-size: 1rem;
-  }
 }
 </style>

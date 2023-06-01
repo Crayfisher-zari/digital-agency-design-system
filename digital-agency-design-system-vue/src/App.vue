@@ -84,12 +84,14 @@ watch(colorScheme, (color) => {
 <template>
   <div class="globalWrapper">
     <Pankuzu :list="pankuzu" />
-    <Heading :headingLevel="1"> H1 / Bold(700) / 1.5 </Heading>
-    <Heading :headingLevel="2"> H2 / Bold(700) / 1.5 </Heading>
-    <Heading :headingLevel="3"> H3 / Bold(700) / 1.5 </Heading>
-    <Heading :headingLevel="4"> H4 / Bold(700) / 1.5 </Heading>
-    <Heading :headingLevel="5"> H5 / Bold(700) / 1.5 </Heading>
-    <Heading :headingLevel="6"> H6 / Bold(700) / 1.5 </Heading>
+    <Heading :headingLevel="1" designLevel="XXL">見出しXXL</Heading>
+    <Heading :headingLevel="1" designLevel="XL">見出しXL</Heading>
+    <Heading :headingLevel="1"> 見出しL </Heading>
+    <Heading :headingLevel="2"> 見出しM </Heading>
+    <Heading :headingLevel="3"> 見出しS </Heading>
+    <Heading :headingLevel="4"> 見出しXS </Heading>
+    <Heading :headingLevel="5"> 見出しXXS </Heading>
+
     <BasicButton label="ボタン" @click="handleClick" />
     <BasicButton label="ボタン" type="secondary" @click="handleClick" />
     <BasicButton label="ボタン" type="tertiary" @click="handleClick" />
