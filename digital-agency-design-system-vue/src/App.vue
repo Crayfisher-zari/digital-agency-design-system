@@ -7,6 +7,7 @@ import { useTextAreaInput } from "./composables/useTextAreaInput";
 import RadioGroup from "./components/RadioGroup.vue";
 import CheckboxGroup from "./components/CheckboxGroup.vue";
 import Checkbox from "./components/Checkbox.vue";
+import Selector from "./components/Selector.vue";
 import { ref, watch } from "vue";
 import { usePagination } from "./composables/usePagination";
 import Modal from "./components/Modal.vue";
@@ -43,6 +44,7 @@ const selected = ref<string | null>(null);
 const selected2 = ref<string | null>("3");
 const checked = ref(["2"]);
 const checked2 = ref(true);
+const selector = ref();
 
 const { UsePaginationComponent, pageNumber } = usePagination();
 
@@ -216,6 +218,10 @@ watch(colorScheme, (color) => {
               </div>
             </div>
           </div>
+          <div class="colSpan-4">
+            <Selector v-model="selector" label="都道府県" :isRequired="true" />
+          </div>
+
           <div class="colSpan-4">
             <div class="inputWrapper">
               <CheckboxGroup
