@@ -79,6 +79,9 @@ const handleInput = (e: Event) => {
         ><span class="label">{{ props.label }}</span
         ><span v-show="props.isRequired" class="requiredText">必須</span></span
       >
+      <span v-if="props.supportText !== null" class="supportText">{{
+        props.supportText
+      }}</span>
       <textarea
         class="textarea"
         :value="props.modelValue"
@@ -92,9 +95,6 @@ const handleInput = (e: Event) => {
       ></textarea>
     </label>
     <div class="supportInfo">
-      <span v-if="props.supportText !== null" class="supportText">{{
-        props.supportText
-      }}</span>
       <span v-if="props.errorText !== null">
         <span v-show="!props.isValid" :id="errorIdName" class="errorText">{{
           props.errorText
@@ -176,7 +176,7 @@ const handleInput = (e: Event) => {
 }
 
 .wordCount {
-  display: block;
+  display: flex;
   flex-shrink: 0;
   justify-self: end;
   margin-top: 8px;
@@ -185,8 +185,18 @@ const handleInput = (e: Event) => {
   color: var(--color-text-description);
 
   &.over {
-    color: var(--color-text-alert);
+    .currntWord {
+      color: var(--color-text-alert);
+    }
   }
+}
+
+.currntWord {
+  margin-right: 4px;
+}
+
+.slash {
+  margin-right: 4px;
 }
 
 // エラー時のスタイル

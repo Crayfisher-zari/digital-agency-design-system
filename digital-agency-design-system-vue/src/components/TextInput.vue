@@ -76,6 +76,9 @@ const handleInput = (e: Event) => {
         ><span class="label">{{ props.label }}</span
         ><span v-show="props.isRequired" class="requiredText">必須</span></span
       >
+      <span v-if="props.supportText !== undefined" class="supportText">{{
+        props.supportText
+      }}</span>
       <input
         class="textInput"
         :value="props.modelValue"
@@ -89,9 +92,7 @@ const handleInput = (e: Event) => {
         :disabled="props.isDisabled"
       />
     </label>
-    <span v-if="props.supportText !== undefined" class="supportText">{{
-      props.supportText
-    }}</span>
+
     <span
       v-if="props.errorText !== undefined"
       v-show="!props.isValid"
