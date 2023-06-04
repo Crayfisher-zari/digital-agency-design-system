@@ -22,7 +22,7 @@ const handleClick = () => {
 
 const { UseNameInputComponent: FamilyNameInput } = useNameInput({
   label: "姓",
-  isRequired: true,
+  isRequired: false,
   supportText: "住民票に記載された姓を記入します。",
   placeHolder: "山田",
 });
@@ -45,6 +45,12 @@ const selected2 = ref<string | null>("3");
 const checked = ref(["2"]);
 const checked2 = ref(true);
 const selector = ref();
+const prefectures = [
+  { label: "北海道", value: "Hokkaido" },
+  { label: "東京", value: "Tokyo" },
+  { label: "大阪", value: "Osaka" },
+  { label: "沖縄", value: "Okinawa" },
+];
 
 const { UsePaginationComponent, pageNumber } = usePagination();
 
@@ -68,7 +74,7 @@ const pankuzu = [
 const { UseEmailInputComponent } = useEmailInput();
 const { UsePasswordInputComponent } = usePasswordInput();
 
-const colorScheme = ref<"light" | "dark" | null>(null);
+const colorScheme = ref<"light" | "dark" | null>("light");
 
 // カラースキームの設定
 watch(colorScheme, (color) => {
@@ -219,7 +225,37 @@ watch(colorScheme, (color) => {
             </div>
           </div>
           <div class="colSpan-4">
-            <Selector v-model="selector" label="都道府県" :isRequired="true" />
+            <div class="inputWrapper">
+              <Selector
+              v-model="selector"
+              :options="prefectures"
+              label="都道府県"
+              :isRequired="false"
+              :isValid="true"
+              errorText="エラーテキスト"
+              supportText="サポートテキスト"
+            />
+              <Selector
+              v-model="selector"
+              :options="prefectures"
+              label="都道府県"
+              :isRequired="true"
+              :isValid="false"
+              errorText="エラーテキスト"
+              supportText="サポートテキスト"
+            />
+            <Selector
+              v-model="selector"
+              :options="prefectures"
+              label="都道府県"
+              :isRequired="false"
+              :isValid="true"
+              :isDisabled="true"
+              errorText="エラーテキスト"
+              supportText="サポートテキスト"
+            />
+            </div>
+           
           </div>
 
           <div class="colSpan-4">

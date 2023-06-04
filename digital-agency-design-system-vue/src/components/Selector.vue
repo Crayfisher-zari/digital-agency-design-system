@@ -1,9 +1,14 @@
 <script lang="ts" setup>
+import { computed } from "vue";
+import { getSerialNumber } from "../utils/getSerialNumber";
+
 type Props = {
   /** 値（v-modelでも使える） */
   modelValue: string;
   /** インプットのラベルです */
   label: string;
+  /** セレクターの選択肢です */
+  options: { label: string; value: string }[];
   /** 内容を補足するサポートテキスト */
   supportText?: string;
   /** エラー時に表示するテキスト */
@@ -26,19 +31,65 @@ const props = withDefaults(defineProps<Props>(), {
   onBlur: undefined,
   isDisabled: false,
 });
+
+type Emits = { (e: "update:modelValue", value: string): void };
+
+const emits = defineEmits<Emits>();
+
+// aria-describledby用のエラー文言のid名です
+const errorIdName = `selector${getSerialNumber()}`;
+
+// 状態に応じたクラス名を返します
+const stateClassName = computed<string | null>(() => {
+  if (props.isDisabled) {
+    return "isDisabled";
+  }
+  if (!props.isValid) {
+    return "isInvalid";
+  }
+  return null;
+});
+
+// 入力時のコールバック関数です。入力内容をemitして親に伝えられます。
+const handleChange = (e: Event) => {
+  const value = (e.target as HTMLInputElement).value;
+  emits("update:modelValue", value);
+};
 </script>
 <template>
-  <div>
+  <div :class="stateClassName">
     <label class="selectorWrapper">
       <span class="labelWrapper"
         ><span class="label">{{ props.label }}</span
-        ><span v-show="props.isRequired" class="requiredText">必須</span></span
+        ><span class="requiredText" :class="isRequired ? null : 'optional'">{{
+          isRequired ? "必須" : "任意"
+        }}</span></span
       >
-      <select class="selector">
-        <option value="選択してください" default>選択してください</option>
-        <option value="tokyo">東京都</option>
+      <select
+        class="selector"
+        :onBlur="onBlur"
+        :onChange="handleChange"
+        :required="props.isRequired"
+        :aria-invalid="!isValid"
+        :aria-describedby="errorIdName"
+        :disabled="props.isDisabled"
+      >
+        <option value="" default>選択してください</option>
+        <option v-for="option in options" :value="option.value">
+          {{ option.label }}
+        </option>
       </select>
     </label>
+    <span v-if="props.supportText !== undefined" class="supportText">{{
+      props.supportText
+    }}</span>
+    <span
+      v-if="props.errorText !== undefined"
+      v-show="!props.isValid"
+      :id="errorIdName"
+      class="errorText"
+      >{{ props.errorText }}</span
+    >
   </div>
 </template>
 <style scoped lang="scss">
@@ -54,6 +105,10 @@ const props = withDefaults(defineProps<Props>(), {
   border: 1px solid var(--color-border-field);
   border-radius: 8px;
   appearance: none;
+  background-image: url("@/assets/images/icon_selector.svg");
+  background-repeat: no-repeat;
+  background-position: right 23px top 50%;
+  background-size: 8px;
 }
 
 .labelWrapper {
@@ -66,9 +121,53 @@ const props = withDefaults(defineProps<Props>(), {
   font-size: pxToRem(14);
 }
 
+
+.supportText {
+  display: block;
+  margin-top: 8px;
+  font-size: pxToRem(12);
+  line-height: 1.5;
+  color: var(--color-text-description);
+}
+
 .requiredText {
   margin-left: 8px;
   font-size: pxToRem(12);
   color: var(--color-text-alert);
+  &.optional {
+    color: var(--color-text-description);
+  }
+}
+
+.errorText {
+  display: block;
+  margin-top: 8px;
+  font-size: pxToRem(12);
+  line-height: 1.5;
+  color: var(--color-text-alert);
+}
+
+// エラー時のスタイル
+.isInvalid {
+  .label {
+    color: var(--color-text-alert);
+  }
+
+  .selector {
+    border-color: var(--color-border-alert);
+  }
+}
+
+// 非活性時のスタイル
+.isDisabled{
+  .label {
+    color: var(--color-text-disabled);
+  }
+
+  .selector {
+    background-color: var(--color-background-secondary);
+    border-color: var(--color-border-disabled);
+    color: var(--color-text-placeHolder);
+  }
 }
 </style>

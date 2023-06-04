@@ -74,7 +74,9 @@ const handleInput = (e: Event) => {
     <label class="textInputWrapper">
       <span class="labelWrapper"
         ><span class="label">{{ props.label }}</span
-        ><span v-show="props.isRequired" class="requiredText">必須</span></span
+        ><span class="requiredText" :class="isRequired ? null : 'optional'">{{
+          isRequired ? "必須" : "任意"
+        }}</span></span
       >
       <span v-if="props.supportText !== undefined" class="supportText">{{
         props.supportText
@@ -122,6 +124,9 @@ const handleInput = (e: Event) => {
   margin-left: 8px;
   font-size: 0.75rem;
   color: var(--color-text-alert);
+  &.optional {
+    color: var(--color-text-description);
+  }
 }
 
 .textInput {
