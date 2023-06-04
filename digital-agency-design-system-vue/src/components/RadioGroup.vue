@@ -85,6 +85,8 @@ watch(modelValue, (value) => {
   </div>
 </template>
 <style lang="scss" scoped>
+@use "@/assets/style/utils/utils.scss" as *;
+
 .radioGroup.tile {
   .buttons {
     display: grid;
@@ -98,13 +100,13 @@ watch(modelValue, (value) => {
 .label {
   display: flex;
   align-items: center;
-  font-size: 0.875rem;
+  font-size: pxToRem(14);
   color: var(--color-text-body);
 }
 
 .requiredText {
   margin-left: 8px;
-  font-size: 0.75rem;
+  font-size: pxToRem(12);
   color: var(--color-text-description);
 
   &.isRequired {
@@ -113,12 +115,12 @@ watch(modelValue, (value) => {
 }
 
 .helpText {
-  font-size: 0.75rem;
+  font-size: pxToRem(12);
   color: var(--color-text-description);
 }
 
 .errorText {
-  font-size: 0.75rem;
+  font-size: pxToRem(12);
   color: var(--color-text-alert);
 }
 

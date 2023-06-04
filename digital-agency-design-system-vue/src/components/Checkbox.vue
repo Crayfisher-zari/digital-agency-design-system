@@ -94,12 +94,14 @@ const stateClassName = computed<string | null>(() => {
   </label>
 </template>
 <style lang="scss" scoped>
+@use "@/assets/style/utils/utils.scss" as *;
+
 label {
   position: relative;
   display: flex;
   align-items: center;
   padding: 8px 0 8px 40px;
-  font-size: 1rem;
+  font-size: pxToRem(16);
 }
 
 .checkIcon {

@@ -106,6 +106,8 @@ const handleInput = (e: Event) => {
 </template>
 
 <style lang="scss" scoped>
+@use "@/assets/style/utils/utils.scss" as *;
+
 .textInputWrapper {
   display: block;
 }
@@ -117,12 +119,12 @@ const handleInput = (e: Event) => {
 }
 
 .label {
-  font-size: 0.875rem;
+  font-size: pxToRem(14);
 }
 
 .requiredText {
   margin-left: 8px;
-  font-size: 0.75rem;
+  font-size: pxToRem(12);
   color: var(--color-text-alert);
 
   &.optional {
@@ -134,7 +136,7 @@ const handleInput = (e: Event) => {
   width: 100%;
   padding: 12px 16px;
   margin-top: 8px;
-  font-size: 1rem;
+  font-size: pxToRem(16);
   border: 1px solid var(--color-border-field);
   border-radius: 8px;
 
@@ -152,7 +154,7 @@ const handleInput = (e: Event) => {
 .supportText {
   display: block;
   margin-top: 8px;
-  font-size: 0.75rem;
+  font-size: pxToRem(12);
   line-height: 1.5;
   color: var(--color-text-description);
 }
@@ -160,7 +162,7 @@ const handleInput = (e: Event) => {
 .errorText {
   display: block;
   margin-top: 8px;
-  font-size: 0.75rem;
+  font-size: pxToRem(12);
   line-height: 1.5;
   color: var(--color-text-alert);
 }

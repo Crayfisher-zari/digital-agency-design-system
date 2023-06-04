@@ -45,7 +45,7 @@ body {
 }
 
 table {
-  font-size: 1rem;
+  font-size: pxToRem(16);
   color: var(--color-text-body);
   table-layout: fixed;
   border-collapse: collapse;

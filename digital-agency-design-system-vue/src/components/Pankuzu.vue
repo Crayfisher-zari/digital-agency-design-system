@@ -14,6 +14,8 @@ const props = defineProps<Props>();
   </ul>
 </template>
 <style lang="scss" scoped>
+@use "@/assets/style/utils/utils.scss" as *;
+
 ul {
   display: flex;
   flex-wrap: wrap;
@@ -22,7 +24,7 @@ ul {
 li {
   display: inline-flex;
   align-items: center;
-  font-size: 0.875rem;
+  font-size: pxToRem(14);
   line-height: 2;
   list-style: none;
 

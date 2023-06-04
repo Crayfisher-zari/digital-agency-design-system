@@ -17,11 +17,13 @@ withDefaults(defineProps<Props>(), {
 </template>
 
 <style lang="scss" scoped>
+@use "@/assets/style/utils/utils.scss" as *;
+
 button {
   display: block;
   padding: 15px 32px;
   font-family: inherit;
-  font-size: 1rem;
+  font-size: pxToRem(16);
   font-weight: bold;
   color: var(--color-text-onFill);
   cursor: pointer;

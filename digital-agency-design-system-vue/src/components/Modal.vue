@@ -99,6 +99,8 @@ const handleClickSecondary = () => {
   </Teleport>
 </template>
 <style lang="scss">
+@use "@/assets/style/utils/utils.scss" as *;
+
 .modalBg {
   position: fixed;
   top: 0;
@@ -140,12 +142,12 @@ const handleClickSecondary = () => {
 
 .title {
   margin-bottom: 16px;
-  font-size: 1.375rem;
+  font-size: pxToRem(22);
   font-weight: bold;
 }
 
 .text {
-  font-size: 1rem;
+  font-size: pxToRem(16);
   line-height: 1.75;
 }
 
