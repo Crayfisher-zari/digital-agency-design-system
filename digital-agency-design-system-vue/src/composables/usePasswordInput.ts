@@ -12,7 +12,6 @@ export const usePasswordInput = () => {
       type: "password",
       label: "パスワード",
       modelValue: password.value,
-      placeHolder: "入力してください",
       errorText: errorText.value,
       isRequired: true,
       isValid: isValid.value,

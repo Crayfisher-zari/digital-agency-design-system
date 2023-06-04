@@ -22,21 +22,23 @@ const handleClick = () => {
 
 const { UseNameInputComponent: FamilyNameInput } = useNameInput({
   label: "姓",
+  isRequired: true,
+  supportText: "住民票に記載された姓を記入します。",
+});
+const { UseNameInputComponent: FamilyNameKanaInput } = useNameInput({
+  label: "姓（カナ）",
   isRequired: false,
   supportText: "住民票に記載された姓を記入します。",
-  placeHolder: "山田",
 });
 const { UseTelInputComponent: UseTelInputComponent } = useTelInput();
 const { UseTextAreaInputComponent } = useTextAreaInput({
   label: "お問い合わせ詳細",
   isRequired: true,
   supportText: "できる限りくわしくお書きください",
-  placeHolder: "パスワードを忘れてしまった",
 });
 const { UseTextAreaInputComponent: MaxCountTextArea } = useTextAreaInput({
   label: "困っていることを教えてください",
   isRequired: true,
-  placeHolder: "パスワードを忘れてしまった",
   maxCount: 256,
 });
 
@@ -185,6 +187,7 @@ watch(colorScheme, (color) => {
           <div class="colSpan-4">
             <div class="inputWrapper">
               <FamilyNameInput />
+              <FamilyNameKanaInput />
               <UseTelInputComponent />
             </div>
           </div>
@@ -227,35 +230,34 @@ watch(colorScheme, (color) => {
           <div class="colSpan-4">
             <div class="inputWrapper">
               <Selector
-              v-model="selector"
-              :options="prefectures"
-              label="都道府県"
-              :isRequired="false"
-              :isValid="true"
-              errorText="エラーテキスト"
-              supportText="サポートテキスト"
-            />
+                v-model="selector"
+                :options="prefectures"
+                label="都道府県"
+                :isRequired="false"
+                :isValid="true"
+                errorText="エラーテキスト"
+                supportText="サポートテキスト"
+              />
               <Selector
-              v-model="selector"
-              :options="prefectures"
-              label="都道府県"
-              :isRequired="true"
-              :isValid="false"
-              errorText="エラーテキスト"
-              supportText="サポートテキスト"
-            />
-            <Selector
-              v-model="selector"
-              :options="prefectures"
-              label="都道府県"
-              :isRequired="false"
-              :isValid="true"
-              :isDisabled="true"
-              errorText="エラーテキスト"
-              supportText="サポートテキスト"
-            />
+                v-model="selector"
+                :options="prefectures"
+                label="都道府県"
+                :isRequired="true"
+                :isValid="false"
+                errorText="エラーテキスト"
+                supportText="サポートテキスト"
+              />
+              <Selector
+                v-model="selector"
+                :options="prefectures"
+                label="都道府県"
+                :isRequired="false"
+                :isValid="true"
+                :isDisabled="true"
+                errorText="エラーテキスト"
+                supportText="サポートテキスト"
+              />
             </div>
-           
           </div>
 
           <div class="colSpan-4">

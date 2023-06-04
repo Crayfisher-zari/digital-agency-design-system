@@ -31,7 +31,6 @@ export const useEmailInput = () => {
       type: "email",
       label: "メールアドレス",
       modelValue: email.value,
-      placeHolder: "入力してください",
       errorText: errorText.value,
       isRequired: true,
       isValid: isValid.value,

@@ -124,6 +124,7 @@ const handleInput = (e: Event) => {
   margin-left: 8px;
   font-size: 0.75rem;
   color: var(--color-text-alert);
+
   &.optional {
     color: var(--color-text-description);
   }
@@ -143,8 +144,8 @@ const handleInput = (e: Event) => {
 
   &:focus-visible {
     border-color: var(--color-border-focused) !important;
-    outline: none;
-    box-shadow: 0 0 0 1px var(--color-border-focused);
+    outline: none !important;
+    box-shadow: 0 0 0 1px var(--color-border-focused) !important;
   }
 }
 
@@ -172,6 +173,7 @@ const handleInput = (e: Event) => {
 
   .textInput {
     border-color: var(--color-border-alert);
+    box-shadow: 0 0 0 1px var(--color-border-alert);
   }
 }
 

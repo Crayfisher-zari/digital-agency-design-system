@@ -149,7 +149,7 @@ const handleInput = (e: Event) => {
 
   &:focus-visible {
     border-color: var(--color-border-focused) !important;
-    outline: none;
+    outline: none !important;
     box-shadow: 0 0 0 1px var(--color-border-focused);
   }
 }
@@ -207,6 +207,7 @@ const handleInput = (e: Event) => {
 
   .textarea {
     border-color: var(--color-border-alert);
+    box-shadow: 0 0 0 1px var(--color-border-alert);
   }
 }
 

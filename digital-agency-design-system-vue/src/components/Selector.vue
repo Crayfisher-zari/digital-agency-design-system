@@ -65,6 +65,9 @@ const handleChange = (e: Event) => {
           isRequired ? "必須" : "任意"
         }}</span></span
       >
+      <span v-if="props.supportText !== undefined" class="supportText">{{
+        props.supportText
+      }}</span>
       <select
         class="selector"
         :onBlur="onBlur"
@@ -75,14 +78,16 @@ const handleChange = (e: Event) => {
         :disabled="props.isDisabled"
       >
         <option value="" default>選択してください</option>
-        <option v-for="option in options" :value="option.value">
+        <option
+          v-for="option in options"
+          :key="option.value"
+          :value="option.value"
+        >
           {{ option.label }}
         </option>
       </select>
     </label>
-    <span v-if="props.supportText !== undefined" class="supportText">{{
-      props.supportText
-    }}</span>
+
     <span
       v-if="props.errorText !== undefined"
       v-show="!props.isValid"
@@ -102,13 +107,19 @@ const handleChange = (e: Event) => {
   font-size: pxToRem(16);
   color: var(--color-text-body);
   background-color: transparent;
-  border: 1px solid var(--color-border-field);
-  border-radius: 8px;
-  appearance: none;
   background-image: url("@/assets/images/icon_selector.svg");
   background-repeat: no-repeat;
   background-position: right 23px top 50%;
   background-size: 8px;
+  border: 1px solid var(--color-border-field);
+  border-radius: 8px;
+  appearance: none;
+
+  &:focus-visible {
+    border-color: var(--color-border-focused) !important;
+    outline: none !important;
+    box-shadow: 0 0 0 1px var(--color-border-focused) !important;
+  }
 }
 
 .labelWrapper {
@@ -120,7 +131,6 @@ const handleChange = (e: Event) => {
 .label {
   font-size: pxToRem(14);
 }
-
 
 .supportText {
   display: block;
@@ -134,6 +144,7 @@ const handleChange = (e: Event) => {
   margin-left: 8px;
   font-size: pxToRem(12);
   color: var(--color-text-alert);
+
   &.optional {
     color: var(--color-text-description);
   }
@@ -155,19 +166,20 @@ const handleChange = (e: Event) => {
 
   .selector {
     border-color: var(--color-border-alert);
+    box-shadow: 0 0 0 1px var(--color-border-alert);
   }
 }
 
 // 非活性時のスタイル
-.isDisabled{
+.isDisabled {
   .label {
     color: var(--color-text-disabled);
   }
 
   .selector {
+    color: var(--color-text-placeHolder);
     background-color: var(--color-background-secondary);
     border-color: var(--color-border-disabled);
-    color: var(--color-text-placeHolder);
   }
 }
 </style>
