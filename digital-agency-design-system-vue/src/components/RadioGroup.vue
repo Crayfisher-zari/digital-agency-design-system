@@ -17,8 +17,8 @@ type Props = {
   values: string[];
   /** 各選択肢のサブテキスト（タイルスタイル用） */
   subTexts?: string[];
-  /** 内容を補足するヘルプテキスト */
-  helpText?: string;
+  /** 内容を補足するサポートテキスト */
+  supportText?: string;
   /** エラー時に表示するテキスト */
   errorText?: string;
   /** 必須かどうか。未指定の場合はfalse */
@@ -38,7 +38,7 @@ const props = withDefaults(defineProps<Props>(), {
   isValid: true,
   isDisabled: false,
   subTexts: undefined,
-  helpText: undefined,
+  supportText: undefined,
   errorText: undefined,
   onBlur: undefined,
 });
@@ -64,7 +64,9 @@ watch(modelValue, (value) => {
       <span v-if="isRequired" class="requiredText isRequired">必須</span>
       <span v-else class="requiredText">任意</span>
     </p>
-    <p v-if="helpText !== undefined" class="helpText">{{ helpText }}</p>
+    <p v-if="supportText !== undefined" class="supportText">
+      {{ supportText }}
+    </p>
 
     <div class="buttons">
       <RadioButton
@@ -115,7 +117,7 @@ watch(modelValue, (value) => {
   }
 }
 
-.helpText {
+.supportText {
   margin-top: 8px;
   font-size: pxToRem(12);
   color: var(--color-text-description);
