@@ -1,4 +1,4 @@
-import { computed, ref, h, defineComponent } from "vue";
+import { computed, ref, h, defineComponent, readonly } from "vue";
 import TextInput from "../components/TextInput.vue";
 
 export const usePasswordInput = () => {
@@ -22,5 +22,5 @@ export const usePasswordInput = () => {
 
   const UsePasswordInputComponent = defineComponent({ render });
 
-  return { password, UsePasswordInputComponent };
+  return { password: readonly(password), UsePasswordInputComponent };
 };

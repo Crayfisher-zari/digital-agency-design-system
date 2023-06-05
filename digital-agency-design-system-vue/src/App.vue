@@ -13,8 +13,7 @@ import { usePagination } from "./composables/usePagination";
 import Modal from "./components/Modal.vue";
 import Layout from "./components/Layout.vue";
 import Pankuzu from "./components/Pankuzu.vue";
-import { useEmailInput } from "./composables/useEmailInput";
-import { usePasswordInput } from "./composables/usePasswordInput";
+import LoginTemplate from "./templates/LoginTemplate.vue";
 
 const handleClick = () => {
   console.log("click");
@@ -72,9 +71,6 @@ const pankuzu = [
   { text: "審議会・研究会", url: "#!" },
   { text: "デジタル庁における入札制限等の在り方に関する検討会" },
 ];
-
-const { UseEmailInputComponent } = useEmailInput();
-const { UsePasswordInputComponent } = usePasswordInput();
 
 const colorScheme = ref<"light" | "dark" | null>("light");
 
@@ -271,9 +267,9 @@ watch(colorScheme, (color) => {
                 errorText="エラーテキスト"
                 name="group3"
               />
-            </div>
-            <div>
-              <Checkbox v-model="checked2" label="真偽値1" />
+              <div>
+                <Checkbox v-model="checked2" label="真偽値1" />
+              </div>
             </div>
           </div>
           <div class="colSpan-12">
@@ -394,19 +390,8 @@ watch(colorScheme, (color) => {
       <Heading :headingLevel="1" designLevel="XL"> テンプレート </Heading>
       <hr />
       <Layout>
-        <div class="colSpan-9">
-          <Heading :headingLevel="1"> ログイン </Heading>
-          <form action="#">
-            <div class="loginForm">
-              <UseEmailInputComponent />
-              <UsePasswordInputComponent />
-            </div>
-            <div class="loginButtons">
-              <BasicButton label="ログイン" />
-              <BasicButton label="新規登録" type="secondary" />
-              <BasicButton label="パスワードをお忘れの方" type="tertiary" />
-            </div>
-          </form>
+        <div class="colSpan-12">
+          <LoginTemplate />
         </div>
       </Layout>
     </div>
@@ -466,18 +451,5 @@ hr {
 
 .templates {
   padding: 120px 0;
-}
-
-.loginForm {
-  display: grid;
-  grid-auto-flow: row;
-  row-gap: 16px;
-}
-
-.loginButtons {
-  display: grid;
-  grid-auto-flow: row;
-  row-gap: 8px;
-  margin-top: 40px;
 }
 </style>

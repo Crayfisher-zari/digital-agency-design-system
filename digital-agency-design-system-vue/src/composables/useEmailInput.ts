@@ -1,4 +1,4 @@
-import { computed, ref, h, defineComponent } from "vue";
+import { computed, ref, h, defineComponent, readonly } from "vue";
 import TextInput from "../components/TextInput.vue";
 
 export const useEmailInput = () => {
@@ -42,5 +42,5 @@ export const useEmailInput = () => {
 
   const UseEmailInputComponent = defineComponent({ render });
 
-  return { email, UseEmailInputComponent };
+  return { email: readonly(email), UseEmailInputComponent };
 };
