@@ -222,7 +222,7 @@ watch(colorScheme, (color) => {
                   helpText="ヘルプテキスト"
                   errorText="エラーテキスト"
                   name="group2"
-                  :isRequired="true"
+                  :isRequired="false"
                 />
               </div>
             </div>
