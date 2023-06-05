@@ -58,6 +58,7 @@ watch(modelValue, (value) => {
       <span v-if="isRequired" class="requiredText isRequired">必須</span>
       <span v-else class="requiredText">任意</span>
     </p>
+    <p v-if="helpText !== undefined" class="helpText">{{ helpText }}</p>
     <div class="buttons">
       <Checkbox
         v-for="(label, index) in labels"
@@ -70,7 +71,7 @@ watch(modelValue, (value) => {
         :isDisabled="isDisabled"
       />
     </div>
-    <p v-if="helpText !== undefined" class="helpText">{{ helpText }}</p>
+
     <p v-if="errorText !== undefined" v-show="!isValid" class="errorText">
       {{ errorText }}
     </p>
@@ -97,8 +98,13 @@ watch(modelValue, (value) => {
 }
 
 .helpText {
+  margin-top: 8px;
   font-size: pxToRem(12);
   color: var(--color-text-description);
+}
+
+.buttons {
+  margin-top: 4px;
 }
 
 .errorText {
