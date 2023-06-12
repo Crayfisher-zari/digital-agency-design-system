@@ -14,6 +14,7 @@ import Modal from "./components/Modal.vue";
 import Layout from "./components/Layout.vue";
 import Pankuzu from "./components/Pankuzu.vue";
 import LoginTemplate from "./templates/LoginTemplate.vue";
+import YMDSelector from "./components/YMDSelector.vue";
 
 const handleClick = () => {
   console.log("click");
@@ -255,7 +256,9 @@ watch(colorScheme, (color) => {
               />
             </div>
           </div>
-
+          <div class="colSpan-4">
+            <YMDSelector />
+          </div>
           <div class="colSpan-4">
             <div class="inputWrapper">
               <CheckboxGroup
