@@ -70,6 +70,7 @@ const handleChange = (e: Event) => {
       }}</span>
       <select
         class="selector"
+        :value="props.modelValue"
         :onBlur="onBlur"
         :onChange="handleChange"
         :required="props.isRequired"

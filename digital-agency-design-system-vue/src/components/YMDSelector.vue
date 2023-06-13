@@ -55,7 +55,7 @@ const yaerList = computed(() => {
   return props.yearList;
 });
 
-const year = ref();
+const year = ref(props.defaultYear);
 const month = ref();
 const day = ref();
 
@@ -90,40 +90,91 @@ const handleInputDay = (e: Event) => {
       >
     </legend>
     <p>{{ props.supportText }} {{ props.year }}</p>
-    <label>
-      <select v-model="year" :onChange="handleInputYear">
-        <option default>先</option>
-        <option
-          v-for="item in yaerList"
-          :value="item"
-          :key="item"
-          :default="item === props.defaultYear ? true : false"
-        >
-          {{ item }}
-        </option>
-      </select>
-      年
-    </label>
-    <label>
-      <select v-model="month" :onChange="handleInputMonth">
-        <option v-for="item in 12" :value="item" :key="item">
-          {{ item }}
-        </option>
-      </select>
-      月
-    </label>
-    <label>
-      <select v-model="day" :onChange="handleInputDay">
-        <option v-for="item in maxDays" :value="item" :key="item">
-          {{ item }}
-        </option>
-      </select>
-      日
-    </label>
+    <div class="ymdWrapper">
+      <label>
+        <select v-model="year" :onChange="handleInputYear">
+          <option>先</option>
+          <option v-for="item in yaerList" :key="item" :value="item">
+            {{ item }}
+          </option>
+        </select>
+        年
+      </label>
+      <label>
+        <select v-model="month" :onChange="handleInputMonth">
+          <option v-for="item in 12" :key="item" :value="item">
+            {{ item }}
+          </option>
+        </select>
+        月
+      </label>
+      <label>
+        <select v-model="day" :onChange="handleInputDay">
+          <option v-for="item in maxDays" :key="item" :value="item">
+            {{ item }}
+          </option>
+        </select>
+        日
+      </label>
+    </div>
   </fieldset>
 </template>
 <style lang="scss" scoped>
+@use "@/assets/style/utils/utils.scss" as *;
+
 fieldset {
   border: none;
+}
+
+.labelWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.label {
+  font-size: pxToRem(14);
+}
+
+.supportText {
+  display: block;
+  margin-top: 8px;
+  font-size: pxToRem(12);
+  line-height: 1.5;
+  color: var(--color-text-description);
+}
+
+.requiredText {
+  margin-left: 8px;
+  font-size: pxToRem(12);
+  color: var(--color-text-alert);
+
+  &.optional {
+    color: var(--color-text-description);
+  }
+}
+
+.ymdWrapper {
+  display: flex;
+}
+
+select {
+  width: 100%;
+  padding: 12px 16px;
+  color: var(--color-text-body);
+  background-color: transparent;
+  background-image: url("@/assets/images/icon_selector.svg");
+  background-repeat: no-repeat;
+  background-position: right 23px top 50%;
+  background-size: 8px;
+  border: 1px solid var(--color-border-field);
+  border-radius: 8px;
+  appearance: none;
+
+  &:focus-visible {
+    border-color: var(--color-border-focused) !important;
+    outline: none !important;
+    box-shadow: 0 0 0 1px var(--color-border-focused) !important;
+  }
 }
 </style>
