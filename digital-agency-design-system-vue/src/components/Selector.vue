@@ -6,7 +6,7 @@ type Props = {
   /** 値（v-modelでも使える） */
   modelValue: string;
   /** インプットのラベルです */
-  label: string;
+  label?: string;
   /** セレクターの選択肢です */
   options: { label: string; value: string }[];
   /** 内容を補足するサポートテキスト */
@@ -24,6 +24,7 @@ type Props = {
 };
 
 const props = withDefaults(defineProps<Props>(), {
+  label: undefined,
   supportText: undefined,
   errorText: undefined,
   isRequired: false,
@@ -59,7 +60,7 @@ const handleChange = (e: Event) => {
 <template>
   <div :class="stateClassName">
     <label class="selectorWrapper">
-      <span class="labelWrapper"
+      <span v-if="props.label !== undefined" class="labelWrapper"
         ><span class="label">{{ props.label }}</span
         ><span class="requiredText" :class="isRequired ? null : 'optional'">{{
           isRequired ? "必須" : "任意"

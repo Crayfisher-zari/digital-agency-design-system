@@ -10,7 +10,7 @@ type Props = {
   /** 日の値（v-model:dayで使える） */
   day: number;
   /** 年月日のラベルです */
-  label: string;
+  label?: string;
   /** 内容を補足するサポートテキスト */
   supportText?: string;
   /** 必須かどうか。未指定の場合はfalse */
@@ -28,6 +28,7 @@ type Props = {
 };
 
 const props = withDefaults(defineProps<Props>(), {
+  label: undefined,
   supportText: undefined,
   isRequired: false,
   isValid: true,
@@ -81,7 +82,7 @@ const handleInputDay = (e: Event) => {
 </script>
 <template>
   <fieldset>
-    <legend>
+    <legend v-if="props.label !== undefined">
       <span class="labelWrapper"
         ><span class="label">{{ props.label }}</span
         ><span class="requiredText" :class="isRequired ? null : 'optional'">{{
@@ -89,32 +90,35 @@ const handleInputDay = (e: Event) => {
         }}</span></span
       >
     </legend>
-    <p>{{ props.supportText }} {{ props.year }}</p>
+    <p class="supportText">{{ props.supportText }}</p>
     <div class="ymdWrapper">
-      <label>
-        <select v-model="year" :onChange="handleInputYear">
-          <option>先</option>
+      <label class="selectorWrapper">
+        <select
+          v-model="year"
+          :onChange="handleInputYear"
+          class="selector year"
+        >
           <option v-for="item in yaerList" :key="item" :value="item">
             {{ item }}
           </option>
         </select>
-        年
+        <span class="unit">年</span>
       </label>
-      <label>
-        <select v-model="month" :onChange="handleInputMonth">
+      <label class="selectorWrapper">
+        <select v-model="month" :onChange="handleInputMonth" class="selector">
           <option v-for="item in 12" :key="item" :value="item">
             {{ item }}
           </option>
         </select>
-        月
+        <span class="unit">月</span>
       </label>
-      <label>
-        <select v-model="day" :onChange="handleInputDay">
+      <label class="selectorWrapper">
+        <select v-model="day" :onChange="handleInputDay" class="selector">
           <option v-for="item in maxDays" :key="item" :value="item">
             {{ item }}
           </option>
         </select>
-        日
+        <span class="unit">日</span>
       </label>
     </div>
   </fieldset>
@@ -123,6 +127,7 @@ const handleInputDay = (e: Event) => {
 @use "@/assets/style/utils/utils.scss" as *;
 
 fieldset {
+  display: block;
   border: none;
 }
 
@@ -156,20 +161,40 @@ fieldset {
 
 .ymdWrapper {
   display: flex;
+  margin-top: 8px;
 }
 
-select {
-  width: 100%;
+.selectorWrapper {
+  display: flex;
+  align-items: center;
+  margin-right: 16px;
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.unit {
+  margin-left: 16px;
+  font-size: pxToRem(14);
+}
+
+.selector {
+  width: 66px;
   padding: 12px 16px;
   color: var(--color-text-body);
   background-color: transparent;
   background-image: url("@/assets/images/icon_selector.svg");
   background-repeat: no-repeat;
-  background-position: right 23px top 50%;
+  background-position: right 14px top 50%;
   background-size: 8px;
   border: 1px solid var(--color-border-field);
   border-radius: 8px;
   appearance: none;
+
+  &.year {
+    width: 95px;
+  }
 
   &:focus-visible {
     border-color: var(--color-border-focused) !important;

@@ -261,7 +261,7 @@ const day = ref();
               />
             </div>
           </div>
-          <div class="colSpan-4">
+          <div class="colSpan-5">
             <YMDSelector
               v-model:year="year"
               v-model:month="month"
@@ -270,7 +270,7 @@ const day = ref();
               supportText="月を選択してから日を選んでください"
             />
           </div>
-          <div class="colSpan-4">
+          <div class="colSpan-3">
             <div class="inputWrapper">
               <CheckboxGroup
                 v-model="checked"
