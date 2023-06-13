@@ -20,7 +20,7 @@ type Props = {
     | "url"
     | "week";
   /** プレースホルダのテキストです */
-  placeHolder: string;
+  placeHolder?: string;
   /** 内容を補足するサポートテキスト */
   supportText?: string;
   /** エラー時に表示するテキスト */

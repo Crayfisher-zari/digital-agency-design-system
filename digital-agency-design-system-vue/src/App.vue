@@ -86,6 +86,11 @@ watch(colorScheme, (color) => {
     document.body.classList.add("color-scheme-dark");
   }
 });
+
+// 年月日
+const year = ref(1980);
+const month = ref();
+const day = ref();
 </script>
 
 <template>
@@ -257,7 +262,13 @@ watch(colorScheme, (color) => {
             </div>
           </div>
           <div class="colSpan-4">
-            <YMDSelector />
+            <YMDSelector
+              v-model:year="year"
+              v-model:month="month"
+              v-model:day="day"
+              label="生年月日"
+              supportText="月を選択してから日を選んでください"
+            />
           </div>
           <div class="colSpan-4">
             <div class="inputWrapper">
