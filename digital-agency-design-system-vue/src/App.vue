@@ -15,6 +15,7 @@ import Layout from "./components/Layout.vue";
 import Pankuzu from "./components/Pankuzu.vue";
 import LoginTemplate from "./templates/LoginTemplate.vue";
 import YMDSelector from "./components/YMDSelector.vue";
+import YMDInput from "./components/YMDInput.vue";
 
 const handleClick = () => {
   console.log("click");
@@ -262,13 +263,23 @@ const day = ref();
             </div>
           </div>
           <div class="colSpan-5">
-            <YMDSelector
-              v-model:year="year"
-              v-model:month="month"
-              v-model:day="day"
-              label="生年月日"
-              supportText="月を選択してから日を選んでください"
-            />
+            <div class="inputWrapper">
+              <YMDSelector
+                v-model:year="year"
+                v-model:month="month"
+                v-model:day="day"
+                label="生年月日"
+                supportText="月を選択してから日を選んでください"
+              />
+              <YMDInput
+                v-model:year="year"
+                v-model:month="month"
+                v-model:day="day"
+                label="生年月日"
+                :isRequired="true"
+                supportText="半角数字で入力してください。"
+              />
+            </div>
           </div>
           <div class="colSpan-3">
             <div class="inputWrapper">

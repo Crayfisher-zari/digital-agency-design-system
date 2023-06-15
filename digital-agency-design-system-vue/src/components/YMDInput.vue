@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
-import { getYearList } from "../utils/getYearList";
+import { ref } from "vue";
 
 type Props = {
   /** 年の値（v-model:yearで使える） */
@@ -46,29 +45,9 @@ type Emits = {
 
 const emits = defineEmits<Emits>();
 
-// 年数の配列
-const basicYearList = getYearList();
-
-const yaerList = computed(() => {
-  if (props.yearList === undefined) {
-    return basicYearList;
-  }
-  return props.yearList;
-});
-
 const year = ref(props.defaultYear ?? props.year);
 const month = ref(props.month);
 const day = ref(props.day);
-
-// 日数を小の月・大の月に合わせて算出します
-const maxDays = computed(() => {
-  if (month.value === 2) {
-    return 28;
-  } else if ([4, 6, 9, 11].includes(month.value)) {
-    return 30;
-  }
-  return 31;
-});
 
 const handleInputYear = (e: Event) => {
   emits("update:year", Number((e.target as HTMLInputElement).value));
@@ -93,31 +72,36 @@ const handleInputDay = (e: Event) => {
     <p class="supportText">{{ props.supportText }}</p>
     <div class="ymdWrapper">
       <label class="selectorWrapper">
-        <select
+        <input
           v-model="year"
-          :onChange="handleInputYear"
-          class="selector year"
-        >
-          <option v-for="item in yaerList" :key="item" :value="item">
-            {{ item }}
-          </option>
-        </select>
+          :onInput="handleInputYear"
+          class="input year"
+          maxlength="4"
+        />
         <span class="unit">年</span>
       </label>
       <label class="selectorWrapper">
-        <select v-model="month" :onChange="handleInputMonth" class="selector">
-          <option v-for="item in 12" :key="item" :value="item">
-            {{ item }}
-          </option>
-        </select>
+        <input
+          v-model="month"
+          type="input"
+          :onInput="handleInputMonth"
+          class="input"
+          pattern="[1-9]|1[0-2]"
+          maxlength="2"
+          title="1〜12の数字で入力してください"
+        />
         <span class="unit">月</span>
       </label>
       <label class="selectorWrapper">
-        <select v-model="day" :onChange="handleInputDay" class="selector">
-          <option v-for="item in maxDays" :key="item" :value="item">
-            {{ item }}
-          </option>
-        </select>
+        <input
+          v-model="day"
+          type="input"
+          :onChange="handleInputDay"
+          class="input"
+          pattern="[1-9]|[1-2][0-9]|3[0-1]"
+          maxlength="2"
+          title="1〜31の数字で入力してください"
+        />
         <span class="unit">日</span>
       </label>
     </div>
@@ -179,15 +163,11 @@ fieldset {
   font-size: pxToRem(14);
 }
 
-.selector {
+.input {
   width: 66px;
   padding: 12px 16px;
   color: var(--color-text-body);
   background-color: transparent;
-  background-image: url("@/assets/images/icon_selector.svg");
-  background-repeat: no-repeat;
-  background-position: right 14px top 50%;
-  background-size: 8px;
   border: 1px solid var(--color-border-field);
   border-radius: 8px;
   appearance: none;
@@ -200,6 +180,10 @@ fieldset {
     border-color: var(--color-border-focused) !important;
     outline: none !important;
     box-shadow: 0 0 0 1px var(--color-border-focused) !important;
+  }
+
+  &:invalid {
+    border-color: var(--color-border-alert);
   }
 }
 </style>

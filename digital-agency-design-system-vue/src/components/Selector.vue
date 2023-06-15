@@ -79,7 +79,7 @@ const handleChange = (e: Event) => {
         :aria-describedby="errorIdName"
         :disabled="props.isDisabled"
       >
-        <option value="" default>選択してください</option>
+        <option value="">選択してください</option>
         <option
           v-for="option in options"
           :key="option.value"
