@@ -7,6 +7,5 @@ export const getYearList = () => {
   for (let i = thisYear; i >= OLDEST_YEAR; i--) {
     yearList.push(i);
   }
-  console.log(thisYear, yearList);
   return yearList;
 };

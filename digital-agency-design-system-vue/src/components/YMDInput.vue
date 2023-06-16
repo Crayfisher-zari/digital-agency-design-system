@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { computed, ref } from "vue";
+import { convertToHankaku } from "../utils/convertToHankaku";
+import { getSerialNumber } from "../utils/getSerialNumber";
 
 type Props = {
   /** 年の値（v-model:yearで使える） */
@@ -12,6 +14,8 @@ type Props = {
   label?: string;
   /** 内容を補足するサポートテキスト */
   supportText?: string;
+  /** エラー時に表示するテキスト */
+  errorText?: string;
   /** 必須かどうか。未指定の場合はfalse */
   isRequired?: boolean;
   /** 妥当性 */
@@ -29,6 +33,7 @@ type Props = {
 const props = withDefaults(defineProps<Props>(), {
   label: undefined,
   supportText: undefined,
+  errorText: undefined,
   isRequired: false,
   isValid: true,
   onBlur: undefined,
@@ -58,9 +63,28 @@ const handleInputMonth = (e: Event) => {
 const handleInputDay = (e: Event) => {
   emits("update:day", Number((e.target as HTMLInputElement).value));
 };
+
+// aria-describledby用のエラー文言のid名です
+const errorIdName = `ymdInput${getSerialNumber()}`;
+
+// 状態に応じたクラス名を返します
+const stateClassName = computed<string | null>(() => {
+  if (props.isDisabled) {
+    return "isDisabled";
+  }
+  if (!props.isValid) {
+    return "isInvalid";
+  }
+  return null;
+});
+
 </script>
 <template>
-  <fieldset>
+  <fieldset
+    :class="stateClassName"
+    :aria-invalid="!isValid"
+    :aria-describedby="errorIdName"
+  >
     <legend v-if="props.label !== undefined">
       <span class="labelWrapper"
         ><span class="label">{{ props.label }}</span
@@ -77,6 +101,7 @@ const handleInputDay = (e: Event) => {
           :onInput="handleInputYear"
           class="input year"
           maxlength="4"
+          :onBlur="props.onBlur"
         />
         <span class="unit">年</span>
       </label>
@@ -89,6 +114,7 @@ const handleInputDay = (e: Event) => {
           pattern="[1-9]|1[0-2]"
           maxlength="2"
           title="1〜12の数字で入力してください"
+          :onBlur="props.onBlur"
         />
         <span class="unit">月</span>
       </label>
@@ -101,10 +127,18 @@ const handleInputDay = (e: Event) => {
           pattern="[1-9]|[1-2][0-9]|3[0-1]"
           maxlength="2"
           title="1〜31の数字で入力してください"
+          :onBlur="props.onBlur"
         />
         <span class="unit">日</span>
       </label>
     </div>
+    <span
+      v-if="props.errorText !== undefined"
+      v-show="!props.isValid"
+      :id="errorIdName"
+      class="errorText"
+      >{{ props.errorText }}</span
+    >
   </fieldset>
 </template>
 <style lang="scss" scoped>
