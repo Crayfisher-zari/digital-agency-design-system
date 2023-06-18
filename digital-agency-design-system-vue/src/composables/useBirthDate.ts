@@ -63,6 +63,17 @@ export const useBirthDate = ({ label, supportText, isRequired }: Arg) => {
       errorText.value = "正しい月日を入力してください";
       return;
     }
+    if (
+      numberedMonth.value === 0 ||
+      (numberedMonth.value && numberedMonth.value > 12) ||
+      numberedDay.value === 0 ||
+      (numberedDay.value && numberedDay.value > 31)
+    ) {
+      isValid.value = false;
+      errorText.value = "正しい月日を入力してください";
+      return;
+    }
+
     // いずれのテストにもパスする
     isValid.value = true;
     errorText.value = "";

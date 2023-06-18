@@ -122,7 +122,7 @@ const handleInput = (e: Event) => {
 
 .labelWrapper {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: flex-start;
 }
 

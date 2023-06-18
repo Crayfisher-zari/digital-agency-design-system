@@ -148,7 +148,7 @@ fieldset {
 
 .labelWrapper {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: flex-start;
 }
 
