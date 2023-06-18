@@ -1,15 +1,15 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
-import { convertToHankaku } from "../utils/convertToHankaku";
 import { getSerialNumber } from "../utils/getSerialNumber";
+import { convertToHankaku } from "../utils/convertToHankaku";
 
 type Props = {
   /** 年の値（v-model:yearで使える） */
-  year: number;
+  year: string;
   /** 月の値（v-model:monthで使える） */
-  month: number;
+  month: string;
   /** 日の値（v-model:dayで使える） */
-  day: number;
+  day: string;
   /** 年月日のラベルです */
   label?: string;
   /** 内容を補足するサポートテキスト */
@@ -24,10 +24,6 @@ type Props = {
   onBlur?: () => void;
   /** ボタンが非活性状態か。未指定の場合はfalse */
   isDisabled?: boolean;
-  /** デフォルトで選ばれている選択肢の年 */
-  defaultYear?: number;
-  /** 選択肢の年の配列。省略した場合は1900〜今年まで */
-  yearList?: number[];
 };
 
 const props = withDefaults(defineProps<Props>(), {
@@ -38,30 +34,31 @@ const props = withDefaults(defineProps<Props>(), {
   isValid: true,
   onBlur: undefined,
   isDisabled: false,
-  defaultYear: undefined,
-  yearList: undefined,
 });
 
 type Emits = {
-  "update:year": [value: number];
-  "update:month": [value: number];
-  "update:day": [value: number];
+  "update:year": [value: string];
+  "update:month": [value: string];
+  "update:day": [value: string];
 };
 
 const emits = defineEmits<Emits>();
 
-const year = ref(props.defaultYear ?? props.year);
-const month = ref(props.month);
-const day = ref(props.day);
+const year = ref<string>(props.year);
+const month = ref<string>(props.month);
+const day = ref<string>(props.day);
 
 const handleInputYear = (e: Event) => {
-  emits("update:year", Number((e.target as HTMLInputElement).value));
+  year.value = convertToHankaku((e.target as HTMLInputElement).value);
+  emits("update:year", year.value);
 };
 const handleInputMonth = (e: Event) => {
-  emits("update:month", Number((e.target as HTMLInputElement).value));
+  month.value = convertToHankaku((e.target as HTMLInputElement).value);
+  emits("update:month", month.value);
 };
 const handleInputDay = (e: Event) => {
-  emits("update:day", Number((e.target as HTMLInputElement).value));
+  day.value = convertToHankaku((e.target as HTMLInputElement).value);
+  emits("update:day", day.value);
 };
 
 // aria-describledby用のエラー文言のid名です
@@ -77,7 +74,6 @@ const stateClassName = computed<string | null>(() => {
   }
   return null;
 });
-
 </script>
 <template>
   <fieldset
@@ -98,6 +94,7 @@ const stateClassName = computed<string | null>(() => {
       <label class="selectorWrapper">
         <input
           v-model="year"
+          type="text"
           :onInput="handleInputYear"
           class="input year"
           maxlength="4"
@@ -108,7 +105,7 @@ const stateClassName = computed<string | null>(() => {
       <label class="selectorWrapper">
         <input
           v-model="month"
-          type="input"
+          type="text"
           :onInput="handleInputMonth"
           class="input"
           pattern="[1-9]|1[0-2]"
@@ -121,7 +118,7 @@ const stateClassName = computed<string | null>(() => {
       <label class="selectorWrapper">
         <input
           v-model="day"
-          type="input"
+          type="text"
           :onChange="handleInputDay"
           class="input"
           pattern="[1-9]|[1-2][0-9]|3[0-1]"
@@ -177,6 +174,17 @@ fieldset {
   }
 }
 
+.errorText {
+  font-size: pxToRem(12);
+  color: var(--color-text-alert);
+}
+
+.isError {
+  .label {
+    color: var(--color-text-alert);
+  }
+}
+
 .ymdWrapper {
   display: flex;
   margin-top: 8px;
@@ -200,6 +208,7 @@ fieldset {
 .input {
   width: 66px;
   padding: 12px 16px;
+  font-size: pxToRem(16);
   color: var(--color-text-body);
   background-color: transparent;
   border: 1px solid var(--color-border-field);

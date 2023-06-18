@@ -10,6 +10,7 @@ import Checkbox from "./components/Checkbox.vue";
 import Selector from "./components/Selector.vue";
 import { ref, watch } from "vue";
 import { usePagination } from "./composables/usePagination";
+import { useBirthDate } from "./composables/useBirthDate";
 import Modal from "./components/Modal.vue";
 import Layout from "./components/Layout.vue";
 import Pankuzu from "./components/Pankuzu.vue";
@@ -57,6 +58,17 @@ const prefectures = [
 
 const { UsePaginationComponent, pageNumber } = usePagination();
 
+const {
+  UseBirthDateComponent,
+  numberedYear: birthYear,
+  numberedMonth: birthMonth,
+  numberedDay: birthDay,
+} = useBirthDate({
+  label: "生年月日",
+  supportText: "半角数字で入力してください。",
+  isRequired: true,
+});
+
 const isShown = ref(false);
 
 const modalClick1 = () => {
@@ -92,6 +104,8 @@ watch(colorScheme, (color) => {
 const year = ref(1980);
 const month = ref();
 const day = ref();
+
+const ymdError = ref<string>("えらー");
 </script>
 
 <template>
@@ -271,14 +285,7 @@ const day = ref();
                 label="生年月日"
                 supportText="月を選択してから日を選んでください"
               />
-              <YMDInput
-                v-model:year="year"
-                v-model:month="month"
-                v-model:day="day"
-                label="生年月日"
-                :isRequired="true"
-                supportText="半角数字で入力してください。"
-              />
+              <UseBirthDateComponent />
             </div>
           </div>
           <div class="colSpan-3">

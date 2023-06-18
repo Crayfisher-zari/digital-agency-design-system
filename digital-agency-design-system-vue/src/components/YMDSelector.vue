@@ -182,6 +182,7 @@ fieldset {
 .selector {
   width: 66px;
   padding: 12px 16px;
+  font-size: pxToRem(16);
   color: var(--color-text-body);
   background-color: transparent;
   background-image: url("@/assets/images/icon_selector.svg");
