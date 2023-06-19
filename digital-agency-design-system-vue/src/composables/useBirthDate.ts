@@ -8,9 +8,9 @@ type Arg = {
 };
 
 export const useBirthDate = ({ label, supportText, isRequired }: Arg) => {
-  const year = ref<string | null>(null);
-  const month = ref<string | null>(null);
-  const day = ref<string | null>(null);
+  const year = ref<string>("");
+  const month = ref<string>("");
+  const day = ref<string>("");
   const isValid = ref(true);
   const errorText = ref("");
 
@@ -90,9 +90,9 @@ export const useBirthDate = ({ label, supportText, isRequired }: Arg) => {
       "onUpdate:day": (value: string) => {
         day.value = value;
       },
-      year,
-      month,
-      day,
+      year: year.value,
+      month: month.value,
+      day: day.value,
       supportText,
       isRequired,
       label,

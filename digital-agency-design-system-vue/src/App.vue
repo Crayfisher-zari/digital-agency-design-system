@@ -16,7 +16,6 @@ import Layout from "./components/Layout.vue";
 import Pankuzu from "./components/Pankuzu.vue";
 import LoginTemplate from "./templates/LoginTemplate.vue";
 import YMDSelector from "./components/YMDSelector.vue";
-import YMDInput from "./components/YMDInput.vue";
 
 const handleClick = () => {
   console.log("click");
@@ -69,6 +68,8 @@ const {
   isRequired: true,
 });
 
+console.log(birthYear.value, birthMonth.value, birthDay.value);
+
 const isShown = ref(false);
 
 const modalClick1 = () => {
@@ -104,8 +105,6 @@ watch(colorScheme, (color) => {
 const year = ref(1980);
 const month = ref();
 const day = ref();
-
-const ymdError = ref<string>("えらー");
 </script>
 
 <template>

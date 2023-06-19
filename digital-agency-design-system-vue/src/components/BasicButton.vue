@@ -26,11 +26,11 @@ button {
   font-size: pxToRem(16);
   font-weight: bold;
   color: var(--color-text-onFill);
+  appearance: none;
   cursor: pointer;
   background-color: var(--color-button-normal);
   border: 1px solid var(--color-button-normal);
   border-radius: 8px;
-  appearance: none;
   transition: background-color var(--base-duration) var(--easing-out-expo),
     color var(--base-duration) var(--easing-out-expo),
     border-color var(--base-duration) var(--easing-out-expo);

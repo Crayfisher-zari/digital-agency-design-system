@@ -210,10 +210,10 @@ fieldset {
   padding: 12px 16px;
   font-size: pxToRem(16);
   color: var(--color-text-body);
+  appearance: none;
   background-color: transparent;
   border: 1px solid var(--color-border-field);
   border-radius: 8px;
-  appearance: none;
 
   &.year {
     width: 95px;
