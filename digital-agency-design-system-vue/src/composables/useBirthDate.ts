@@ -16,7 +16,7 @@ export const useBirthDate = ({ label, supportText, isRequired }: Arg) => {
 
   const numberedYear = computed<number | null>(() => {
     const yearStr = year.value;
-    if (Number.isNaN(Number(yearStr)) || yearStr === null) {
+    if (Number.isNaN(Number(yearStr)) || yearStr === null || yearStr === "") {
       return null;
     }
     return Number(yearStr);
@@ -24,7 +24,11 @@ export const useBirthDate = ({ label, supportText, isRequired }: Arg) => {
 
   const numberedMonth = computed<number | null>(() => {
     const monthStr = month.value;
-    if (Number.isNaN(Number(monthStr)) || monthStr === null) {
+    if (
+      Number.isNaN(Number(monthStr)) ||
+      monthStr === null ||
+      monthStr === ""
+    ) {
       return null;
     }
     return Number(monthStr);
@@ -32,7 +36,7 @@ export const useBirthDate = ({ label, supportText, isRequired }: Arg) => {
 
   const numberedDay = computed<number | null>(() => {
     const dayStr = day.value;
-    if (Number.isNaN(Number(dayStr)) || dayStr === null) {
+    if (Number.isNaN(Number(dayStr)) || dayStr === null || dayStr === "") {
       return null;
     }
     return Number(dayStr);

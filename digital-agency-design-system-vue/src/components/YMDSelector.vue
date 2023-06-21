@@ -4,11 +4,11 @@ import { getYearList } from "../utils/getYearList";
 
 type Props = {
   /** 年の値（v-model:yearで使える） */
-  year: number;
+  year: number | null;
   /** 月の値（v-model:monthで使える） */
-  month: number;
+  month: number | null;
   /** 日の値（v-model:dayで使える） */
-  day: number;
+  day: number | null;
   /** 年月日のラベルです */
   label?: string;
   /** 内容を補足するサポートテキスト */
@@ -62,6 +62,9 @@ const day = ref(props.day);
 
 // 日数を小の月・大の月に合わせて算出します
 const maxDays = computed(() => {
+  if (!month.value) {
+    return 31;
+  }
   if (month.value === 2) {
     return 28;
   } else if ([4, 6, 9, 11].includes(month.value)) {

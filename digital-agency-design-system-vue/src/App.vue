@@ -47,7 +47,7 @@ const selected = ref<string | null>(null);
 const selected2 = ref<string | null>("3");
 const checked = ref(["2"]);
 const checked2 = ref(true);
-const selector = ref();
+const selector = ref("");
 const prefectures = [
   { label: "北海道", value: "Hokkaido" },
   { label: "東京", value: "Tokyo" },
@@ -57,18 +57,11 @@ const prefectures = [
 
 const { UsePaginationComponent, pageNumber } = usePagination();
 
-const {
-  UseBirthDateComponent,
-  numberedYear: birthYear,
-  numberedMonth: birthMonth,
-  numberedDay: birthDay,
-} = useBirthDate({
+const { UseBirthDateComponent } = useBirthDate({
   label: "生年月日",
   supportText: "半角数字で入力してください。",
   isRequired: true,
 });
-
-console.log(birthYear.value, birthMonth.value, birthDay.value);
 
 const isShown = ref(false);
 
@@ -103,8 +96,8 @@ watch(colorScheme, (color) => {
 
 // 年月日
 const year = ref(1980);
-const month = ref();
-const day = ref();
+const month = ref(null);
+const day = ref(null);
 </script>
 
 <template>
