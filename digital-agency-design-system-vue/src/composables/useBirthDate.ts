@@ -54,11 +54,6 @@ export const useBirthDate = ({ label, supportText, isRequired }: Arg) => {
       errorText.value = "半角数字で入力してください";
       return;
     }
-    if (numberedYear.value && numberedYear.value < 1900) {
-      isValid.value = false;
-      errorText.value = "正しい年を入力してください";
-      return;
-    }
     if (
       numberedMonth.value === 2 &&
       (numberedDay.value === 30 || numberedDay.value === 31)
