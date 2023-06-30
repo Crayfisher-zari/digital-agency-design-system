@@ -16,6 +16,7 @@ import Layout from "./components/Layout.vue";
 import Pankuzu from "./components/Pankuzu.vue";
 import LoginTemplate from "./templates/LoginTemplate.vue";
 import YMDSelector from "./components/YMDSelector.vue";
+import Accordion from "./components/Accordion.vue";
 
 const handleClick = () => {
   console.log("click");
@@ -375,6 +376,9 @@ const day = ref(null);
               :onClickPrimary="modalClick1"
               :onClickSecondary="modalClick2"
             />
+          </div>
+          <div class="colSpan-8">
+            <Accordion />
           </div>
           <div class="colSpan-12">
             <Heading :headingLevel="2"> レイアウト </Heading>
