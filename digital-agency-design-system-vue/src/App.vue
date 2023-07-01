@@ -99,6 +99,24 @@ watch(colorScheme, (color) => {
 const year = ref(1980);
 const month = ref(null);
 const day = ref(null);
+
+const accordionText = [
+  {
+    summary: "1.ダミーテキストはどのような場合に使用されますか。",
+    details:
+      " これはダミーテキストです。ダミーテキストは、デザインやレイアウトの作成時に使用される仮の文章です。ダミーテキストを使用すると、デザインの全体像を評価したり、テキストの配置や長さを確認したりすることができます。ダミーテキストは実際の文章ではないので、内容には意味がありません。 ",
+  },
+  {
+    summary: "2.ダミーテキストはどのような場合に使用されますか。",
+    details:
+      " これはダミーテキストです。ダミーテキストは、デザインやレイアウトの作成時に使用される仮の文章です。ダミーテキストを使用すると、デザインの全体像を評価したり、テキストの配置や長さを確認したりすることができます。ダミーテキストは実際の文章ではないので、内容には意味がありません。 ",
+  },
+  {
+    summary: "3.ダミーテキストはどのような場合に使用されますか。",
+    details:
+      " これはダミーテキストです。ダミーテキストは、デザインやレイアウトの作成時に使用される仮の文章です。ダミーテキストを使用すると、デザインの全体像を評価したり、テキストの配置や長さを確認したりすることができます。ダミーテキストは実際の文章ではないので、内容には意味がありません。 ",
+  },
+];
 </script>
 
 <template>
@@ -377,8 +395,16 @@ const day = ref(null);
               :onClickSecondary="modalClick2"
             />
           </div>
-          <div class="colSpan-8">
-            <Accordion />
+          <div class="colSpan-12">
+            <Accordion
+              v-for="(accordion, index) in accordionText"
+              :key="index"
+              :summary="accordion.summary"
+              :details="accordion.details"
+              :hasSummaryIcon="true"
+              :hasDetailIcon="true"
+            >
+            </Accordion>
           </div>
           <div class="colSpan-12">
             <Heading :headingLevel="2"> レイアウト </Heading>
