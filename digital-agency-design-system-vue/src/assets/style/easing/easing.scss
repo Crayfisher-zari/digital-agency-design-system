@@ -3,7 +3,7 @@
  */
 :root {
   --base-duration: 0.5s;
-  @media (prefer-reduce-motion) {
+  @media (prefers-reduced-motion) {
     --base-duration: 0s;
   }
 

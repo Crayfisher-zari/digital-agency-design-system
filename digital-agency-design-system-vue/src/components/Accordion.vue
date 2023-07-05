@@ -23,7 +23,7 @@ const contentsInnerElement = ref<HTMLElement | null>(null);
 
 const handleClick = (e: Event) => {
   if (
-    matchMedia("prefer-reduce-motion").matches ||
+    matchMedia("prefers-reduced-motion").matches ||
     !accordionElement.value ||
     !contentsElement.value ||
     !contentsInnerElement.value
@@ -59,11 +59,11 @@ const removeOpenAttribute = () => {
 };
 
 onMounted(() => {
-  if (matchMedia("prefer-reduce-motion").matches) {
+  if (matchMedia("prefers-reduced-motion").matches) {
     // reduce-motionが有効な場合はアニメーションをしない
     hasAnimation.value = false;
   }
-  if (!matchMedia("prefer-reduce-motion").matches && contentsElement.value) {
+  if (!matchMedia("prefers-reduced-motion").matches && contentsElement.value) {
     const accordionContents = contentsElement.value;
 
     // 初期化のために閉じておく

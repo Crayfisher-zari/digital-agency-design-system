@@ -74,6 +74,7 @@ const modalClick2 = () => {
   console.log("ボタン2");
 };
 
+// パンくずリスト
 const pankuzu = [
   { text: "ホーム", url: "#!" },
   { text: "政策", url: "#!" },
@@ -100,6 +101,7 @@ const year = ref(1980);
 const month = ref(null);
 const day = ref(null);
 
+// アコーディオンの内容
 const accordionText = [
   {
     summary: "1.ダミーテキストはどのような場合に使用されますか。",
@@ -396,6 +398,7 @@ const accordionText = [
             />
           </div>
           <div class="colSpan-12">
+            <Heading :headingLevel="2"> アコーディオン </Heading>
             <Accordion
               v-for="(accordion, index) in accordionText"
               :key="index"
