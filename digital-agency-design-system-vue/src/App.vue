@@ -114,7 +114,8 @@ const accordionText = [
       " これはダミーテキストです。ダミーテキストは、デザインやレイアウトの作成時に使用される仮の文章です。ダミーテキストを使用すると、デザインの全体像を評価したり、テキストの配置や長さを確認したりすることができます。ダミーテキストは実際の文章ではないので、内容には意味がありません。 ",
   },
   {
-    summary: "3.ダミーテキストはどのような場合に使用されますか。",
+    summary:
+      "3.ダミーテキストはどのような場合に使用されますか。ダミーテキストはどのような場合に使用されますか。ダミーテキストはどのような場合に使用されますか。",
     details:
       " これはダミーテキストです。ダミーテキストは、デザインやレイアウトの作成時に使用される仮の文章です。ダミーテキストを使用すると、デザインの全体像を評価したり、テキストの配置や長さを確認したりすることができます。ダミーテキストは実際の文章ではないので、内容には意味がありません。 ",
   },
@@ -317,129 +318,133 @@ const accordionText = [
               </div>
             </div>
           </div>
-          <div class="colSpan-12">
-            <Heading :headingLevel="2"> テーブル </Heading>
-            <table class="customTable">
-              <thead>
+        </Layout>
+      </div>
+      <div class="colSpan-12">
+        <Heading :headingLevel="2"> テーブル </Heading>
+        <div class="tableWrapper">
+          <table class="customTable">
+            <thead>
+              <th>Table Hader</th>
+              <th>Table Hader</th>
+              <th>Table Hader</th>
+              <th>Table Hader</th>
+              <th>Table Hader</th>
+            </thead>
+            <tbody>
+              <tr>
                 <th>Table Hader</th>
+                <td>Table Data</td>
+                <td>Table Data</td>
+                <td>Table Data</td>
+                <td>Table Data</td>
+              </tr>
+              <tr>
                 <th>Table Hader</th>
+                <td>Table Data</td>
+                <td>Table Data</td>
+                <td>Table Data</td>
+                <td>Table Data</td>
+              </tr>
+              <tr>
                 <th>Table Hader</th>
+                <td>Table Data</td>
+                <td>Table Data</td>
+                <td>Table Data</td>
+                <td>Table Data</td>
+              </tr>
+              <tr>
                 <th>Table Hader</th>
+                <td>Table Data</td>
+                <td>Table Data</td>
+                <td>Table Data</td>
+                <td>Table Data</td>
+              </tr>
+              <tr>
                 <th>Table Hader</th>
-              </thead>
-              <tbody>
-                <tr>
-                  <th>Table Hader</th>
-                  <td>Table Data</td>
-                  <td>Table Data</td>
-                  <td>Table Data</td>
-                  <td>Table Data</td>
-                </tr>
-                <tr>
-                  <th>Table Hader</th>
-                  <td>Table Data</td>
-                  <td>Table Data</td>
-                  <td>Table Data</td>
-                  <td>Table Data</td>
-                </tr>
-                <tr>
-                  <th>Table Hader</th>
-                  <td>Table Data</td>
-                  <td>Table Data</td>
-                  <td>Table Data</td>
-                  <td>Table Data</td>
-                </tr>
-                <tr>
-                  <th>Table Hader</th>
-                  <td>Table Data</td>
-                  <td>Table Data</td>
-                  <td>Table Data</td>
-                  <td>Table Data</td>
-                </tr>
-                <tr>
-                  <th>Table Hader</th>
-                  <td>Table Data</td>
-                  <td>Table Data</td>
-                  <td>Table Data</td>
-                  <td>Table Data</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="colSpan-12">
-            <Heading :headingLevel="2"> ページネーション </Heading>
-            <img
-              :src="`https://picsum.photos/id/${pageNumber}/200/200`"
-              alt=""
-              width="200"
-              height="200"
-            />
-            <UsePaginationComponent />
-          </div>
-          <div class="colSpan-12">
-            <Heading :headingLevel="2"> モーダル </Heading>
-            <BasicButton
-              label="モーダルを表示"
-              @click="
-                () => {
-                  isShown = true;
-                }
-              "
-            />
+                <td>Table Data</td>
+                <td>Table Data</td>
+                <td>Table Data</td>
+                <td>Table Data</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="colSpan-12">
+        <Heading :headingLevel="2"> ページネーション </Heading>
+        <img
+          :src="`https://picsum.photos/id/${pageNumber}/200/200`"
+          alt=""
+          width="200"
+          height="200"
+        />
+        <UsePaginationComponent />
+      </div>
+      <div class="colSpan-12">
+        <Heading :headingLevel="2"> モーダル </Heading>
+        <BasicButton
+          label="モーダルを表示"
+          @click="
+            () => {
+              isShown = true;
+            }
+          "
+        />
 
-            <Modal
-              v-model="isShown"
-              title="タイトル"
-              text="テキスト"
-              labelPrimary="ボタン1"
-              labelSecondary="ボタン2"
-              :onClickPrimary="modalClick1"
-              :onClickSecondary="modalClick2"
-            />
-          </div>
-          <div class="colSpan-12">
-            <Heading :headingLevel="2"> アコーディオン </Heading>
-            <Accordion
-              v-for="(accordion, index) in accordionText"
-              :key="index"
-              :summary="accordion.summary"
-              :details="accordion.details"
-              :hasSummaryIcon="true"
-              :hasDetailIcon="true"
-            >
-            </Accordion>
-          </div>
-          <div class="colSpan-12">
-            <Heading :headingLevel="2"> レイアウト </Heading>
-            <Layout>
-              <div class="layoutBlock colSpan-3">4分の1</div>
-              <div class="layoutBlock colSpan-6">4分の2</div>
-              <div class="layoutBlock colSpan-3">4分の1</div>
+        <Modal
+          v-model="isShown"
+          title="タイトル"
+          text="テキスト"
+          labelPrimary="ボタン1"
+          labelSecondary="ボタン2"
+          :onClickPrimary="modalClick1"
+          :onClickSecondary="modalClick2"
+        />
+      </div>
+      <div class="colSpan-12">
+        <Heading :headingLevel="2"> アコーディオン </Heading>
+        <Accordion
+          v-for="(accordion, index) in accordionText"
+          :key="index"
+          :summary="accordion.summary"
+          :details="accordion.details"
+          :hasSummaryIcon="true"
+          :hasDetailIcon="true"
+        >
+          <template #summary>🤔</template>
+          <template #detail>😀</template>
+        </Accordion>
+      </div>
+      <div class="colSpan-12">
+        <Heading :headingLevel="2"> レイアウト </Heading>
+        <Layout>
+          <div class="layoutBlock colSpan-3">4分の1</div>
+          <div class="layoutBlock colSpan-6">4分の2</div>
+          <div class="layoutBlock colSpan-3">4分の1</div>
 
-              <div class="layoutBlock colSpan-3">4分の1</div>
-              <div class="layoutBlock colSpan-3">4分の1</div>
-              <div class="layoutBlock colSpan-3">4分の1</div>
-              <div class="layoutBlock colSpan-3">4分の1</div>
+          <div class="layoutBlock colSpan-3">4分の1</div>
+          <div class="layoutBlock colSpan-3">4分の1</div>
+          <div class="layoutBlock colSpan-3">4分の1</div>
+          <div class="layoutBlock colSpan-3">4分の1</div>
 
-              <div class="layoutBlock colSpan-9">4分の3</div>
-              <div class="layoutBlock colSpan-3">4分の1</div>
+          <div class="layoutBlock colSpan-9">4分の3</div>
+          <div class="layoutBlock colSpan-3">4分の1</div>
 
-              <div class="layoutBlock colSpan-9">4分の3</div>
+          <div class="layoutBlock colSpan-9">4分の3</div>
 
-              <div class="layoutBlock colSpan-4">3分の1</div>
-              <div class="layoutBlock colSpan-4">3分の1</div>
-              <div class="layoutBlock colSpan-4">3分の1</div>
-            </Layout>
-            <p>タブレットは2列にする</p>
-            <Layout>
-              <div class="layoutBlock colSpan-6 colSpanTablet-1">4分の2</div>
-              <div class="layoutBlock colSpan-6 colSpanTablet-1">4分の2</div>
-            </Layout>
-            <p>真ん中半分だけ使う</p>
-            <Layout>
-              <div class="layoutBlock colStart-4 colEnd-10">4分の2</div>
-            </Layout>
-          </div>
+          <div class="layoutBlock colSpan-4">3分の1</div>
+          <div class="layoutBlock colSpan-4">3分の1</div>
+          <div class="layoutBlock colSpan-4">3分の1</div>
+        </Layout>
+        <p>タブレットは2列にする</p>
+        <Layout>
+          <div class="layoutBlock colSpan-6 colSpanTablet-1">4分の2</div>
+          <div class="layoutBlock colSpan-6 colSpanTablet-1">4分の2</div>
+        </Layout>
+        <p>真ん中半分だけ使う</p>
+        <Layout>
+          <div class="layoutBlock colStart-4 colEnd-10">4分の2</div>
         </Layout>
       </div>
     </Layout>

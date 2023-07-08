@@ -21,8 +21,12 @@ const accordionElement = ref<HTMLDetailsElement | null>(null);
 const contentsElement = ref<HTMLElement | null>(null);
 const contentsInnerElement = ref<HTMLElement | null>(null);
 
+/**
+ * アコーディオンの開閉イベント
+ */
 const handleClick = (e: Event) => {
   if (
+    // prefers-reduced-motionの場合はアニメーションなし。デフォルトの挙動
     matchMedia("prefers-reduced-motion").matches ||
     !accordionElement.value ||
     !contentsElement.value ||
@@ -139,12 +143,17 @@ onBeforeUnmount(() => {
 .icon {
   display: block;
   flex-shrink: 0;
+  align-self: flex-start;
   width: 24px;
   height: 24px;
+  margin-top: 4px;
   margin-right: 38px;
   margin-left: 6px;
   font-size: pxToRem(24);
   line-height: 1;
+  @include mediaQueryDown {
+    margin-right: 24px;
+  }
 }
 
 .summary {
@@ -171,6 +180,11 @@ onBeforeUnmount(() => {
   &:focus-visible {
     outline: 2px solid var(--color-border-focused);
   }
+
+  &::-webkit-details-marker {
+    // Safariの三角アイコン
+    display: none;
+  }
 }
 
 .summaryInner {
@@ -183,6 +197,7 @@ onBeforeUnmount(() => {
 .dropDownIcon {
   display: block;
   flex-shrink: 0;
+  margin-left: 16px;
   transition: transform var(--base-duration) var(--easing-out-expo);
 }
 

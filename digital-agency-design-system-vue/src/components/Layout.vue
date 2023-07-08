@@ -84,7 +84,6 @@
 @include mediaQueryDown(mobile) {
   .layout {
     grid-template-columns: repeat(1, 1fr);
-    padding: 0 16px;
   }
   @for $i from 1 through 12 {
     .colSpan-#{$i} {
