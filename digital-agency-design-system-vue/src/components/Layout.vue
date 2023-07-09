@@ -83,12 +83,19 @@
 
 @include mediaQueryDown(mobile) {
   .layout {
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: repeat(1, 100%);
   }
   @for $i from 1 through 12 {
     .colSpan-#{$i} {
       grid-column: span 1 / span 1;
     }
+    .colEnd-#{$i} {
+      grid-column-end: 2;
+    }
+  }
+
+  .colEnd-13 {
+    grid-column-end: 2;
   }
 
   .colSpanTablet-1 {
