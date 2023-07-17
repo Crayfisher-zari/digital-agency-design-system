@@ -17,6 +17,7 @@ import Pankuzu from "./components/Pankuzu.vue";
 import LoginTemplate from "./templates/LoginTemplate.vue";
 import YMDSelector from "./components/YMDSelector.vue";
 import Accordion from "./components/Accordion.vue";
+import LanguageSelector from "./components/LanguageSelector.vue";
 
 const handleClick = () => {
   console.log("click");
@@ -119,6 +120,11 @@ const accordionText = [
     details:
       " これはダミーテキストです。ダミーテキストは、デザインやレイアウトの作成時に使用される仮の文章です。ダミーテキストを使用すると、デザインの全体像を評価したり、テキストの配置や長さを確認したりすることができます。ダミーテキストは実際の文章ではないので、内容には意味がありません。 ",
   },
+];
+
+const languageList = [
+  { label: "日本語", link: "#!" },
+  { label: "English", link: "#!" },
 ];
 </script>
 
@@ -319,6 +325,10 @@ const accordionText = [
             </div>
           </div>
         </Layout>
+      </div>
+      <div class="colSpan-12">
+        <Heading :headingLevel="2"> ランゲージセレクター </Heading>
+        <LanguageSelector :languageList="languageList" />
       </div>
       <div class="colSpan-12">
         <Heading :headingLevel="2"> テーブル </Heading>
