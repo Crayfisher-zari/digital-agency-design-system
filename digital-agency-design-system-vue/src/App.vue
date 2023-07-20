@@ -328,7 +328,11 @@ const languageList = [
       </div>
       <div class="colSpan-12">
         <Heading :headingLevel="2"> ランゲージセレクター </Heading>
-        <LanguageSelector :languageList="languageList" />
+        <Layout>
+          <div class="colSpan-4">
+            <LanguageSelector :languageList="languageList" />
+          </div>
+        </Layout>
       </div>
       <div class="colSpan-12">
         <Heading :headingLevel="2"> テーブル </Heading>

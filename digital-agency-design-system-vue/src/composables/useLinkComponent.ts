@@ -6,12 +6,10 @@ import {
   SlotsType,
 } from "vue";
 
-type Props =
-  | {
-      /** 明示的にタグを指定します */
-      tag?: "a" | "router" | "nuxt";
-    }
-  | undefined;
+type Props = {
+  /** 明示的にタグを指定します */
+  tag?: "a" | "router" | "nuxt" | "auto";
+};
 
 /**
  * リンク系のタグで適切なものを選択します
@@ -21,7 +19,7 @@ type Props =
  * const { LinkComponent } = useLink();
  * <linkComponent to="/hoge" />
  */
-export const useLink = (props: Props) => {
+export const useLink = (props: Props = { tag: "auto" }) => {
   const RouterLink = resolveComponent("RouterLink");
   const NuxtLink = resolveComponent("NuxtLink");
   let Link: ConcreteComponent | string;
@@ -58,7 +56,10 @@ export const useLink = (props: Props) => {
     },
     {
       props: {
-        to: String,
+        to: {
+          type: String,
+          default: "/",
+        },
       },
     }
   );

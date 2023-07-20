@@ -12,11 +12,11 @@ defineProps<Props>();
 const isOpened = ref<boolean | null>(null);
 const hasAnimation = ref<boolean>(true);
 
-const accordionElement = ref<HTMLDetailsElement | null>(null);
-const contentsElement = ref<HTMLElement | null>(null);
-const contentsInnerElement = ref<HTMLElement | null>(null);
+const languageSelectorElement = ref<HTMLDetailsElement | null>(null);
+const languageListElement = ref<HTMLElement | null>(null);
+const languageItemElement = ref<HTMLElement | null>(null);
 
-const { LinkComponent } = useLink({ tag: "router" });
+const { LinkComponent } = useLink({});
 
 /**
  * アコーディオンの開閉イベント
@@ -25,17 +25,17 @@ const handleClick = (e: Event) => {
   if (
     // prefers-reduced-motionの場合はアニメーションなし。デフォルトの挙動
     matchMedia("prefers-reduced-motion").matches ||
-    !accordionElement.value ||
-    !contentsElement.value ||
-    !contentsInnerElement.value
+    !languageSelectorElement.value ||
+    !languageListElement.value ||
+    !languageItemElement.value
   ) {
     return;
   }
   e.preventDefault();
 
-  const element = accordionElement.value;
-  const accordionContents = contentsElement.value;
-  const contentsInner = contentsInnerElement.value;
+  const element = languageSelectorElement.value;
+  const accordionContents = languageListElement.value;
+  const contentsInner = languageItemElement.value;
 
   // 補足：クリック実行時はその直前の状態なので、開く動作のときはisOpenがfalseになる
   const isOpen = element.open;
@@ -46,7 +46,7 @@ const handleClick = (e: Event) => {
     accordionContents.style.height = `0px`;
   } else {
     isOpened.value = true;
-    accordionElement.value?.setAttribute("open", "true");
+    languageSelectorElement.value?.setAttribute("open", "true");
     // 内部の要素の高さを取得
     const height = contentsInner.offsetHeight;
     accordionContents.style.height = `${height}px`;
@@ -55,7 +55,7 @@ const handleClick = (e: Event) => {
 
 const removeOpenAttribute = () => {
   if (isOpened.value === false) {
-    accordionElement.value?.removeAttribute("open");
+    languageSelectorElement.value?.removeAttribute("open");
   }
 };
 
@@ -64,8 +64,11 @@ onMounted(() => {
     // reduce-motionが有効な場合はアニメーションをしない
     hasAnimation.value = false;
   }
-  if (!matchMedia("prefers-reduced-motion").matches && contentsElement.value) {
-    const accordionContents = contentsElement.value;
+  if (
+    !matchMedia("prefers-reduced-motion").matches &&
+    languageListElement.value
+  ) {
+    const accordionContents = languageListElement.value;
 
     // 初期化のために閉じておく
     accordionContents.style.height = `0px`;
@@ -75,17 +78,17 @@ onMounted(() => {
   }
 });
 onBeforeUnmount(() => {
-  if (!contentsElement.value) {
+  if (!languageListElement.value) {
     return;
   }
-  contentsElement.value.removeEventListener(
+  languageListElement.value.removeEventListener(
     "transitionend",
     removeOpenAttribute
   );
 });
 </script>
 <template>
-  <details ref="accordionElement" class="languageSelector">
+  <details ref="languageSelectorElement" class="languageSelector">
     <summary class="summary" @click="handleClick">
       <span class="summaryInner">Language</span>
       <img
@@ -97,14 +100,11 @@ onBeforeUnmount(() => {
       />
     </summary>
     <div ref="languageListElement" class="languageList">
-      <div
-        v-for="item in languageList"
-        ref="languageItemElement"
-        :key="item.label"
-        class="languageItem"
-      >
-        <LinkComponent :to="item.link">{{ item.label }}</LinkComponent>
-      </div>
+      <ul ref="languageItemElement">
+        <li v-for="item in languageList" :key="item.label" class="languageItem">
+          <LinkComponent :to="item.link">{{ item.label }}</LinkComponent>
+        </li>
+      </ul>
     </div>
   </details>
 </template>
@@ -122,10 +122,6 @@ onBeforeUnmount(() => {
   letter-spacing: 0.04em;
   transition: background-color var(--base-duration) var(--easing-out-expo);
 
-  &:hover {
-    background-color: var(--color-background-secondary);
-  }
-
   &:-webkit-details-marker {
     display: none;
   }
@@ -138,5 +134,23 @@ onBeforeUnmount(() => {
     // Safariの三角アイコン
     display: none;
   }
+}
+
+.dropDownIcon {
+  display: block;
+  flex-shrink: 0;
+  margin-left: 16px;
+  transition: transform var(--base-duration) var(--easing-out-expo);
+}
+
+.languageList {
+  overflow: hidden;
+  transition: height var(--base-duration);
+}
+
+.languageItem {
+  display: flex;
+  font-size: pxToRem(16);
+  line-height: 1.7;
 }
 </style>
