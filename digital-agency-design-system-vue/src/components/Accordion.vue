@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, ref } from "vue";
+import { useDropDownAnimation } from "../composables/useDropDownAnimation";
 
 type Props = {
   summary: string;
@@ -13,79 +14,15 @@ withDefaults(defineProps<Props>(), {
   hasDetailIcon: false,
 });
 
-// 閉じようとしているか？
-const isOpened = ref<boolean | null>(null);
-const hasAnimation = ref<boolean>(true);
-
 const accordionElement = ref<HTMLDetailsElement | null>(null);
 const contentsElement = ref<HTMLElement | null>(null);
 const contentsInnerElement = ref<HTMLElement | null>(null);
 
-/**
- * アコーディオンの開閉イベント
- */
-const handleClick = (e: Event) => {
-  if (
-    // prefers-reduced-motionの場合はアニメーションなし。デフォルトの挙動
-    matchMedia("prefers-reduced-motion").matches ||
-    !accordionElement.value ||
-    !contentsElement.value ||
-    !contentsInnerElement.value
-  ) {
-    return;
-  }
-  e.preventDefault();
-
-  const element = accordionElement.value;
-  const accordionContents = contentsElement.value;
-  const contentsInner = contentsInnerElement.value;
-
-  // 補足：クリック実行時はその直前の状態なので、開く動作のときはisOpenがfalseになる
-  const isOpen = element.open;
-
-  if (isOpen) {
-    // 閉じるとき
-    isOpened.value = false;
-    accordionContents.style.height = `0px`;
-  } else {
-    isOpened.value = true;
-    accordionElement.value?.setAttribute("open", "true");
-    // 内部の要素の高さを取得
-    const height = contentsInner.offsetHeight;
-    accordionContents.style.height = `${height}px`;
-  }
-};
-
-const removeOpenAttribute = () => {
-  if (isOpened.value === false) {
-    accordionElement.value?.removeAttribute("open");
-  }
-};
-
-onMounted(() => {
-  if (matchMedia("prefers-reduced-motion").matches) {
-    // reduce-motionが有効な場合はアニメーションをしない
-    hasAnimation.value = false;
-  }
-  if (!matchMedia("prefers-reduced-motion").matches && contentsElement.value) {
-    const accordionContents = contentsElement.value;
-
-    // 初期化のために閉じておく
-    accordionContents.style.height = `0px`;
-
-    // 閉じるトランジションが終了したらopen属性を取り除く
-    accordionContents.addEventListener("transitionend", removeOpenAttribute);
-  }
-});
-onBeforeUnmount(() => {
-  if (!contentsElement.value) {
-    return;
-  }
-  contentsElement.value.removeEventListener(
-    "transitionend",
-    removeOpenAttribute
-  );
-});
+const { isOpened, hasAnimation, handleDropDown } = useDropDownAnimation(
+  accordionElement,
+  contentsElement,
+  contentsInnerElement
+);
 </script>
 <template>
   <div>
@@ -94,7 +31,7 @@ onBeforeUnmount(() => {
       class="accordion"
       :class="[{ isOpened: isOpened }, { hasAnimation: hasAnimation }]"
     >
-      <summary class="summary" @click="handleClick">
+      <summary class="summary" @click="handleDropDown">
         <span v-if="hasSummaryIcon" class="icon"
           ><slot name="summary"></slot
         ></span>

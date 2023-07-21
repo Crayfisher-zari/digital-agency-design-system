@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, ref } from "vue";
+import { ref } from "vue";
 import { useLink } from "../composables/useLinkComponent";
+import { useDropDownAnimation } from "../composables/useDropDownAnimation";
 
 type Props = {
   languageList: { label: string; link: string }[];
@@ -8,88 +9,25 @@ type Props = {
 
 defineProps<Props>();
 
-// 閉じようとしているか？
-const isOpened = ref<boolean | null>(null);
-const hasAnimation = ref<boolean>(true);
-
 const languageSelectorElement = ref<HTMLDetailsElement | null>(null);
 const languageListElement = ref<HTMLElement | null>(null);
 const languageItemElement = ref<HTMLElement | null>(null);
 
 const { LinkComponent } = useLink({});
 
-/**
- * アコーディオンの開閉イベント
- */
-const handleClick = (e: Event) => {
-  if (
-    // prefers-reduced-motionの場合はアニメーションなし。デフォルトの挙動
-    matchMedia("prefers-reduced-motion").matches ||
-    !languageSelectorElement.value ||
-    !languageListElement.value ||
-    !languageItemElement.value
-  ) {
-    return;
-  }
-  e.preventDefault();
-
-  const element = languageSelectorElement.value;
-  const accordionContents = languageListElement.value;
-  const contentsInner = languageItemElement.value;
-
-  // 補足：クリック実行時はその直前の状態なので、開く動作のときはisOpenがfalseになる
-  const isOpen = element.open;
-
-  if (isOpen) {
-    // 閉じるとき
-    isOpened.value = false;
-    accordionContents.style.height = `0px`;
-  } else {
-    isOpened.value = true;
-    languageSelectorElement.value?.setAttribute("open", "true");
-    // 内部の要素の高さを取得
-    const height = contentsInner.offsetHeight;
-    accordionContents.style.height = `${height}px`;
-  }
-};
-
-const removeOpenAttribute = () => {
-  if (isOpened.value === false) {
-    languageSelectorElement.value?.removeAttribute("open");
-  }
-};
-
-onMounted(() => {
-  if (matchMedia("prefers-reduced-motion").matches) {
-    // reduce-motionが有効な場合はアニメーションをしない
-    hasAnimation.value = false;
-  }
-  if (
-    !matchMedia("prefers-reduced-motion").matches &&
-    languageListElement.value
-  ) {
-    const accordionContents = languageListElement.value;
-
-    // 初期化のために閉じておく
-    accordionContents.style.height = `0px`;
-
-    // 閉じるトランジションが終了したらopen属性を取り除く
-    accordionContents.addEventListener("transitionend", removeOpenAttribute);
-  }
-});
-onBeforeUnmount(() => {
-  if (!languageListElement.value) {
-    return;
-  }
-  languageListElement.value.removeEventListener(
-    "transitionend",
-    removeOpenAttribute
-  );
-});
+const { isOpened, hasAnimation, handleDropDown } = useDropDownAnimation(
+  languageSelectorElement,
+  languageListElement,
+  languageItemElement
+);
 </script>
 <template>
-  <details ref="languageSelectorElement" class="languageSelector">
-    <summary class="summary" @click="handleClick">
+  <details
+    ref="languageSelectorElement"
+    class="languageSelector"
+    :class="[{ isOpened: isOpened }, { hasAnimation: hasAnimation }]"
+  >
+    <summary class="summary" @click="handleDropDown">
       <span class="summaryInner">Language</span>
       <img
         class="dropDownIcon"
@@ -109,6 +47,22 @@ onBeforeUnmount(() => {
   </details>
 </template>
 <style lang="scss">
+.languageSelector {
+  // アニメーションが有効な場合はタイミングを上書き
+  &.isOpened {
+    .dropDownIcon {
+      transform: rotate(180deg);
+    }
+  }
+
+  &:not(.hasAnimation) {
+    &[open] {
+      .dropDownIcon {
+        transform: rotate(180deg);
+      }
+    }
+  }
+}
 .summary {
   display: flex;
   align-items: center;
