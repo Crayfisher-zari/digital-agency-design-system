@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, ref } from "vue";
+import { ref } from "vue";
 import { useDropDownAnimation } from "../composables/useDropDownAnimation";
 
 type Props = {

@@ -123,8 +123,8 @@ const accordionText = [
 ];
 
 const languageList = [
-  { label: "日本語", link: "#!" },
-  { label: "English", link: "#!" },
+  { label: "日本語", link: "#!", isCurrent: true },
+  { label: "English", link: "#!", isCurrent: false },
 ];
 </script>
 
@@ -329,7 +329,7 @@ const languageList = [
       <div class="colSpan-12">
         <Heading :headingLevel="2"> ランゲージセレクター </Heading>
         <Layout>
-          <div class="colSpan-4">
+          <div class="colSpan-2">
             <LanguageSelector :languageList="languageList" />
           </div>
         </Layout>
