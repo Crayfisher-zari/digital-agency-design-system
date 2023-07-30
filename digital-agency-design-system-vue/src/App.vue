@@ -125,6 +125,8 @@ const accordionText = [
 const languageList = [
   { label: "日本語", link: "#!", isCurrent: true },
   { label: "English", link: "#!", isCurrent: false },
+  { label: "简体中文", link: "#!", isCurrent: false },
+  { label: "한국어", link: "#!", isCurrent: false },
 ];
 </script>
 

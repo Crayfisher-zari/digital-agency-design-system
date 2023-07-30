@@ -31,13 +31,20 @@ const languageList = ref(props.languageList);
   >
     <summary class="summary" @click="handleDropDown">
       <span class="summaryInner">Language</span>
-      <img
-        class="dropDownIcon"
-        src="@/assets/images/icon_arrow_accordion.svg"
-        alt=""
-        width="12"
-        height="7"
-      />
+      <picture>
+        <source
+          srcset="@/assets/images/icon_arrow_accordion_dark.svg"
+          media="(prefers-color-scheme: dark)"
+        />
+        <source srcset="@/assets/images/icon_arrow_accordion.svg" />
+        <img
+          class="dropDownIcon"
+          src="@/assets/images/icon_arrow_accordion.svg"
+          alt=""
+          width="12"
+          height="7"
+        />
+      </picture>
     </summary>
     <div ref="languageListElement" class="languageList">
       <div ref="languageItemElement" class="languageListInner">
@@ -130,16 +137,35 @@ const languageList = ref(props.languageList);
 
 .languageItem {
   display: flex;
+  padding-right: 2px;
+  padding-left: 2px;
   font-size: pxToRem(16);
   line-height: 1.7;
+  transition: background-color var(--base-duration) var(--easing-out-expo);
+
+  &:hover {
+    background-color: var(--color-background-secondary);
+  }
 
   &.isCurrent {
     a {
+      position: relative;
+      display: block;
       font-weight: var(--weight-bold);
       background-image: url("@/assets/images/icon_check_black.svg");
       background-repeat: no-repeat;
       background-position: 4px 50%;
       background-size: 16px;
+
+      &::before {
+        position: absolute;
+        top: 0;
+        left: -2px;
+        display: block;
+        width: calc(100% + 4px);
+        height: 100%;
+        content: "";
+      }
     }
   }
 
@@ -152,11 +178,42 @@ const languageList = ref(props.languageList);
     font-size: pxToRem(14);
     color: var(--color-text-body);
     text-decoration: none;
-    transition: background-color var(--base-duration) var(--easing-out-expo);
 
     &:hover {
       text-decoration: underline;
-      background-color: var(--color-background-secondary);
+    }
+  }
+}
+
+// ダークモード時
+body:not(.color-scheme-light) {
+  .summary {
+    @media (prefers-color-scheme: dark) {
+      background-image: url("@/assets/images/icon_globe_dark.svg");
+    }
+  }
+
+  .languageItem.isCurrent {
+    a {
+      @media (prefers-color-scheme: dark) {
+        background-image: url("@/assets/images/icon_check.svg");
+      }
+    }
+  }
+}
+
+body.color-scheme-dark {
+  .summary {
+    @media (prefers-color-scheme: dark) {
+      background-image: url("@/assets/images/icon_globe_dark.svg");
+    }
+  }
+
+  .languageItem.isCurrent {
+    a {
+      @media (prefers-color-scheme: dark) {
+        background-image: url("@/assets/images/icon_check.svg");
+      }
     }
   }
 }
