@@ -107,6 +107,8 @@ onBeforeUnmount(() => {
           :height="14"
           color="var(--color-text-body)"
           class="dropDownIcon"
+          :ariaHidden="true"
+          role="img"
         />
       </summary>
       <div ref="contentsElement" class="details">
