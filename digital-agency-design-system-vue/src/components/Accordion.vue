@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import Icon from "./Icon.vue";
+import iconArrow from "@/assets/images/icon_arrow_accordion.svg";
 import { useDropDownAnimation } from "../composables/useDropDownAnimation";
 
 type Props = {
@@ -36,12 +38,14 @@ const { isOpened, hasAnimation, handleDropDown } = useDropDownAnimation(
           ><slot name="summary"></slot
         ></span>
         <span class="summaryInner">{{ summary }}</span>
-        <img
+        <Icon
+          :iconSrc="iconArrow"
+          :width="24"
+          :height="14"
+          color="var(--color-text-body)"
           class="dropDownIcon"
-          src="@/assets/images/icon_arrow_accordion.svg"
-          alt=""
-          width="24"
-          height="14"
+          :ariaHidden="true"
+          role="img"
         />
       </summary>
       <div ref="contentsElement" class="details">

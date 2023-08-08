@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import { computed } from "vue";
 import { getSerialNumber } from "../utils/getSerialNumber";
+import Icon from "./Icon.vue";
+import iconSelector from "@/assets/images/icon_selector.svg";
 
 type Props = {
   /** 値（v-modelでも使える） */
@@ -69,25 +71,36 @@ const handleChange = (e: Event) => {
       <span v-if="props.supportText !== undefined" class="supportText">{{
         props.supportText
       }}</span>
-      <select
-        class="selector"
-        :value="props.modelValue"
-        :onBlur="onBlur"
-        :onChange="handleChange"
-        :required="props.isRequired"
-        :aria-invalid="!isValid"
-        :aria-describedby="errorIdName"
-        :disabled="props.isDisabled"
-      >
-        <option value="">選択してください</option>
-        <option
-          v-for="option in options"
-          :key="option.value"
-          :value="option.value"
+      <div class="selectorBox">
+        <select
+          class="selector"
+          :value="props.modelValue"
+          :onBlur="onBlur"
+          :onChange="handleChange"
+          :required="props.isRequired"
+          :aria-invalid="!isValid"
+          :aria-describedby="errorIdName"
+          :disabled="props.isDisabled"
         >
-          {{ option.label }}
-        </option>
-      </select>
+          <option value="">選択してください</option>
+          <option
+            v-for="option in options"
+            :key="option.value"
+            :value="option.value"
+          >
+            {{ option.label }}
+          </option>
+        </select>
+        <Icon
+          :iconSrc="iconSelector"
+          :width="8"
+          :height="6"
+          color="var(--color-text-body)"
+          class="selectorIcon"
+          :ariaHidden="true"
+          role="img"
+        />
+      </div>
     </label>
 
     <span
@@ -102,6 +115,10 @@ const handleChange = (e: Event) => {
 <style scoped lang="scss">
 @use "@/assets/style/utils/utils.scss" as *;
 
+.selectorBox {
+  position: relative;
+}
+
 .selector {
   width: 100%;
   padding: 12px 16px;
@@ -110,10 +127,6 @@ const handleChange = (e: Event) => {
   color: var(--color-text-body);
   appearance: none;
   background-color: transparent;
-  background-image: url("@/assets/images/icon_selector.svg");
-  background-repeat: no-repeat;
-  background-position: right 23px top 50%;
-  background-size: 8px;
   border: 1px solid var(--color-border-field);
   border-radius: 8px;
 
@@ -122,6 +135,12 @@ const handleChange = (e: Event) => {
     outline: none !important;
     box-shadow: 0 0 0 1px var(--color-border-focused) !important;
   }
+}
+
+.selectorIcon {
+  position: absolute;
+  top: 50%;
+  right: 24px;
 }
 
 .labelWrapper {

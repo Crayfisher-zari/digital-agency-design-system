@@ -8,7 +8,7 @@ import RadioGroup from "./components/RadioGroup.vue";
 import CheckboxGroup from "./components/CheckboxGroup.vue";
 import Checkbox from "./components/Checkbox.vue";
 import Selector from "./components/Selector.vue";
-import { ref, watch } from "vue";
+import { ref, watchEffect } from "vue";
 import { usePagination } from "./composables/usePagination";
 import { useBirthDate } from "./composables/useBirthDate";
 import Modal from "./components/Modal.vue";
@@ -17,6 +17,7 @@ import Pankuzu from "./components/Pankuzu.vue";
 import LoginTemplate from "./templates/LoginTemplate.vue";
 import YMDSelector from "./components/YMDSelector.vue";
 import Accordion from "./components/Accordion.vue";
+import { ColorSheme, useColorScheme } from "./composables/useColorScheme";
 import LanguageSelector from "./components/LanguageSelector.vue";
 
 const handleClick = () => {
@@ -83,18 +84,32 @@ const pankuzu = [
   { text: "デジタル庁における入札制限等の在り方に関する検討会" },
 ];
 
-const colorScheme = ref<"light" | "dark" | null>("light");
-
-// カラースキームの設定
-watch(colorScheme, (color) => {
-  if (color === "light") {
+const colorSchemeHandler = (newVal: ColorSheme | null) => {
+  console.log(newVal);
+  if (newVal === null) {
+    return;
+  }
+  if (newVal === "light") {
     document.body.classList.remove("color-scheme-dark");
     document.body.classList.add("color-scheme-light");
   }
-  if (color === "dark") {
+  if (newVal === "dark") {
     document.body.classList.remove("color-scheme-light");
     document.body.classList.add("color-scheme-dark");
   }
+};
+
+const { changeColorSheme } = useColorScheme({
+  onChange: colorSchemeHandler,
+});
+
+const selectedColor = ref<ColorSheme | null>(null);
+watchEffect(() => {
+  const color = selectedColor.value;
+  if (!color) {
+    return;
+  }
+  changeColorSheme(color);
 });
 
 // 年月日
@@ -210,7 +225,7 @@ const languageList = [
       <div class="colSpan-12">
         <div class="colorScheme">
           <RadioGroup
-            v-model="colorScheme"
+            v-model="selectedColor"
             groupLabel="テーマカラー"
             :labels="['ライトモード', 'ダークモード']"
             :values="['light', 'dark']"
@@ -473,6 +488,10 @@ const languageList = [
         </div>
       </Layout>
     </div>
+    <p class="copyright">
+      Copyright Digital Agency, Government of Japan 2023. Licensed under CC by
+      4.0
+    </p>
   </div>
 </template>
 
@@ -529,5 +548,11 @@ hr {
 
 .templates {
   padding: 120px 0;
+}
+
+.copyright {
+  padding: 16px;
+  font-size: pxToRem(14);
+  text-align: center;
 }
 </style>
