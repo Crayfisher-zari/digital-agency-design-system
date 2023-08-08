@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import Icon from "./Icon.vue";
+import iconPankuzu from "@/assets/images/icon_pankuzu.svg";
 // 実用上はVue Routerなどのルーティングを使用するはずなので、構成例として作成する
 type Props = {
   list: { text: string; url?: string }[];
@@ -10,6 +12,16 @@ const props = defineProps<Props>();
     <li v-for="pankuzu in props.list" :key="pankuzu.text">
       <a v-if="pankuzu.url" :href="pankuzu.url">{{ pankuzu.text }}</a>
       <span v-else>{{ pankuzu.text }}</span>
+      <span class="iconWrapper">
+        <Icon
+          :iconSrc="iconPankuzu"
+          :width="5"
+          :height="9"
+          color="var(--color-text-body)"
+          :ariaHidden="true"
+          role="img"
+        />
+      </span>
     </li>
   </ul>
 </template>
@@ -28,36 +40,18 @@ li {
   line-height: 2;
   list-style: none;
 
-  &::after {
-    display: block;
-    width: 16px;
-    height: 16px;
-    content: "";
-    background-image: url("@/assets/images/icon_pankuzu.svg");
-    background-repeat: no-repeat;
-    background-position: 50% 50%;
-    background-size: 5px;
-  }
-
   &:last-child {
-    &::after {
+    .iconWrapper {
       display: none;
     }
   }
 }
 
-// ダークモード時
-body:not(.color-scheme-light) li {
-  @media (prefers-color-scheme: dark) {
-    &::after {
-      background-image: url("@/assets/images/icon_pankuzu_dark.svg");
-    }
-  }
-}
-
-body.color-scheme-dark li {
-  &::after {
-    background-image: url("@/assets/images/icon_pankuzu_dark.svg");
-  }
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
 }
 </style>
