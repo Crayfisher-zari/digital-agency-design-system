@@ -457,6 +457,10 @@ const accordionText = [
         </div>
       </Layout>
     </div>
+    <p class="copyright">
+      Copyright Digital Agency, Government of Japan 2023. Licensed under CC by
+      4.0
+    </p>
   </div>
 </template>
 
@@ -513,5 +517,11 @@ hr {
 
 .templates {
   padding: 120px 0;
+}
+
+.copyright {
+  padding: 16px;
+  font-size: pxToRem(14);
+  text-align: center;
 }
 </style>
