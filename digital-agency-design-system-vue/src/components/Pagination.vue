@@ -1,4 +1,9 @@
 <script lang="ts" setup>
+import iconFirstPage from "@/assets/images/icon_firstPage.svg";
+import iconEndPage from "@/assets/images/icon_endPage.svg";
+import iconArrowLeft from "@/assets/images/icon_arrow_left.svg";
+import iconArrowRight from "@/assets/images/icon_arrow_right.svg";
+import Icon from "./Icon.vue";
 type Props = {
   type?: "simple" | "basic";
   current: number;
@@ -18,34 +23,28 @@ withDefaults(defineProps<Props>(), {
   <div :class="type">
     <div class="pagination">
       <button class="fistPage" @click="onClickFirst">
-        <picture>
-          <source
-            srcset="@/assets/images/icon_firstPage_dark.svg"
-            media="(prefers-color-scheme: dark)"
-          />
-          <source srcset="@/assets/images/icon_firstPage.svg" />
-          <img
-            src="@/assets/images/icon_firstPage.svg"
-            alt="最初へ戻る"
-            width="24"
-            height="24"
-          />
-        </picture>
+        <Icon
+          :iconSrc="iconFirstPage"
+          :width="24"
+          :height="24"
+          color="var(--color-icon-active)"
+          :ariaHidden="false"
+          ariaLabel="最初へ戻る"
+          role="img"
+          class="iconBack"
+        />
       </button>
       <button class="previous" @click="onClickPrevious">
-        <picture>
-          <source
-            srcset="@/assets/images/icon_arrow_left_dark.svg"
-            media="(prefers-color-scheme: dark)"
-          />
-          <source srcset="@/assets/images/icon_arrow_left.svg" />
-          <img
-            src="@/assets/images/icon_arrow_left.svg"
-            alt="1つ前に戻る"
-            width="24"
-            height="24"
-          />
-        </picture>
+        <Icon
+          :iconSrc="iconArrowLeft"
+          :width="24"
+          :height="24"
+          color="var(--color-icon-active)"
+          :ariaHidden="false"
+          ariaLabel="1つ前に戻る"
+          role="img"
+          class="iconBack"
+        />
       </button>
       <div v-if="current - 4 >= min" class="dot dotPrevious">...</div>
       <button
@@ -99,34 +98,28 @@ withDefaults(defineProps<Props>(), {
       </button>
       <div v-if="current + 4 <= max" class="dot dotNext">...</div>
       <button class="next" @click="onClickNext">
-        <picture>
-          <source
-            srcset="@/assets/images/icon_arrow_right_dark.svg"
-            media="(prefers-color-scheme: dark)"
-          />
-          <source srcset="@/assets/images/icon_arrow_right.svg" />
-          <img
-            src="@/assets/images/icon_arrow_right.svg"
-            alt="1つ次に進む"
-            width="24"
-            height="24"
-          />
-        </picture>
+        <Icon
+          :iconSrc="iconArrowRight"
+          :width="24"
+          :height="24"
+          color="var(--color-icon-active)"
+          :ariaHidden="false"
+          ariaLabel="1つ次に進む"
+          role="img"
+          class="iconNext"
+        />
       </button>
       <button class="endPage" @click="onClickEnd">
-        <picture>
-          <source
-            srcset="@/assets/images/icon_endPage_dark.svg"
-            media="(prefers-color-scheme: dark)"
-          />
-          <source srcset="@/assets/images/icon_endPage.svg" />
-          <img
-            src="@/assets/images/icon_endPage.svg"
-            alt="最後へ進む"
-            width="24"
-            height="24"
-          />
-        </picture>
+        <Icon
+          :iconSrc="iconEndPage"
+          :width="24"
+          :height="24"
+          color="var(--color-icon-active)"
+          :ariaHidden="false"
+          ariaLabel="最後へ進む"
+          role="img"
+          class="iconNext"
+        />
       </button>
     </div>
   </div>
@@ -155,6 +148,18 @@ button {
   background-color: var(--color-background-primary);
   border: 1px solid var(--color-border-divider);
   border-radius: 50%;
+}
+
+.iconBack {
+  position: relative;
+  top: 1px;
+  left: -1px;
+}
+
+.iconNext {
+  position: relative;
+  top: 1px;
+  left: 1px;
 }
 
 .current {
