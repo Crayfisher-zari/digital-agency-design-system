@@ -1,7 +1,11 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import Icon from "./Icon.vue";
 import { useLink } from "../composables/useLinkComponent";
 import { useDropDownAnimation } from "../composables/useDropDownAnimation";
+import iconArrow from "@/assets/images/icon_arrow_accordion.svg";
+import iconGlobe from "@/assets/images/icon_globe.svg";
+import iconCheck from "@/assets/images/icon_check.svg";
 
 type Props = {
   languageList: { label: string; link: string; isCurrent: boolean }[];
@@ -30,21 +34,25 @@ const languageList = ref(props.languageList);
     :class="[{ isOpened: isOpened }, { hasAnimation: hasAnimation }]"
   >
     <summary class="summary" @click="handleDropDown">
+      <Icon
+        :iconSrc="iconGlobe"
+        :width="16"
+        :height="16"
+        color="var(--color-text-body)"
+        class="globeIcon"
+        :ariaHidden="true"
+        role="img"
+      />
       <span class="summaryInner">Language</span>
-      <picture>
-        <source
-          srcset="@/assets/images/icon_arrow_accordion_dark.svg"
-          media="(prefers-color-scheme: dark)"
-        />
-        <source srcset="@/assets/images/icon_arrow_accordion.svg" />
-        <img
-          class="dropDownIcon"
-          src="@/assets/images/icon_arrow_accordion.svg"
-          alt=""
-          width="12"
-          height="7"
-        />
-      </picture>
+      <Icon
+        :iconSrc="iconArrow"
+        :width="12"
+        :height="7"
+        color="var(--color-text-body)"
+        class="dropDownIcon"
+        :ariaHidden="true"
+        role="img"
+      />
     </summary>
     <div ref="languageListElement" class="languageList">
       <div ref="languageItemElement" class="languageListInner">
@@ -55,6 +63,17 @@ const languageList = ref(props.languageList);
             class="languageItem"
             :class="{ isCurrent: item.isCurrent }"
           >
+            <Icon
+              v-show="item.isCurrent"
+              :iconSrc="iconCheck"
+              :width="16"
+              :height="16"
+              color="var(--color-text-body)"
+              class="checkIcon"
+              :ariaHidden="true"
+              role="img"
+            />
+
             <LinkComponent :to="item.link">{{ item.label }}</LinkComponent>
           </li>
         </ul>
@@ -63,6 +82,8 @@ const languageList = ref(props.languageList);
   </details>
 </template>
 <style lang="scss" scoped>
+@use "@/assets/style/utils/utils.scss" as *;
+
 .languageSelector {
   // アニメーションが有効な場合はタイミングを上書き
   &.isOpened {
@@ -85,19 +106,15 @@ const languageList = ref(props.languageList);
 }
 
 .summary {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-right: 5px;
-  padding-bottom: 8px;
-  padding-left: 24px;
-  font-size: pxToRem(20);
+  padding: 3px 5px 8px 24px;
+  font-size: pxToRem(14);
   line-height: 1.5;
   letter-spacing: 0.04em;
-  background-image: url("@/assets/images/icon_globe.svg");
-  background-repeat: no-repeat;
-  background-position: 0 50%;
-  background-size: 20px;
+  border-radius: 4px;
   transition: background-color var(--base-duration) var(--easing-out-expo);
 
   &:-webkit-details-marker {
@@ -114,11 +131,16 @@ const languageList = ref(props.languageList);
   }
 }
 
+.globeIcon {
+  position: absolute;
+  top: 7px;
+  left: 0;
+}
+
 .dropDownIcon {
-  display: block;
-  flex-shrink: 0;
-  margin-top: 3px;
-  margin-left: 16px;
+  position: absolute;
+  top: 14px;
+  right: 6px;
   transition: transform var(--base-duration) var(--easing-out-expo);
 }
 
@@ -136,6 +158,7 @@ const languageList = ref(props.languageList);
 }
 
 .languageItem {
+  position: relative;
   display: flex;
   padding-right: 2px;
   padding-left: 2px;
@@ -169,6 +192,12 @@ const languageList = ref(props.languageList);
     }
   }
 
+  .checkIcon {
+    position: absolute;
+    top: 8px;
+    left: 2px;
+  }
+
   a {
     display: block;
     width: 100%;
@@ -181,39 +210,6 @@ const languageList = ref(props.languageList);
 
     &:hover {
       text-decoration: underline;
-    }
-  }
-}
-
-// ダークモード時
-body:not(.color-scheme-light) {
-  .summary {
-    @media (prefers-color-scheme: dark) {
-      background-image: url("@/assets/images/icon_globe_dark.svg");
-    }
-  }
-
-  .languageItem.isCurrent {
-    a {
-      @media (prefers-color-scheme: dark) {
-        background-image: url("@/assets/images/icon_check.svg");
-      }
-    }
-  }
-}
-
-body.color-scheme-dark {
-  .summary {
-    @media (prefers-color-scheme: dark) {
-      background-image: url("@/assets/images/icon_globe_dark.svg");
-    }
-  }
-
-  .languageItem.isCurrent {
-    a {
-      @media (prefers-color-scheme: dark) {
-        background-image: url("@/assets/images/icon_check.svg");
-      }
     }
   }
 }

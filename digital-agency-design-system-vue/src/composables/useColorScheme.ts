@@ -1,4 +1,4 @@
-import { readonly, ref, watch, watchEffect } from "vue";
+import { readonly, ref, watchEffect } from "vue";
 
 type Props = {
   onChange: (newVal: ColorSheme | null) => void;

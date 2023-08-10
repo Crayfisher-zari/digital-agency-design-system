@@ -347,7 +347,9 @@ const languageList = [
         <Heading :headingLevel="2"> ランゲージセレクター </Heading>
         <Layout>
           <div class="colSpan-2">
-            <LanguageSelector :languageList="languageList" />
+            <div class="languageWrapper">
+              <LanguageSelector :languageList="languageList" />
+            </div>
           </div>
         </Layout>
       </div>
@@ -518,6 +520,11 @@ hr {
 
 .colorScheme {
   margin: 36px 0;
+}
+
+.languageWrapper {
+  position: relative;
+  height: 100px;
 }
 
 .buttonWrapper {
