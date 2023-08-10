@@ -147,7 +147,7 @@ const languageList = [
 
 <template>
   <div class="globalWrapper">
-    <Pankuzu :list="pankuzu" />
+    <Pankuzu :list="pankuzu" linkTag="a" />
     <Heading :headingLevel="1" designLevel="XL"> コンポーネント </Heading>
     <hr />
     <Layout>
@@ -348,7 +348,7 @@ const languageList = [
         <Layout>
           <div class="colSpan-2">
             <div class="languageWrapper">
-              <LanguageSelector :languageList="languageList" />
+              <LanguageSelector :languageList="languageList" linkTag="a" />
             </div>
           </div>
         </Layout>

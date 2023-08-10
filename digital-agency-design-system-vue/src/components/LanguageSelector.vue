@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import Icon from "./Icon.vue";
-import { useLink } from "../composables/useLinkComponent";
+import { LinkTag, useLink } from "../composables/useLinkComponent";
 import { useDropDownAnimation } from "../composables/useDropDownAnimation";
 import iconArrow from "@/assets/images/icon_arrow_accordion.svg";
 import iconGlobe from "@/assets/images/icon_globe.svg";
@@ -9,6 +9,7 @@ import iconCheck from "@/assets/images/icon_check.svg";
 
 type Props = {
   languageList: { label: string; link: string; isCurrent: boolean }[];
+  linkTag: LinkTag;
 };
 
 const props = defineProps<Props>();
@@ -17,7 +18,7 @@ const languageSelectorElement = ref<HTMLDetailsElement | null>(null);
 const languageListElement = ref<HTMLElement | null>(null);
 const languageItemElement = ref<HTMLElement | null>(null);
 
-const { LinkComponent } = useLink({ tag: "auto" });
+const { LinkComponent } = useLink({ tag: props.linkTag });
 
 const { isOpened, hasAnimation, handleDropDown } = useDropDownAnimation(
   languageSelectorElement,
@@ -175,10 +176,6 @@ const languageList = ref(props.languageList);
       position: relative;
       display: block;
       font-weight: var(--weight-bold);
-      background-image: url("@/assets/images/icon_check_black.svg");
-      background-repeat: no-repeat;
-      background-position: 4px 50%;
-      background-size: 16px;
 
       &::before {
         position: absolute;

@@ -6,42 +6,22 @@ import {
   SlotsType,
 } from "vue";
 
+export type LinkTag = "a" | "router" | "nuxt";
+
 type Props = {
   /** 明示的にタグを指定します */
-  tag?: "a" | "router" | "nuxt" | "auto";
+  tag?: LinkTag;
 };
 
 /**
- * リンク系のタグで適切なものを選択します
- * 特に指定がない限り、Vue Routerのrouter-linkか、Nuxtのnuxt-linkがあれば優先されます。
- * いずれもない場合はaタグで出力されます。
+ * リンク系のタグを選択します
+ * 特に指定がない場合はaタグで出力されます。
  * @example
- * const { LinkComponent } = useLink();
+ * const { LinkComponent } = useLink({tag:"nuxt"});
  * <linkComponent to="/hoge" />
  */
-export const useLink = (props: Props = { tag: "auto" }) => {
-  const RouterLink = resolveComponent("RouterLink");
-  const NuxtLink = resolveComponent("NuxtLink");
-  let Link: ConcreteComponent | string;
-  if (props && props.tag) {
-    if (props.tag === "router") {
-      Link = RouterLink;
-    } else if (props.tag === "nuxt") {
-      Link = NuxtLink;
-    } else {
-      Link = "a";
-    }
-  } else {
-    // 明示的なタグがない場合はresolveComponentから探す
-    // コンポーネントが見つからない場合はresolveComponentは文字列を返す
-    if (NuxtLink !== "NuxtLink") {
-      Link = NuxtLink;
-    } else if (RouterLink !== "RouterLink") {
-      Link = RouterLink;
-    } else {
-      Link = "a";
-    }
-  }
+export const useLink = (props: Props = { tag: "a" }) => {
+  const Link = getLinkComponent(props.tag);
 
   const render = (props: { to: string }, slots: SlotsType) => {
     if (typeof Link === "string") {
@@ -50,6 +30,7 @@ export const useLink = (props: Props = { tag: "auto" }) => {
       return h(Link, { to: props.to }, slots);
     }
   };
+
   const LinkComponent = defineComponent(
     (props, { slots }) => {
       return () => render(props, slots);
@@ -64,4 +45,29 @@ export const useLink = (props: Props = { tag: "auto" }) => {
     }
   );
   return { LinkComponent };
+};
+
+/**
+ * 指定されたリンクタグに対してコンポーネントが存在するか確かめ、存在すればそのリンク系コンポーネントを返します。なければ文字列"a"を返します
+ */
+const getLinkComponent = (
+  tag: LinkTag | undefined
+): ConcreteComponent | string => {
+  if (tag === "router") {
+    const RouterLink = resolveComponent("RouterLink");
+    if (RouterLink !== "RouterLink") {
+      return RouterLink;
+    } else {
+      return "a";
+    }
+  } else if (tag === "nuxt") {
+    const NuxtLink = resolveComponent("NuxtLink");
+    if (NuxtLink !== "NuxtLink") {
+      return NuxtLink;
+    } else {
+      return "a";
+    }
+  } else {
+    return "a";
+  }
 };
