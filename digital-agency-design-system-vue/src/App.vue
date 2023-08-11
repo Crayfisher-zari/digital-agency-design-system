@@ -19,6 +19,7 @@ import YMDSelector from "./components/YMDSelector.vue";
 import Accordion from "./components/Accordion.vue";
 import { ColorSheme, useColorScheme } from "./composables/useColorScheme";
 import LanguageSelector from "./components/LanguageSelector.vue";
+import Menu from "./components/Menu.vue";
 
 const handleClick = () => {
   console.log("click");
@@ -234,6 +235,10 @@ const languageList = [
             :isRequired="false"
           />
         </div>
+      </div>
+      <div class="colSpan-12">
+        <Heading :headingLevel="2"> メニュー </Heading>
+        <Menu />
       </div>
       <div class="colSpan-12">
         <Heading :headingLevel="2"> インプット系 </Heading>
