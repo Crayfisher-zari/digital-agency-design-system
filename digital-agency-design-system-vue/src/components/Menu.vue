@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import { ref } from "vue";
 import { LinkTag, useLink } from "../composables/useLinkComponent";
-import { useDropDownAnimation } from "../composables/useDropDownAnimation";
 import MenuAccordion from "./MenuAccordion.vue";
 
 type ItemType = "link" | "accordion";
@@ -9,6 +7,7 @@ type ItemType = "link" | "accordion";
 export type Link = {
   to: string;
   text: string;
+  selected?: boolean;
 };
 
 export type Accordion = {
@@ -45,8 +44,12 @@ const { LinkComponent } = useLink({ tag: props.linkTag });
 <template>
   <div class="menu">
     <slot name="before"></slot>
-    <div class="category">
-      <div v-for="(category, index) in categoryList" :key="index">
+    <div>
+      <div
+        v-for="(category, index) in categoryList"
+        :key="index"
+        class="category"
+      >
         <p class="categoryName">{{ category.categoryName }}</p>
         <ul class="menuList">
           <li
@@ -58,12 +61,14 @@ const { LinkComponent } = useLink({ tag: props.linkTag });
               v-if="linkItem.type === 'link'"
               :to="(linkItem.item as Link).to"
               class="link"
+              :class="[{selected:(linkItem.item as Link).selected}]"
               >{{ (linkItem.item as Link).text }}</LinkComponent
             >
             <MenuAccordion
               v-else
               :accordionTitle="(linkItem.item as Accordion).accordionTitle"
               :linkList="(linkItem.item as Accordion).linkList"
+              :linkTag="linkTag"
             />
           </li>
         </ul>
@@ -74,8 +79,16 @@ const { LinkComponent } = useLink({ tag: props.linkTag });
 <style lang="scss" scoped>
 @use "@/assets/style/utils/utils.scss" as *;
 
+.category {
+  margin-bottom: 24px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
 .categoryName {
-  padding: 8px 16px;
+  padding: 8px 16px 16px;
   font-weight: var(--weight-bold);
 }
 
@@ -92,7 +105,7 @@ const { LinkComponent } = useLink({ tag: props.linkTag });
 
 .link {
   display: block;
-  padding: 8px 16px;
+  padding: 10px 16px;
   color: var(--color-text-body);
   text-decoration: none;
   border-radius: 8px;

@@ -2,6 +2,7 @@
 import { ref } from "vue";
 import { useDropDownAnimation } from "../composables/useDropDownAnimation";
 import { Accordion } from "./Menu.vue";
+import { LinkTag, useLink } from "../composables/useLinkComponent";
 
 const accordionElement = ref<HTMLDetailsElement | null>(null);
 const contentsElement = ref<HTMLElement | null>(null);
@@ -13,7 +14,10 @@ const { isOpened, hasAnimation, handleDropDown } = useDropDownAnimation(
   contentsInnerElement
 );
 
-const props = defineProps<Accordion>();
+type Props = Accordion & { linkTag: LinkTag };
+
+const props = defineProps<Props>();
+const { LinkComponent } = useLink({ tag: props.linkTag });
 </script>
 <template>
   <details
@@ -27,25 +31,36 @@ const props = defineProps<Accordion>();
     </summary>
     <div ref="contentsElement" class="menuListWrapper">
       <ul ref="contentsInnerElement" class="menuList">
-        <li class="menuItem">
-          <LinkComponent to="#!" class="link">メニュー</LinkComponent>
-        </li>
-        <li class="menuItem">
-          <LinkComponent to="#!" class="link">メニュー</LinkComponent>
-        </li>
-        <li class="menuItem">
-          <LinkComponent to="#!" class="link">メニュー</LinkComponent>
+        <li v-for="(item, index) in linkList" :key="index" class="menuItem">
+          <LinkComponent
+            :to="item.to"
+            class="link"
+            :class="[{ selected: item.selected }]"
+            >{{ item.text }}</LinkComponent
+          >
         </li>
       </ul>
     </div>
   </details>
 </template>
 <style lang="scss" scoped>
+.summary {
+  display: block;
+  padding: 8px 16px;
+  color: var(--color-text-body);
+
+  &::-webkit-details-marker {
+    // Safariの三角アイコン
+    display: none;
+  }
+}
+
 .menuList {
   display: grid;
   grid-template-columns: 100%;
   grid-auto-flow: row;
   row-gap: 16px;
+  padding-top: 16px;
 }
 
 .menuItem {
@@ -54,7 +69,7 @@ const props = defineProps<Accordion>();
 
 .link {
   display: block;
-  padding: 8px 16px 8px 48px;
+  padding: 10px 16px 10px 48px;
   color: var(--color-text-body);
   text-decoration: none;
   border-radius: 8px;

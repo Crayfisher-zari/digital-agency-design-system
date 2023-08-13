@@ -150,12 +150,22 @@ const menuList: InstanceType<typeof Menu>["categoryList"] = [
     categoryName: "カテゴリー",
     itemList: [
       { type: "link", item: { to: "!#", text: "メニュー" } },
-      { type: "link", item: { to: "!#", text: "メニュー" } },
-      { type: "link", item: { to: "!#", text: "メニュー" } },
+      { type: "link", item: { to: "!#", text: "メニュー", selected: true } },
       {
         type: "accordion",
         item: {
           accordionTitle: "アコーディオン",
+          linkList: [
+            { to: "!#", text: "メニュー" },
+            { to: "!#", text: "メニュー" },
+            { to: "!#", text: "メニュー", selected: true },
+          ],
+        },
+      },
+      {
+        type: "accordion",
+        item: {
+          accordionTitle: "アコーディオン2",
           linkList: [
             { to: "!#", text: "メニュー" },
             { to: "!#", text: "メニュー" },
