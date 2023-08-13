@@ -114,10 +114,6 @@ const { isOpened, hasAnimation, handleDropDown } = useDropDownAnimation(
     background-color: var(--color-background-secondary);
   }
 
-  &:-webkit-details-marker {
-    display: none;
-  }
-
   &:focus-visible {
     outline: 2px solid var(--color-border-focused);
   }

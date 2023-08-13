@@ -1,4 +1,5 @@
 import {
+  Component,
   ConcreteComponent,
   defineComponent,
   h,
@@ -31,7 +32,7 @@ export const useLink = (props: Props = { tag: "a" }) => {
     }
   };
 
-  const LinkComponent = defineComponent(
+  const LinkComponent: Component = defineComponent(
     (props, { slots }) => {
       return () => render(props, slots);
     },

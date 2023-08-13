@@ -144,6 +144,28 @@ const languageList = [
   { label: "简体中文", link: "#!", isCurrent: false },
   { label: "한국어", link: "#!", isCurrent: false },
 ];
+
+const menuList: InstanceType<typeof Menu>["categoryList"] = [
+  {
+    categoryName: "カテゴリー",
+    itemList: [
+      { type: "link", item: { to: "!#", text: "メニュー" } },
+      { type: "link", item: { to: "!#", text: "メニュー" } },
+      { type: "link", item: { to: "!#", text: "メニュー" } },
+      {
+        type: "accordion",
+        item: {
+          accordionTitle: "アコーディオン",
+          linkList: [
+            { to: "!#", text: "メニュー" },
+            { to: "!#", text: "メニュー" },
+            { to: "!#", text: "メニュー" },
+          ],
+        },
+      },
+    ],
+  },
+];
 </script>
 
 <template>
@@ -238,7 +260,7 @@ const languageList = [
       </div>
       <div class="colSpan-12">
         <Heading :headingLevel="2"> メニュー </Heading>
-        <Menu />
+        <Menu :categoryList="menuList" linkTag="a"></Menu>
       </div>
       <div class="colSpan-12">
         <Heading :headingLevel="2"> インプット系 </Heading>
