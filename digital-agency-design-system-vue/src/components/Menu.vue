@@ -12,6 +12,7 @@ export type Link = {
 
 export type Accordion = {
   accordionTitle: string;
+  hasIcon?: boolean;
   linkList: Link[];
 };
 
@@ -31,20 +32,21 @@ type CategoryList = {
 };
 
 type Props = {
-  categoryList: CategoryList[];
-  linkTag: LinkTag;
+  categoryList?: CategoryList[];
+  linkTag?: LinkTag;
   hasIcon?: boolean;
 };
 const props = withDefaults(defineProps<Props>(), {
   hasIcon: false,
+  linkTag: "a",
 });
 
 const { LinkComponent } = useLink({ tag: props.linkTag });
 </script>
 <template>
   <div class="menu">
-    <slot name="before"></slot>
-    <div>
+    <slot name="default"></slot>
+    <div v-if="categoryList">
       <div
         v-for="(category, index) in categoryList"
         :key="index"
@@ -67,6 +69,7 @@ const { LinkComponent } = useLink({ tag: props.linkTag });
             <MenuAccordion
               v-else
               :accordionTitle="(linkItem.item as Accordion).accordionTitle"
+              :hasIcon="(linkItem.item as Accordion).hasIcon"
               :linkList="(linkItem.item as Accordion).linkList"
               :linkTag="linkTag"
             />
@@ -74,6 +77,7 @@ const { LinkComponent } = useLink({ tag: props.linkTag });
         </ul>
       </div>
     </div>
+    <slot name="after"></slot>
   </div>
 </template>
 <style lang="scss" scoped>

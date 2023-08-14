@@ -2,7 +2,9 @@
 import { ref } from "vue";
 import { useDropDownAnimation } from "../composables/useDropDownAnimation";
 import { Accordion } from "./Menu.vue";
+import Icon from "./Icon.vue";
 import { LinkTag, useLink } from "../composables/useLinkComponent";
+import iconArrow from "@/assets/images/icon_arrow_accordion.svg";
 
 const accordionElement = ref<HTMLDetailsElement | null>(null);
 const contentsElement = ref<HTMLElement | null>(null);
@@ -28,6 +30,17 @@ const { LinkComponent } = useLink({ tag: props.linkTag });
   >
     <summary class="summary">
       {{ accordionTitle }}
+      <div v-if="hasIcon" class="icon">
+        <Icon
+          class="dropDownIcon"
+          :iconSrc="iconArrow"
+          :width="12"
+          :height="7"
+          color="var(--color-text-body)"
+          :ariaHidden="true"
+          role="img"
+        />
+      </div>
     </summary>
     <div ref="contentsElement" class="menuListWrapper">
       <ul ref="contentsInnerElement" class="menuList">
@@ -44,7 +57,25 @@ const { LinkComponent } = useLink({ tag: props.linkTag });
   </details>
 </template>
 <style lang="scss" scoped>
+.accordion {
+  // アニメーションが有効な場合はタイミングを上書き
+  &.isOpened {
+    .dropDownIcon {
+      transform: rotate(180deg);
+    }
+  }
+
+  &:not(.hasAnimation) {
+    &[open] {
+      .dropDownIcon {
+        transform: rotate(180deg);
+      }
+    }
+  }
+}
+
 .summary {
+  position: relative;
   display: block;
   padding: 8px 16px;
   color: var(--color-text-body);
@@ -53,6 +84,16 @@ const { LinkComponent } = useLink({ tag: props.linkTag });
     // Safariの三角アイコン
     display: none;
   }
+}
+
+.icon {
+  position: absolute;
+  top: 5px;
+  right: 16px;
+}
+
+.dropDownIcon {
+  transition: transform var(--base-duration) var(--easing-out-expo);
 }
 
 .menuList {

@@ -20,6 +20,7 @@ import Accordion from "./components/Accordion.vue";
 import { ColorSheme, useColorScheme } from "./composables/useColorScheme";
 import LanguageSelector from "./components/LanguageSelector.vue";
 import Menu from "./components/Menu.vue";
+import MenuAccordion from "./components/MenuAccordion.vue";
 
 const handleClick = () => {
   console.log("click");
@@ -147,7 +148,7 @@ const languageList = [
 
 const menuList: InstanceType<typeof Menu>["categoryList"] = [
   {
-    categoryName: "カテゴリー",
+    categoryName: "アイコンなし",
     itemList: [
       { type: "link", item: { to: "!#", text: "メニュー" } },
       { type: "link", item: { to: "!#", text: "メニュー", selected: true } },
@@ -175,6 +176,34 @@ const menuList: InstanceType<typeof Menu>["categoryList"] = [
       },
     ],
   },
+];
+
+const menuList2: InstanceType<typeof Menu>["categoryList"] = [
+  {
+    categoryName: "アイコンあり",
+    itemList: [
+      { type: "link", item: { to: "!#", text: "メニュー" } },
+      {
+        type: "accordion",
+        item: {
+          accordionTitle: "アコーディオン",
+          hasIcon: true,
+          linkList: [
+            { to: "!#", text: "メニュー" },
+            { to: "!#", text: "メニュー" },
+            { to: "!#", text: "メニュー" },
+          ],
+        },
+      },
+      { type: "link", item: { to: "!#", text: "メニュー", selected: true } },
+    ],
+  },
+];
+
+const accordionMenu = [
+  { to: "!#", text: "メニュー" },
+  { to: "!#", text: "メニュー" },
+  { to: "!#", text: "メニュー" },
 ];
 </script>
 
@@ -270,7 +299,23 @@ const menuList: InstanceType<typeof Menu>["categoryList"] = [
       </div>
       <div class="colSpan-12">
         <Heading :headingLevel="2"> メニュー </Heading>
-        <Menu :categoryList="menuList" linkTag="a"></Menu>
+        <Layout>
+          <div class="colSpan-4">
+            <Menu :categoryList="menuList" linkTag="a"></Menu>
+          </div>
+          <div class="colSpan-4">
+            <Menu :categoryList="menuList2" linkTag="a" hasIcon></Menu>
+          </div>
+          <div class="colSpan-4">
+            <Menu>
+              <MenuAccordion
+                accordionTitle="アコーディオン"
+                :linkList="accordionMenu"
+                linkTag="a"
+              />
+            </Menu>
+          </div>
+        </Layout>
       </div>
       <div class="colSpan-12">
         <Heading :headingLevel="2"> インプット系 </Heading>
