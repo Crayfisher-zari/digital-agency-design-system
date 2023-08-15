@@ -32,7 +32,7 @@ type CategoryList = {
 };
 
 type Props = {
-  categoryList?: CategoryList[];
+  menuList?: CategoryList[] | Link[];
   linkTag?: LinkTag;
   hasIcon?: boolean;
 };
@@ -46,33 +46,45 @@ const { LinkComponent } = useLink({ tag: props.linkTag });
 <template>
   <div class="menu">
     <slot name="default"></slot>
-    <div v-if="categoryList">
-      <div
-        v-for="(category, index) in categoryList"
-        :key="index"
-        class="category"
-      >
-        <p class="categoryName">{{ category.categoryName }}</p>
-        <ul class="menuList">
-          <li
-            v-for="(linkItem, index) in category.itemList"
-            :key="index"
-            class="menuItem"
-          >
-            <LinkComponent
-              v-if="linkItem.type === 'link'"
-              :to="(linkItem.item as Link).to"
-              class="link"
-              :class="[{selected:(linkItem.item as Link).selected}]"
-              >{{ (linkItem.item as Link).text }}</LinkComponent
+    <div v-if="menuList">
+      <div v-for="(menuItem, index) in menuList" :key="index" class="category">
+        <!-- カテゴリーがあるタイプ -->
+        <div v-if="'categoryName' in menuItem">
+          <p class="categoryName">
+            {{ menuItem.categoryName }}
+          </p>
+          <ul class="menuList">
+            <li
+              v-for="(linkItem, index) in menuItem.itemList"
+              :key="index"
+              class="menuItem"
             >
-            <MenuAccordion
-              v-else
-              :accordionTitle="(linkItem.item as Accordion).accordionTitle"
-              :hasIcon="(linkItem.item as Accordion).hasIcon"
-              :linkList="(linkItem.item as Accordion).linkList"
-              :linkTag="linkTag"
-            />
+              <LinkComponent
+                v-if="linkItem.type === 'link'"
+                :to="(linkItem.item as Link).to"
+                class="link"
+                :class="[{selected:(linkItem.item as Link).selected}]"
+                >{{ (linkItem.item as Link).text }}</LinkComponent
+              >
+              <MenuAccordion
+                v-else
+                :accordionTitle="(linkItem.item as Accordion).accordionTitle"
+                :hasIcon="(linkItem.item as Accordion).hasIcon"
+                :linkList="(linkItem.item as Accordion).linkList"
+                :linkTag="linkTag"
+              />
+            </li>
+          </ul>
+        </div>
+        <!-- リンクリストタイプ -->
+        <ul v-else class="menuList">
+          <li class="menuItem">
+            <LinkComponent
+              :to="menuItem.to"
+              class="link"
+              :class="[{ selected: menuItem.selected }]"
+              >{{ menuItem.text }}</LinkComponent
+            >
           </li>
         </ul>
       </div>

@@ -146,7 +146,7 @@ const languageList = [
   { label: "한국어", link: "#!", isCurrent: false },
 ];
 
-const menuList: InstanceType<typeof Menu>["categoryList"] = [
+const menuList: InstanceType<typeof Menu>["menuList"] = [
   {
     categoryName: "アイコンなし",
     itemList: [
@@ -163,22 +163,8 @@ const menuList: InstanceType<typeof Menu>["categoryList"] = [
           ],
         },
       },
-      {
-        type: "accordion",
-        item: {
-          accordionTitle: "アコーディオン2",
-          linkList: [
-            { to: "!#", text: "メニュー" },
-            { to: "!#", text: "メニュー" },
-            { to: "!#", text: "メニュー" },
-          ],
-        },
-      },
     ],
   },
-];
-
-const menuList2: InstanceType<typeof Menu>["categoryList"] = [
   {
     categoryName: "アイコンあり",
     itemList: [
@@ -200,7 +186,7 @@ const menuList2: InstanceType<typeof Menu>["categoryList"] = [
   },
 ];
 
-const accordionMenu = [
+const menuList2: InstanceType<typeof Menu>["menuList"] = [
   { to: "!#", text: "メニュー" },
   { to: "!#", text: "メニュー" },
   { to: "!#", text: "メニュー" },
@@ -301,16 +287,16 @@ const accordionMenu = [
         <Heading :headingLevel="2"> メニュー </Heading>
         <Layout>
           <div class="colSpan-4">
-            <Menu :categoryList="menuList" linkTag="a"></Menu>
+            <Menu :menuList="menuList" linkTag="a"></Menu>
           </div>
           <div class="colSpan-4">
-            <Menu :categoryList="menuList2" linkTag="a" hasIcon></Menu>
+            <Menu :menuList="menuList2" linkTag="a" hasIcon></Menu>
           </div>
           <div class="colSpan-4">
             <Menu>
               <MenuAccordion
                 accordionTitle="アコーディオン"
-                :linkList="accordionMenu"
+                :linkList="menuList2"
                 linkTag="a"
               />
             </Menu>
