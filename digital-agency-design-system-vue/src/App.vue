@@ -21,6 +21,7 @@ import { ColorSheme, useColorScheme } from "./composables/useColorScheme";
 import LanguageSelector from "./components/LanguageSelector.vue";
 import Menu from "./components/Menu.vue";
 import MenuAccordion from "./components/MenuAccordion.vue";
+import DropDown from "./components/DropDown.vue";
 
 const handleClick = () => {
   console.log("click");
@@ -300,6 +301,11 @@ const menuList2: InstanceType<typeof Menu>["menuList"] = [
                 linkTag="a"
               />
             </Menu>
+          </div>
+          <div class="colSpan-4">
+            <DropDown summary="ドロップダウン">
+              <Menu :menuList="menuList" linkTag="a"></Menu>
+            </DropDown>
           </div>
         </Layout>
       </div>
