@@ -32,11 +32,12 @@ type CategoryList = {
 };
 
 type Props = {
-  menuList: CategoryList[] | Link[];
+  menuList?: CategoryList[] | Link[];
   linkTag?: LinkTag;
   hasIcon?: boolean;
 };
 const props = withDefaults(defineProps<Props>(), {
+  menuList: undefined,
   hasIcon: false,
   linkTag: "a",
 });
