@@ -32,7 +32,7 @@ type CategoryList = {
 };
 
 type Props = {
-  menuList?: CategoryList[] | Link[];
+  menuList: CategoryList[] | Link[];
   linkTag?: LinkTag;
   hasIcon?: boolean;
 };
@@ -55,8 +55,8 @@ const { LinkComponent } = useLink({ tag: props.linkTag });
           </p>
           <ul class="menuList">
             <li
-              v-for="(linkItem, index) in menuItem.itemList"
-              :key="index"
+              v-for="(linkItem, index2) in menuItem.itemList"
+              :key="index2"
               class="menuItem"
             >
               <LinkComponent

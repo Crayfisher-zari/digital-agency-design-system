@@ -6,6 +6,8 @@ import { useDropDownAnimation } from "../composables/useDropDownAnimation";
 
 type Props = {
   summary: string;
+  hasShadow?: boolean;
+  side?: "left" | "right";
 };
 
 defineProps<Props>();
@@ -21,42 +23,44 @@ const { isOpened, hasAnimation, handleDropDown } = useDropDownAnimation(
 );
 </script>
 <template>
-  <div>
-    <details
-      ref="accordionElement"
-      class="accordion"
-      :class="[{ isOpened: isOpened }, { hasAnimation: hasAnimation }]"
-    >
-      <summary class="summary" @click="handleDropDown">
-        <span class="summaryInner">{{ summary }}</span>
-        <Icon
-          :iconSrc="iconArrow"
-          :width="24"
-          :height="14"
-          color="var(--color-text-body)"
-          class="dropDownIcon"
-          :ariaHidden="true"
-          role="img"
-        />
-      </summary>
-      <div ref="contentsElement" class="details">
-        <div ref="contentsInnerElement" class="detailsInner">
-          <slot></slot>
-        </div>
+  <details
+    ref="accordionElement"
+    class="dropDown"
+    :class="[{ isOpened: isOpened }, { hasAnimation: hasAnimation }]"
+  >
+    <summary class="summary" @click="handleDropDown">
+      <span class="summaryInner">{{ summary }}</span>
+      <Icon
+        :iconSrc="iconArrow"
+        :width="12"
+        :height="7"
+        color="var(--color-text-body)"
+        class="dropDownIcon"
+        :ariaHidden="true"
+        role="img"
+      />
+    </summary>
+    <div ref="contentsElement" class="contents">
+      <div ref="contentsInnerElement" class="contentsInner">
+        <slot></slot>
       </div>
-    </details>
-  </div>
+    </div>
+  </details>
 </template>
 <style lang="scss" scoped>
 @use "@/assets/style/utils/utils.scss" as *;
 
-.accordion {
-  border-bottom: 1px solid var(--color-border-divider);
+.dropDown {
+  position: relative;
 
   // アニメーションが有効な場合はタイミングを上書き
   &.isOpened {
     .dropDownIcon {
       transform: rotate(180deg);
+    }
+
+    .contents {
+      border-color: var(--color-sumi-500);
     }
   }
 
@@ -86,21 +90,19 @@ const { isOpened, hasAnimation, handleDropDown } = useDropDownAnimation(
 }
 
 .summary {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  min-height: 68px;
-  padding-top: 19px;
-  padding-right: 28px;
-  padding-bottom: 19px;
-  font-size: pxToRem(20);
+  position: relative;
+  display: inline-block;
+  min-width: 148px;
+  min-height: 50px;
+  padding-top: 13px;
+  padding-right: 24px;
+  padding-bottom: 13px;
+  font-size: pxToRem(16);
+  font-weight: var(--weight-bold);
   line-height: 1.5;
   letter-spacing: 0.04em;
+  border-bottom: 2px solid var(--color-text-body);
   transition: background-color var(--base-duration) var(--easing-out-expo);
-
-  &:hover {
-    background-color: var(--color-background-secondary);
-  }
 
   &:focus-visible {
     outline: 2px solid var(--color-border-focused);
@@ -113,30 +115,29 @@ const { isOpened, hasAnimation, handleDropDown } = useDropDownAnimation(
 }
 
 .summaryInner {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  width: 100%;
+  min-width: 120px;
 }
 
 .dropDownIcon {
+  position: absolute;
+  top: 50%;
+  right: 8px;
   display: block;
-  flex-shrink: 0;
-  margin-left: 16px;
+  margin-top: -2px;
   transition: transform var(--base-duration) var(--easing-out-expo);
 }
 
-.details {
+.contents {
+  position: absolute;
+  width: 100%;
   overflow: hidden;
-  transition: height var(--base-duration);
+  background-color: var(--color-background-primary);
+  border: 1px solid transparent;
+  transition: height var(--base-duration),
+    border-color var(--base-duration) var(--easing-out-expo);
 }
 
-.detailsInner {
-  display: flex;
-  padding-top: 24px;
-  padding-right: 32px;
-  padding-bottom: 40px;
-  font-size: pxToRem(16);
-  line-height: 1.7;
+.contentsInner {
+  padding: 16px 8px 34px;
 }
 </style>

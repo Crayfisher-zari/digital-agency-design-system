@@ -302,9 +302,9 @@ const menuList2: InstanceType<typeof Menu>["menuList"] = [
               />
             </Menu>
           </div>
-          <div class="colSpan-4">
+          <div class="colSpan-3">
             <DropDown summary="ドロップダウン">
-              <Menu :menuList="menuList" linkTag="a"></Menu>
+              <Menu :menuList="menuList2" linkTag="a"></Menu>
             </DropDown>
           </div>
         </Layout>
