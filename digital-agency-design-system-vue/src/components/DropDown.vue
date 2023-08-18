@@ -10,7 +10,7 @@ type Props = {
   side?: "left" | "right";
 };
 
-defineProps<Props>();
+withDefaults(defineProps<Props>(),{side:"left"});
 
 const accordionElement = ref<HTMLDetailsElement | null>(null);
 const contentsElement = ref<HTMLElement | null>(null);
@@ -26,7 +26,7 @@ const { isOpened, hasAnimation, handleDropDown } = useDropDownAnimation(
   <details
     ref="accordionElement"
     class="dropDown"
-    :class="[{ isOpened: isOpened }, { hasAnimation: hasAnimation }]"
+    :class="[{ isOpened: isOpened }, { hasAnimation: hasAnimation },{hasShadow:hasShadow},side]"
   >
     <summary class="summary" @click="handleDropDown">
       <span class="summaryInner">{{ summary }}</span>
@@ -71,6 +71,18 @@ const { isOpened, hasAnimation, handleDropDown } = useDropDownAnimation(
       }
     }
   }
+
+  // 影あり
+  &.hasShadow{
+    .contents{
+      box-shadow: 0 0 16px 0 rgba(26, 26, 28,0.2);
+    }
+  }
+
+  // 右寄せ位置
+  &.right{
+    text-align: right;
+  }
 }
 
 .icon {
@@ -101,6 +113,7 @@ const { isOpened, hasAnimation, handleDropDown } = useDropDownAnimation(
   font-weight: var(--weight-bold);
   line-height: 1.5;
   letter-spacing: 0.04em;
+  text-align: left;
   border-bottom: 2px solid var(--color-text-body);
   transition: background-color var(--base-duration) var(--easing-out-expo);
 

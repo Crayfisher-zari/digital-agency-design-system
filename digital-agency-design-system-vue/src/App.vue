@@ -307,6 +307,16 @@ const menuList2: InstanceType<typeof Menu>["menuList"] = [
               <Menu :menuList="menuList2" linkTag="a"></Menu>
             </DropDown>
           </div>
+          <div class="colSpan-3">
+            <DropDown summary="ドロップダウン" hasShadow>
+              <Menu :menuList="menuList2" linkTag="a"></Menu>
+            </DropDown>
+          </div>
+          <div class="colSpan-3">
+            <DropDown summary="ドロップダウン" hasShadow side="right">
+              <Menu :menuList="menuList2" linkTag="a"></Menu>
+            </DropDown>
+          </div>
         </Layout>
       </div>
       <div class="colSpan-12">
