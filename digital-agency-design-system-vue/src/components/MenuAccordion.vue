@@ -13,7 +13,7 @@ const contentsInnerElement = ref<HTMLElement | null>(null);
 const { isOpened, hasAnimation, handleDropDown } = useDropDownAnimation(
   accordionElement,
   contentsElement,
-  contentsInnerElement
+  contentsInnerElement,
 );
 
 type Props = Accordion & { linkTag: LinkTag };

@@ -64,7 +64,7 @@ const { LinkComponent } = useLink({ tag: props.linkTag });
                 v-if="linkItem.type === 'link'"
                 :to="(linkItem.item as Link).to"
                 class="link"
-                :class="[{selected:(linkItem.item as Link).selected}]"
+                :class="[{ selected: (linkItem.item as Link).selected }]"
                 >{{ (linkItem.item as Link).text }}</LinkComponent
               >
               <MenuAccordion

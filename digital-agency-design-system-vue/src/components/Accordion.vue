@@ -23,7 +23,7 @@ const contentsInnerElement = ref<HTMLElement | null>(null);
 const { isOpened, hasAnimation, handleDropDown } = useDropDownAnimation(
   accordionElement,
   contentsElement,
-  contentsInnerElement
+  contentsInnerElement,
 );
 </script>
 <template>
