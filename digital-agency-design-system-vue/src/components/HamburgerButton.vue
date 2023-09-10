@@ -80,6 +80,24 @@ const state = computed({
   &.vertical {
     width: 48px;
     height: 48px;
+    .iconWrapper {
+      margin-top: 5px;
+      margin-right: auto;
+      margin-left: auto;
+    }
+  }
+  &.horizontal {
+    width: 72px;
+    padding-left: 4px;
+    height: 32px;
+    .buttonInner {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+    }
+    .iconWrapper {
+      margin-right: 4px;
+    }
   }
 }
 
@@ -114,9 +132,6 @@ const state = computed({
   display: block;
   width: 24px;
   height: 24px;
-  margin-top: 5px;
-  margin-right: auto;
-  margin-left: auto;
 }
 
 .icon {
