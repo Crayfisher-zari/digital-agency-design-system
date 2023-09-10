@@ -22,7 +22,7 @@ import LanguageSelector from "./components/LanguageSelector.vue";
 import Menu from "./components/Menu.vue";
 import MenuAccordion from "./components/MenuAccordion.vue";
 import DropDown from "./components/DropDown.vue";
-import TheHeader from "./components/TheHeader.vue"
+import HeaderContainer from "./components/HeaderContainer.vue"
 
 const handleClick = () => {
   console.log("click");
@@ -197,9 +197,9 @@ const menuList2: InstanceType<typeof Menu>["menuList"] = [
 
 <template>
   <div class="globalWrapper">
-    <TheHeader>
+    <HeaderContainer>
       <template #logo><img src="/logo.png" width="240" height="80"/></template>
-    </TheHeader>
+    </HeaderContainer>
     <Pankuzu :list="pankuzu" linkTag="a" />
     <Heading :headingLevel="1" designLevel="XL"> コンポーネント </Heading>
     <hr />
