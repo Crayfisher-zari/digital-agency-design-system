@@ -23,7 +23,7 @@ const { LinkComponent } = useLink({ tag: props.linkTag });
 const { isOpened, hasAnimation, handleDropDown } = useDropDownAnimation(
   languageSelectorElement,
   languageListElement,
-  languageItemElement
+  languageItemElement,
 );
 
 const languageList = ref(props.languageList);
@@ -149,7 +149,8 @@ const languageList = ref(props.languageList);
   overflow: hidden;
   border: 1px solid transparent;
   border-radius: 6px;
-  transition: height var(--base-duration),
+  transition:
+    height var(--base-duration),
     border-color var(--base-duration) var(--easing-out-expo);
 }
 

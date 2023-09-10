@@ -47,7 +47,7 @@ const handleInput = (e: Event) => {
   // リアクティブな値が配列の場合（複数チェックボックス想定）
   if (Array.isArray(props.modelValue)) {
     const findIndex = props.modelValue.findIndex(
-      (item) => item === props.value
+      (item) => item === props.value,
     );
     const find = findIndex !== -1;
 

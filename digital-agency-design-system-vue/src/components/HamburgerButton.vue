@@ -50,9 +50,9 @@ const state = computed({
 @use "@/assets/style/utils/utils.scss" as *;
 
 .hamburgerButton {
+  appearance: none;
   background-color: transparent;
   border: none;
-  appearance: none;
 
   &.vertical {
     width: 48px;
