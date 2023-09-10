@@ -3,14 +3,13 @@
 
 $breakPoints: (
   mobile: $mobileBreakPoint,
-  tablet: $tabletBreakPoint,
 );
 
 /**
  * 規定のブレークポイントより下のメディアクエリです
  */
 @mixin mediaQueryDown($breakPoint: mobile) {
-  @media screen and (max-width: map-get($breakPoints,$breakPoint)) {
+  @media screen and (max-width: #{(map-get($breakPoints,$breakPoint) - 1)}px) {
     @content;
   }
 }
@@ -19,7 +18,7 @@ $breakPoints: (
  * 規定のブレークポイントより上のメディアクエリです
  */
 @mixin mediaQueryUp($breakPoint: mobile) {
-  @media screen and (min-width: map-get($breakPoints,$breakPoint)) {
+  @media screen and (min-width: #{map-get($breakPoints,$breakPoint)}px) {
     @content;
   }
 }

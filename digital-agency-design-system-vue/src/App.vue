@@ -554,11 +554,6 @@ const menuList2: InstanceType<typeof Menu>["menuList"] = [
           <div class="layoutBlock colSpan-4">3分の1</div>
           <div class="layoutBlock colSpan-4">3分の1</div>
         </Layout>
-        <p>タブレットは2列にする</p>
-        <Layout>
-          <div class="layoutBlock colSpan-6 colSpanTablet-1">4分の2</div>
-          <div class="layoutBlock colSpan-6 colSpanTablet-1">4分の2</div>
-        </Layout>
         <p>真ん中半分だけ使う</p>
         <Layout>
           <div class="layoutBlock colStart-4 colEnd-10">4分の2</div>
@@ -619,14 +614,14 @@ hr {
   display: flex;
   flex-direction: column;
   row-gap: 24px;
-  width: 300px;
+  max-width: 300px;
 }
 
 .inputWrapper {
   display: flex;
   flex-direction: column;
   row-gap: 24px;
-  width: 300px;
+  max-width: 300px;
 }
 
 .layoutBlock {

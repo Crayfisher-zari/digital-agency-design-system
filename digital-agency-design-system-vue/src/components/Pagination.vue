@@ -251,7 +251,7 @@ button {
   }
 }
 
-@include mediaQueryDown(tablet) {
+@include mediaQueryDown {
   @include simpleStyle;
 }
 
