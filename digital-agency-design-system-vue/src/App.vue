@@ -203,7 +203,9 @@ const isDrawerVisible = ref(false);
 
 <template>
   <HeaderContainer>
-    <template #logo><img src="/logo.png" width="240" height="80" /></template>
+    <template #logo
+      ><img src="/logo.png" width="240" height="80" class="headerLogo"
+    /></template>
     <template #item>
       <NavigationContainer class="headerNav" gap="small">
         <UtilityLink to="#!">サイトポリシー</UtilityLink>
@@ -232,7 +234,7 @@ const isDrawerVisible = ref(false);
       </NavigationContainer>
     </template>
     <template #hamburger>
-      <HamburgerButton v-model="isDrawerVisible"
+      <HamburgerButton v-model="isDrawerVisible" class="headerHamburger"
     /></template>
   </HeaderContainer>
   <div class="globalWrapper">
@@ -641,8 +643,18 @@ hr {
   margin: 36px 0;
 }
 
+.headerLogo {
+  @include mediaQueryDown {
+    width: 160px;
+    height: auto;
+  }
+}
+
 .headerNav {
   padding-right: 160px;
+  @include mediaQueryDown {
+    display: none;
+  }
 }
 
 .headerMenu {
@@ -652,7 +664,11 @@ hr {
 .headerLanguage {
   position: absolute;
   top: 26px;
+  right: 4px;
   width: 120px;
+  @include mediaQueryDown {
+    top: 12px;
+  }
 }
 
 .languageWrapper {
@@ -662,6 +678,11 @@ hr {
 
 .menuWrapper {
   height: 240px;
+}
+
+.headerHamburger {
+  position: relative;
+  top: 4px;
 }
 
 .buttonWrapper {

@@ -140,7 +140,7 @@ const languageList = ref(props.languageList);
 
 .dropDownIcon {
   position: absolute;
-  top: 14px;
+  top: 12px;
   right: 6px;
   transition: transform var(--base-duration) var(--easing-out-expo);
 }

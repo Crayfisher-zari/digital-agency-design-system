@@ -25,9 +25,14 @@ withDefaults(defineProps<Props>(), {
   </header>
 </template>
 <style scoped lang="scss">
+@use "@/assets/style/utils/utils.scss" as *;
+
 header {
   padding: 0 40px;
   border-bottom: 1px solid var(--color-border-divider);
+  @include mediaQueryDown {
+    padding: 0 16px;
+  }
 }
 
 .inner {
@@ -35,6 +40,9 @@ header {
   grid-template: "logo item" 80px "menu menu" 56px / 240px 1fr;
   max-width: 1280px;
   margin: 0 auto;
+  @include mediaQueryDown {
+    grid-template: "logo item hamburger" 56px / 160px 1fr 48px;
+  }
 }
 
 .logo {
@@ -51,5 +59,15 @@ header {
 
 .menu {
   grid-area: menu;
+  @include mediaQueryDown {
+    display: none;
+  }
+}
+
+.hamburger {
+  grid-area: hamburger;
+  @include mediaQueryUp {
+    display: none;
+  }
 }
 </style>
