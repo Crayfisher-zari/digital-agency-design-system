@@ -12,6 +12,7 @@ export type LinkTag = "a" | "router" | "nuxt";
 type Props = {
   /** 明示的にタグを指定します */
   tag?: LinkTag;
+  target?: "_blank";
 };
 
 /**
@@ -24,9 +25,9 @@ type Props = {
 export const useLink = (props: Props = { tag: "a" }) => {
   const Link = getLinkComponent(props.tag);
 
-  const render = (props: { to: string }, slots: SlotsType) => {
+  const render = (props: { to: string; target: string }, slots: SlotsType) => {
     if (typeof Link === "string") {
-      return h(Link, { href: props.to }, slots);
+      return h(Link, { href: props.to, target: props.target ?? null }, slots);
     } else {
       return h(Link, { to: props.to }, slots);
     }
@@ -41,6 +42,10 @@ export const useLink = (props: Props = { tag: "a" }) => {
         to: {
           type: String,
           default: "/",
+        },
+        target: {
+          type: String,
+          required: false,
         },
       },
     },
