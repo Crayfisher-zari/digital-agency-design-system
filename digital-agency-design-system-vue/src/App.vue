@@ -25,6 +25,7 @@ import DropDown from "./components/DropDown.vue";
 import HeaderContainer from "./components/HeaderContainer.vue";
 import UtilityLink from "./components/UtilityLink.vue";
 import NavigationContainer from "./components/NavigationContainer.vue";
+import MenuLink from "./components/MenuLink.vue";
 
 const handleClick = () => {
   console.log("click");
@@ -215,16 +216,16 @@ const menuList2: InstanceType<typeof Menu>["menuList"] = [
     </template>
     <template #menu>
       <NavigationContainer class="headerMenu" alignItems="end">
-        <a href="#!">最新情報</a>
-        <a href="#!">制作</a>
+        <MenuLink to="#!">最新情報</MenuLink>
+        <MenuLink to="#!">政策</MenuLink>
         <DropDown summary="市民向けサービス">
           <Menu :menuList="menuList2" linkTag="a"></Menu>
         </DropDown>
         <DropDown summary="事業者向け">
           <Menu :menuList="menuList2" linkTag="a"></Menu>
         </DropDown>
-        <a href="#!">採用情報</a>
-        <a href="#!">ご意見・ご要望</a>
+        <MenuLink to="#!">採用情報</MenuLink>
+        <MenuLink to="#!">ご意見・ご要望</MenuLink>
       </NavigationContainer>
     </template>
   </HeaderContainer>
@@ -615,7 +616,7 @@ const menuList2: InstanceType<typeof Menu>["menuList"] = [
 .globalWrapper {
   max-width: 1104px;
   padding: 0 40px;
-  margin: 0 auto;
+  margin: 24px auto 0;
   @include mediaQueryDown {
     padding: 0 16px;
   }

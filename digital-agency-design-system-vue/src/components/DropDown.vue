@@ -62,6 +62,10 @@ const { isOpened, hasAnimation, handleDropDown } = useDropDownAnimation(
 
   // アニメーションが有効な場合はタイミングを上書き
   &.isOpened {
+    .summary {
+      border-bottom: 2px solid var(--color-text-body);
+    }
+
     .dropDownIcon {
       transform: rotate(180deg);
     }
@@ -114,9 +118,8 @@ const { isOpened, hasAnimation, handleDropDown } = useDropDownAnimation(
 .summary {
   position: relative;
   display: inline-block;
-  min-width: 148px;
   min-height: 50px;
-  padding-top: 13px;
+  padding-top: 11px;
   padding-right: 24px;
   padding-bottom: 13px;
   font-size: pxToRem(16);
@@ -124,8 +127,12 @@ const { isOpened, hasAnimation, handleDropDown } = useDropDownAnimation(
   line-height: 1.5;
   text-align: left;
   letter-spacing: 0.04em;
-  border-bottom: 2px solid var(--color-text-body);
+  border-bottom: 2px solid transparent;
   transition: background-color var(--base-duration) var(--easing-out-expo);
+
+  &:hover {
+    border-bottom: 2px solid var(--color-text-body);
+  }
 
   &:focus-visible {
     outline: 2px solid var(--color-border-focused);
@@ -153,6 +160,7 @@ const { isOpened, hasAnimation, handleDropDown } = useDropDownAnimation(
 .contents {
   position: absolute;
   width: 100%;
+  min-width: 148px;
   overflow: hidden;
   text-align: left;
   background-color: var(--color-background-primary);
