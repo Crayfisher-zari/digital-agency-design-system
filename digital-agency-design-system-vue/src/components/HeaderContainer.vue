@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import NavigationContainer from "./NavigationContainer.vue";
+
 type Props = {
   type?: "full" | "slim";
 };
@@ -12,7 +14,9 @@ withDefaults(defineProps<Props>(), {
       <slot name="logo"></slot>
     </div>
     <div class="item">
-      <slot name="item"></slot>
+      <NavigationContainer>
+        <slot name="item"></slot>
+      </NavigationContainer>
     </div>
     <div class="menu">
       <slot name="menu"></slot>
@@ -26,5 +30,6 @@ withDefaults(defineProps<Props>(), {
 header {
   display: grid;
   grid-template: "logo item" 80px "menu hamburger" 56px / 240px 1fr;
+  padding: 0 40px;
 }
 </style>

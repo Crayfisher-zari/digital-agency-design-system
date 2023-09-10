@@ -2,7 +2,6 @@
 import { LinkTag, useLink } from "../composables/useLinkComponent";
 import Icon from "./Icon.vue";
 import iconPankuzu from "@/assets/images/icon_pankuzu.svg";
-// 実用上はVue Routerなどのルーティングを使用するはずなので、構成例として作成する
 type Props = {
   list: { text: string; url?: string }[];
   linkTag: LinkTag;

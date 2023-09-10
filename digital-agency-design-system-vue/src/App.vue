@@ -22,7 +22,8 @@ import LanguageSelector from "./components/LanguageSelector.vue";
 import Menu from "./components/Menu.vue";
 import MenuAccordion from "./components/MenuAccordion.vue";
 import DropDown from "./components/DropDown.vue";
-import HeaderContainer from "./components/HeaderContainer.vue"
+import HeaderContainer from "./components/HeaderContainer.vue";
+import UtilityLink from "./components/UtilityLink.vue";
 
 const handleClick = () => {
   console.log("click");
@@ -196,10 +197,16 @@ const menuList2: InstanceType<typeof Menu>["menuList"] = [
 </script>
 
 <template>
+  <HeaderContainer>
+    <template #logo><img src="/logo.png" width="240" height="80" /></template>
+    <template #item>
+      <UtilityLink to="#!">サイトポリシー</UtilityLink>
+      <UtilityLink to="#!">プライバシーポリシー</UtilityLink>
+      <UtilityLink to="#!">コピーライトポリシー</UtilityLink>
+      <UtilityLink to="#!">ウェブアクセシビリティ</UtilityLink>
+    </template>
+  </HeaderContainer>
   <div class="globalWrapper">
-    <HeaderContainer>
-      <template #logo><img src="/logo.png" width="240" height="80"/></template>
-    </HeaderContainer>
     <Pankuzu :list="pankuzu" linkTag="a" />
     <Heading :headingLevel="1" designLevel="XL"> コンポーネント </Heading>
     <hr />
