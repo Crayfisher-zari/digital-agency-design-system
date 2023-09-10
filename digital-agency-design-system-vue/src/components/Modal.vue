@@ -51,7 +51,7 @@ watch(
     } else {
       releaseScroll();
     }
-  },
+  }
 );
 
 const handleClickSecondary = () => {

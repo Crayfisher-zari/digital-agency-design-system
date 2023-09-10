@@ -49,7 +49,7 @@ export const useLink = (props: Props = { tag: "a" }) => {
           default: undefined,
         },
       },
-    },
+    }
   );
   return { LinkComponent };
 };
@@ -58,7 +58,7 @@ export const useLink = (props: Props = { tag: "a" }) => {
  * 指定されたリンクタグに対してコンポーネントが存在するか確かめ、存在すればそのリンク系コンポーネントを返します。なければ文字列"a"を返します
  */
 const getLinkComponent = (
-  tag: LinkTag | undefined,
+  tag: LinkTag | undefined
 ): ConcreteComponent | string => {
   if (tag === "router") {
     const RouterLink = resolveComponent("RouterLink");

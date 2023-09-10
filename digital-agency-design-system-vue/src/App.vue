@@ -26,6 +26,7 @@ import HeaderContainer from "./components/HeaderContainer.vue";
 import UtilityLink from "./components/UtilityLink.vue";
 import NavigationContainer from "./components/NavigationContainer.vue";
 import MenuLink from "./components/MenuLink.vue";
+import HamburgerButton from "./components/HamburgerButton.vue";
 
 const handleClick = () => {
   console.log("click");
@@ -196,6 +197,8 @@ const menuList2: InstanceType<typeof Menu>["menuList"] = [
   { to: "!#", text: "メニュー" },
   { to: "!#", text: "メニュー" },
 ];
+
+const isDrawerVisible = ref(false);
 </script>
 
 <template>
@@ -228,6 +231,9 @@ const menuList2: InstanceType<typeof Menu>["menuList"] = [
         <MenuLink to="#!">ご意見・ご要望</MenuLink>
       </NavigationContainer>
     </template>
+    <template #hamburger>
+      <HamburgerButton v-model="isDrawerVisible"
+    /></template>
   </HeaderContainer>
   <div class="globalWrapper">
     <Pankuzu :list="pankuzu" linkTag="a" />

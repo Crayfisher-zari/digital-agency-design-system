@@ -19,7 +19,7 @@ const contentsInnerElement = ref<HTMLElement | null>(null);
 const { isOpened, hasAnimation, handleDropDown } = useDropDownAnimation(
   accordionElement,
   contentsElement,
-  contentsInnerElement,
+  contentsInnerElement
 );
 </script>
 <template>
@@ -72,8 +72,7 @@ const { isOpened, hasAnimation, handleDropDown } = useDropDownAnimation(
 
     .contents {
       border-color: var(--color-sumi-500);
-      transition:
-        height var(--base-duration),
+      transition: height var(--base-duration),
         border-color var(--base-duration) var(--easing-out-expo);
     }
   }
@@ -165,8 +164,7 @@ const { isOpened, hasAnimation, handleDropDown } = useDropDownAnimation(
   text-align: left;
   background-color: var(--color-background-primary);
   border: 1px solid transparent;
-  transition:
-    height var(--base-duration),
+  transition: height var(--base-duration),
     border-color var(--base-duration) var(--easing-in-expo);
 }
 

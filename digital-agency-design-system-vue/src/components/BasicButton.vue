@@ -31,8 +31,7 @@ button {
   background-color: var(--color-button-normal);
   border: 1px solid var(--color-button-normal);
   border-radius: 8px;
-  transition:
-    background-color var(--base-duration) var(--easing-out-expo),
+  transition: background-color var(--base-duration) var(--easing-out-expo),
     color var(--base-duration) var(--easing-out-expo),
     border-color var(--base-duration) var(--easing-out-expo);
 

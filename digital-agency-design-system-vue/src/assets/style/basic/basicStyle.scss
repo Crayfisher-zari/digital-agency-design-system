@@ -17,8 +17,7 @@ body {
   font-family: "Noto Sans JP", sans-serif;
   color: var(--color-text-body);
   background-color: var(--color-background-primary);
-  transition:
-    color var(--base-duration) var(--easing-out-expo),
+  transition: color var(--base-duration) var(--easing-out-expo),
     background-color var(--base-duration) var(--easing-out-expo);
 }
 

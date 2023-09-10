@@ -15,7 +15,7 @@ import { Ref, onBeforeUnmount, onMounted, ref } from "vue";
 export const useDropDownAnimation = (
   detailsElement: Ref<HTMLDetailsElement | null>,
   contentsElement: Ref<HTMLElement | null>,
-  contentsInnerElement: Ref<HTMLElement | null>,
+  contentsInnerElement: Ref<HTMLElement | null>
 ) => {
   const isOpened = ref<boolean | null>(null);
   const hasAnimation = ref<boolean>(true);
@@ -85,7 +85,7 @@ export const useDropDownAnimation = (
     }
     contentsElement.value.removeEventListener(
       "transitionend",
-      removeOpenAttribute,
+      removeOpenAttribute
     );
   });
 
