@@ -8,14 +8,23 @@ withDefaults(defineProps<Props>(), {
 </script>
 <template>
   <header :class="type">
-    <slot name="logo"></slot>
-    <slot name="item"></slot>
-    <slot name="menu"></slot>
-    <slot name="hamburger"></slot>
+    <div class="logo">
+      <slot name="logo"></slot>
+    </div>
+    <div class="item">
+      <slot name="item"></slot>
+    </div>
+    <div class="menu">
+      <slot name="menu"></slot>
+    </div>
+    <div class="hamburger">
+      <slot name="hamburger"></slot>
+    </div>
   </header>
 </template>
 <style scoped lang="scss">
 header {
   display: grid;
+  grid-template: "logo item" 80px "menu hamburger" 56px / 240px 1fr;
 }
 </style>
