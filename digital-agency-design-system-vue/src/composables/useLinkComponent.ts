@@ -46,6 +46,7 @@ export const useLink = (props: Props = { tag: "a" }) => {
         target: {
           type: String,
           required: false,
+          default: undefined,
         },
       },
     },

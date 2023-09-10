@@ -24,6 +24,7 @@ import MenuAccordion from "./components/MenuAccordion.vue";
 import DropDown from "./components/DropDown.vue";
 import HeaderContainer from "./components/HeaderContainer.vue";
 import UtilityLink from "./components/UtilityLink.vue";
+import NavigationContainer from "./components/NavigationContainer.vue";
 
 const handleClick = () => {
   console.log("click");
@@ -200,10 +201,31 @@ const menuList2: InstanceType<typeof Menu>["menuList"] = [
   <HeaderContainer>
     <template #logo><img src="/logo.png" width="240" height="80" /></template>
     <template #item>
-      <UtilityLink to="#!">サイトポリシー</UtilityLink>
-      <UtilityLink to="#!">プライバシーポリシー</UtilityLink>
-      <UtilityLink to="#!">コピーライトポリシー</UtilityLink>
-      <UtilityLink to="#!">ウェブアクセシビリティ</UtilityLink>
+      <NavigationContainer class="headerNav" gap="small">
+        <UtilityLink to="#!">サイトポリシー</UtilityLink>
+        <UtilityLink to="#!">プライバシーポリシー</UtilityLink>
+        <UtilityLink to="#!">コピーライトポリシー</UtilityLink>
+        <UtilityLink to="#!">ウェブアクセシビリティ</UtilityLink>
+      </NavigationContainer>
+      <LanguageSelector
+        :languageList="languageList"
+        linkTag="a"
+        class="headerLanguage"
+      />
+    </template>
+    <template #menu>
+      <NavigationContainer class="headerMenu" alignItems="end">
+        <a href="#!">最新情報</a>
+        <a href="#!">制作</a>
+        <DropDown summary="市民向けサービス">
+          <Menu :menuList="menuList2" linkTag="a"></Menu>
+        </DropDown>
+        <DropDown summary="事業者向け">
+          <Menu :menuList="menuList2" linkTag="a"></Menu>
+        </DropDown>
+        <a href="#!">採用情報</a>
+        <a href="#!">ご意見・ご要望</a>
+      </NavigationContainer>
     </template>
   </HeaderContainer>
   <div class="globalWrapper">
@@ -610,6 +632,20 @@ hr {
 
 .colorScheme {
   margin: 36px 0;
+}
+
+.headerNav {
+  padding-right: 160px;
+}
+
+.headerMenu {
+  height: 56px;
+}
+
+.headerLanguage {
+  position: absolute;
+  top: 26px;
+  width: 120px;
 }
 
 .languageWrapper {

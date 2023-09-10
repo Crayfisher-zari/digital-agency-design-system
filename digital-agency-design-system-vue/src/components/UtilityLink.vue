@@ -13,6 +13,7 @@ const props = withDefaults(defineProps<Props>(), {
   linkTag: "a",
   url: "/",
   iconUrl: undefined,
+  target: undefined,
 });
 const isExternal = props.target === "_blank";
 const { LinkComponent } = useLink({ tag: props.linkTag });
