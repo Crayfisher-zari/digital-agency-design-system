@@ -157,6 +157,7 @@ const languageList = ref(props.languageList);
 .languageListInner {
   padding-top: 8px;
   padding-bottom: 8px;
+  background-color: var(--color-background-primary);
 }
 
 .languageItem {
