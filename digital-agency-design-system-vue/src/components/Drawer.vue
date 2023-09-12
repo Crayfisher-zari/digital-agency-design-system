@@ -1,5 +1,5 @@
 <script setup lang="ts"></script>
-<template><div class="drawer"></div></template>
+<template><div class="drawer"><slot></slot></div></template>
 <style lang="scss" scoped>
 @use "@/assets/style/utils/utils.scss" as *;
 

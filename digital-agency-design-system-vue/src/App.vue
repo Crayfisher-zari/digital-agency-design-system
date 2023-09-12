@@ -27,6 +27,7 @@ import UtilityLink from "./components/UtilityLink.vue";
 import NavigationContainer from "./components/NavigationContainer.vue";
 import MenuLink from "./components/MenuLink.vue";
 import HamburgerButton from "./components/HamburgerButton.vue";
+import Drawer from "./components/Drawer.vue";
 
 const handleClick = () => {
   console.log("click");
@@ -237,6 +238,17 @@ const isDrawerVisible = ref(false);
       <HamburgerButton v-model="isDrawerVisible" class="headerHamburger"
     /></template>
   </HeaderContainer>
+  <Drawer>
+    <Menu>
+      <MenuAccordion
+        accordionTitle="アコーディオン"
+        hasIcon
+        :linkList="menuList2"
+        linkTag="a"
+      />
+    </Menu>
+  </Drawer>
+
   <div class="globalWrapper">
     <Pankuzu :list="pankuzu" linkTag="a" />
     <Heading :headingLevel="1" designLevel="XL"> コンポーネント </Heading>
