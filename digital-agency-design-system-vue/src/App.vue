@@ -238,14 +238,9 @@ const isDrawerVisible = ref(false);
       <HamburgerButton v-model="isDrawerVisible" class="headerHamburger"
     /></template>
   </HeaderContainer>
-  <Drawer>
+  <Drawer :isVisible="isDrawerVisible">
     <Menu>
-      <MenuAccordion
-        accordionTitle="アコーディオン"
-        hasIcon
-        :linkList="menuList2"
-        linkTag="a"
-      />
+      <Menu :menuList="menuList" linkTag="a"></Menu>
     </Menu>
   </Drawer>
 
