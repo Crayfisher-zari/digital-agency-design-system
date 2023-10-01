@@ -708,13 +708,13 @@ hr {
 }
 
 .headerAndDrawer {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
   z-index: 100;
   display: grid;
   grid-template-rows: auto 1fr;
   width: 100%;
-  background-color: #fff;
 
   &.isDrawerActive {
     @include mediaQueryDown {

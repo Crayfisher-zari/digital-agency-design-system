@@ -7,7 +7,7 @@ withDefaults(defineProps<Props>(), {
 });
 </script>
 <template>
-  <header :class="type">
+  <header class="header" :class="type">
     <div class="inner">
       <div class="logo">
         <slot name="logo"></slot>
@@ -27,8 +27,9 @@ withDefaults(defineProps<Props>(), {
 <style scoped lang="scss">
 @use "@/assets/style/utils/utils.scss" as *;
 
-header {
+.header {
   padding: 0 40px;
+  background-color: var(--color-background-primary);
   border-bottom: 1px solid var(--color-border-divider);
   @include mediaQueryDown {
     padding: 0 16px;
