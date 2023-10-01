@@ -2,6 +2,7 @@
 import { watch } from "vue";
 import BasicButton from "../components/BasicButton.vue";
 import Layout from "../components/Layout.vue";
+import { useScrollLock } from "../composables/useScrollLock";
 type Props = {
   title: string;
   text: string;
@@ -14,6 +15,8 @@ type Props = {
 
 type Emits = { (e: "update:modelValue", value: boolean): void };
 
+const { lockScroll, releaseScroll } = useScrollLock();
+
 const props = withDefaults(defineProps<Props>(), {
   labelSecondary: "",
   onClickSecondary: undefined,
@@ -23,24 +26,6 @@ const emits = defineEmits<Emits>();
 const handleClickPrimary = () => {
   props.onClickPrimary();
   emits("update:modelValue", false);
-};
-
-const lockScroll = () => {
-  document.body.style.overflow = "hidden";
-  // スクロールバーのガタツキ対策
-  const element = document.querySelector<HTMLElement>(".scrollbar-gutter");
-  if (element) {
-    element.style.scrollbarGutter = "stable";
-  }
-};
-
-const releaseScroll = () => {
-  document.body.style.overflow = "visible";
-  // スクロールバーのガタツキ対策
-  const element = document.querySelector<HTMLElement>(".scrollbar-gutter");
-  if (element) {
-    element.style.scrollbarGutter = "auto";
-  }
 };
 
 watch(

@@ -28,6 +28,7 @@ import NavigationContainer from "./components/NavigationContainer.vue";
 import MenuLink from "./components/MenuLink.vue";
 import HamburgerButton from "./components/HamburgerButton.vue";
 import Drawer from "./components/Drawer.vue";
+import { useScrollLock } from "./composables/useScrollLock";
 
 const handleClick = () => {
   console.log("click");
@@ -74,6 +75,8 @@ const { UseBirthDateComponent } = useBirthDate({
   supportText: "半角数字で入力してください。",
   isRequired: true,
 });
+
+const { lockScroll, releaseScroll } = useScrollLock();
 
 const isShown = ref(false);
 
@@ -200,49 +203,61 @@ const menuList2: InstanceType<typeof Menu>["menuList"] = [
 ];
 
 const isDrawerVisible = ref(false);
+
+watchEffect(() => {
+  if (isDrawerVisible.value) {
+    lockScroll();
+  } else {
+    releaseScroll();
+  }
+});
 </script>
 
 <template>
-  <HeaderContainer>
-    <template #logo
-      ><img src="/logo.png" width="240" height="80" class="headerLogo"
-    /></template>
-    <template #item>
-      <NavigationContainer class="headerNav" gap="small">
-        <UtilityLink to="#!">サイトポリシー</UtilityLink>
-        <UtilityLink to="#!">プライバシーポリシー</UtilityLink>
-        <UtilityLink to="#!">コピーライトポリシー</UtilityLink>
-        <UtilityLink to="#!">ウェブアクセシビリティ</UtilityLink>
-      </NavigationContainer>
-      <LanguageSelector
-        :languageList="languageList"
-        linkTag="a"
-        class="headerLanguage"
-      />
-    </template>
-    <template #menu>
-      <NavigationContainer class="headerMenu" alignItems="end">
-        <MenuLink to="#!">最新情報</MenuLink>
-        <MenuLink to="#!">政策</MenuLink>
-        <DropDown summary="市民向けサービス">
-          <Menu :menuList="menuList2" linkTag="a"></Menu>
-        </DropDown>
-        <DropDown summary="事業者向け">
-          <Menu :menuList="menuList2" linkTag="a"></Menu>
-        </DropDown>
-        <MenuLink to="#!">採用情報</MenuLink>
-        <MenuLink to="#!">ご意見・ご要望</MenuLink>
-      </NavigationContainer>
-    </template>
-    <template #hamburger>
-      <HamburgerButton v-model="isDrawerVisible" class="headerHamburger"
-    /></template>
-  </HeaderContainer>
-  <Drawer :isVisible="isDrawerVisible">
-    <Menu>
-      <Menu :menuList="menuList" linkTag="a"></Menu>
-    </Menu>
-  </Drawer>
+  <div class="headerAndDrawer" :class="{ isDrawerActive: isDrawerVisible }">
+    <HeaderContainer>
+      <template #logo
+        ><img src="/logo.png" width="240" height="80" class="headerLogo"
+      /></template>
+      <template #item>
+        <NavigationContainer class="headerNav" gap="small">
+          <UtilityLink to="#!">サイトポリシー</UtilityLink>
+          <UtilityLink to="#!">プライバシーポリシー</UtilityLink>
+          <UtilityLink to="#!">コピーライトポリシー</UtilityLink>
+          <UtilityLink to="#!">ウェブアクセシビリティ</UtilityLink>
+        </NavigationContainer>
+        <LanguageSelector
+          :languageList="languageList"
+          linkTag="a"
+          class="headerLanguage"
+        />
+      </template>
+      <template #menu>
+        <NavigationContainer class="headerMenu" alignItems="end">
+          <MenuLink to="#!">最新情報</MenuLink>
+          <MenuLink to="#!">政策</MenuLink>
+          <DropDown summary="市民向けサービス">
+            <Menu :menuList="menuList2" linkTag="a"></Menu>
+          </DropDown>
+          <DropDown summary="事業者向け">
+            <Menu :menuList="menuList2" linkTag="a"></Menu>
+          </DropDown>
+          <MenuLink to="#!">採用情報</MenuLink>
+          <MenuLink to="#!">ご意見・ご要望</MenuLink>
+        </NavigationContainer>
+      </template>
+      <template #hamburger>
+        <HamburgerButton v-model="isDrawerVisible" class="headerHamburger"
+      /></template>
+    </HeaderContainer>
+    <div class="drawerWrapper">
+      <Drawer :isVisible="isDrawerVisible">
+        <Menu>
+          <Menu :menuList="menuList" linkTag="a"></Menu>
+        </Menu>
+      </Drawer>
+    </div>
+  </div>
 
   <div class="globalWrapper">
     <Pankuzu :list="pankuzu" linkTag="a" />
@@ -690,6 +705,29 @@ hr {
 .headerHamburger {
   position: relative;
   top: 4px;
+}
+
+.headerAndDrawer {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  width: 100%;
+  background-color: #fff;
+
+  &.isDrawerActive {
+    @include mediaQueryDown {
+      height: 100vh;
+    }
+  }
+}
+
+.drawerWrapper {
+  display: grid;
+  align-items: stretch;
+  width: 100%;
+  overflow-y: auto;
 }
 
 .buttonWrapper {

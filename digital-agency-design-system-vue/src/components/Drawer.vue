@@ -10,8 +10,11 @@ const props = withDefaults(defineProps<Props>(), {
 });
 </script>
 <template>
-  <div class="drawer" :class="{ isMobileOnly: props.isMobileOnly }">
-    <div class="drawerContainer" :class="{ isVisible: props.isVisible }">
+  <div
+    class="drawer"
+    :class="{ isMobileOnly: props.isMobileOnly, isVisible: props.isVisible }"
+  >
+    <div class="drawerContainer">
       <slot></slot>
     </div>
   </div>
@@ -21,8 +24,19 @@ const props = withDefaults(defineProps<Props>(), {
 
 .drawer {
   position: relative;
-  width: 100%;
-  height: 100%;
+  display: none;
+  visibility: hidden;
+
+  &::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    content: "";
+  }
+
   background-color: rgba(0, 0, 0, 5%);
 
   &.isMobileOnly {
@@ -30,20 +44,18 @@ const props = withDefaults(defineProps<Props>(), {
       display: none;
     }
   }
+
+  &.isVisible {
+    display: block;
+    visibility: visible;
+  }
 }
 
 .drawerContainer {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 320px;
+  height: 100%;
   padding: 20px 8px 32px;
-  visibility: hidden;
   background-color: #fff;
-  border: 1px solid var(--color-border-divider);
-
-  &.isVisible {
-    visibility: visible;
-  }
+  box-shadow: 2px 0 6px 0 rgba(0, 0, 0, 10%);
 }
 </style>
