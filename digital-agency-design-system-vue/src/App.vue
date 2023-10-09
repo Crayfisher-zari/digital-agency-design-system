@@ -727,7 +727,17 @@ hr {
   display: grid;
   align-items: stretch;
   width: 100%;
+  height: 0;
+  overflow-x: hidden;
   overflow-y: auto;
+  transition: height 0s;
+  transition-delay: var(--base-duration);
+
+  &.isActive {
+    height: 100%;
+    visibility: visible;
+    transition-delay: 0s;
+  }
 }
 
 .buttonWrapper {
