@@ -250,7 +250,7 @@ watchEffect(() => {
         <HamburgerButton v-model="isDrawerVisible" class="headerHamburger"
       /></template>
     </HeaderContainer>
-    <div class="drawerWrapper">
+    <div class="drawerWrapper" :class="{ isActive: isDrawerVisible }">
       <Drawer :isVisible="isDrawerVisible">
         <Menu>
           <Menu :menuList="menuList" linkTag="a"></Menu>
