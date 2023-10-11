@@ -28,6 +28,7 @@ import NavigationContainer from "./components/NavigationContainer.vue";
 import MenuLink from "./components/MenuLink.vue";
 import HamburgerButton from "./components/HamburgerButton.vue";
 import Drawer from "./components/Drawer.vue";
+import MegaMenuContainer from "./components/MegaMenuContainer.vue";
 import { useScrollLock } from "./composables/useScrollLock";
 
 const handleClick = () => {
@@ -234,7 +235,7 @@ watchEffect(() => {
       </template>
       <template #menu>
         <NavigationContainer class="headerMenu" alignItems="end">
-          <MenuLink to="#!">最新情報</MenuLink>
+          <MenuLink to="#!">メガメニュー</MenuLink>
           <MenuLink to="#!">政策</MenuLink>
           <DropDown summary="市民向けサービス">
             <Menu :menuList="menuList2" linkTag="a"></Menu>
@@ -252,11 +253,20 @@ watchEffect(() => {
     </HeaderContainer>
     <div class="drawerWrapper" :class="{ isActive: isDrawerVisible }">
       <Drawer :isVisible="isDrawerVisible">
-        <Menu>
-          <Menu :menuList="menuList" linkTag="a"></Menu>
-        </Menu>
+        <Menu :menuList="menuList" linkTag="a"></Menu>
       </Drawer>
     </div>
+    <MegaMenuContainer>
+      <template #col1>
+        <div>
+          <h2>メガメニュー</h2>
+          <p>サブタイトルはここに記入します</p>
+        </div>
+      </template>
+      <template #col2>
+        <Menu :menuList="menuList2" linkTag="a"></Menu>
+      </template>
+    </MegaMenuContainer>
   </div>
 
   <div class="globalWrapper">
