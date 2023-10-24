@@ -203,6 +203,15 @@ const menuList2: InstanceType<typeof Menu>["menuList"] = [
   { to: "!#", text: "メニュー" },
 ];
 
+const menuList3: InstanceType<typeof Menu>["menuList"] = [
+  { to: "!#", text: "メニュー" },
+  { to: "!#", text: "メニュー" },
+  { to: "!#", text: "メニュー" },
+  { to: "!#", text: "メニュー" },
+  { to: "!#", text: "メニュー" },
+  { to: "!#", text: "メニュー" },
+];
+
 const isDrawerVisible = ref(false);
 
 watchEffect(() => {
@@ -264,7 +273,7 @@ watchEffect(() => {
         </div>
       </template>
       <template #col2>
-        <Menu :menuList="menuList2" linkTag="a"></Menu>
+        <Menu :menuList="menuList3" :hasGap="false" linkTag="a"></Menu>
       </template>
     </MegaMenuContainer>
   </div>

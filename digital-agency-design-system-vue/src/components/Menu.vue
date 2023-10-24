@@ -35,11 +35,13 @@ type Props = {
   menuList?: CategoryList[] | Link[];
   linkTag?: LinkTag;
   hasIcon?: boolean;
+  hasGap?: boolean;
 };
 const props = withDefaults(defineProps<Props>(), {
   menuList: undefined,
   hasIcon: false,
   linkTag: "a",
+  hasGap: true,
 });
 
 const { LinkComponent } = useLink({ tag: props.linkTag });
@@ -48,13 +50,17 @@ const { LinkComponent } = useLink({ tag: props.linkTag });
   <div class="menu">
     <slot name="default"></slot>
     <div v-if="menuList">
-      <div v-for="(menuItem, index) in menuList" :key="index" class="category">
-        <!-- カテゴリーがあるタイプ -->
-        <div v-if="'categoryName' in menuItem">
+      <div v-if="'categoryName' in menuList[0]">
+        <div
+          v-for="(menuItem, index) in (menuList as CategoryList[])"
+          :key="index"
+          class="category"
+        >
+          <!-- カテゴリーがあるタイプ -->
           <p class="categoryName">
             {{ menuItem.categoryName }}
           </p>
-          <ul class="menuList">
+          <ul class="menuList" :class="{ hasGap: hasGap }">
             <li
               v-for="(linkItem, index2) in menuItem.itemList"
               :key="index2"
@@ -77,18 +83,22 @@ const { LinkComponent } = useLink({ tag: props.linkTag });
             </li>
           </ul>
         </div>
-        <!-- リンクリストタイプ -->
-        <ul v-else class="menuList">
-          <li class="menuItem">
-            <LinkComponent
-              :to="menuItem.to"
-              class="link"
-              :class="[{ selected: menuItem.selected }]"
-              >{{ menuItem.text }}</LinkComponent
-            >
-          </li>
-        </ul>
       </div>
+
+      <ul v-else class="menuList" :class="{ hasGap: hasGap }">
+        <li
+          v-for="(menuItem, index) in (menuList as Link[])"
+          :key="index"
+          class="menuItem"
+        >
+          <LinkComponent
+            :to="menuItem.to"
+            class="link"
+            :class="[{ selected: menuItem.selected }]"
+            >{{ menuItem.text }}</LinkComponent
+          >
+        </li>
+      </ul>
     </div>
     <slot name="after"></slot>
   </div>
@@ -113,7 +123,10 @@ const { LinkComponent } = useLink({ tag: props.linkTag });
   display: grid;
   grid-template-columns: 100%;
   grid-auto-flow: row;
-  row-gap: 16px;
+
+  &.hasGap {
+    row-gap: 16px;
+  }
 }
 
 .menuItem {
