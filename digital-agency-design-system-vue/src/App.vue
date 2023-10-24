@@ -212,6 +212,18 @@ const menuList3: InstanceType<typeof Menu>["menuList"] = [
   { to: "!#", text: "メニュー" },
 ];
 
+const menuList4: InstanceType<typeof Menu>["menuList"] = [{
+  categoryName: "政策",
+  itemList: [
+    { type: "link", item: { to: "!#", text: "観光" } },
+    { type: "link", item: { to: "!#", text: "スポーツ支援" } },
+    { type: "link", item: { to: "!#", text: "国際化" } },
+    { type: "link", item: { to: "!#", text: "市民手続きのデジタル化" } },
+    { type: "link", item: { to: "!#", text: "子育て支援" } },
+    
+  ],
+}];
+
 const isDrawerVisible = ref(false);
 
 watchEffect(() => {
@@ -274,6 +286,9 @@ watchEffect(() => {
       </template>
       <template #col2>
         <Menu :menuList="menuList3" :hasGap="false" linkTag="a"></Menu>
+      </template>
+      <template #col3>
+        <Menu :menuList="menuList4" :hasGap="false" linkTag="a"></Menu>
       </template>
     </MegaMenuContainer>
   </div>

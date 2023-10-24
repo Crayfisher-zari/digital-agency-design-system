@@ -28,7 +28,7 @@ withDefaults(defineProps<Props>(), {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   column-gap: 40px;
-  padding: 32px 80px 40px;
+  padding: 32px 180px 40px 80px;
   background-color: var(--color-background-primary);
 
   &.flat {
