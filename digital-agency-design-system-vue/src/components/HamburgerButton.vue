@@ -35,7 +35,7 @@ const state = computed({
 });
 </script>
 <template>
-  <button class="hamburgerButton" :class="type" @click="handleClick" type="button">
+  <button class="hamburgerButton" :class="type" type="button" @click="handleClick">
     <Transition mode="out-in">
       <span v-show="!modelValue" class="buttonInner">
         <span class="iconWrapper">

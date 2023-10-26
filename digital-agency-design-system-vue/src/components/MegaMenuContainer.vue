@@ -24,7 +24,7 @@ const handleClickHamburger = () => {
 
 </script>
 <template>
-  <div class="megaMenuContainer" :class="style" v-show="isVisible">
+  <div v-show="isVisible" class="megaMenuContainer" :class="style">
     <div>
       <slot name="col1"></slot>
     </div>
