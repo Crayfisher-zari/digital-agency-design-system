@@ -16,10 +16,10 @@ const props = withDefaults(defineProps<Props>(), {
   onClick: undefined,
 });
 
-const handleInput = () => {
+const handleClick = () => {
   state.value = !state.value;
   if (props.onClick) {
-    props.onClick;
+    props.onClick();
   }
 };
 
@@ -35,7 +35,7 @@ const state = computed({
 });
 </script>
 <template>
-  <button class="hamburgerButton" :class="type" @click="handleInput">
+  <button class="hamburgerButton" :class="type" @click="handleClick" type="button">
     <Transition mode="out-in">
       <span v-show="!modelValue" class="buttonInner">
         <span class="iconWrapper">

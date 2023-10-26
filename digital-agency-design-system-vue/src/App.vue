@@ -212,19 +212,22 @@ const menuList3: InstanceType<typeof Menu>["menuList"] = [
   { to: "!#", text: "メニュー" },
 ];
 
-const menuList4: InstanceType<typeof Menu>["menuList"] = [{
-  categoryName: "政策",
-  itemList: [
-    { type: "link", item: { to: "!#", text: "観光" } },
-    { type: "link", item: { to: "!#", text: "スポーツ支援" } },
-    { type: "link", item: { to: "!#", text: "国際化" } },
-    { type: "link", item: { to: "!#", text: "市民手続きのデジタル化" } },
-    { type: "link", item: { to: "!#", text: "子育て支援" } },
-    
-  ],
-}];
+const menuList4: InstanceType<typeof Menu>["menuList"] = [
+  {
+    categoryName: "政策",
+    itemList: [
+      { type: "link", item: { to: "!#", text: "観光" } },
+      { type: "link", item: { to: "!#", text: "スポーツ支援" } },
+      { type: "link", item: { to: "!#", text: "国際化" } },
+      { type: "link", item: { to: "!#", text: "市民手続きのデジタル化" } },
+      { type: "link", item: { to: "!#", text: "子育て支援" } },
+    ],
+  },
+];
 
 const isDrawerVisible = ref(false);
+
+const isMegaMenuVisible = ref(true);
 
 watchEffect(() => {
   if (isDrawerVisible.value) {
@@ -256,7 +259,7 @@ watchEffect(() => {
       </template>
       <template #menu>
         <NavigationContainer class="headerMenu" alignItems="end">
-          <MenuLink to="#!">メガメニュー</MenuLink>
+          <button @click="()=>{isMegaMenuVisible = true}">メガメニュー</button>
           <MenuLink to="#!">政策</MenuLink>
           <DropDown summary="市民向けサービス">
             <Menu :menuList="menuList2" linkTag="a"></Menu>
@@ -277,7 +280,7 @@ watchEffect(() => {
         <Menu :menuList="menuList" linkTag="a"></Menu>
       </Drawer>
     </div>
-    <MegaMenuContainer>
+    <MegaMenuContainer :isVisible="isMegaMenuVisible" @update:isVisible="(v)=>isMegaMenuVisible = v">
       <template #col1>
         <div>
           <h2>メガメニュー</h2>
