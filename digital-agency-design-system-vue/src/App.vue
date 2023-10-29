@@ -29,6 +29,7 @@ import MenuLink from "./components/MenuLink.vue";
 import HamburgerButton from "./components/HamburgerButton.vue";
 import Drawer from "./components/Drawer.vue";
 import MegaMenuContainer from "./components/MegaMenuContainer.vue";
+import DropDownSummary from "./components/DropDownSummary.vue";
 import { useScrollLock } from "./composables/useScrollLock";
 
 const handleClick = () => {
@@ -259,7 +260,9 @@ watchEffect(() => {
       </template>
       <template #menu>
         <NavigationContainer class="headerMenu" alignItems="end">
-          <button @click="()=>{isMegaMenuVisible = true}">メガメニュー</button>
+          <button @click="()=>{isMegaMenuVisible = !isMegaMenuVisible}" class="megaMenuButton">
+            <DropDownSummary summaryText="メガメニュー" :isActive="isMegaMenuVisible ?? false" />
+          </button>
           <MenuLink to="#!">政策</MenuLink>
           <DropDown summary="市民向けサービス">
             <Menu :menuList="menuList2" linkTag="a"></Menu>
@@ -775,6 +778,12 @@ hr {
     visibility: visible;
     transition-delay: 0s;
   }
+}
+
+.megaMenuButton{
+  appearance: none;
+  background: none;
+  border: none;
 }
 
 .buttonWrapper {

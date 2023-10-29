@@ -18,7 +18,7 @@ export const useDropDownAnimation = (
   contentsInnerElement: Ref<HTMLElement | null>,
 ) => {
   const isOpened = ref<boolean | null>(null);
-  const hasAnimation = ref<boolean>(false);
+  const hasAnimation = ref<boolean>(true);
 
   /**
    * アコーディオンの開閉イベント
