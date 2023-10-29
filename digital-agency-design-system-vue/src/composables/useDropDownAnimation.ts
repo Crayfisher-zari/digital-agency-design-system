@@ -26,7 +26,7 @@ export const useDropDownAnimation = (
   const handleDropDown = (e: Event) => {
     if (
       // prefers-reduced-motionの場合はアニメーションなし。デフォルトの挙動
-      matchMedia("prefers-reduced-motion").matches ||
+      matchMedia("(prefers-reduced-motion:reduce)").matches ||
       !detailsElement.value ||
       !contentsElement.value ||
       !contentsInnerElement.value
@@ -62,12 +62,12 @@ export const useDropDownAnimation = (
   };
 
   onMounted(() => {
-    if (matchMedia("prefers-reduced-motion").matches) {
+    if (matchMedia("(prefers-reduced-motion:reduce)").matches) {
       // reduce-motionが有効な場合はアニメーションをしない
       hasAnimation.value = false;
     }
     if (
-      !matchMedia("prefers-reduced-motion").matches &&
+      !matchMedia("(prefers-reduced-motion:reduce)").matches &&
       contentsElement.value
     ) {
       const contents = contentsElement.value;

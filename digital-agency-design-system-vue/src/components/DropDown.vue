@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import Icon from "./Icon.vue";
-import iconArrow from "@/assets/images/icon_arrow_accordion.svg";
+
 import { useDropDownAnimation } from "../composables/useDropDownAnimation";
+import DropDownSummary from "./DropDownSummary.vue";
 
 type Props = {
   summary: string;
@@ -34,18 +34,7 @@ const { isOpened, hasAnimation, handleDropDown } = useDropDownAnimation(
     ]"
   >
     <summary class="summary" @click="handleDropDown">
-      <span>
-        <span class="summaryInner">{{ summary }}</span>
-        <Icon
-          :iconSrc="iconArrow"
-          :width="12"
-          :height="7"
-          color="var(--color-text-body)"
-          class="dropDownIcon"
-          :ariaHidden="true"
-          role="img"
-        />
-      </span>
+      <DropDownSummary :summaryText="summary" :isActive="isOpened ?? false" :hasAnimation="hasAnimation" />
     </summary>
     <div ref="contentsElement" class="contents">
       <div ref="contentsInnerElement" class="contentsInner">
@@ -62,27 +51,11 @@ const { isOpened, hasAnimation, handleDropDown } = useDropDownAnimation(
 
   // アニメーションが有効な場合はタイミングを上書き
   &.isOpened {
-    .summary {
-      border-bottom: 2px solid var(--color-text-body);
-    }
-
-    .dropDownIcon {
-      transform: rotate(180deg);
-    }
-
     .contents {
       border-color: var(--color-sumi-500);
       transition:
         height var(--base-duration),
         border-color var(--base-duration) var(--easing-out-expo);
-    }
-  }
-
-  &:not(.hasAnimation) {
-    &[open] {
-      .dropDownIcon {
-        transform: rotate(180deg);
-      }
     }
   }
 
@@ -97,43 +70,18 @@ const { isOpened, hasAnimation, handleDropDown } = useDropDownAnimation(
   &.right {
     text-align: right;
   }
-}
 
-.icon {
-  display: block;
-  flex-shrink: 0;
-  align-self: flex-start;
-  width: 24px;
-  height: 24px;
-  margin-top: 4px;
-  margin-right: 38px;
-  margin-left: 6px;
-  font-size: pxToRem(24);
-  line-height: 1;
-  @include mediaQueryDown {
-    margin-right: 24px;
+  // アニメーションなし
+  &:not(.hasAnimation) {
+    .contents{
+      transition: none;
+    }
   }
 }
+
 
 .summary {
-  position: relative;
-  display: inline-block;
-  min-height: 50px;
-  padding-top: 11px;
-  padding-right: 24px;
-  padding-bottom: 13px;
-  font-size: pxToRem(16);
-  font-weight: var(--weight-bold);
-  line-height: 1.5;
-  text-align: left;
-  letter-spacing: 0.04em;
-  border-bottom: 2px solid transparent;
-  transition: background-color var(--base-duration) var(--easing-out-expo);
-
-  &:hover {
-    border-bottom: 2px solid var(--color-text-body);
-  }
-
+ display: block;
   &:focus-visible {
     outline: 2px solid var(--color-border-focused);
   }
@@ -142,19 +90,6 @@ const { isOpened, hasAnimation, handleDropDown } = useDropDownAnimation(
     // Safariの三角アイコン
     display: none;
   }
-}
-
-.summaryInner {
-  min-width: 120px;
-}
-
-.dropDownIcon {
-  position: absolute;
-  top: 50%;
-  right: 8px;
-  display: block;
-  margin-top: -2px;
-  transition: transform var(--base-duration) var(--easing-out-expo);
 }
 
 .contents {
