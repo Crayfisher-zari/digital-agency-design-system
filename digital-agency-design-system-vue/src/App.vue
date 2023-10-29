@@ -30,6 +30,7 @@ import HamburgerButton from "./components/HamburgerButton.vue";
 import Drawer from "./components/Drawer.vue";
 import MegaMenuContainer from "./components/MegaMenuContainer.vue";
 import DropDownSummary from "./components/DropDownSummary.vue";
+import MegaMenuTitle from "./components/MegaMenuTitle.vue";
 import { useScrollLock } from "./composables/useScrollLock";
 
 const handleClick = () => {
@@ -298,10 +299,7 @@ watchEffect(() => {
       @update:isVisible="(v) => (isMegaMenuVisible = v)"
     >
       <template #col1>
-        <div>
-          <h2>メガメニュー</h2>
-          <p>サブタイトルはここに記入します</p>
-        </div>
+        <MegaMenuTitle />
       </template>
       <template #col2>
         <Menu :menuList="menuList3" :hasGap="false" linkTag="a"></Menu>
@@ -700,6 +698,9 @@ watchEffect(() => {
   max-width: 1104px;
   padding: 0 40px;
   margin: 24px auto 0;
+  @include mediaQueryUp {
+    margin-top: 148px;
+  }
   @include mediaQueryDown {
     padding: 0 16px;
   }
