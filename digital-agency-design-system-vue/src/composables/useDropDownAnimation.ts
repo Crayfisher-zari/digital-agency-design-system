@@ -64,9 +64,7 @@ export const useDropDownAnimation = (
       // reduce-motionが有効な場合はアニメーションをしない
       hasAnimation.value = false;
     }
-    if (
-      contentsElement.value
-    ) {
+    if (contentsElement.value) {
       const contents = contentsElement.value;
 
       // 初期化のために閉じておく

@@ -52,7 +52,7 @@ const { LinkComponent } = useLink({ tag: props.linkTag });
     <div v-if="menuList">
       <div v-if="'categoryName' in menuList[0]">
         <div
-          v-for="(menuItem, index) in (menuList as CategoryList[])"
+          v-for="(menuItem, index) in menuList as CategoryList[]"
           :key="index"
           class="category"
         >
@@ -87,7 +87,7 @@ const { LinkComponent } = useLink({ tag: props.linkTag });
 
       <ul v-else class="menuList" :class="{ hasGap: hasGap }">
         <li
-          v-for="(menuItem, index) in (menuList as Link[])"
+          v-for="(menuItem, index) in menuList as Link[]"
           :key="index"
           class="menuItem"
         >

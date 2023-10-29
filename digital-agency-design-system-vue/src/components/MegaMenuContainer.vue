@@ -17,10 +17,9 @@ withDefaults(defineProps<Props>(), {
 const emits = defineEmits<Emits>();
 
 const handleClickHamburger = () => {
-  console.log("aaa")
+  console.log("aaa");
   emits("update:isVisible", false);
 };
-
 </script>
 <template>
   <div v-show="isVisible" class="megaMenuContainer" :class="style">
@@ -37,7 +36,7 @@ const handleClickHamburger = () => {
       <slot name="col4"></slot>
     </div>
     <div class="hamburger">
-      <HamburgerButton :modelValue="true" :onClick="handleClickHamburger"/>
+      <HamburgerButton :modelValue="true" :onClick="handleClickHamburger" />
     </div>
   </div>
 </template>

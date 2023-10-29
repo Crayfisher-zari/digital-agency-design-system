@@ -44,15 +44,19 @@ withDefaults(defineProps<Props>(), {
   letter-spacing: 0.04em;
   border-bottom: 2px solid transparent;
   transition: background-color var(--base-duration) var(--easing-out-expo);
+
   &:hover {
     border-bottom: 2px solid var(--color-text-body);
   }
+
   &.isActive {
     border-bottom: 2px solid var(--color-text-body);
+
     .dropDownIcon {
       transform: rotate(180deg);
     }
   }
+
   &:not(.hasAnimation) {
     .dropDownIcon {
       transition-duration: 0s;
@@ -65,6 +69,7 @@ withDefaults(defineProps<Props>(), {
     }
   }
 }
+
 .summaryText {
   min-width: 120px;
 }

@@ -260,8 +260,18 @@ watchEffect(() => {
       </template>
       <template #menu>
         <NavigationContainer class="headerMenu" alignItems="end">
-          <button @click="()=>{isMegaMenuVisible = !isMegaMenuVisible}" class="megaMenuButton">
-            <DropDownSummary summaryText="メガメニュー" :isActive="isMegaMenuVisible ?? false" />
+          <button
+            class="megaMenuButton"
+            @click="
+              () => {
+                isMegaMenuVisible = !isMegaMenuVisible;
+              }
+            "
+          >
+            <DropDownSummary
+              summaryText="メガメニュー"
+              :isActive="isMegaMenuVisible ?? false"
+            />
           </button>
           <MenuLink to="#!">政策</MenuLink>
           <DropDown summary="市民向けサービス">
@@ -283,7 +293,10 @@ watchEffect(() => {
         <Menu :menuList="menuList" linkTag="a"></Menu>
       </Drawer>
     </div>
-    <MegaMenuContainer :isVisible="isMegaMenuVisible" @update:isVisible="(v)=>isMegaMenuVisible = v">
+    <MegaMenuContainer
+      :isVisible="isMegaMenuVisible"
+      @update:isVisible="(v) => (isMegaMenuVisible = v)"
+    >
       <template #col1>
         <div>
           <h2>メガメニュー</h2>
@@ -780,7 +793,7 @@ hr {
   }
 }
 
-.megaMenuButton{
+.megaMenuButton {
   appearance: none;
   background: none;
   border: none;

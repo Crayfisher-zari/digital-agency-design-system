@@ -34,7 +34,11 @@ const { isOpened, hasAnimation, handleDropDown } = useDropDownAnimation(
     ]"
   >
     <summary class="summary" @click="handleDropDown">
-      <DropDownSummary :summaryText="summary" :isActive="isOpened ?? false" :hasAnimation="hasAnimation" />
+      <DropDownSummary
+        :summaryText="summary"
+        :isActive="isOpened ?? false"
+        :hasAnimation="hasAnimation"
+      />
     </summary>
     <div ref="contentsElement" class="contents">
       <div ref="contentsInnerElement" class="contentsInner">
@@ -73,17 +77,17 @@ const { isOpened, hasAnimation, handleDropDown } = useDropDownAnimation(
 
   // アニメーションなし
   &:not(.hasAnimation) {
-    .contents{
+    .contents {
       // 0秒だとtransitionEndが反応しないため極小の値を設定
       transition-duration: 0.1ms;
     }
   }
 }
 
-
 .summary {
- display: block;
- cursor: pointer;
+  display: block;
+  cursor: pointer;
+
   &:focus-visible {
     outline: 2px solid var(--color-border-focused);
   }
