@@ -55,7 +55,7 @@ withDefaults(defineProps<Props>(), {
   }
   &:not(.hasAnimation) {
     .dropDownIcon {
-      transition: none;
+      transition-duration: 0s;
     }
 
     &.isActive {

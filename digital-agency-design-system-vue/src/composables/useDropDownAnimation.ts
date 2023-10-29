@@ -18,15 +18,13 @@ export const useDropDownAnimation = (
   contentsInnerElement: Ref<HTMLElement | null>,
 ) => {
   const isOpened = ref<boolean | null>(null);
-  const hasAnimation = ref<boolean>(true);
+  const hasAnimation = ref<boolean>(false);
 
   /**
    * アコーディオンの開閉イベント
    */
   const handleDropDown = (e: Event) => {
     if (
-      // prefers-reduced-motionの場合はアニメーションなし。デフォルトの挙動
-      matchMedia("(prefers-reduced-motion:reduce)").matches ||
       !detailsElement.value ||
       !contentsElement.value ||
       !contentsInnerElement.value
@@ -67,7 +65,6 @@ export const useDropDownAnimation = (
       hasAnimation.value = false;
     }
     if (
-      !matchMedia("(prefers-reduced-motion:reduce)").matches &&
       contentsElement.value
     ) {
       const contents = contentsElement.value;

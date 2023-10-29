@@ -74,7 +74,8 @@ const { isOpened, hasAnimation, handleDropDown } = useDropDownAnimation(
   // アニメーションなし
   &:not(.hasAnimation) {
     .contents{
-      transition: none;
+      // 0秒だとtransitionEndが反応しないため極小の値を設定
+      transition-duration: 0.1ms;
     }
   }
 }
@@ -82,6 +83,7 @@ const { isOpened, hasAnimation, handleDropDown } = useDropDownAnimation(
 
 .summary {
  display: block;
+ cursor: pointer;
   &:focus-visible {
     outline: 2px solid var(--color-border-focused);
   }
