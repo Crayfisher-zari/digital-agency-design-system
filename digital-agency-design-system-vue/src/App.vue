@@ -229,7 +229,7 @@ const menuList4: InstanceType<typeof Menu>["menuList"] = [
 
 const isDrawerVisible = ref(false);
 
-const isMegaMenuVisible = ref(true);
+const isMegaMenuVisible = ref(false);
 
 watchEffect(() => {
   if (isDrawerVisible.value) {
@@ -299,7 +299,7 @@ watchEffect(() => {
       @update:isVisible="(v) => (isMegaMenuVisible = v)"
     >
       <template #col1>
-        <MegaMenuTitle />
+        <MegaMenuTitle title="メガメニュー" text="サブタイトルはここに記入します" linkText="2階層目へのリンク" linkUrl="#!"/>
       </template>
       <template #col2>
         <Menu :menuList="menuList3" :hasGap="false" linkTag="a"></Menu>
