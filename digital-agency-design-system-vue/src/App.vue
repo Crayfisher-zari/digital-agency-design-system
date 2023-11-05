@@ -31,6 +31,7 @@ import Drawer from "./components/Drawer.vue";
 import MegaMenuContainer from "./components/MegaMenuContainer.vue";
 import DropDownSummary from "./components/DropDownSummary.vue";
 import MegaMenuTitle from "./components/MegaMenuTitle.vue";
+import Divider from "./components/Divider.vue";
 import { useScrollLock } from "./composables/useScrollLock";
 
 const handleClick = () => {
@@ -391,6 +392,7 @@ watchEffect(() => {
           </div>
         </Layout>
       </div>
+
       <div class="colSpan-12">
         <div class="colorScheme">
           <RadioGroup
@@ -403,6 +405,10 @@ watchEffect(() => {
             :isRequired="false"
           />
         </div>
+      </div>
+      <div class="colSpan-12">
+        <Heading :headingLevel="2"> ディバイダー </Heading>
+        <Divider />
       </div>
       <div class="colSpan-12">
         <Heading :headingLevel="2"> メニュー </Heading>
