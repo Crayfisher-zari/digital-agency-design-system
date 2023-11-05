@@ -299,7 +299,12 @@ watchEffect(() => {
       @update:isVisible="(v) => (isMegaMenuVisible = v)"
     >
       <template #col1>
-        <MegaMenuTitle title="メガメニュー" text="サブタイトルはここに記入します" linkText="2階層目へのリンク" linkUrl="#!"/>
+        <MegaMenuTitle
+          title="メガメニュー"
+          text="サブタイトルはここに記入します"
+          linkText="2階層目へのリンク"
+          linkUrl="#!"
+        />
       </template>
       <template #col2>
         <Menu :menuList="menuList3" :hasGap="false" linkTag="a"></Menu>
