@@ -2,19 +2,44 @@
 type Props = {
   weight?: 1 | 2 | 3 | 4;
   color?: "default" | "medium" | "dark";
-  style?: "solid" | "dash";
+  borderStyle?: "solid" | "dash";
 };
 withDefaults(defineProps<Props>(), {
   weight: 1,
   color: "default",
-  style: "solid",
+  borderStyle: "solid",
 });
 </script>
 <template>
-  <div class="divider"></div>
+  <div class="divider" :class="[color, borderStyle, `weight${weight}`]"></div>
 </template>
 <style lang="scss" scoped>
+// TODO カラーのアップデート
 .divider {
-  border: 1px solid var(--color-border-divider);
+  border: 1px solid var(--color-sumi-500);
+
+  &.medium {
+    border-color: var(--color-sumi-600);
+  }
+
+  &.dark {
+    border-color: var(--color-sumi-700);
+  }
+
+  &.weight2 {
+    border-width: 2px;
+  }
+
+  &.weight3 {
+    border-width: 3px;
+  }
+
+  &.weight4 {
+    border-width: 4px;
+  }
+
+  &.dash {
+    border-style: dashed;
+  }
 }
 </style>
