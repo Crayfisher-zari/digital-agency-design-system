@@ -408,7 +408,20 @@ watchEffect(() => {
       </div>
       <div class="colSpan-12">
         <Heading :headingLevel="2"> ディバイダー </Heading>
-        <Divider />
+        <div class="dividerWrapper">
+          <Divider />
+        </div>
+        <div class="dividerWrapper">
+          <Divider :weight="2" />
+        </div>
+
+        <div class="dividerWrapper">
+          <Divider :weight="3" borderStyle="dash" />
+        </div>
+
+        <div class="dividerWrapper">
+          <Divider :weight="4" borderStyle="dash" color="medium" />
+        </div>
       </div>
       <div class="colSpan-12">
         <Heading :headingLevel="2"> メニュー </Heading>
@@ -845,5 +858,9 @@ hr {
   padding: 16px;
   font-size: pxToRem(14);
   text-align: center;
+}
+
+.dividerWrapper {
+  padding: 24px 0;
 }
 </style>
