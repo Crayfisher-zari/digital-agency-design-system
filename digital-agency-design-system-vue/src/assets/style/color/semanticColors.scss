@@ -53,12 +53,12 @@
   --color-button-light-normal: var(--color-sea-800);
   --color-button-dark-normal: var(--color-sea-300);
   --color-button-normal: var(--color-sea-800);
-  --color-button-light-hover: var(--color-sea-800-dark);
-  --color-button-dark-hover: var(--color-sea-300-dark);
-  --color-button-hover: var(--color-sea-800-dark);
-  --color-button-light-active: var(--color-sea-800-dark);
-  --color-button-dark-active: var(--color-sea-300-dark);
-  --color-button-active: var(--color-sea-800-dark);
+  --color-button-light-hover: var(--color-sea-900);
+  --color-button-dark-hover: var(--color-sea-400);
+  --color-button-hover: var(--color-sea-900);
+  --color-button-light-active: var(--color-sea-1200);
+  --color-button-dark-active: var(--color-sea-400);
+  --color-button-active: var(--color-sea-1200);
   --color-button-light-disabled: var(--color-sumi-500);
   --color-button-dark-disabled: var(--color-sumi-600);
   --color-button-disabled: var(--color-sumi-500);
@@ -134,8 +134,8 @@
 
     /* Button */
     --color-button-normal: var(--color-sea-300);
-    --color-button-hover: var(--color-sea-300-dark);
-    --color-button-active: var(--color-sea-300-dark);
+    --color-button-hover: var(--color-sea-400);
+    --color-button-active: var(--color-sea-400);
     --color-button-disabled: var(--color-sumi-500);
 
     /* Background */
@@ -182,8 +182,8 @@
 
   /* Button */
   --color-button-normal: var(--color-sea-800);
-  --color-button-hover: var(--color-sea-800-dark);
-  --color-button-active: var(--color-sea-800-dark);
+  --color-button-hover: var(--color-sea-900);
+  --color-button-active: var(--color-sea-900);
   --color-button-disabled: var(--color-sumi-500);
 
   /* Background */
@@ -229,8 +229,8 @@
 
   /* Button */
   --color-button-normal: var(--color-sea-300);
-  --color-button-hover: var(--color-sea-300-dark);
-  --color-button-active: var(--color-sea-300-dark);
+  --color-button-hover: var(--color-sea-400);
+  --color-button-active: var(--color-sea-400);
   --color-button-disabled: var(--color-sumi-500);
 
   /* Background */
