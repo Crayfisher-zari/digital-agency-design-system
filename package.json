@@ -9,11 +9,21 @@
     "preview": "vite preview",
     "lint": "eslint \"./**/*.{ts,vue}\" && stylelint \"./**/*.{scss,vue}\" && prettier \"./**/*.{scss,vue,ts}\" --check",
     "lint:fix": "eslint \"./**/*.{vue,ts}\" --fix && stylelint \"./**/*.{scss,vue}\" --fix && prettier \"./**/*.{scss,vue,ts}\" --write"
+    "lint:fix": "eslint \"./**/*.{vue,ts}\" --fix && stylelint \"./**/*.{scss,vue}\" --fix && prettier \"./**/*.{scss,vue,ts}\" --write",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "vue": "3.3.11"
   },
   "devDependencies": {
+    "@storybook/addon-essentials": "7.6.5",
+    "@storybook/addon-interactions": "7.6.5",
+    "@storybook/addon-links": "7.6.5",
+    "@storybook/blocks": "7.6.5",
+    "@storybook/test": "7.6.5",
+    "@storybook/vue3": "7.6.5",
+    "@storybook/vue3-vite": "7.6.5",
     "@typescript-eslint/eslint-plugin": "6.14.0",
     "@typescript-eslint/parser": "6.14.0",
     "@vitejs/plugin-vue": "4.5.2",
@@ -21,10 +31,15 @@
     "dotenv": "16.3.1",
     "eslint": "8.55.0",
     "eslint-config-prettier": "9.1.0",
+    "eslint-plugin-storybook": "^0.6.15",
     "eslint-plugin-vue": "9.19.2",
+    "init": "0.1.2",
     "postcss-html": "1.5.0",
     "prettier": "3.1.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
     "sass": "1.69.5",
+    "storybook": "7.6.5",
     "stylelint": "16.0.2",
     "stylelint-config-prettier": "9.0.5",
     "stylelint-config-recess-order": "4.4.0",
@@ -34,5 +49,10 @@
     "vite": "5.0.8",
     "vue-eslint-parser": "9.3.2",
     "vue-tsc": "1.8.25"
+  },
+  "eslintConfig": {
+    "extends": [
+      "plugin:storybook/recommended"
+    ]
   }
 }
