@@ -44,7 +44,7 @@ jobs:
         with:
           node-version: 20
           cache: yarn
-          cache-dependency-path: digital-agency-design-system-vue/yarn.lock
+          cache-dependency-path: yarn.lock
       - run: yarn install --frozen-lockfile
       - run: yarn run build
       - name: Setup Pages
