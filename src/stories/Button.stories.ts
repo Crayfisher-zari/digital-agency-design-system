@@ -1,20 +1,22 @@
-import type { Meta, StoryObj } from '@storybook/vue3';
+import type { Meta, StoryObj } from "@storybook/vue3";
 
-import Button from './Button.vue';
+import BasicButton from "../components/BasicButton.vue";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 const meta = {
-  title: 'Example/Button',
-  component: Button,
+  title: "BasicButton",
+  component: BasicButton,
   // This component will have an automatically generated docsPage entry: https://storybook.js.org/docs/writing-docs/autodocs
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   argTypes: {
-    size: { control: 'select', options: ['small', 'medium', 'large'] },
-    backgroundColor: { control: 'color' },
-    onClick: { action: 'clicked' },
+    label: { control: "text" },
+    type: {
+      control: "select",
+      options: ["primary", "secondary", "tertiary"],
+    },
   },
-  args: { primary: false }, // default value
-} satisfies Meta<typeof Button>;
+  args: { label: "ボタン", type: "primary" }, // default value
+} satisfies Meta<typeof BasicButton>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -25,28 +27,22 @@ type Story = StoryObj<typeof meta>;
  */
 export const Primary: Story = {
   args: {
-    primary: true,
-    label: 'Button',
+    label: "ボタン",
+    type: "primary",
   },
 };
 
 export const Secondary: Story = {
   args: {
-    primary: false,
-    label: 'Button',
+    label: "ボタン",
+    type: "secondary",
   },
 };
 
-export const Large: Story = {
+export const Tertiary: Story = {
   args: {
-    label: 'Button',
-    size: 'large',
+    label: "ボタン",
+    type: "tertiary",
   },
 };
 
-export const Small: Story = {
-  args: {
-    label: 'Button',
-    size: 'small',
-  },
-};
