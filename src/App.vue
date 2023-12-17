@@ -32,6 +32,7 @@ import MegaMenuContainer from "./components/MegaMenuContainer.vue";
 import DropDownSummary from "./components/DropDownSummary.vue";
 import MegaMenuTitle from "./components/MegaMenuTitle.vue";
 import Divider from "./components/Divider.vue";
+import BasicTable from "./components/BasicTable.vue";
 import { useScrollLock } from "./composables/useScrollLock";
 
 const handleClick = () => {
@@ -578,7 +579,7 @@ watchEffect(() => {
       </div>
       <div class="colSpan-12">
         <Heading :headingLevel="2"> テーブル </Heading>
-        <div class="tableWrapper">
+        <BasicTable >
           <table class="customTable">
             <thead>
               <th>Table Hader</th>
@@ -625,7 +626,7 @@ watchEffect(() => {
               </tr>
             </tbody>
           </table>
-        </div>
+        </BasicTable>
       </div>
       <div class="colSpan-12">
         <Heading :headingLevel="2"> ページネーション </Heading>
