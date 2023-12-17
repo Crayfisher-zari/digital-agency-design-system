@@ -20,6 +20,10 @@ concurrency:
   group: "pages"
   cancel-in-progress: true
 
+env:
+  # Setting an environment variable with the value of a configuration variable
+  BASE_PATH: ${{ vars.BASE_PATH }}
+
 jobs:
   # Single deploy job since we're just deploying
   deploy:
@@ -27,9 +31,6 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: digital-agency-design-system-vue
 
     # strategy:
      # matrix:
@@ -38,7 +39,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Use Node.js v16
+      - name: Use Node.js v20
         uses: actions/setup-node@v3
         with:
           node-version: 20
