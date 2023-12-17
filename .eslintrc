@@ -10,7 +10,8 @@
     "plugin:vue/vue3-recommended",
     "@vue/eslint-config-typescript",
     "plugin:@typescript-eslint/recommended",
-    "prettier"
+    "prettier",
+    "plugin:storybook/recommended"
   ],
   "parser": "vue-eslint-parser",
   "parserOptions": {
@@ -18,9 +19,10 @@
     "project": "./tsconfig.json",
     "sourceType": "module"
   },
-  "ignorePatterns": ["*.d.ts","vite.config.ts"],
+  "ignorePatterns": ["*.d.ts", "vite.config.ts"],
   "rules": {
     "vue/attribute-hyphenation": 0,
-    "vue/multi-word-component-names" : 0
+    "vue/multi-word-component-names": 0,
+    "vue/v-on-event-hyphenation": 0
   }
 }

@@ -48,10 +48,5 @@
     "vite": "5.0.8",
     "vue-eslint-parser": "9.3.2",
     "vue-tsc": "1.8.25"
-  },
-  "eslintConfig": {
-    "extends": [
-      "plugin:storybook/recommended"
-    ]
   }
 }
