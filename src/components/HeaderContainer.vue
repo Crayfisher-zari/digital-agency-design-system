@@ -31,6 +31,7 @@ withDefaults(defineProps<Props>(), {
   padding: 0 40px;
   background-color: var(--color-background-primary);
   border-bottom: 1px solid var(--color-border-divider);
+
   @include mediaQueryDown {
     padding: 0 16px;
   }
@@ -41,6 +42,7 @@ withDefaults(defineProps<Props>(), {
   grid-template: "logo item" 80px "menu menu" 56px / 240px 1fr;
   max-width: 1280px;
   margin: 0 auto;
+
   @include mediaQueryDown {
     grid-template: "logo item hamburger" 56px / 160px 1fr 48px;
   }
@@ -60,6 +62,7 @@ withDefaults(defineProps<Props>(), {
 
 .menu {
   grid-area: menu;
+
   @include mediaQueryDown {
     display: none;
   }
@@ -67,6 +70,7 @@ withDefaults(defineProps<Props>(), {
 
 .hamburger {
   grid-area: hamburger;
+
   @include mediaQueryUp {
     display: none;
   }

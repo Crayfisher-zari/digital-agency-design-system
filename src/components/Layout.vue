@@ -12,8 +12,7 @@
   grid-template-rows: auto;
   grid-template-columns: repeat(12, 1fr);
   grid-auto-rows: auto;
-  row-gap: 32px;
-  column-gap: 32px;
+  gap: 32px 32px;
   max-width: 1024px;
   margin: 0 auto;
 }
@@ -40,6 +39,7 @@
   .layout {
     grid-template-columns: repeat(1, 100%);
   }
+
   @for $i from 1 through 12 {
     .colSpan-#{$i} {
       grid-column: span 1 / span 1;

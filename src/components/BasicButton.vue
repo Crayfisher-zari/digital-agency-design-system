@@ -4,14 +4,23 @@ type Props = {
   label: string;
   /** ボタンのタイプです。未指定の場合はprimaryになります */
   type?: "primary" | "secondary" | "tertiary";
+  /** 非活性かどうか？ */
+  disabled?: boolean;
 };
+
+type Emits = {
+  /** クリック時のイベントハンドラ */
+  click: [];
+};
+
+const emits = defineEmits<Emits>();
 
 withDefaults(defineProps<Props>(), {
   type: "primary",
 });
 </script>
 <template>
-  <button :class="type">
+  <button :class="type" :disabled="disabled" @click="emits('click')">
     <span class="labelText">{{ label }}</span>
   </button>
 </template>

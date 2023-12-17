@@ -356,7 +356,14 @@ watchEffect(() => {
         <Layout>
           <div class="colSpan-4">
             <div class="buttonWrapper">
-              <BasicButton label="ボタン" @click="handleClick" />
+              <BasicButton
+                label="ボタン"
+                @click="
+                  () => {
+                    console.log('aa');
+                  }
+                "
+              />
 
               <BasicButton label="ボタン" disabled @click="handleClick" />
             </div>
@@ -579,7 +586,7 @@ watchEffect(() => {
       </div>
       <div class="colSpan-12">
         <Heading :headingLevel="2"> テーブル </Heading>
-        <BasicTable >
+        <BasicTable>
           <table class="customTable">
             <thead>
               <th>Table Hader</th>
@@ -723,9 +730,11 @@ watchEffect(() => {
   max-width: 1104px;
   padding: 0 40px;
   margin: 24px auto 0;
+
   @include mediaQueryUp {
     margin-top: 148px;
   }
+
   @include mediaQueryDown {
     padding: 0 16px;
   }
@@ -753,6 +762,7 @@ hr {
 
 .headerNav {
   padding-right: 160px;
+
   @include mediaQueryDown {
     display: none;
   }
@@ -767,6 +777,7 @@ hr {
   top: 26px;
   right: 4px;
   width: 120px;
+
   @include mediaQueryDown {
     top: 12px;
   }
@@ -807,8 +818,7 @@ hr {
   align-items: stretch;
   width: 100%;
   height: 0;
-  overflow-x: hidden;
-  overflow-y: auto;
+  overflow: hidden auto;
   transition: height 0s;
   transition-delay: var(--base-duration);
 

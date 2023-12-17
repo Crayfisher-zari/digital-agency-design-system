@@ -11,11 +11,19 @@ const meta = {
   argTypes: {
     label: { control: "text" },
     type: {
-      control: "select",
+      control: "radio",
       options: ["primary", "secondary", "tertiary"],
     },
+    disabled: {
+      control: "boolean",
+    },
+    onClick: { action: "clicked" },
   },
-  args: { label: "ボタン", type: "primary" }, // default value
+  args: {
+    label: "ボタン",
+    type: "primary",
+    disabled: false,
+  }, // default value
 } satisfies Meta<typeof BasicButton>;
 
 export default meta;
@@ -45,4 +53,3 @@ export const Tertiary: Story = {
     type: "tertiary",
   },
 };
-

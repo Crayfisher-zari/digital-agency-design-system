@@ -1,0 +1,9 @@
+body {
+  font-family: "Noto Sans JP", sans-serif;
+  color: var(--color-text-body);
+  background-color: var(--color-background-primary);
+}
+
+#storybook-docs .sbdocs-content .docs-story {
+  background-color: var(--color-background-primary) !important;
+}

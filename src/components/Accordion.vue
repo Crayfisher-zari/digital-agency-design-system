@@ -92,6 +92,7 @@ const { isOpened, hasAnimation, handleDropDown } = useDropDownAnimation(
   margin-left: 6px;
   font-size: pxToRem(24);
   line-height: 1;
+
   @include mediaQueryDown {
     margin-right: 24px;
   }

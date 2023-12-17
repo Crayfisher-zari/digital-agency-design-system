@@ -69,6 +69,7 @@ a {
   font-weight: var(--weight-regular);
   line-height: 1.4;
   letter-spacing: 0.04em;
+
   @include mediaQueryDown {
     font-size: pxToRem(32);
     font-weight: var(--weight-medium);
@@ -81,6 +82,7 @@ a {
   font-weight: var(--weight-regular);
   line-height: 1.5;
   letter-spacing: 0.04em;
+
   @include mediaQueryDown {
     font-size: pxToRem(28);
     font-weight: var(--weight-medium);
@@ -93,6 +95,7 @@ a {
   font-weight: var(--weight-regular);
   line-height: 1.5;
   letter-spacing: 0.04em;
+
   @include mediaQueryDown {
     font-size: pxToRem(24);
     font-weight: var(--weight-medium);
@@ -105,6 +108,7 @@ a {
   font-weight: var(--weight-regular);
   line-height: 1.5;
   letter-spacing: 0.04em;
+
   @include mediaQueryDown {
     font-size: pxToRem(20);
     font-weight: var(--weight-medium);
@@ -117,6 +121,7 @@ a {
   font-weight: var(--weight-regular);
   line-height: 1.5;
   letter-spacing: 0.04em;
+
   @include mediaQueryDown {
     font-size: pxToRem(16);
     font-weight: var(--weight-medium);
