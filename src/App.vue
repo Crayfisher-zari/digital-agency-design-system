@@ -64,7 +64,7 @@ const { UseTextAreaInputComponent: MaxCountTextArea } = useTextAreaInput({
 const selected = ref<string | null>(null);
 const selected2 = ref<string | null>("3");
 const checked = ref(["2"]);
-const checked2 = ref(true);
+const checked2 = ref(false);
 const selector = ref("");
 const prefectures = [
   { label: "北海道", value: "Hokkaido" },
@@ -568,7 +568,7 @@ watchEffect(() => {
                 name="group3"
               />
               <div>
-                <Checkbox v-model="checked2" label="真偽値1" />
+                <Checkbox v-model="checked2" :value="true" label="真偽値1" />
               </div>
             </div>
           </div>

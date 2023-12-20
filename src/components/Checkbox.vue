@@ -1,11 +1,11 @@
-<script lang="ts" setup>
+<script lang="ts" setup generic="T">
 import { computed } from "vue";
 
 type Props = {
   /** 格納するリアクティブな値（v-modelでも使える） */
-  modelValue: [] | string[] | boolean;
+  modelValue: T | T[];
   /** 選択肢固有の値です */
-  value?: string;
+  value: T | undefined;
   /** ボタンのラベルです */
   label: string;
   /** name属性の値です */
@@ -16,24 +16,25 @@ type Props = {
   isDisabled?: boolean;
 };
 
-type Emits = { (e: "update:modelValue", value: [] | string[] | boolean): void };
+type Emits = { (e: "update:modelValue", value: T | T[] | undefined): void };
 
 const props = withDefaults(defineProps<Props>(), {
   isDisabled: false,
   isValid: true,
-  value: "on",
   name: undefined,
 });
 const emits = defineEmits<Emits>();
 
 const isChecked = computed<boolean>(() => {
-  if (Array.isArray(props.modelValue)) {
+  if (typeof props.modelValue === "boolean") {
+    return props.modelValue;
+  } else if (Array.isArray(props.modelValue)) {
     if (props.modelValue.length === 0 || props.value === undefined) {
       return false;
     }
-    return (props.modelValue as string[]).includes(props.value);
+    return (props.modelValue as T[]).includes(props.value);
   } else {
-    return props.modelValue;
+    return props.modelValue === props.value;
   }
 });
 
@@ -41,11 +42,13 @@ const isChecked = computed<boolean>(() => {
 const handleInput = (e: Event) => {
   // checkboxのv-modelの挙動の参考 https://github.com/vuejs/core/blob/49023549257d8962c6e059808067b1b67b398534/packages/runtime-dom/src/directives/vModel.ts#L105
   const checked = (e.target as HTMLInputElement).checked;
-  const value = (e.target as HTMLInputElement).value;
-  let newValue: [] | string[] | boolean;
+  let newValue: T | T[] | undefined;
 
-  // リアクティブな値が配列の場合（複数チェックボックス想定）
-  if (Array.isArray(props.modelValue)) {
+  if (props.value === undefined) {
+    newValue = props.value;
+  } else if (Array.isArray(props.modelValue)) {
+    // リアクティブな値が配列の場合（複数チェックボックス想定）
+
     const findIndex = props.modelValue.findIndex(
       (item) => item === props.value,
     );
@@ -53,7 +56,7 @@ const handleInput = (e: Event) => {
 
     if (!find && checked) {
       // 配列になく、チェックが入った場合は追加
-      newValue = [...props.modelValue].concat([value]);
+      newValue = [...props.modelValue, props.value];
     } else if (find && !checked) {
       // 配列にあり、チェックがない場合は削除
       newValue = [...props.modelValue];
@@ -63,7 +66,13 @@ const handleInput = (e: Event) => {
       newValue = [...props.modelValue];
     }
   } else {
-    newValue = checked;
+    if (typeof props.value === "boolean") {
+      newValue = checked as T;
+    } else if (typeof props.value === "string") {
+      newValue = checked ? props.value : ("" as T);
+    } else {
+      newValue = checked ? props.value : undefined;
+    }
   }
   emits("update:modelValue", newValue);
 };
