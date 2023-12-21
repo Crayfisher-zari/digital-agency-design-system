@@ -5,9 +5,9 @@ import Checkbox from "./Checkbox.vue";
 type Props = {
   /** 格納するリアクティブな値（v-modelでも使える） */
   modelValue: [] | string[];
-  /** ラジオボタングループのラベル */
+  /** チェックボタングループのラベル */
   groupLabel: string;
-  /** ラジオボタンを紐付けるname属性 */
+  /** チェックボタンを紐付けるname属性 */
   name: string;
   /** 各選択肢の文字列 */
   labels: string[];
