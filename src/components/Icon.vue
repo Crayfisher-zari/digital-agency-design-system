@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { getSerialNumber } from "../utils/getSerialNumber";
+import { getRandomString } from "../utils/getRandomString";
 
 type Props = {
   iconSrc: string;
@@ -15,7 +15,7 @@ withDefaults(defineProps<Props>(), {
   ariaLabel: undefined,
   ariaHidden: undefined,
 });
-const id = getSerialNumber();
+const id = getRandomString();
 </script>
 <template>
   <svg

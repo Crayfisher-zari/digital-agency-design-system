@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import { computed } from "vue";
-import { getSerialNumber } from "../utils/getSerialNumber";
 import Icon from "./Icon.vue";
 import iconSelector from "@/assets/images/icon_selector.svg";
+import { getRandomString } from "../utils/getRandomString";
 
 type Props = {
   /** 値（v-modelでも使える） */
@@ -40,7 +40,7 @@ type Emits = { (e: "update:modelValue", value: string): void };
 const emits = defineEmits<Emits>();
 
 // aria-describledby用のエラー文言のid名です
-const errorIdName = `selector${getSerialNumber()}`;
+const errorIdName = `selector${getRandomString()}`;
 
 // 状態に応じたクラス名を返します
 const stateClassName = computed<string | null>(() => {

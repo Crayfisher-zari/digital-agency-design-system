@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { computed } from "vue";
-import { getSerialNumber } from "../utils/getSerialNumber";
+import { getRandomString } from "../utils/getRandomString";
 type Props = {
   /** 値（v-modelでも使える） */
   modelValue: string;
@@ -52,7 +52,7 @@ const isOverCharacter = computed<boolean>(() => {
 });
 
 // aria-describledby用のエラー文言のid名です
-const errorIdName = `textInput${getSerialNumber()}`;
+const errorIdName = `textInput${getRandomString()}`;
 
 // 状態に応じたクラス名を返します
 const stateClassName = computed<string | null>(() => {
