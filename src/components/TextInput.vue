@@ -8,7 +8,7 @@ type Props = {
   /** インプットのラベルです */
   label: string;
   /** テキスト入力のタイプです。未指定の場合はtextになります */
-  type:
+  type?:
     | "text"
     | "email"
     | "tel"
@@ -109,7 +109,9 @@ const handleInput = (e: Event) => {
 @use "@/assets/style/utils/utils.scss" as *;
 
 .textInputWrapper {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
 }
 
 .labelWrapper {
@@ -133,9 +135,7 @@ const handleInput = (e: Event) => {
 }
 
 .textInput {
-  width: 100%;
   padding: 12px 16px;
-  margin-top: 8px;
   font-size: pxToRem(16);
   border: 1px solid var(--color-border-field);
   border-radius: 8px;
@@ -153,7 +153,6 @@ const handleInput = (e: Event) => {
 
 .supportText {
   display: block;
-  margin-top: 8px;
   font-size: pxToRem(12);
   line-height: 1.5;
   color: var(--color-text-description);
