@@ -22,8 +22,9 @@ const meta = {
   args: {
     label: "ラベル",
     value: "はい",
+    modelValue:false
   },
-} satisfies Meta<typeof Checkbox>;
+} as Meta<typeof Checkbox>;
 type Story = StoryObj<typeof meta>;
 
 export default meta;
@@ -32,5 +33,6 @@ export const Base: Story = {
   args: {
     label: "ラベル",
     value: "はい",
+    modelValue:false
   },
 };

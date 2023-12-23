@@ -39,6 +39,7 @@ const meta = {
     isValid: true,
     isDisabled: false,
     onBlur: undefined,
+    modelValue:""
   },
 } satisfies Meta<typeof TextInput>;
 

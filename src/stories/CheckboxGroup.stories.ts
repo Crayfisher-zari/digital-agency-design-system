@@ -27,12 +27,17 @@ const meta = {
     },
   },
   args: {
+    labels: ["選択肢1", "選択肢2", "選択肢3"],
+    values: ["選択肢1の値", "選択肢2の値", "選択肢3の値"],
     groupLabel: "ラベル",
     supportText: "サポートテキスト",
     errorText: "エラーテキスト",
     onBlur: undefined,
+    isRequired: false,
+    isValid: true,
+    isDisabled: false,
   },
-} satisfies Meta<typeof CheckboxGroup>;
+} as Meta<typeof CheckboxGroup>;
 type Story = StoryObj<typeof meta>;
 
 export default meta;
@@ -50,8 +55,8 @@ export const Base: Story = {
         <CheckboxGroup
           v-model="checked"
           :groupLabel="groupLabel"
-          :labels="['選択肢1', '選択肢2', '選択肢3']"
-          :values="['選択肢1', '選択肢2', '選択肢3']"
+          :labels="labels"
+          :values="values"
           :supportText="supportText"
           :errorText="errorText"
           :isValid="isValid"
