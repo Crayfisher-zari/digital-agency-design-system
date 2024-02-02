@@ -12,7 +12,7 @@ type Props = {
   label: string;
   /** name属性の値です */
   name: string;
-  /** サブテキスト */
+  /** サブテキスト。タイル型の場合に使用できます */
   subText?: string;
   /** 妥当性 */
   isValid?: boolean;

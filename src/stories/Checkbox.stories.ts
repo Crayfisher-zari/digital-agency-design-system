@@ -22,7 +22,7 @@ const meta = {
   args: {
     label: "ラベル",
     value: "はい",
-    modelValue:false
+    modelValue: false,
   },
 } as Meta<typeof Checkbox>;
 type Story = StoryObj<typeof meta>;
@@ -33,6 +33,6 @@ export const Base: Story = {
   args: {
     label: "ラベル",
     value: "はい",
-    modelValue:false
+    modelValue: false,
   },
 };
