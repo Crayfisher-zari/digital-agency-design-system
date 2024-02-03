@@ -17,7 +17,7 @@ export const useTextAreaInput = ({
   maxCount,
 }: Arg) => {
   const text = ref<string>("");
-  const numberOfCharacter = computed(() => countCharacters(text.value));
+  const numberOfCharacters = computed(() => countCharacters(text.value));
   const isChanged = ref<boolean>(false);
   const errorText = ref<string | null>(null);
 
@@ -29,7 +29,7 @@ export const useTextAreaInput = ({
       return;
     }
     // 文字数が上限を超えた場合はinvalid
-    if (maxCount && numberOfCharacter.value > maxCount) {
+    if (maxCount && numberOfCharacters.value > maxCount) {
       // errorText.value ="最大文字数を超えています";
       isValid.value = false;
       return;
@@ -64,7 +64,7 @@ export const useTextAreaInput = ({
       isRequired,
       isValid: isValid.value,
       maxCount,
-      numberOfCharacter: numberOfCharacter.value,
+      numberOfCharacters: numberOfCharacters.value,
       "onUpdate:modelValue": (value: string) => {
         text.value = value;
       },

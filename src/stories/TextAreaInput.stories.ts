@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/vue3";
 import TextAreaInput from "../components/TextAreaInput.vue";
+import { computed, ref } from "vue";
+import { countCharacters } from "../utils/countCharacters";
 const meta = {
   title: "TextArea",
   component: TextAreaInput,
@@ -16,6 +18,9 @@ const meta = {
       control: "boolean",
     },
     maxCount: {
+      control: "number",
+    },
+    numberOfCharacter: {
       control: "number",
     },
     isDisabled: {
@@ -42,4 +47,24 @@ export const base: Story = {
     isValid: true,
     maxCount: 256,
   },
+  render: (args) => ({
+    components: { TextAreaInput },
+    setup: () => {
+      const text = ref<string>("");
+      const numberOfCharacters = computed(() => countCharacters(text.value));
+      return { text, numberOfCharacters, ...args };
+    },
+    template: `
+      <TextAreaInput 
+        v-model="text" 
+        :label="label" 
+        :placeHolder="placeHolder" 
+        :supportText="supportText" 
+        :isRequired="isRequired" 
+        :isValid="isValid"
+        :maxCount="maxCount"
+        :numberOfCharacters="numberOfCharacters" 
+      />
+    `,
+  }),
 };

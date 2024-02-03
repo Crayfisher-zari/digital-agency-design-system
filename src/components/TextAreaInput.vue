@@ -19,7 +19,7 @@ type Props = {
   /** 最大文字数 */
   maxCount?: number;
   /** 入力された文字数 */
-  numberOfCharacter?: number;
+  numberOfCharacters?: number;
   /** フォーカスアウト時のコールバック関数 */
   onBlur?: (() => void) | undefined;
   /** ボタンが非活性状態か。未指定の場合はfalse */
@@ -101,11 +101,11 @@ const handleInput = (e: Event) => {
         }}</span>
       </span>
       <span
-        v-if="maxCount !== undefined && numberOfCharacter !== undefined"
+        v-if="maxCount !== undefined && numberOfCharacters !== undefined"
         class="wordCount"
         :class="{ over: isOverCharacter }"
       >
-        <span class="currntWord">{{ numberOfCharacter }}</span
+        <span class="currntWord">{{ numberOfCharacters }}</span
         ><span class="slash">/</span
         ><span class="maxWord">{{ maxCount }}</span></span
       >

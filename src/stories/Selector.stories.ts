@@ -3,7 +3,7 @@ import Selector from "../components/Selector.vue";
 
 const meta = {
   title: "Selector",
-  component:Selector,
+  component: Selector,
   tags: ["autodocs"],
   argTypes: {
     label: { control: "text" },

@@ -4,13 +4,13 @@ import { ref } from "vue";
 
 const meta = {
   title: "RadioGroup",
-  component:RadioGroup,
-  tags:["autodocs"],
+  component: RadioGroup,
+  tags: ["autodocs"],
   argTypes: {
-    groupLabel:{
+    groupLabel: {
       control: "text",
     },
-    radioStyle:{
+    radioStyle: {
       control: "radio",
       options: ["default", "tile"],
     },
@@ -35,21 +35,19 @@ const meta = {
     isValid: true,
     isDisabled: false,
   },
-
 } satisfies Meta<typeof RadioGroup>;
 type Story = StoryObj<typeof meta>;
 
-
 export default meta;
 
-export const Base:Story = {
-  render:(args)=>({
-    components:{RadioGroup},
-    setup:()=>{
+export const Base: Story = {
+  render: (args) => ({
+    components: { RadioGroup },
+    setup: () => {
       const checked = ref();
-      return {checked,...args}
+      return { checked, ...args };
     },
-    template:`
+    template: `
     <div>
       <p class="mb">選択されたもの：{{ checked }}</p>
         <RadioGroup
@@ -64,6 +62,6 @@ export const Base:Story = {
           name="radio-group"
         />
       </div>
-    `
-  })
-}
+    `,
+  }),
+};

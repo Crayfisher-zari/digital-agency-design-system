@@ -10,8 +10,8 @@ export const countCharacters = (text: string) => {
     const segments = segmenter.segment(text);
     return [...segments].length;
   } else {
-    // Intl.Segmenterが使えない場合はスプレッド演算子+lengthでカウント。ただし絵文字を使った場合に不正確になる
-    // この手法の問題点などはhttps://qiita.com/suin/items/3da4fb016728c024eacaにて詳説
+    // Intl.Segmenterが使えない場合はスプレッド演算子+lengthでカウント（主にFirefox）。ただし絵文字を使った場合に不正確になる
+    // @see https://qiita.com/suin/items/3da4fb016728c024eacaにて詳説
     return [...text].length;
   }
 };
