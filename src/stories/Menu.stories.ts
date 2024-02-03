@@ -1,0 +1,89 @@
+import type { Meta, StoryObj } from "@storybook/vue3";
+import Menu from "../components/Menu.vue";
+
+const meta = {
+  title: "Menu",
+  component: Menu,
+  tags: ["autodocs"],
+  argTypes: {
+    menuList: {
+      control: "object",
+    },
+    hasIcon: {
+      control: "boolean",
+    },
+    hasGap: {
+      control: "boolean",
+    },
+    linkTag: {
+      control: "text",
+    },
+  },
+  args: {
+    menuList: [
+      {
+        categoryName: "カテゴリー",
+        itemList: [
+          { type: "link", item: { to: "!#", text: "メニュー" } },
+          { type: "link", item: { to: "!#", text: "メニュー" } },
+          { type: "link", item: { to: "!#", text: "メニュー" } },
+        ],
+      },
+    ],
+    hasIcon: false,
+    hasGap: true,
+    linkTag: "a",
+  },
+} satisfies Meta<typeof Menu>;
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Base: Story = {
+  args: {
+    menuList: [
+      {
+        categoryName: "カテゴリー",
+        itemList: [
+          { type: "link", item: { to: "!#", text: "メニュー" } },
+          { type: "link", item: { to: "!#", text: "メニュー" } },
+          {
+            type: "link",
+            item: { to: "!#", text: "メニュー", selected: true },
+          },
+        ],
+      },
+    ],
+    hasIcon: false,
+    hasGap: true,
+    linkTag: "a",
+  },
+};
+
+export const Accordion: Story = {
+  args: {
+    menuList: [
+      {
+        categoryName: "カテゴリー",
+        itemList: [
+          {
+            type: "accordion",
+            item: {
+              accordionTitle: "アコーディオン",
+              hasIcon: true,
+              linkList: [
+                { to: "!#", text: "メニュー" },
+                { to: "!#", text: "メニュー" },
+                { to: "!#", text: "メニュー", selected: true },
+              ],
+            },
+          },
+          { type: "link", item: { to: "!#", text: "メニュー" } },
+          { type: "link", item: { to: "!#", text: "メニュー" } },
+        ],
+      },
+    ],
+    hasIcon: true,
+    hasGap: true,
+    linkTag: "a",
+  },
+};

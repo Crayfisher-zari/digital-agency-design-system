@@ -7,7 +7,7 @@ const meta = {
   tags: ["autodocs"],
   argTypes: {
     weight: {
-      control: "radio",
+      control: "select",
       options: [1, 2, 3, 4],
     },
     color: {
