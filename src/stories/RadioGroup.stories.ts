@@ -36,7 +36,7 @@ const meta = {
     isDisabled: false,
   },
 
-}as Meta<typeof RadioGroup>;
+} satisfies Meta<typeof RadioGroup>;
 type Story = StoryObj<typeof meta>;
 
 
