@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/vue3";
 import RadioButton from "../components/RadioButton.vue";
 
 const meta = {
-  title: "RadioButton",
+  title: "ラジオボタン",
   component: RadioButton,
   tags: ["autodocs"],
   argTypes: {

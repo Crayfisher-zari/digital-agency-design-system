@@ -3,7 +3,7 @@ import BasicButton from "../components/BasicButton.vue";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 const meta = {
-  title: "BasicButton",
+  title: "ボタン",
   component: BasicButton,
   // This component will have an automatically generated docsPage entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ["autodocs"],

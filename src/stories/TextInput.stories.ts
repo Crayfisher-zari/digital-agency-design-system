@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/vue3";
 import TextInput from "../components/TextInput.vue";
 
 const meta = {
-  title: "TextInput",
+  title: "テキスト入力",
   component: TextInput,
   tags: ["autodocs"],
   argTypes: {

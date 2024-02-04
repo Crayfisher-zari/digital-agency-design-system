@@ -3,7 +3,7 @@ import CheckboxGroup from "../components/CheckboxGroup.vue";
 import { ref } from "vue";
 
 const meta = {
-  title: "CheckboxGroup",
+  title: "チェックボックスグループ",
   component: CheckboxGroup,
   tags: ["autodocs"],
   argTypes: {

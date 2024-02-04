@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/vue3";
 import Menu from "../components/Menu.vue";
 
 const meta = {
-  title: "Menu",
+  title: "メニュー",
   component: Menu,
   tags: ["autodocs"],
   argTypes: {

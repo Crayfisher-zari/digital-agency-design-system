@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/vue3";
 import Selector from "../components/Selector.vue";
 
 const meta = {
-  title: "Selector",
+  title: "セレクター",
   component: Selector,
   tags: ["autodocs"],
   argTypes: {

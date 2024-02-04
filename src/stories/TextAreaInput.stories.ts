@@ -3,7 +3,7 @@ import TextAreaInput from "../components/TextAreaInput.vue";
 import { computed, ref } from "vue";
 import { countCharacters } from "../utils/countCharacters";
 const meta = {
-  title: "TextArea",
+  title: "テキストエリア",
   component: TextAreaInput,
   tags: ["autodocs"],
   argTypes: {

@@ -3,7 +3,7 @@ import RadioGroup from "../components/RadioGroup.vue";
 import { ref } from "vue";
 
 const meta = {
-  title: "RadioGroup",
+  title: "ラジオボタングループ",
   component: RadioGroup,
   tags: ["autodocs"],
   argTypes: {

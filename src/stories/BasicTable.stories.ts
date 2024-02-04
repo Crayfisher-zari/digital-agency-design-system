@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/vue3";
 import BasicTable from "../components/BasicTable.vue";
 
 const meta = {
-  title: "BasicTable",
+  title: "テーブル",
   component: BasicTable,
   tags: ["autodocs"],
 } satisfies Meta<typeof BasicTable>;

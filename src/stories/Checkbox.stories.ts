@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/vue3";
 import Checkbox from "../components/Checkbox.vue";
 
 const meta = {
-  title: "Checkbox",
+  title: "チェックボックス（単体）",
   component: Checkbox,
   tags: ["autodocs"],
   argTypes: {

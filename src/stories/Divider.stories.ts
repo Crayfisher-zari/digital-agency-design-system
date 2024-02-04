@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/vue3";
 import Divider from "../components/Divider.vue";
 
 const meta = {
-  title: "Divider",
+  title: "ディバイダー",
   component: Divider,
   tags: ["autodocs"],
   argTypes: {

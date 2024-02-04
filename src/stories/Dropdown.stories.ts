@@ -3,7 +3,7 @@ import DropDown from "../components/DropDown.vue";
 import Menu from "../components/Menu.vue";
 
 const meta = {
-  title: "DropDownMenu",
+  title: "ドロップダウン",
   component: DropDown,
   tags: ["autodocs"],
   argTypes: {
