@@ -81,7 +81,7 @@ const props = withDefaults(defineProps<Props>(), {
   width: 320px;
   height: 100%;
   padding: 20px 8px 32px;
-  background-color: #fff;
+  background-color: var(--color-background-primary);
   box-shadow: 2px 0 6px 0 rgba(0, 0, 0, 10%);
   transition: transform var(--base-duration) var(--easing-out-expo);
 
