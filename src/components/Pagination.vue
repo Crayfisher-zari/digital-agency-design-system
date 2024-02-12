@@ -5,14 +5,23 @@ import iconArrowLeft from "@/assets/images/icon_arrow_left.svg";
 import iconArrowRight from "@/assets/images/icon_arrow_right.svg";
 import Icon from "./Icon.vue";
 type Props = {
+  /** 見た目のタイプ */
   type?: "simple" | "basic";
+  /** 現在のページ */
   current: number;
+  /** 最小ページ */
   min: number;
+  /** 最大ページ */
   max: number;
+  /** ページ番号をクリックしたときの処理 */
   onClickNumber: (n: number) => void;
+  /** 次のページをクリックしたときの処理 */
   onClickNext: () => void;
+  /** 前のページをクリックしたときの処理 */
   onClickPrevious: () => void;
+  /** 一番最初へのページをクリックしたときの処理 */
   onClickFirst: () => void;
+  /** 一番最後へのページをクリックしたときの処理 */
   onClickEnd: () => void;
 };
 withDefaults(defineProps<Props>(), {
