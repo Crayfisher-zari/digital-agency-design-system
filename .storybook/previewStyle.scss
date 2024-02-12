@@ -40,3 +40,14 @@ body {
   text-align: center;
   background-color: var(--color-background-secondary);
 }
+
+/* 基本のリンクスタイル */
+a {
+  color: var(--color-text-link);
+  text-decoration: underline;
+
+  &:focus-visible {
+    border-radius: 4px;
+    outline: 2px solid var(--color-border-focused);
+  }
+}
