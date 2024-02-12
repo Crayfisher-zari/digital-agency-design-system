@@ -19,21 +19,6 @@ const meta = {
     max: {
       control: "number",
     },
-    onClickNumber: {
-      control: "function",
-    },
-    onClickNext: {
-      control: "function",
-    },
-    onClickPrevious: {
-      control: "function",
-    },
-    onClickFirst: {
-      control: "function",
-    },
-    onClickEnd: {
-      control: "function",
-    },
   },
   args: {
     type: "basic",
