@@ -39,7 +39,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const base: Story = {
+export const Base: Story = {
   args: {
     label: "お問い合わせ詳細",
     supportText: "できる限りくわしくお書きください",

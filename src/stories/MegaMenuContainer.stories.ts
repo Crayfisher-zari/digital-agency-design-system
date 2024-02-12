@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/vue3";
 import MegaMenuContainer from "../components/MegaMenuContainer.vue";
 import MegaMenuTitle from "../components/MegaMenuTitle.vue";
 import Menu from "../components/Menu.vue";
-import {menuList} from "./stub/menulist";
+import { menuList } from "./stub/menulist";
 
 const meta = {
   title: "メガメニューコンテナー",
@@ -28,7 +28,7 @@ type Story = StoryObj<typeof meta>;
 /**
  * メガメニューコンテナーはレイアウトを提供します
  */
-export const base: Story = {
+export const Base: Story = {
   args: {
     style: "flat",
     isVisible: true,
@@ -36,7 +36,7 @@ export const base: Story = {
   render: (args) => ({
     components: { MegaMenuContainer, MegaMenuTitle, Menu },
     setup: () => {
-      return { ...args,menuList };
+      return { ...args, menuList };
     },
     template: `
     <MegaMenuContainer :isVisible="isVisible">

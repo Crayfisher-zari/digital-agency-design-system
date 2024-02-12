@@ -14,7 +14,7 @@ type Story = StoryObj<typeof meta>;
 /**
  * colSpan-というclass名でレイアウトを制御できます。
  */
-export const base: Story = {
+export const Base: Story = {
   render: () => ({
     components: { Layout },
     template: `
