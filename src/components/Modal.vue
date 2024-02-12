@@ -4,12 +4,19 @@ import BasicButton from "../components/BasicButton.vue";
 import Layout from "../components/Layout.vue";
 import { useScrollLock } from "../composables/useScrollLock";
 type Props = {
+  /** ダイアログタイトル */
   title: string;
+  /** ダイアログの補助テキスト */
   text: string;
+  /** 主ボタンのラベル */
   labelPrimary: string;
+  /** 副ボタンのラベル */
   labelSecondary?: string;
+  /** 表示のv-model */
   modelValue: boolean;
+  /** 主ボタンのクリック時の処理 */
   onClickPrimary: () => void;
+  /** 副ボタンのクリック時の処理 */
   onClickSecondary?: () => void;
 };
 

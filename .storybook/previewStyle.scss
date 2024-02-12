@@ -27,3 +27,16 @@ body {
 .mb {
   margin-bottom: 24px;
 }
+
+// レイアウトストーリーのスタイル
+.layoutBlock {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  height: 120px;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  background-color: var(--color-background-secondary);
+}
