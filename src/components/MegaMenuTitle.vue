@@ -4,10 +4,15 @@ import iconRight from "@/assets/images/icon_arrow_right.svg";
 import Icon from "./Icon.vue";
 
 type Props = {
+  /** タイトル */
   title: string;
+  /** テキスト */
   text?: string;
+  /** リンクのタグ */
   linkTag?: LinkTag;
+  /** リンクのテキスト */
   linkText?: string;
+  /** リンク先のURL */
   linkUrl?: string;
 };
 const props = defineProps<Props>();

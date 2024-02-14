@@ -22,7 +22,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const base: Story = {
+export const Base: Story = {
   args: {
     languageList: [
       { label: "日本語", link: "#!", isCurrent: true },

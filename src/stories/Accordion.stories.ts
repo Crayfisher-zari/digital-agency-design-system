@@ -27,7 +27,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const base: Story = {
+export const Base: Story = {
   args: {
     summary: "アコーディオンタイトル",
     details: "中身",
@@ -37,7 +37,7 @@ export const base: Story = {
 /**
  * `<template #summary>`でサマリーにアイコンを組み込めます
  */
-export const withSummaryIcon: Story = {
+export const WithSummaryIcon: Story = {
   args: {
     summary: "アコーディオンタイトル（タイトルにアイコンあり）",
     details: "中身",
@@ -59,7 +59,7 @@ export const withSummaryIcon: Story = {
 /**
  * `<template #detail>`で詳細にもアイコンを組み込めます
  */
-export const withDetailIcon: Story = {
+export const WithDetailIcon: Story = {
   args: {
     summary: "アコーディオンタイトル（中身にもアイコンあり）",
     details: "中身",

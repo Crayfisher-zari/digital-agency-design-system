@@ -37,7 +37,7 @@ const props = withDefaults(defineProps<Props>(), {
   onBlur: undefined,
   isDisabled: false,
   maxCount: undefined,
-  numberOfCharacter: 0,
+  numberOfCharacters: 0,
 });
 
 const emits = defineEmits<Emits>();

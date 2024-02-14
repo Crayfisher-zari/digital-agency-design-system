@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/vue3";
 import Drawer from "../components/Drawer.vue";
 import Menu from "../components/Menu.vue";
 import { ref } from "vue";
+import { menuList } from "./stub/menulist";
 
 const meta = {
   title: "ドロワー",
@@ -33,31 +34,20 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const base: Story = {
+export const Base: Story = {
   args: {
     isVisible: false,
     isMobileOnly: false,
     type: "sidebar",
     appearFrom: "right",
+    menuList,
   },
   render: (args) => ({
     components: { Drawer, Menu },
     setup: () => {
       const isVisible = ref(false);
-      const menuList = [
-        {
-          categoryName: "カテゴリー",
-          itemList: [
-            { type: "link", item: { to: "!#", text: "メニュー" } },
-            { type: "link", item: { to: "!#", text: "メニュー" } },
-            {
-              type: "link",
-              item: { to: "!#", text: "メニュー", selected: true },
-            },
-          ],
-        },
-      ];
-      return { ...args, isVisible, menuList };
+
+      return { ...args, isVisible };
     },
     template: `
       <div style="overflow: hidden">
