@@ -7,7 +7,7 @@ type Props = {
   linkTag?: LinkTag;
   url?: string;
   iconUrl?: string;
-  target?: string;
+  target?: "_blank";
 };
 const props = withDefaults(defineProps<Props>(), {
   linkTag: "a",

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/vue3";
 import Drawer from "../components/Drawer.vue";
-import Menu from "../components/Menu.vue"
+import Menu from "../components/Menu.vue";
 import { ref } from "vue";
 
 const meta = {
@@ -57,7 +57,7 @@ export const base: Story = {
           ],
         },
       ];
-      return { ...args,isVisible, menuList };
+      return { ...args, isVisible, menuList };
     },
     template: `
       <div style="overflow: hidden">
