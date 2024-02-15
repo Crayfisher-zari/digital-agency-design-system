@@ -48,7 +48,7 @@ export const Base: Story = {
 export const External: Story = {
   args: {
     url: "#!",
-    target:"_blank"
+    target: "_blank",
   },
   render: (args) => ({
     components: { UtilityLink },
