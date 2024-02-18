@@ -32,6 +32,12 @@ withDefaults(defineProps<Props>(), {
   background-color: var(--color-background-primary);
   border-bottom: 1px solid var(--color-border-divider);
 
+  &.slim {
+    .inner {
+      grid-template: "logo menu item" 80px / 240px auto 1fr;
+    }
+  }
+
   @include mediaQueryDown {
     padding: 0 16px;
   }
@@ -50,6 +56,7 @@ withDefaults(defineProps<Props>(), {
 
 .logo {
   grid-area: logo;
+  align-self: center;
 }
 
 .item {
@@ -62,6 +69,7 @@ withDefaults(defineProps<Props>(), {
 
 .menu {
   grid-area: menu;
+  align-self: center;
 
   @include mediaQueryDown {
     display: none;
