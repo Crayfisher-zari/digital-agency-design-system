@@ -46,14 +46,14 @@ jobs:
           cache: yarn
           cache-dependency-path: yarn.lock
       - run: yarn install --frozen-lockfile
-      - run: yarn run build
+      - run: yarn run build-storybook
       - name: Setup Pages
         uses: actions/configure-pages@v2
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
           # Upload entire repository
-          path: dist
+          path: ${{ env.WORKING_DIRECTORY }}/storybook-static
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
