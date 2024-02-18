@@ -22,10 +22,10 @@ export const Base: Story = {
   render: (args) => ({
     components: { HeaderContainer },
     setup: () => {
-      return { args };
+      return { ...args };
     },
     template: `
-    <HeaderContainer v-bind="args">
+    <HeaderContainer :type="type">
       <template #logo>①ロゴ</template>
       <template #item>②ヘッダーコンテナアイテム</template>
       <template #menu>③グローバルメニュー</template>
@@ -42,10 +42,10 @@ export const Slim: Story = {
   render: (args) => ({
     components: { HeaderContainer },
     setup: () => {
-      return { args };
+      return { ...args };
     },
     template: `
-    <HeaderContainer v-bind="args">
+    <HeaderContainer :type="type">
       <template #logo>①ロゴ</template>
       <template #item>②ヘッダーコンテナアイテム</template>
       <template #menu>③グローバルメニュー</template>
