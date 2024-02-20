@@ -2,7 +2,7 @@
 import { computed } from "vue";
 
 type Props = {
-  /** 格納するリアクティブな値（v-modelでも使える） */
+  /** v-modelの型です */
   modelValue: T | T[];
   /** 選択肢固有の値です */
   value: T | undefined;
@@ -16,25 +16,24 @@ type Props = {
   isDisabled?: boolean;
 };
 
-type Emits = { (e: "update:modelValue", value: T | T[] | undefined): void };
+const model = defineModel<T | T[] | undefined>();
 
 const props = withDefaults(defineProps<Props>(), {
   isDisabled: false,
   isValid: true,
   name: undefined,
 });
-const emits = defineEmits<Emits>();
 
 const isChecked = computed<boolean>(() => {
-  if (typeof props.modelValue === "boolean") {
-    return props.modelValue;
-  } else if (Array.isArray(props.modelValue)) {
-    if (props.modelValue.length === 0 || props.value === undefined) {
+  if (typeof model.value === "boolean") {
+    return model.value;
+  } else if (Array.isArray(model.value)) {
+    if (model.value.length === 0 || props.value === undefined) {
       return false;
     }
-    return (props.modelValue as T[]).includes(props.value);
+    return (model.value as T[]).includes(props.value);
   } else {
-    return props.modelValue === props.value;
+    return model.value === props.value;
   }
 });
 
@@ -46,24 +45,22 @@ const handleInput = (e: Event) => {
 
   if (props.value === undefined) {
     newValue = props.value;
-  } else if (Array.isArray(props.modelValue)) {
+  } else if (Array.isArray(model.value)) {
     // リアクティブな値が配列の場合（複数チェックボックス想定）
 
-    const findIndex = props.modelValue.findIndex(
-      (item) => item === props.value,
-    );
+    const findIndex = model.value.findIndex((item) => item === props.value);
     const find = findIndex !== -1;
 
     if (!find && checked) {
       // 配列になく、チェックが入った場合は追加
-      newValue = [...props.modelValue, props.value];
+      newValue = [...model.value, props.value];
     } else if (find && !checked) {
       // 配列にあり、チェックがない場合は削除
-      newValue = [...props.modelValue];
+      newValue = [...model.value];
       newValue.splice(findIndex, 1);
     } else {
       // 上記以外は変更なし
-      newValue = [...props.modelValue];
+      newValue = [...model.value];
     }
   } else {
     if (typeof props.value === "boolean") {
@@ -74,7 +71,7 @@ const handleInput = (e: Event) => {
       newValue = checked ? props.value : undefined;
     }
   }
-  emits("update:modelValue", newValue);
+  model.value = newValue;
 };
 
 // 状態に応じたクラス名を返します
