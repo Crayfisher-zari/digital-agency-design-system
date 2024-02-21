@@ -20,19 +20,18 @@ type Props = {
   onClickSecondary?: () => void;
 };
 
-type Emits = { (e: "update:modelValue", value: boolean): void };
-
 const { lockScroll, releaseScroll } = useScrollLock();
 
 const props = withDefaults(defineProps<Props>(), {
   labelSecondary: "",
   onClickSecondary: undefined,
 });
-const emits = defineEmits<Emits>();
+
+const model = defineModel<boolean>();
 
 const handleClickPrimary = () => {
   props.onClickPrimary();
-  emits("update:modelValue", false);
+  model.value = false;
 };
 
 watch(
@@ -51,7 +50,7 @@ const handleClickSecondary = () => {
     return;
   }
   props.onClickSecondary();
-  emits("update:modelValue", false);
+  model.value = false;
 };
 </script>
 <template>

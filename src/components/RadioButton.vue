@@ -20,7 +20,7 @@ type Props = {
   isDisabled?: boolean;
 };
 
-type Emits = { (e: "update:modelValue", value: string): void };
+const model = defineModel<string | null>();
 
 const props = withDefaults(defineProps<Props>(), {
   radioStyle: "default",
@@ -28,7 +28,6 @@ const props = withDefaults(defineProps<Props>(), {
   isValid: true,
   subText: undefined,
 });
-const emits = defineEmits<Emits>();
 
 const focused = ref<boolean>(false);
 
@@ -36,7 +35,7 @@ const checked = computed<boolean>(() => props.modelValue === props.radioValue);
 
 // 入力時のコールバック関数です。入力内容をemitして親に伝えられます。
 const handleInput = (e: Event) => {
-  emits("update:modelValue", (e.target as HTMLInputElement).value);
+  model.value = (e.target as HTMLInputElement).value;
 };
 
 // 状態に応じたクラス名を返します

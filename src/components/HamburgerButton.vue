@@ -1,38 +1,30 @@
 <script setup lang="ts">
-import { computed } from "vue";
 import Icon from "./Icon.vue";
 import iconHamburger from "@/assets/images/icon_hamburger.svg";
 import iconClose from "@/assets/images/icon_close.svg";
 
 type Props = {
+  /** 見た目の種類 */
   type?: "vertical" | "horizontal";
+  /** クリック時のイベントハンドラ */
   onClick?: () => void;
+  /** リアクティブな値 */
   modelValue: boolean;
 };
-type Emits = { (e: "update:modelValue", value: boolean): void };
 
 const props = withDefaults(defineProps<Props>(), {
   type: "vertical",
   onClick: undefined,
 });
 
+const model = defineModel<boolean>();
+
 const handleClick = () => {
-  state.value = !state.value;
+  model.value = !model.value;
   if (props.onClick) {
     props.onClick();
   }
 };
-
-const emit = defineEmits<Emits>();
-
-const state = computed({
-  get: () => {
-    return props.modelValue;
-  },
-  set: (value) => {
-    emit("update:modelValue", value);
-  },
-});
 </script>
 <template>
   <button
@@ -42,7 +34,7 @@ const state = computed({
     @click="handleClick"
   >
     <Transition mode="out-in">
-      <span v-show="!modelValue" class="buttonInner">
+      <span v-show="!model" class="buttonInner">
         <span class="iconWrapper">
           <Icon
             :iconSrc="iconHamburger"
@@ -56,10 +48,10 @@ const state = computed({
       </span>
     </Transition>
     <Transition mode="out-in">
-      <span v-show="modelValue" class="buttonInner">
+      <span v-show="model" class="buttonInner">
         <span class="iconWrapper">
           <Icon
-            v-show="modelValue"
+            v-show="model"
             :iconSrc="iconClose"
             :width="14"
             :height="14"

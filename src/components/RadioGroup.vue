@@ -30,7 +30,7 @@ type Props = {
   /** ボタンが非活性状態か。未指定の場合はfalse */
   isDisabled?: boolean;
 };
-type Emits = { (e: "update:modelValue", value: string | null): void };
+const model = defineModel<string | null>();
 
 const props = withDefaults(defineProps<Props>(), {
   radioStyle: "default",
@@ -42,14 +42,13 @@ const props = withDefaults(defineProps<Props>(), {
   errorText: undefined,
   onBlur: undefined,
 });
-const emits = defineEmits<Emits>();
 
 // 選択された値
 const modelValue = ref<string | null>(props.modelValue);
 
 // 入力時のコールバック関数です。入力内容をemitして親に伝えられます。
 const handleInput = (v: string | null) => {
-  emits("update:modelValue", v);
+  model.value = v;
 };
 
 // 値の変更を監視し、変更があったら親へemitします
