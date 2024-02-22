@@ -8,7 +8,7 @@ type Props = {
   type?: "vertical" | "horizontal";
   /** クリック時のイベントハンドラ */
   onClick?: () => void;
-  /** リアクティブな値 */
+  /** 状態に関するリアクティブな値（v-modelで使える） */
   modelValue: boolean;
 };
 

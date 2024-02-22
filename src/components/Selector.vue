@@ -6,11 +6,11 @@ import { getRandomString } from "../utils/getRandomString";
 
 type Props = {
   /** 値（v-modelでも使える） */
-  modelValue: string;
+  modelValue: string | number;
   /** インプットのラベルです */
   label?: string;
   /** セレクターの選択肢です */
-  options: { label: string; value: string }[];
+  options: { label: string; value: string | number }[];
   /** 内容を補足するサポートテキスト */
   supportText?: string;
   /** エラー時に表示するテキスト */
@@ -35,9 +35,7 @@ const props = withDefaults(defineProps<Props>(), {
   isDisabled: false,
 });
 
-type Emits = { (e: "update:modelValue", value: string): void };
-
-const emits = defineEmits<Emits>();
+const model = defineModel<string>();
 
 // aria-describledby用のエラー文言のid名です
 const errorIdName = `selector${getRandomString()}`;
@@ -52,12 +50,6 @@ const stateClassName = computed<string | null>(() => {
   }
   return null;
 });
-
-// 入力時のコールバック関数です。入力内容をemitして親に伝えられます。
-const handleChange = (e: Event) => {
-  const value = (e.target as HTMLInputElement).value;
-  emits("update:modelValue", value);
-};
 </script>
 <template>
   <div :class="stateClassName">
@@ -73,10 +65,9 @@ const handleChange = (e: Event) => {
       }}</span>
       <div class="selectorBox">
         <select
+          v-model="model"
           class="selector"
-          :value="props.modelValue"
           :onBlur="onBlur"
-          :onChange="handleChange"
           :required="props.isRequired"
           :aria-invalid="!isValid"
           :aria-describedby="errorIdName"
