@@ -29,7 +29,7 @@ type Props = {
   /** ボタンが非活性状態か。未指定の場合はfalse */
   isDisabled?: boolean;
 };
-const model = defineModel<string | null>();
+const model = defineModel<string | number | null>();
 
 withDefaults(defineProps<Props>(), {
   radioStyle: "default",
