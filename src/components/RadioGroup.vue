@@ -1,10 +1,9 @@
 <script lang="ts" setup>
-import { ref, watch } from "vue";
 import RadioButton from "./RadioButton.vue";
 
 type Props = {
   /** 格納するリアクティブな値（v-modelでも使える） */
-  modelValue: string | null;
+  modelValue: string | number | null;
   /** ラジオボタングループのラベル */
   groupLabel: string;
   /** デフォルトスタイルかタイルスタイルか */
@@ -14,7 +13,7 @@ type Props = {
   /** 各選択肢の文字列 */
   labels: string[];
   /** 各選択肢の値 */
-  values: string[];
+  values: (string | number)[];
   /** 各選択肢のサブテキスト（タイルスタイル用） */
   subTexts?: string[];
   /** 内容を補足するサポートテキスト */
@@ -32,7 +31,7 @@ type Props = {
 };
 const model = defineModel<string | null>();
 
-const props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
   radioStyle: "default",
   isRequired: false,
   isValid: true,
@@ -41,19 +40,6 @@ const props = withDefaults(defineProps<Props>(), {
   supportText: undefined,
   errorText: undefined,
   onBlur: undefined,
-});
-
-// 選択された値
-const modelValue = ref<string | null>(props.modelValue);
-
-// 入力時のコールバック関数です。入力内容をemitして親に伝えられます。
-const handleInput = (v: string | null) => {
-  model.value = v;
-};
-
-// 値の変更を監視し、変更があったら親へemitします
-watch(modelValue, (value) => {
-  handleInput(value);
 });
 </script>
 <template>
@@ -71,7 +57,7 @@ watch(modelValue, (value) => {
       <RadioButton
         v-for="(label, index) in labels"
         :key="values[index]"
-        v-model="modelValue"
+        v-model="model"
         :radioStyle="radioStyle"
         :label="label"
         :radioValue="values[index]"

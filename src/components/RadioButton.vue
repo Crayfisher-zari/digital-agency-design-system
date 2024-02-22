@@ -5,7 +5,7 @@ type Props = {
   /** デフォルト型かタイル型か */
   radioStyle?: "default" | "tile";
   /** 格納するリアクティブな値（v-modelでも使える） */
-  modelValue: string | null;
+  modelValue: string | number | null;
   /** 選択肢固有の値です */
   radioValue: string;
   /** ボタンのラベルです */
@@ -20,7 +20,7 @@ type Props = {
   isDisabled?: boolean;
 };
 
-const model = defineModel<string | null>();
+const model = defineModel<string | number | null>();
 
 const props = withDefaults(defineProps<Props>(), {
   radioStyle: "default",
@@ -32,11 +32,6 @@ const props = withDefaults(defineProps<Props>(), {
 const focused = ref<boolean>(false);
 
 const checked = computed<boolean>(() => props.modelValue === props.radioValue);
-
-// 入力時のコールバック関数です。入力内容をemitして親に伝えられます。
-const handleInput = (e: Event) => {
-  model.value = (e.target as HTMLInputElement).value;
-};
 
 // 状態に応じたクラス名を返します
 const stateClassName = computed<string | null>(() => {
@@ -52,13 +47,12 @@ const stateClassName = computed<string | null>(() => {
 <template>
   <label :class="[radioStyle, stateClassName, { checked }, { focused }]">
     <input
+      v-model="model"
       type="radio"
       class="sr-only"
       :name="name"
       :disabled="isDisabled"
-      :checked="checked"
       :value="radioValue"
-      :onChange="handleInput"
     />{{ label }}
     <span
       v-if="radioStyle === 'tile' && subText !== undefined"
