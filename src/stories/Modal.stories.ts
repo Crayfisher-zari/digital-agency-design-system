@@ -31,6 +31,14 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Base: Story = {
+  args: {
+    title: "ダイアログタイトル",
+    text: "ダイアログの補助テキストが入ります。",
+    labelPrimary: "ボタン",
+    labelSecondary: "ボタン",
+    modelValue: false,
+    onClickPrimary: () => {},
+  },
   render: (args) => ({
     components: { Modal },
     setup: () => {
@@ -53,10 +61,10 @@ export const Base: Story = {
       <button @click="showModal">表示</button>
       <Modal 
         v-model="isShown" 
-        :title="title" 
-        :text="text" 
-        :labelPrimary="labelPrimary" 
-        :labelSecondary="labelSecondary" 
+        title="ダイアログタイトル" 
+        text="ダイアログの補助テキストが入ります。" 
+        labelPrimary="ボタン" 
+        labelSecondary="ボタン" 
         :onClickPrimary="hideModal"
         :onClickSecondary="hideModal" 
       />

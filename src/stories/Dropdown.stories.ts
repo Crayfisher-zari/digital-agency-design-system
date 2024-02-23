@@ -29,7 +29,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Base: Story = {
-  args: { summary: "ドロップダウン", hasShadow: false, side: "left", menuList },
+  args: { summary: "ドロップダウン", hasShadow: false, side: "left" },
   render: (args) => ({
     components: { DropDown, Menu },
     setup: () => {
@@ -44,7 +44,7 @@ export const Base: Story = {
 };
 
 export const HasShadow: Story = {
-  args: { summary: "ドロップダウン", hasShadow: true, side: "left", menuList },
+  args: { summary: "ドロップダウン", hasShadow: true, side: "left" },
   render: (args) => ({
     components: { DropDown, Menu },
     setup: () => {
@@ -63,12 +63,11 @@ export const RightSide: Story = {
     summary: "ドロップダウン",
     hasShadow: false,
     side: "right",
-    menuList,
   },
   render: (args) => ({
     components: { DropDown, Menu },
     setup: () => {
-      return { ...args };
+      return { ...args, menuList };
     },
     template: `
     <DropDown :summary="summary" :hasShadow="hasShadow" :side="side">

@@ -40,14 +40,13 @@ export const Base: Story = {
     isMobileOnly: false,
     type: "sidebar",
     appearFrom: "right",
-    menuList,
   },
   render: (args) => ({
     components: { Drawer, Menu },
     setup: () => {
       const isVisible = ref(false);
 
-      return { ...args, isVisible };
+      return { ...args, isVisible, menuList };
     },
     template: `
       <div style="overflow: hidden">

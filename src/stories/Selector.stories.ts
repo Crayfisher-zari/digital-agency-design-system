@@ -33,6 +33,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Base: Story = {
   args: {
+    modelValue: "",
     label: "ラベル",
     options: [
       { label: "選択肢1", value: "選択肢1の値" },

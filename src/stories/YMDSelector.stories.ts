@@ -28,9 +28,6 @@ const meta = {
     supportText: {
       control: "text",
     },
-    errorText: {
-      control: "text",
-    },
     isRequired: {
       control: "boolean",
     },
