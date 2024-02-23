@@ -20,7 +20,7 @@ const meta = {
     maxCount: {
       control: "number",
     },
-    numberOfCharacter: {
+    numberOfCharacters: {
       control: "number",
     },
     isDisabled: {
@@ -41,6 +41,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Base: Story = {
   args: {
+    modelValue: "",
     label: "お問い合わせ詳細",
     supportText: "できる限りくわしくお書きください",
     isRequired: false,

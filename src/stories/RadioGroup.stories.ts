@@ -34,6 +34,7 @@ const meta = {
     isRequired: false,
     isValid: true,
     isDisabled: false,
+    name: "radio-group",
   },
 } satisfies Meta<typeof RadioGroup>;
 type Story = StoryObj<typeof meta>;
@@ -41,6 +42,18 @@ type Story = StoryObj<typeof meta>;
 export default meta;
 
 export const Base: Story = {
+  args: {
+    labels: ["選択肢1", "選択肢2", "選択肢3"],
+    values: ["選択肢1の値", "選択肢2の値", "選択肢3の値"],
+    groupLabel: "ラベル",
+    supportText: "サポートテキスト",
+    errorText: "エラーテキスト",
+    onBlur: undefined,
+    isRequired: false,
+    isValid: true,
+    isDisabled: false,
+    modelValue: "",
+  },
   render: (args) => ({
     components: { RadioGroup },
     setup: () => {

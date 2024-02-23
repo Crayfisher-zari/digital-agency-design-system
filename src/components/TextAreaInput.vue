@@ -44,11 +44,11 @@ const emits = defineEmits<Emits>();
 
 // 文字数がオーバーしているか返します
 const isOverCharacter = computed<boolean>(() => {
-  if (props.maxCount == undefined || props.numberOfCharacter == undefined) {
+  if (props.maxCount == undefined || props.numberOfCharacters == undefined) {
     return false;
   }
 
-  return props.maxCount < props.numberOfCharacter;
+  return props.maxCount < props.numberOfCharacters;
 });
 
 // aria-describledby用のエラー文言のid名です

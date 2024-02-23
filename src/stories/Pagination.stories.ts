@@ -36,5 +36,10 @@ export const Base: Story = {
     current: 995,
     min: 1,
     max: 999,
+    onClickNumber: () => {},
+    onClickNext: () => {},
+    onClickPrevious: () => {},
+    onClickFirst: () => {},
+    onClickEnd: () => {},
   },
 };
