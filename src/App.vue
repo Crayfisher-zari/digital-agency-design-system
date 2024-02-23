@@ -62,7 +62,7 @@ const { UseTextAreaInputComponent: MaxCountTextArea } = useTextAreaInput({
 });
 
 const selected = ref<string | null>(null);
-const selected2 = ref<string | null>(3);
+const selected2 = ref<string | null>("3");
 const checked = ref(["2"]);
 const checked2 = ref(false);
 const selector = ref("");

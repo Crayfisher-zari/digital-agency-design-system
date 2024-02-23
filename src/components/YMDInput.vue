@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
-import { convertToHankaku } from "../utils/convertToHankaku";
+import { computed } from "vue";
 import { getRandomString } from "../utils/getRandomString";
 
 type Props = {
@@ -36,30 +35,9 @@ const props = withDefaults(defineProps<Props>(), {
   isDisabled: false,
 });
 
-type Emits = {
-  "update:year": [value: string];
-  "update:month": [value: string];
-  "update:day": [value: string];
-};
-
-const emits = defineEmits<Emits>();
-
-const year = ref<string>(props.year);
-const month = ref<string>(props.month);
-const day = ref<string>(props.day);
-
-const handleInputYear = (e: Event) => {
-  year.value = convertToHankaku((e.target as HTMLInputElement).value);
-  emits("update:year", year.value);
-};
-const handleInputMonth = (e: Event) => {
-  month.value = convertToHankaku((e.target as HTMLInputElement).value);
-  emits("update:month", month.value);
-};
-const handleInputDay = (e: Event) => {
-  day.value = convertToHankaku((e.target as HTMLInputElement).value);
-  emits("update:day", day.value);
-};
+const modelYear = defineModel<string>("year");
+const modelMonth = defineModel<string>("month");
+const modelDay = defineModel<string>("day");
 
 // aria-describledby用のエラー文言のid名です
 const errorIdName = `ymdInput${getRandomString()}`;
@@ -93,9 +71,8 @@ const stateClassName = computed<string | null>(() => {
     <div class="ymdWrapper">
       <label class="selectorWrapper">
         <input
-          v-model="year"
+          v-model="modelYear"
           type="text"
-          :onInput="handleInputYear"
           class="input year"
           maxlength="4"
           :onBlur="props.onBlur"
@@ -104,9 +81,8 @@ const stateClassName = computed<string | null>(() => {
       </label>
       <label class="selectorWrapper">
         <input
-          v-model="month"
+          v-model="modelMonth"
           type="text"
-          :onInput="handleInputMonth"
           class="input"
           pattern="[1-9]|1[0-2]"
           maxlength="2"
@@ -117,9 +93,8 @@ const stateClassName = computed<string | null>(() => {
       </label>
       <label class="selectorWrapper">
         <input
-          v-model="day"
+          v-model="modelDay"
           type="text"
-          :onChange="handleInputDay"
           class="input"
           pattern="[1-9]|[1-2][0-9]|3[0-1]"
           maxlength="2"

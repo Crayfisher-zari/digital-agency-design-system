@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { computed } from "vue";
 import { getYearList } from "../utils/getYearList";
 
 type Props = {
@@ -21,8 +21,6 @@ type Props = {
   onBlur?: () => void;
   /** ボタンが非活性状態か。未指定の場合はfalse */
   isDisabled?: boolean;
-  /** デフォルトで選ばれている選択肢の年 */
-  defaultYear?: number;
   /** 選択肢の年の配列。省略した場合は1900〜今年まで */
   yearList?: number[];
 };
@@ -38,13 +36,9 @@ const props = withDefaults(defineProps<Props>(), {
   yearList: undefined,
 });
 
-type Emits = {
-  "update:year": [value: number];
-  "update:month": [value: number];
-  "update:day": [value: number];
-};
-
-const emits = defineEmits<Emits>();
+const modelYear = defineModel<number | null>("year");
+const modelMonth = defineModel<number | null>("month");
+const modelDay = defineModel<number | null>("day");
 
 // 年数の配列
 const basicYearList = getYearList();
@@ -56,32 +50,18 @@ const yaerList = computed(() => {
   return props.yearList;
 });
 
-const year = ref(props.defaultYear ?? props.year);
-const month = ref(props.month);
-const day = ref(props.day);
-
 // 日数を小の月・大の月に合わせて算出します
 const maxDays = computed(() => {
-  if (!month.value) {
+  if (!modelMonth.value) {
     return 31;
   }
-  if (month.value === 2) {
+  if (modelMonth.value === 2) {
     return 28;
-  } else if ([4, 6, 9, 11].includes(month.value)) {
+  } else if ([4, 6, 9, 11].includes(modelMonth.value)) {
     return 30;
   }
   return 31;
 });
-
-const handleInputYear = (e: Event) => {
-  emits("update:year", Number((e.target as HTMLInputElement).value));
-};
-const handleInputMonth = (e: Event) => {
-  emits("update:month", Number((e.target as HTMLInputElement).value));
-};
-const handleInputDay = (e: Event) => {
-  emits("update:day", Number((e.target as HTMLInputElement).value));
-};
 </script>
 <template>
   <fieldset>
@@ -96,11 +76,7 @@ const handleInputDay = (e: Event) => {
     <p class="supportText">{{ props.supportText }}</p>
     <div class="ymdWrapper">
       <label class="selectorWrapper">
-        <select
-          v-model="year"
-          :onChange="handleInputYear"
-          class="selector year"
-        >
+        <select v-model="modelYear" class="selector year">
           <option v-for="item in yaerList" :key="item" :value="item">
             {{ item }}
           </option>
@@ -108,7 +84,7 @@ const handleInputDay = (e: Event) => {
         <span class="unit">年</span>
       </label>
       <label class="selectorWrapper">
-        <select v-model="month" :onChange="handleInputMonth" class="selector">
+        <select v-model="modelMonth" class="selector">
           <option v-for="item in 12" :key="item" :value="item">
             {{ item }}
           </option>
@@ -116,7 +92,7 @@ const handleInputDay = (e: Event) => {
         <span class="unit">月</span>
       </label>
       <label class="selectorWrapper">
-        <select v-model="day" :onChange="handleInputDay" class="selector">
+        <select v-model="modelDay" class="selector">
           <option v-for="item in maxDays" :key="item" :value="item">
             {{ item }}
           </option>
