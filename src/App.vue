@@ -62,7 +62,7 @@ const { UseTextAreaInputComponent: MaxCountTextArea } = useTextAreaInput({
 });
 
 const selected = ref<string | null>(null);
-const selected2 = ref<number | null>(3);
+const selected2 = ref<string | null>(3);
 const checked = ref(["2"]);
 const checked2 = ref(false);
 const selector = ref("");
@@ -503,7 +503,7 @@ watchEffect(() => {
                   groupLabel="ラベル"
                   :labels="['選択肢1', '選択肢2', '選択肢3']"
                   :subTexts="['補足説明1', '補足説明2', '補足説明3']"
-                  :values="[1, 2, 3]"
+                  :values="['1', '2', '3']"
                   supportText="サポートテキスト"
                   errorText="エラーテキスト"
                   name="group2"

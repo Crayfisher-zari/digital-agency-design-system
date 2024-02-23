@@ -5,7 +5,7 @@ type Props = {
   /** デフォルト型かタイル型か */
   radioStyle?: "default" | "tile";
   /** 格納するリアクティブな値（v-modelでも使える） */
-  modelValue: string | number | null;
+  modelValue: string | null;
   /** 選択肢固有の値です */
   radioValue: string;
   /** ボタンのラベルです */
@@ -20,7 +20,7 @@ type Props = {
   isDisabled?: boolean;
 };
 
-const model = defineModel<string | number | null>();
+const model = defineModel<string | null>();
 
 const props = withDefaults(defineProps<Props>(), {
   radioStyle: "default",
