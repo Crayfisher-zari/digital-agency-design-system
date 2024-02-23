@@ -15,9 +15,6 @@ const meta = {
     day: {
       control: "number",
     },
-    defaultYear: {
-      control: "number",
-    },
     yearList: {
       control: "object",
       options: [2020, 2021, 2022, 2023, 2024],

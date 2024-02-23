@@ -3,7 +3,7 @@ import RadioButton from "./RadioButton.vue";
 
 type Props = {
   /** 格納するリアクティブな値（v-modelでも使える） */
-  modelValue: string | number | null;
+  modelValue: string | null;
   /** ラジオボタングループのラベル */
   groupLabel: string;
   /** デフォルトスタイルかタイルスタイルか */
@@ -13,7 +13,7 @@ type Props = {
   /** 各選択肢の文字列 */
   labels: string[];
   /** 各選択肢の値 */
-  values: (string | number)[];
+  values: string[];
   /** 各選択肢のサブテキスト（タイルスタイル用） */
   subTexts?: string[];
   /** 内容を補足するサポートテキスト */
@@ -29,7 +29,7 @@ type Props = {
   /** ボタンが非活性状態か。未指定の場合はfalse */
   isDisabled?: boolean;
 };
-const model = defineModel<string | number | null>();
+const model = defineModel<string | null>();
 
 withDefaults(defineProps<Props>(), {
   radioStyle: "default",
@@ -58,9 +58,9 @@ withDefaults(defineProps<Props>(), {
         v-for="(label, index) in labels"
         :key="values[index]"
         v-model="model"
+        :radioValue="values[index]"
         :radioStyle="radioStyle"
         :label="label"
-        :radioValue="values[index]"
         :subText="subTexts ? subTexts[index] : undefined"
         :name="name"
         :isValid="isValid"
