@@ -26,7 +26,7 @@ type Props = {
   isDisabled?: boolean;
 };
 
-type Emits = { (e: "update:modelValue", value: string): void };
+const model = defineModel<string>();
 
 const props = withDefaults(defineProps<Props>(), {
   isRequired: false,
@@ -39,8 +39,6 @@ const props = withDefaults(defineProps<Props>(), {
   maxCount: undefined,
   numberOfCharacters: 0,
 });
-
-const emits = defineEmits<Emits>();
 
 // 文字数がオーバーしているか返します
 const isOverCharacter = computed<boolean>(() => {
@@ -64,12 +62,6 @@ const stateClassName = computed<string | null>(() => {
   }
   return null;
 });
-
-// 入力時のコールバック関数です。入力内容をemitして親に伝えられます。
-const handleInput = (e: Event) => {
-  const value = (e.target as HTMLInputElement).value;
-  emits("update:modelValue", value);
-};
 </script>
 
 <template>
@@ -83,10 +75,9 @@ const handleInput = (e: Event) => {
         props.supportText
       }}</span>
       <textarea
+        v-model="model"
         class="textarea"
-        :value="props.modelValue"
         :placeholder="props.placeHolder"
-        :onInput="handleInput"
         :required="props.isRequired"
         :aria-invalid="!isValid"
         :aria-describedby="errorIdName"

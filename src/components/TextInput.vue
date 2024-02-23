@@ -35,8 +35,6 @@ type Props = {
   isDisabled?: boolean;
 };
 
-type Emits = { (e: "update:modelValue", value: string): void };
-
 const props = withDefaults(defineProps<Props>(), {
   type: "text",
   isRequired: false,
@@ -48,7 +46,7 @@ const props = withDefaults(defineProps<Props>(), {
   onBlur: undefined,
 });
 
-const emits = defineEmits<Emits>();
+const model = defineModel<string>();
 
 // aria-describledby用のエラー文言のid名です
 const errorIdName = `textInput${getRandomString()}`;
@@ -63,11 +61,6 @@ const stateClassName = computed<string | null>(() => {
   }
   return null;
 });
-
-// 入力時のコールバック関数です。入力内容をemitして親に伝えられます。
-const handleInput = (e: Event) => {
-  emits("update:modelValue", (e.target as HTMLInputElement).value);
-};
 </script>
 <template>
   <div :class="stateClassName">
@@ -82,11 +75,10 @@ const handleInput = (e: Event) => {
         props.supportText
       }}</span>
       <input
+        v-model="model"
         class="textInput"
-        :value="props.modelValue"
         :type="props.type"
         :placeholder="props.placeHolder"
-        :onInput="handleInput"
         :required="props.isRequired"
         :aria-invalid="!isValid"
         :aria-describedby="errorIdName"
