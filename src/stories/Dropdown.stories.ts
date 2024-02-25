@@ -33,7 +33,7 @@ export const Base: Story = {
   render: (args) => ({
     components: { DropDown, Menu },
     setup: () => {
-      return { ...args };
+      return { ...args, menuList };
     },
     template: `
     <DropDown :summary="summary" :hasShadow="hasShadow" :side="side">
@@ -48,7 +48,7 @@ export const HasShadow: Story = {
   render: (args) => ({
     components: { DropDown, Menu },
     setup: () => {
-      return { ...args };
+      return { ...args, menuList };
     },
     template: `
     <DropDown :summary="summary" :hasShadow="hasShadow" :side="side">
