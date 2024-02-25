@@ -9,6 +9,10 @@ body {
   margin: 0;
 }
 
+#storybook-docs .sbdocs-content .docs-story {
+  background-color: var(--color-background-primary) !important;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;
