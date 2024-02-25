@@ -102,7 +102,7 @@
   --color-status-dark-alert: var(--color-sun-500);
   --color-status-alert: var(--color-sun-800);
   --color-status-light-warning: var(--color-wood-800);
-  --color-status-darj-warning: var(--color-wood-500);
+  --color-status-dark-warning: var(--color-wood-500);
   --color-status-warning: var(--color-wood-800);
 
   /* Chart */
@@ -112,6 +112,14 @@
   --color-chart-light-secondary: var(--color-sea-400);
   --color-chart-dark-secondary: var(--color-sea-300);
   --color-chart-secondary: var(--color-sea-400);
+
+  /* others */
+  --color-mono-clear-light: var(--color-white);
+  --color-mono-clear-dark: var(--color-black);
+  --color-mono-clear: var(--color-white);
+  --color-mono-reverse-light: var(--color-black);
+  --color-mono-reverse-dark: var(--color-white);
+  --color-mono-reverse: var(--color-black);
 
   @media (prefers-color-scheme: dark) {
     /* Text */
@@ -159,6 +167,10 @@
     /* Chart */
     --color-chart-primary: var(--color-sea-100);
     --color-chart-secondary: var(--color-sea-300);
+
+    /* others */
+    --color-mono-clear: var(--color-black);
+    --color-mono-reverse: var(--color-white);
   }
 }
 
@@ -207,6 +219,10 @@
   /* Chart */
   --color-chart-primary: var(--color-sea-600);
   --color-chart-secondary: var(--color-sea-400);
+
+  /* others */
+  --color-mono-clear: var(--color-white);
+  --color-mono-reverse: var(--color-black);
 }
 
 .color-scheme-dark {
@@ -254,4 +270,8 @@
   /* Chart */
   --color-chart-primary: var(--color-sea-100);
   --color-chart-secondary: var(--color-sea-100);
+
+  /* others */
+  --color-mono-clear: var(--color-black);
+  --color-mono-reverse: var(--color-white);
 }
