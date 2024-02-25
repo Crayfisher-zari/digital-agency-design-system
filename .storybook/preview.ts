@@ -15,6 +15,12 @@ const preview: Preview = {
         date: /Date$/i,
       },
     },
+    darkMode:{
+      current: 'light',
+      darkClass: 'color-scheme-dark',
+      lightClass: 'color-scheme-light',
+      stylePreview: true
+    }
   },
 };
 

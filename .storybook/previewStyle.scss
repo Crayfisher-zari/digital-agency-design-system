@@ -1,6 +1,5 @@
 body {
   font-family: "Noto Sans JP", sans-serif;
-  color: var(--color-text-body);
   background-color: var(--color-background-primary);
 }
 
@@ -8,10 +7,6 @@ body {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-}
-
-#storybook-docs .sbdocs-content .docs-story {
-  background-color: var(--color-background-primary) !important;
 }
 
 .sr-only {
