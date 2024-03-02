@@ -33,7 +33,7 @@ button {
   padding: 15px 32px;
   font-family: inherit;
   font-size: pxToRem(16);
-  font-weight: bold;
+  font-weight: var(--weight-bold);
   color: var(--color-text-onFill);
   appearance: none;
   cursor: pointer;

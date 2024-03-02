@@ -27,7 +27,7 @@
   }
 
   &:deep(th) {
-    font-weight: normal;
+    font-weight: var(--weight-regular);
     background-color: var(--color-background-tertiary);
   }
 }

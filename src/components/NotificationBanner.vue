@@ -22,7 +22,7 @@ type Props = {
 const props = withDefaults(defineProps<Props>(), {
   style: "standard",
   date: undefined,
-  customIconSrc:undefined,
+  customIconSrc: undefined,
   url: undefined,
   linkTag: "a",
   hasClose: undefined,
@@ -42,10 +42,11 @@ const { LinkComponent } = useLink({ tag: props.linkTag });
       class="notificationLink"
     ></LinkComponent>
     <div class="notificationBanner">
-      <p class="title">
+      <p class="titleWrapper">
         <span class="icon">
           <!-- Successの場合 -->
           <svg
+            v-if="type === 'success'"
             width="36"
             height="36"
             viewBox="0 0 36 36"
@@ -60,6 +61,7 @@ const { LinkComponent } = useLink({ tag: props.linkTag });
           </svg>
           <!-- Errorの場合 -->
           <svg
+            v-if="type === 'error'"
             width="36"
             height="36"
             viewBox="0 0 36 36"
@@ -87,6 +89,7 @@ const { LinkComponent } = useLink({ tag: props.linkTag });
           </svg>
           <!-- Warningの場合 -->
           <svg
+            v-if="type === 'warning'"
             width="36"
             height="36"
             viewBox="0 0 36 36"
@@ -101,6 +104,7 @@ const { LinkComponent } = useLink({ tag: props.linkTag });
           </svg>
           <!-- info1の場合 -->
           <svg
+            v-if="type === 'info1'"
             width="36"
             height="36"
             viewBox="0 0 36 36"
@@ -115,6 +119,7 @@ const { LinkComponent } = useLink({ tag: props.linkTag });
           </svg>
           <!-- info2の場合 -->
           <svg
+            v-if="type === 'info2'"
             width="36"
             height="36"
             viewBox="0 0 36 36"
@@ -129,8 +134,9 @@ const { LinkComponent } = useLink({ tag: props.linkTag });
           </svg>
         </span>
 
-        <Icon />
-        {{ title }}
+        <span class="title">
+          {{ title }}
+        </span>
       </p>
       <p class="description">
         {{ description }}
@@ -153,10 +159,17 @@ const { LinkComponent } = useLink({ tag: props.linkTag });
   </div>
 </template>
 <style lang="scss" scoped>
+@use "@/assets/style/utils/utils.scss" as *;
+
 .notificationBanner {
   padding: 24px;
   border-style: solid;
   border-width: 3px;
   border-radius: 12px;
+}
+
+.title {
+  font-size: pxToRem(20);
+  font-weight: var(--weight-bold);
 }
 </style>

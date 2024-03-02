@@ -48,5 +48,7 @@ type Story = StoryObj<typeof meta>;
 export const Base: Story = {
   args: {
     title: "登録手続きは全て完了しました",
+    description:"ダミーテキストは、デザインの作成時に使用される仮の文章です。ダミーテキストは、デザインの作成時に使用される仮の文章です。ダミーテキストは、デザインの作成時に使用される仮の文章です。",
+    type:"success"
   },
 };

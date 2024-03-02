@@ -134,7 +134,7 @@ const handleClickSecondary = () => {
 .title {
   margin-bottom: 16px;
   font-size: pxToRem(22);
-  font-weight: bold;
+  font-weight: var(--weight-bold);
 }
 
 .text {
