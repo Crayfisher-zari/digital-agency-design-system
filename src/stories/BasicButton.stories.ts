@@ -27,10 +27,9 @@ const meta = {
 
 export default meta;
 type Story = StoryObj<typeof meta>;
-/*
- *👇 Render functions are a framework specific feature to allow you control on how the component renders.
- * See https://storybook.js.org/docs/api/csf
- * to learn how to use render functions.
+
+/**
+ * プライマリー
  */
 export const Primary: Story = {
   args: {
@@ -39,6 +38,9 @@ export const Primary: Story = {
   },
 };
 
+/**
+ * セカンダリー
+ */
 export const Secondary: Story = {
   args: {
     label: "ボタン",
@@ -46,9 +48,27 @@ export const Secondary: Story = {
   },
 };
 
+/**
+ * ターシャリ
+ */
 export const Tertiary: Story = {
   args: {
     label: "ボタン",
     type: "tertiary",
+  },
+};
+
+/**
+ * カスタムカラー
+ */
+export const CustomColor: Story = {
+  args: {
+    label: "ボタン",
+    type: "custom",
+    customColor: {
+      backgroundColor: "var(--color-status-success)",
+      hoverBackgroundColor: "var(--color-forest-800)",
+      labelColor: "#FFF",
+    },
   },
 };

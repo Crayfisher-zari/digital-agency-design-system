@@ -1,11 +1,19 @@
 <script lang="ts" setup>
+import { computed } from "vue";
+
 type Props = {
   /** ボタンのテキストです */
   label: string;
   /** ボタンのタイプです。未指定の場合はprimaryになります */
-  type?: "primary" | "secondary" | "tertiary";
+  type?: "primary" | "secondary" | "tertiary" | "custom";
   /** 非活性かどうか？ */
   disabled?: boolean;
+  /** カスタムカラー。個別で指定したい場合 */
+  customColor?: {
+    backgroundColor: string;
+    labelColor: string;
+    hoverBackgroundColor: string;
+  };
 };
 
 type Emits = {
@@ -15,9 +23,23 @@ type Emits = {
 
 const emits = defineEmits<Emits>();
 
-withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Props>(), {
   type: "primary",
+  disabled: false,
+  customColor: undefined,
 });
+
+const customBackgroundColor = computed<string>(
+  () => props.customColor?.backgroundColor ?? "",
+);
+
+const customLabelColor = computed<string>(
+  () => props.customColor?.labelColor ?? "",
+);
+
+const customHoverColor = computed<string>(
+  () => props.customColor?.hoverBackgroundColor ?? "",
+);
 </script>
 <template>
   <button :class="type" :disabled="disabled" @click="emits('click')">
@@ -107,6 +129,29 @@ button {
     .labelText {
       text-decoration: underline;
     }
+  }
+
+  &.custom {
+    /* stylelint-disable value-keyword-case -- v-bindと連携するためStylelintをOFF */
+    color: v-bind(customLabelColor);
+    background-color: v-bind(customBackgroundColor);
+    border-color: v-bind(customBackgroundColor);
+
+    &:not(:disabled):hover {
+      color: v-bind(customLabelColor);
+      background-color: v-bind(customHoverColor);
+    }
+
+    &:focus-visible {
+      border-color: transparent;
+      outline-offset: -1px;
+    }
+
+    &:disabled {
+      color: var(--color-button-disabled);
+      border-color: var(--color-button-disabled);
+    }
+    /* stylelint-enable value-keyword-case */
   }
 }
 </style>
