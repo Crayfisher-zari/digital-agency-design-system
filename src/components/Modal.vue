@@ -89,7 +89,7 @@ const handleClickSecondary = () => {
     </Transition>
   </Teleport>
 </template>
-<style lang="scss">
+<style lang="scss" scoped>
 @use "@/assets/style/utils/utils.scss" as *;
 
 .modalBg {
