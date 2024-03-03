@@ -59,9 +59,9 @@ export const Tertiary: Story = {
 };
 
 /**
- * カスタムカラー
+ * カスタムカラー（プライマリーボタンタイプ）
  */
-export const CustomColor: Story = {
+export const CustomColor1: Story = {
   args: {
     label: "ボタン",
     type: "custom",
@@ -69,6 +69,25 @@ export const CustomColor: Story = {
       backgroundColor: "var(--color-status-success)",
       hoverBackgroundColor: "var(--color-forest-800)",
       labelColor: "#FFF",
+      hoverLabelColor: "#FFF",
+    },
+  },
+};
+
+/**
+ * カスタムカラー（セカンダリーボタンタイプ）
+ */
+export const CustomColor2: Story = {
+  args: {
+    label: "ボタン",
+    type: "custom",
+    customColor: {
+      backgroundColor: "var(--color-text-onFill)",
+      borderColor: "var(--color-status-warning)",
+      hoverBackgroundColor: "var(--color-wood-100)",
+      labelColor: "var(--color-status-warning)",
+      hoverLabelColor: "var(--color-wood-1000)",
+      hoverBorderColor: "var(--color-wood-1000)",
     },
   },
 };

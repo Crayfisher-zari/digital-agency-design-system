@@ -11,8 +11,11 @@ type Props = {
   /** カスタムカラー。個別で指定したい場合 */
   customColor?: {
     backgroundColor: string;
+    borderColor?: string;
     labelColor: string;
     hoverBackgroundColor: string;
+    hoverBorderColor?: string;
+    hoverLabelColor: string;
   };
 };
 
@@ -33,13 +36,37 @@ const customBackgroundColor = computed<string>(
   () => props.customColor?.backgroundColor ?? "",
 );
 
+const customHoverBackgroundColor = computed<string>(
+  () => props.customColor?.hoverBackgroundColor ?? "",
+);
+
 const customLabelColor = computed<string>(
   () => props.customColor?.labelColor ?? "",
 );
 
-const customHoverColor = computed<string>(
-  () => props.customColor?.hoverBackgroundColor ?? "",
+const customHoverLabelColor = computed<string>(
+  () => props.customColor?.hoverLabelColor ?? "",
 );
+
+const customBorderColor = computed<string>(() => {
+  if (!props.customColor) {
+    return "";
+  } else if (!props.customColor.borderColor) {
+    return props.customColor.backgroundColor;
+  } else {
+    return props.customColor.borderColor;
+  }
+});
+
+const customHoverBorderColor = computed<string>(() => {
+  if (!props.customColor) {
+    return "";
+  } else if (!props.customColor.hoverBorderColor) {
+    return props.customColor.hoverBackgroundColor;
+  } else {
+    return props.customColor.hoverBorderColor;
+  }
+});
 </script>
 <template>
   <button :class="type" :disabled="disabled" @click="emits('click')">
@@ -135,11 +162,12 @@ button {
     /* stylelint-disable value-keyword-case -- v-bindと連携するためStylelintをOFF */
     color: v-bind(customLabelColor);
     background-color: v-bind(customBackgroundColor);
-    border-color: v-bind(customBackgroundColor);
+    border-color: v-bind(customBorderColor);
 
     &:not(:disabled):hover {
-      color: v-bind(customLabelColor);
-      background-color: v-bind(customHoverColor);
+      color: v-bind(customHoverLabelColor);
+      background-color: v-bind(customHoverBackgroundColor);
+      border-color: v-bind(customHoverBorderColor);
     }
 
     &:focus-visible {
