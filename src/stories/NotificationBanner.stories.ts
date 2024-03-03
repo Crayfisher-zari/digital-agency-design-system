@@ -45,10 +45,30 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Base: Story = {
+export const Success: Story = {
   args: {
     title: "登録手続きは全て完了しました",
-    description:"ダミーテキストは、デザインの作成時に使用される仮の文章です。ダミーテキストは、デザインの作成時に使用される仮の文章です。ダミーテキストは、デザインの作成時に使用される仮の文章です。",
-    type:"success"
+    description:
+      "ダミーテキストは、デザインの作成時に使用される仮の文章です。ダミーテキストは、デザインの作成時に使用される仮の文章です。ダミーテキストは、デザインの作成時に使用される仮の文章です。",
+    type: "success",
+  },
+};
+
+export const Error: Story = {
+  args: {
+    title: "操作を完了できませんでした",
+    description:
+      "ダミーテキストは、デザインの作成時に使用される仮の文章です。ダミーテキストは、デザインの作成時に使用される仮の文章です。ダミーテキストは、デザインの作成時に使用される仮の文章です。",
+    type: "error",
+  },
+};
+
+export const WithButton: Story = {
+  args: {
+    title: "登録期間が延長されました",
+    description:
+      "ダミーテキストは、デザインの作成時に使用される仮の文章です。ダミーテキストは、デザインの作成時に使用される仮の文章です。ダミーテキストは、デザインの作成時に使用される仮の文章です。",
+    type: "info1",
+    primariyButtonLabel: "延長期間を確認して承諾する",
   },
 };

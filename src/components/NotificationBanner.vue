@@ -41,7 +41,7 @@ const { LinkComponent } = useLink({ tag: props.linkTag });
       v-if="url && !primariyButtonLabel && secondaryButtonLabel"
       class="notificationLink"
     ></LinkComponent>
-    <div class="notificationBanner">
+    <div class="notificationBanner" :class="type">
       <p class="titleWrapper">
         <span class="icon">
           <!-- Successの場合 -->
@@ -141,20 +141,20 @@ const { LinkComponent } = useLink({ tag: props.linkTag });
       <p class="description">
         {{ description }}
       </p>
-    </div>
-    <div class="buttonWrapper">
-      <BasicButton
-        v-if="secondaryButtonLabel"
-        type="secondary"
-        :label="secondaryButtonLabel"
-        :onClick="onClickSecondary"
-      ></BasicButton>
-      <BasicButton
-        v-if="primariyButtonLabel"
-        type="primary"
-        :label="primariyButtonLabel"
-        :onClick="onClickPrimary"
-      ></BasicButton>
+      <div class="buttonWrapper">
+        <BasicButton
+          v-if="secondaryButtonLabel"
+          type="secondary"
+          :label="secondaryButtonLabel"
+          :onClick="onClickSecondary"
+        ></BasicButton>
+        <BasicButton
+          v-if="primariyButtonLabel"
+          type="primary"
+          :label="primariyButtonLabel"
+          :onClick="onClickPrimary"
+        ></BasicButton>
+      </div>
     </div>
   </div>
 </template>
@@ -166,10 +166,49 @@ const { LinkComponent } = useLink({ tag: props.linkTag });
   border-style: solid;
   border-width: 3px;
   border-radius: 12px;
+
+  &.success {
+    border-color: var(--color-status-success);
+  }
+
+  &.error {
+    border-color: var(--color-status-alert);
+  }
+
+  &.warning {
+    border-color: var(--color-status-warning);
+  }
+
+  &.info1 {
+    border-color: var(--color-button-normal);
+  }
+}
+
+.titleWrapper {
+  display: flex;
+  column-gap: 24px;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.icon {
+  display: block;
+  width: 36px;
+  height: 36px;
 }
 
 .title {
   font-size: pxToRem(20);
   font-weight: var(--weight-bold);
+}
+
+.description {
+  padding-left: 56px;
+}
+
+.buttonWrapper {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 16px;
 }
 </style>
