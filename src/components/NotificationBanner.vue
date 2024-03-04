@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { computed } from "vue";
 import { LinkTag, useLink } from "../composables/useLinkComponent";
 import BasicButton from "./BasicButton.vue";
 
@@ -13,7 +14,7 @@ type Props = {
   linkTag: LinkTag;
   hasClose?: boolean;
   onClickClose?: () => void;
-  primariyButtonLabel?: string;
+  primaryButtonLabel?: string;
   onClickPrimary?: () => void;
   secondaryButtonLabel?: string;
   onClickSecondary?: () => void;
@@ -34,11 +35,25 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 const { LinkComponent } = useLink({ tag: props.linkTag });
+
+const primaryButtonColor = computed(()=>{
+  if(!props.primaryButtonLabel){
+    return undefined
+  }
+  if(props.type === "success"){
+    return {
+      backgroundColor:"var(--color-status-success)",
+      labelColor:"var(--color-text-onFill)",
+      hoverBackgroundColor:"var(--custom-hover-sucess)",
+      hoverLabelColor:"var(--color-text-onFill)",
+    }
+  }
+})
 </script>
 <template>
   <div class="notificationBannerWrapper" :class="[style, type]">
     <LinkComponent
-      v-if="url && !primariyButtonLabel && secondaryButtonLabel"
+      v-if="url && !primaryButtonLabel && secondaryButtonLabel"
       class="notificationLink"
     ></LinkComponent>
     <div class="notificationBanner" :class="type">
@@ -147,12 +162,14 @@ const { LinkComponent } = useLink({ tag: props.linkTag });
           type="secondary"
           :label="secondaryButtonLabel"
           :onClick="onClickSecondary"
+       
         ></BasicButton>
         <BasicButton
-          v-if="primariyButtonLabel"
-          type="primary"
-          :label="primariyButtonLabel"
+          v-if="primaryButtonLabel"
+          type="custom"
+          :label="primaryButtonLabel"
           :onClick="onClickPrimary"
+          :customColor="primaryButtonColor"
         ></BasicButton>
       </div>
     </div>
@@ -160,6 +177,12 @@ const { LinkComponent } = useLink({ tag: props.linkTag });
 </template>
 <style lang="scss" scoped>
 @use "@/assets/style/utils/utils.scss" as *;
+
+.notificationBannerWrapper{
+  --custom-hover-sucess:var(--color-forest-800)
+
+}
+
 
 .notificationBanner {
   padding: 24px;

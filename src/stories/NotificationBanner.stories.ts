@@ -32,7 +32,7 @@ const meta = {
     primaryButtonLabel: {
       control: "text",
     },
-    secondaryButtonLabe: {
+    secondaryButtonLabel: {
       control: "text",
     },
   },
@@ -68,7 +68,7 @@ export const WithButton: Story = {
     title: "登録期間が延長されました",
     description:
       "ダミーテキストは、デザインの作成時に使用される仮の文章です。ダミーテキストは、デザインの作成時に使用される仮の文章です。ダミーテキストは、デザインの作成時に使用される仮の文章です。",
-    type: "info1",
-    primariyButtonLabel: "延長期間を確認して承諾する",
+    type: "success",
+    primaryButtonLabel: "延長期間を確認して承諾する",
   },
 };
