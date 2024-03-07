@@ -10,11 +10,17 @@ type Props = {
   disabled?: boolean;
   /** カスタムカラー。個別で指定したい場合 */
   customColor?: {
+    /** 背景色 */
     backgroundColor: string;
+    /** 枠線色 */
     borderColor?: string;
+    /** ラベル文字の色 */
     labelColor: string;
+    /** ホバー時の背景色 */
     hoverBackgroundColor: string;
+    /** ホバー時の枠線色 */
     hoverBorderColor?: string;
+    /** ホバー時のラベル文字色 */
     hoverLabelColor: string;
   };
 };

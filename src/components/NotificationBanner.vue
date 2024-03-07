@@ -36,19 +36,39 @@ const props = withDefaults(defineProps<Props>(), {
 
 const { LinkComponent } = useLink({ tag: props.linkTag });
 
-const primaryButtonColor = computed(()=>{
-  if(!props.primaryButtonLabel){
-    return undefined
+const primaryButtonColor = computed(() => {
+  if (!props.primaryButtonLabel) {
+    return undefined;
   }
-  if(props.type === "success"){
+  if (props.type === "success") {
     return {
-      backgroundColor:"var(--color-status-success)",
-      labelColor:"var(--color-text-onFill)",
-      hoverBackgroundColor:"var(--custom-hover-sucess)",
-      hoverLabelColor:"var(--color-text-onFill)",
-    }
+      backgroundColor: "var(--color-status-success)",
+      labelColor: "var(--color-text-onFill)",
+      hoverBackgroundColor: "var(--custom-hover-success)",
+      hoverLabelColor: "var(--color-text-onFill)",
+    };
+  } else {
+    return undefined;
   }
-})
+});
+
+const secondaryButtonColor = computed(() => {
+  if (!props.secondaryButtonLabel) {
+    return undefined;
+  }
+  if (props.type === "success") {
+    return {
+      backgroundColor: "var(--color-text-onFill)",
+      borderColor: "var(--color-status-success)",
+      labelColor: "var(--color-status-success)",
+      hoverBackgroundColor: "var(--custom-secondary-hover-background-success)",
+      hoverBorderColor: "var(--custom-secondary-hover-border-success)",
+      hoverLabelColor: "var(--custom-secondary-hover-label-success)",
+    };
+  } else {
+    return undefined;
+  }
+});
 </script>
 <template>
   <div class="notificationBannerWrapper" :class="[style, type]">
@@ -159,10 +179,10 @@ const primaryButtonColor = computed(()=>{
       <div class="buttonWrapper">
         <BasicButton
           v-if="secondaryButtonLabel"
-          type="secondary"
+          type="custom"
           :label="secondaryButtonLabel"
           :onClick="onClickSecondary"
-       
+          :customColor="secondaryButtonColor"
         ></BasicButton>
         <BasicButton
           v-if="primaryButtonLabel"
@@ -178,11 +198,12 @@ const primaryButtonColor = computed(()=>{
 <style lang="scss" scoped>
 @use "@/assets/style/utils/utils.scss" as *;
 
-.notificationBannerWrapper{
-  --custom-hover-sucess:var(--color-forest-800)
-
+.notificationBannerWrapper {
+  --custom-hover-success: var(--color-forest-800);
+  --custom-secondary-hover-background-success: var(--color-forest-200);
+  --custom-secondary-hover-label-success: var(--color-forest-700);
+  --custom-secondary-hover-border-success: var(--color-forest-700);
 }
-
 
 .notificationBanner {
   padding: 24px;
@@ -231,6 +252,7 @@ const primaryButtonColor = computed(()=>{
 
 .buttonWrapper {
   display: flex;
+  column-gap: 16px;
   justify-content: flex-end;
   margin-top: 16px;
 }
