@@ -2,21 +2,37 @@
 import { computed } from "vue";
 import { LinkTag, useLink } from "../composables/useLinkComponent";
 import BasicButton from "./BasicButton.vue";
+import Icon from "./Icon.vue";
+import iconClose from "@/assets/images/icon_close.svg";
 
 type Props = {
+  /** バナースタイル */
   style?: "standard" | "colorChip";
+  /** バナー種別 */
   type: "success" | "error" | "warning" | "info1" | "info2";
+  /** タイトル */
   title: string;
+  /** 日付 */
   date?: string;
+  /** バナー文章 */
   description: string;
+  /** カスタムアイコン画像へのリンク */
   customIconSrc?: string;
+  /** クリック時のリンク先 */
   url?: string;
+  /** リンク種別 */
   linkTag: LinkTag;
+  /** 閉じるボタンの有無 */
   hasClose?: boolean;
+  /** 閉じるボタン押下時の処理 */
   onClickClose?: () => void;
+  /** 主ボタンのラベル */
   primaryButtonLabel?: string;
+  /** 主ボタンクリック時の処理 */
   onClickPrimary?: () => void;
+  /** 副ボタンのラベル */
   secondaryButtonLabel?: string;
+  /** 副ボタンクリック時の処理 */
   onClickSecondary?: () => void;
 };
 
@@ -36,6 +52,7 @@ const props = withDefaults(defineProps<Props>(), {
 
 const { LinkComponent } = useLink({ tag: props.linkTag });
 
+// 主ボタンの色をバナー種別に応じて算出します
 const primaryButtonColor = computed(() => {
   if (!props.primaryButtonLabel) {
     return undefined;
@@ -52,6 +69,7 @@ const primaryButtonColor = computed(() => {
   }
 });
 
+// 副ボタンの色をバナー種別に応じて算出します
 const secondaryButtonColor = computed(() => {
   if (!props.secondaryButtonLabel) {
     return undefined;
@@ -176,6 +194,17 @@ const secondaryButtonColor = computed(() => {
       <p class="description">
         {{ description }}
       </p>
+      <div v-if="hasClose" class="closeButtonWrapper">
+        <button class="closeButton">
+          <Icon
+            :iconSrc="iconClose"
+            :width="14"
+            :height="14"
+            color="var(--color-text-body)"
+            class="closeButtonIcon"
+          />閉じる
+        </button>
+      </div>
       <div class="buttonWrapper">
         <BasicButton
           v-if="secondaryButtonLabel"
@@ -206,6 +235,7 @@ const secondaryButtonColor = computed(() => {
 }
 
 .notificationBanner {
+  position: relative;
   padding: 24px;
   border-style: solid;
   border-width: 3px;
@@ -255,5 +285,36 @@ const secondaryButtonColor = computed(() => {
   column-gap: 16px;
   justify-content: flex-end;
   margin-top: 16px;
+}
+
+.closeButtonWrapper {
+  position: absolute;
+  top: 24px;
+  right: 30px;
+}
+
+.closeButton {
+  display: flex;
+  align-items: center;
+  width: 94px;
+  height: 40px;
+  padding-left: 16px;
+  font-size: pxToRem(16);
+  color: var(--color-text-body);
+  appearance: none;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  border-radius: 8px;
+  transition: background-color var(--base-duration) var(--easing-out-expo);
+
+  &:hover {
+    background-color: var(--color-mono-hover);
+  }
+}
+
+.closeButtonIcon {
+  display: block;
+  margin-right: 11px;
 }
 </style>

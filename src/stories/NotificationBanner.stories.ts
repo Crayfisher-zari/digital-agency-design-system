@@ -45,6 +45,9 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+/**
+ * サクセス
+ */
 export const Success: Story = {
   args: {
     title: "登録手続きは全て完了しました",
@@ -54,6 +57,9 @@ export const Success: Story = {
   },
 };
 
+/**
+ * エラー
+ */
 export const Error: Story = {
   args: {
     title: "操作を完了できませんでした",
@@ -63,6 +69,9 @@ export const Error: Story = {
   },
 };
 
+/**
+ * ワーニング
+ */
 export const Warning: Story = {
   args: {
     title: "偽SNSアカウントにご注意ください",
@@ -72,6 +81,9 @@ export const Warning: Story = {
   },
 };
 
+/**
+ * ボタン付き
+ */
 export const WithButton: Story = {
   args: {
     title: "登録期間が延長されました",
@@ -82,6 +94,9 @@ export const WithButton: Story = {
   },
 };
 
+/**
+ * 2ボタン付き
+ */
 export const With2Buttons: Story = {
   args: {
     title: "登録期間が延長されました",
@@ -90,5 +105,18 @@ export const With2Buttons: Story = {
     type: "success",
     primaryButtonLabel: "延長期間を確認して承諾する",
     secondaryButtonLabel: "期間の変更",
+  },
+};
+
+/**
+ * 閉じるボタン付き
+ */
+export const HasClose: Story = {
+  args: {
+    title: "登録期間が延長されました",
+    description:
+      "ダミーテキストは、デザインの作成時に使用される仮の文章です。ダミーテキストは、デザインの作成時に使用される仮の文章です。ダミーテキストは、デザインの作成時に使用される仮の文章です。",
+    type: "info2",
+    hasClose: true,
   },
 };

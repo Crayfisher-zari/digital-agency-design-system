@@ -120,6 +120,9 @@
   --color-mono-reverse-light: var(--color-black);
   --color-mono-reverse-dark: var(--color-white);
   --color-mono-reverse: var(--color-black);
+  --color-mono-hover: var(--color-sumi-100);
+  --color-mono-hover-light: var(--color-sumi-100);
+  --color-mono-hover-dark: var(--color-sumi8100);
 
   @media (prefers-color-scheme: dark) {
     /* Text */
@@ -171,6 +174,7 @@
     /* others */
     --color-mono-clear: var(--color-black);
     --color-mono-reverse: var(--color-white);
+    --color-mono-hover: var(--color-sumi-800);
   }
 }
 
@@ -223,6 +227,7 @@
   /* others */
   --color-mono-clear: var(--color-white);
   --color-mono-reverse: var(--color-black);
+  --color-mono-hover: var(--color-sumi-100);
 }
 
 .color-scheme-dark {
@@ -274,4 +279,5 @@
   /* others */
   --color-mono-clear: var(--color-black);
   --color-mono-reverse: var(--color-white);
+  --color-mono-hover: var(--color-sumi-800);
 }
