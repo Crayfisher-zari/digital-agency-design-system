@@ -21,7 +21,7 @@ type Props = {
   /** クリック時のリンク先 */
   url?: string;
   /** リンク種別 */
-  linkTag: LinkTag;
+  linkTag?: LinkTag;
   /** 閉じるボタンの有無 */
   hasClose?: boolean;
   /** 閉じるボタン押下時の処理 */
@@ -42,9 +42,9 @@ const props = withDefaults(defineProps<Props>(), {
   customIconSrc: undefined,
   url: undefined,
   linkTag: "a",
-  hasClose: undefined,
+  hasClose: false,
   onClickClose: undefined,
-  primariyButtonLabel: undefined,
+  primaryButtonLabel: undefined,
   onClickPrimary: undefined,
   secondaryButtonLabel: undefined,
   onClickSecondary: undefined,
@@ -61,7 +61,7 @@ const primaryButtonColor = computed(() => {
     return {
       backgroundColor: "var(--color-status-success)",
       labelColor: "var(--color-text-onFill)",
-      hoverBackgroundColor: "var(--custom-hover-success)",
+      hoverBackgroundColor: "var(--color-status-success-hover)",
       hoverLabelColor: "var(--color-text-onFill)",
     };
   } else {
@@ -87,14 +87,54 @@ const secondaryButtonColor = computed(() => {
     return undefined;
   }
 });
+
+// 下線を持つか算出します。リンクありかつボタンなしの場合は下線が出ます
+const hasUnderline = computed(
+  () =>
+    props.url !== undefined &&
+    !props.hasClose &&
+    !props.primaryButtonLabel &&
+    !props.secondaryButtonLabel,
+);
+
+// ラッパー要素のタグ
+const wrapperTag = computed(() => {
+  if (
+    props.url !== undefined &&
+    !props.hasClose &&
+    props.primaryButtonLabel === undefined &&
+    props.secondaryButtonLabel === undefined
+  ) {
+    return LinkComponent;
+  } else {
+    return "div";
+  }
+});
+
+const titleTag = computed(() => {
+  if (props.url && (props.primaryButtonLabel || props.secondaryButtonLabel)) {
+    return LinkComponent;
+  } else {
+    return "span";
+  }
+});
+
+console.log(
+  props.url !== undefined,
+  !props.hasClose,
+  props.primaryButtonLabel === undefined,
+  props.secondaryButtonLabel === undefined,
+  wrapperTag.value,
+  props.primaryButtonLabel,
+);
 </script>
 <template>
   <div class="notificationBannerWrapper" :class="[style, type]">
-    <LinkComponent
-      v-if="url && !primaryButtonLabel && secondaryButtonLabel"
-      class="notificationLink"
-    ></LinkComponent>
-    <div class="notificationBanner" :class="type">
+    <component
+      :is="wrapperTag"
+      class="notificationBanner"
+      :class="[type, { isLink: wrapperTag !== 'div' }]"
+    >
       <p class="titleWrapper">
         <span class="icon">
           <!-- Successの場合 -->
@@ -187,9 +227,16 @@ const secondaryButtonColor = computed(() => {
           </svg>
         </span>
 
-        <span class="title">
-          {{ title }}
-        </span>
+        <component
+          :is="titleTag"
+          :to="titleTag === 'span' ? undefined : props.url"
+          class="title"
+          :class="{ hasUnderline: hasUnderline }"
+        >
+          <span class="titleInner">
+            {{ title }}
+          </span>
+        </component>
       </p>
       <p class="description">
         {{ description }}
@@ -221,14 +268,13 @@ const secondaryButtonColor = computed(() => {
           :customColor="primaryButtonColor"
         ></BasicButton>
       </div>
-    </div>
+    </component>
   </div>
 </template>
 <style lang="scss" scoped>
 @use "@/assets/style/utils/utils.scss" as *;
 
 .notificationBannerWrapper {
-  --custom-hover-success: var(--color-forest-800);
   --custom-secondary-hover-background-success: var(--color-forest-200);
   --custom-secondary-hover-label-success: var(--color-forest-700);
   --custom-secondary-hover-border-success: var(--color-forest-700);
@@ -236,7 +282,10 @@ const secondaryButtonColor = computed(() => {
 
 .notificationBanner {
   position: relative;
+  display: block;
   padding: 24px;
+  color: var(--color-text-body);
+  text-decoration: none;
   border-style: solid;
   border-width: 3px;
   border-radius: 12px;
@@ -272,12 +321,26 @@ const secondaryButtonColor = computed(() => {
 }
 
 .title {
+  display: block;
+  flex-grow: 1;
+  width: auto;
   font-size: pxToRem(20);
   font-weight: var(--weight-bold);
+  color: var(--color-text-body);
+
+  &.hasUnderline {
+    text-decoration: underline;
+  }
+}
+
+.titleInner {
+  display: inline-block;
+  text-decoration: inherit;
 }
 
 .description {
   padding-left: 56px;
+  text-decoration: none;
 }
 
 .buttonWrapper {

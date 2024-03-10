@@ -120,3 +120,29 @@ export const HasClose: Story = {
     hasClose: true,
   },
 };
+
+/**
+ * リンク付き（全体がリンク）
+ */
+export const HasLink: Story = {
+  args: {
+    title: "登録期間が延長されました",
+    description:
+      "ダミーテキストは、デザインの作成時に使用される仮の文章です。ダミーテキストは、デザインの作成時に使用される仮の文章です。ダミーテキストは、デザインの作成時に使用される仮の文章です。",
+    type: "info2",
+    url: "#!",
+  },
+};
+/**
+ * リンク付き（タイトルとボタンがリンク）
+ */
+export const HasLinkWithButton: Story = {
+  args: {
+    title: "登録期間が延長されました",
+    description:
+      "ダミーテキストは、デザインの作成時に使用される仮の文章です。ダミーテキストは、デザインの作成時に使用される仮の文章です。ダミーテキストは、デザインの作成時に使用される仮の文章です。",
+    type: "success",
+    url: "#!",
+    primaryButtonLabel: "延長期間を確認して承諾する",
+  },
+};

@@ -98,6 +98,9 @@
   --color-status-light-success: var(--color-forest-600);
   --color-status-dark-success: var(--color-forest-600);
   --color-status-success: var(--color-forest-600);
+  --color-status-success-hover: var(--color-forest-800);
+  --color-status-light-success-hover: var(--color-forest-800);
+  --color-status-dark-success-hover: var(--color-forest-800);
   --color-status-light-alert: var(--color-sun-800);
   --color-status-dark-alert: var(--color-sun-500);
   --color-status-alert: var(--color-sun-800);
@@ -164,6 +167,7 @@
 
     /* Status */
     --color-status-success: var(--color-forest-600);
+    --color-status-success-hover: var(--color-forest-800);
     --color-status-alert: var(--color-sun-500);
     --color-status-warning: var(--color-wood-500);
 
@@ -217,6 +221,7 @@
 
   /* Status */
   --color-status-success: var(--color-forest-600);
+  --color-status-success-hover: var(--color-forest-800);
   --color-status-alert: var(--color-sun-800);
   --color-status-warning: var(--color-wood-800);
 
