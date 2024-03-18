@@ -57,6 +57,7 @@ button {
   &:not(:disabled):hover {
     background-color: var(--color-button-hover);
     border-color: var(--color-button-hover);
+    text-decoration: underline;
   }
 
   &:disabled {
@@ -75,8 +76,8 @@ button {
     }
 
     &:focus-visible {
-      border-color: transparent;
-      outline-offset: -1px;
+      outline: 2px solid var(--color-border-focused);
+      outline-offset: 2px;
     }
 
     &:disabled {
@@ -92,7 +93,7 @@ button {
 
     &:not(:disabled):hover {
       color: var(--color-button-hover);
-      background-color: transparent;
+      background-color: var(--color-blue-200);
       border-color: transparent;
     }
 
