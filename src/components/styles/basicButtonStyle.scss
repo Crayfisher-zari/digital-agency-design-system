@@ -1,0 +1,89 @@
+button{
+  display: block;
+  padding: 15px 32px;
+  font-family: inherit;
+  font-size: pxToRem(16);
+  font-weight: var(--weight-bold);
+  color: var(--color-text-onFill);
+  appearance: none;
+  cursor: pointer;
+  background-color: var(--color-button-normal);
+  border: 1px solid var(--color-button-normal);
+  border-radius: 8px;
+  transition:
+    background-color var(--base-duration) var(--easing-out-expo),
+    color var(--base-duration) var(--easing-out-expo),
+    border-color var(--base-duration) var(--easing-out-expo);
+
+  .labelText {
+    color: inherit;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-border-focused);
+    outline-offset: 2px;
+  }
+
+  &:not(:disabled):hover {
+    background-color: var(--color-button-hover);
+    border-color: var(--color-button-hover);
+    text-decoration: underline;
+  }
+
+  &:not(:disabled):active {
+    background-color: var(--color-button-active);
+    border-color: var(--color-button-active);
+    text-decoration: underline;
+  }
+
+
+  &:disabled {
+    cursor: auto;
+    background-color: var(--color-button-disabled);
+    border-color: var(--color-button-disabled);
+  }
+
+  &.secondary {
+    color: var(--color-button-normal);
+    background-color: transparent;
+
+    &:not(:disabled):hover {
+      color: var(--color-button-hover);
+      background-color: var(--color-sea-50);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-border-focused);
+      outline-offset: 2px;
+    }
+
+    &:disabled {
+      color: var(--color-button-disabled);
+      border-color: var(--color-button-disabled);
+    }
+  }
+
+  &.tertiary {
+    color: var(--color-button-normal);
+    background-color: transparent;
+    border-color: transparent;
+
+    &:not(:disabled):hover {
+      color: var(--color-button-hover);
+      background-color: var(--color-blue-200);
+      border-color: transparent;
+    }
+
+    &:focus-visible {
+      outline-offset: -1px;
+    }
+
+    &:disabled {
+      color: var(--color-button-disabled);
+    }
+
+    .labelText {
+      text-decoration: underline;
+    }
+  }
+}
