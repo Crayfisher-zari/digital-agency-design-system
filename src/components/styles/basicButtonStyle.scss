@@ -1,4 +1,4 @@
-button{
+button {
   display: block;
   padding: 15px 32px;
   font-family: inherit;
@@ -25,17 +25,16 @@ button{
   }
 
   &:not(:disabled):hover {
+    text-decoration: underline;
     background-color: var(--color-button-hover);
     border-color: var(--color-button-hover);
-    text-decoration: underline;
   }
 
   &:not(:disabled):active {
+    text-decoration: underline;
     background-color: var(--color-button-active);
     border-color: var(--color-button-active);
-    text-decoration: underline;
   }
-
 
   &:disabled {
     cursor: auto;
@@ -50,6 +49,13 @@ button{
     &:not(:disabled):hover {
       color: var(--color-button-hover);
       background-color: var(--color-sea-50);
+    }
+
+    &:not(:disabled):active {
+      color: var(--color-blue-1200);
+      text-decoration: underline;
+      background-color: var(--color-blue-300);
+      border-color: var(--color-blue-1200);
     }
 
     &:focus-visible {
@@ -71,6 +77,13 @@ button{
     &:not(:disabled):hover {
       color: var(--color-button-hover);
       background-color: var(--color-blue-200);
+      border-color: transparent;
+    }
+
+    &:not(:disabled):active {
+      color: var(--color-blue-1200);
+      text-decoration: underline;
+      background-color: var(--color-blue-300);
       border-color: transparent;
     }
 

@@ -22,6 +22,12 @@ type Props = {
     hoverBorderColor?: string;
     /** ホバー時のラベル文字色 */
     hoverLabelColor: string;
+    /** アクティブ時の背景色 */
+    activeBackGroundColor?: string;
+    /** アクティブ時の枠線色 */
+    activeBorderColor?: string;
+    /** アクティブ時のラベル文字色 */
+    activeLabelColor?: string;
   };
 };
 
@@ -73,6 +79,36 @@ const customHoverBorderColor = computed<string>(() => {
     return props.customColor.hoverBorderColor;
   }
 });
+
+const customActiveBackgroundColor = computed<string>(() => {
+  if (!props.customColor) {
+    return "";
+  } else if (!props.customColor.activeBackGroundColor) {
+    return props.customColor.hoverBackgroundColor;
+  } else {
+    return props.customColor.activeBackGroundColor;
+  }
+});
+
+const customActiveLabelColor = computed<string>(() => {
+  if (!props.customColor) {
+    return "";
+  } else if (!props.customColor.activeLabelColor) {
+    return props.customColor.labelColor;
+  } else {
+    return props.customColor.activeLabelColor;
+  }
+});
+
+const customActiveBorderColor = computed<string>(() => {
+  if (!props.customColor) {
+    return "";
+  } else if (!props.customColor.activeBorderColor) {
+    return props.customColor.borderColor ?? "";
+  } else {
+    return props.customColor.activeBorderColor;
+  }
+});
 </script>
 <template>
   <button :class="type" :disabled="disabled" @click="emits('click')">
@@ -85,7 +121,6 @@ const customHoverBorderColor = computed<string>(() => {
 @use "./styles/basicButtonStyle.scss";
 
 button {
-
   &.custom {
     /* stylelint-disable value-keyword-case -- v-bindと連携するためStylelintをOFF */
     color: v-bind(customLabelColor);
@@ -96,6 +131,12 @@ button {
       color: v-bind(customHoverLabelColor);
       background-color: v-bind(customHoverBackgroundColor);
       border-color: v-bind(customHoverBorderColor);
+    }
+
+    &:not(:disabled):active {
+      color: v-bind(customActiveLabelColor);
+      background-color: v-bind(customActiveBackgroundColor);
+      border-color: v-bind(customActiveBorderColor);
     }
 
     &:focus-visible {
