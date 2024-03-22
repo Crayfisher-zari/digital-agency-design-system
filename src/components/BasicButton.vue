@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { computed } from "vue";
+import { CustomColor, useButtonColor } from "../composables/useButtonColor";
 
 type Props = {
   /** ボタンのテキストです */
@@ -9,26 +9,7 @@ type Props = {
   /** 非活性かどうか？ */
   disabled?: boolean;
   /** カスタムカラー。個別で指定したい場合 */
-  customColor?: {
-    /** 背景色 */
-    backgroundColor: string;
-    /** 枠線色 */
-    borderColor?: string;
-    /** ラベル文字の色 */
-    labelColor: string;
-    /** ホバー時の背景色 */
-    hoverBackgroundColor: string;
-    /** ホバー時の枠線色 */
-    hoverBorderColor?: string;
-    /** ホバー時のラベル文字色 */
-    hoverLabelColor: string;
-    /** アクティブ時の背景色 */
-    activeBackGroundColor?: string;
-    /** アクティブ時の枠線色 */
-    activeBorderColor?: string;
-    /** アクティブ時のラベル文字色 */
-    activeLabelColor?: string;
-  };
+  customColor?: CustomColor;
 };
 
 type Emits = {
@@ -44,71 +25,17 @@ const props = withDefaults(defineProps<Props>(), {
   customColor: undefined,
 });
 
-const customBackgroundColor = computed<string>(
-  () => props.customColor?.backgroundColor ?? "",
-);
-
-const customHoverBackgroundColor = computed<string>(
-  () => props.customColor?.hoverBackgroundColor ?? "",
-);
-
-const customLabelColor = computed<string>(
-  () => props.customColor?.labelColor ?? "",
-);
-
-const customHoverLabelColor = computed<string>(
-  () => props.customColor?.hoverLabelColor ?? "",
-);
-
-const customBorderColor = computed<string>(() => {
-  if (!props.customColor) {
-    return "";
-  } else if (!props.customColor.borderColor) {
-    return props.customColor.backgroundColor;
-  } else {
-    return props.customColor.borderColor;
-  }
-});
-
-const customHoverBorderColor = computed<string>(() => {
-  if (!props.customColor) {
-    return "";
-  } else if (!props.customColor.hoverBorderColor) {
-    return props.customColor.hoverBackgroundColor;
-  } else {
-    return props.customColor.hoverBorderColor;
-  }
-});
-
-const customActiveBackgroundColor = computed<string>(() => {
-  if (!props.customColor) {
-    return "";
-  } else if (!props.customColor.activeBackGroundColor) {
-    return props.customColor.hoverBackgroundColor;
-  } else {
-    return props.customColor.activeBackGroundColor;
-  }
-});
-
-const customActiveLabelColor = computed<string>(() => {
-  if (!props.customColor) {
-    return "";
-  } else if (!props.customColor.activeLabelColor) {
-    return props.customColor.labelColor;
-  } else {
-    return props.customColor.activeLabelColor;
-  }
-});
-
-const customActiveBorderColor = computed<string>(() => {
-  if (!props.customColor) {
-    return "";
-  } else if (!props.customColor.activeBorderColor) {
-    return props.customColor.borderColor ?? "";
-  } else {
-    return props.customColor.activeBorderColor;
-  }
-});
+const {
+  customBackgroundColor,
+  customHoverBackgroundColor,
+  customLabelColor,
+  customHoverLabelColor,
+  customBorderColor,
+  customHoverBorderColor,
+  customActiveBackgroundColor,
+  customActiveLabelColor,
+  customActiveBorderColor,
+} = useButtonColor(props.customColor);
 </script>
 <template>
   <button :class="type" :disabled="disabled" @click="emits('click')">
