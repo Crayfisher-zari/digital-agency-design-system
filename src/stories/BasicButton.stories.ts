@@ -13,6 +13,10 @@ const meta = {
       control: "radio",
       options: ["primary", "secondary", "tertiary"],
     },
+    size: {
+      control: "radio",
+      options: ["large", "medium", "small","x-small"],
+    },
     disabled: {
       control: "boolean",
     },
@@ -21,6 +25,7 @@ const meta = {
   args: {
     label: "ボタン",
     type: "primary",
+    size:"medium",
     disabled: false,
   }, // default value
 } satisfies Meta<typeof BasicButton>;
