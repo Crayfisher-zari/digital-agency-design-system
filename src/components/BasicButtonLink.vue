@@ -1,9 +1,14 @@
 <script lang="ts" setup>
 import { CustomColor, useButtonColor } from "../composables/useButtonColor";
+import { LinkTag, useLink } from "../composables/useLinkComponent";
 
 type Props = {
   /** ボタンのテキストです */
   label: string;
+  /** リンク先 */
+  to: string;
+  /** リンクタグの種類 */
+  linkTag?: LinkTag;
   /** ボタンのタイプです。未指定の場合はprimaryになります */
   type?: "primary" | "secondary" | "tertiary" | "custom";
   /** ボタンのサイズです。未指定の場合はmediumになります */
@@ -14,19 +19,15 @@ type Props = {
   customColor?: CustomColor;
 };
 
-type Emits = {
-  /** クリック時のイベントハンドラ */
-  click: [];
-};
-
-const emits = defineEmits<Emits>();
-
 const props = withDefaults(defineProps<Props>(), {
   type: "primary",
   size: "medium",
+  linkTag: "auto",
   disabled: false,
   customColor: undefined,
 });
+
+const { LinkComponent } = useLink({ tag: props.linkTag });
 
 const {
   customBackgroundColor,
@@ -41,14 +42,13 @@ const {
 } = useButtonColor(props.customColor);
 </script>
 <template>
-  <button
+  <LinkComponent
     class="button"
     :class="[type, size, { disabled: disabled }]"
-    :disabled="disabled"
-    @click="emits('click')"
+    :to="to"
   >
     <span class="labelText">{{ label }}</span>
-  </button>
+  </LinkComponent>
 </template>
 
 <style lang="scss" scoped>

@@ -7,7 +7,7 @@ import {
   SlotsType,
 } from "vue";
 
-export type LinkTag = "a" | "router" | "nuxt";
+export type LinkTag = "a" | "router" | "nuxt" | "auto";
 
 type Props = {
   /** 明示的にタグを指定します */
@@ -17,12 +17,12 @@ type Props = {
 
 /**
  * リンク系のタグを選択します
- * 特に指定がない場合はaタグで出力されます。
+ * 特に指定がない場合は自動判定で出力されます。自動判定はNuxtLink、RouterLinkの順に探し、ない場合はaタグで出力されます
  * @example
  * const { LinkComponent } = useLink({tag:"nuxt"});
  * <linkComponent to="/hoge" />
  */
-export const useLink = (props: Props = { tag: "a" }) => {
+export const useLink = (props: Props = { tag: "auto" }) => {
   const Link = getLinkComponent(props.tag);
 
   const render = (props: { to: string; target: string }, slots: SlotsType) => {
@@ -60,7 +60,17 @@ export const useLink = (props: Props = { tag: "a" }) => {
 const getLinkComponent = (
   tag: LinkTag | undefined,
 ): ConcreteComponent | string => {
-  if (tag === "router") {
+  if (tag === "auto") {
+    const RouterLink = resolveComponent("RouterLink");
+    const NuxtLink = resolveComponent("NuxtLink");
+    if (NuxtLink !== "NuxtLink") {
+      return NuxtLink;
+    } else if (RouterLink !== "RouterLink") {
+      return RouterLink;
+    } else {
+      return "a";
+    }
+  } else if (tag === "router") {
     const RouterLink = resolveComponent("RouterLink");
     if (RouterLink !== "RouterLink") {
       return RouterLink;

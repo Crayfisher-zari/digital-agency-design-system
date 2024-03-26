@@ -1,14 +1,17 @@
 import type { Meta, StoryObj } from "@storybook/vue3";
-import BasicButton from "../components/BasicButton.vue";
+import BasicButtonLink from "../components/BasicButtonLink.vue";
 
-// More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 const meta = {
-  title: "ボタン",
-  component: BasicButton,
+  title: "ボタンリンク",
+  component: BasicButtonLink,
   // This component will have an automatically generated docsPage entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ["autodocs"],
   argTypes: {
     label: { control: "text" },
+    to: { control: "text" },
+    linkTag: {
+      control: "text",
+    },
     type: {
       control: "radio",
       options: ["primary", "secondary", "tertiary"],
@@ -20,15 +23,15 @@ const meta = {
     disabled: {
       control: "boolean",
     },
-    onClick: { action: "clicked" },
   },
   args: {
     label: "ボタン",
     type: "primary",
     size: "medium",
+    to: "#!",
     disabled: false,
-  }, // default value
-} satisfies Meta<typeof BasicButton>;
+  },
+} satisfies Meta<typeof BasicButtonLink>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

@@ -1,15 +1,16 @@
 @use "@/assets/style/utils/utils.scss" as *;
 
-button {
+.button {
   position: relative;
   z-index: 0;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   font-family: inherit;
   font-size: pxToRem(16);
   font-weight: var(--weight-bold);
   color: var(--color-text-onFill);
+  text-decoration: none;
   appearance: none;
   cursor: pointer;
   background-color: var(--color-button-normal);
@@ -35,19 +36,20 @@ button {
     outline-offset: 2px;
   }
 
-  &:not(:disabled):hover {
+  &:not(.disabled):hover {
     text-decoration: underline;
     background-color: var(--color-button-hover);
     border-color: var(--color-button-hover);
   }
 
-  &:not(:disabled):active {
+  &:not(.disabled):active {
     text-decoration: underline;
     background-color: var(--color-button-active);
     border-color: var(--color-button-active);
   }
 
-  &:disabled {
+  &.disabled {
+    pointer-events: none;
     cursor: auto;
     background-color: var(--color-button-disabled);
     border-color: var(--color-button-disabled);
@@ -57,12 +59,12 @@ button {
     color: var(--color-button-normal);
     background-color: transparent;
 
-    &:not(:disabled):hover {
+    &:not(.disabled):hover {
       color: var(--color-button-hover);
       background-color: var(--color-sea-50);
     }
 
-    &:not(:disabled):active {
+    &:not(.disabled):active {
       color: var(--color-blue-1200);
       text-decoration: underline;
       background-color: var(--color-blue-300);
@@ -74,7 +76,7 @@ button {
       outline-offset: 2px;
     }
 
-    &:disabled {
+    &.disabled {
       color: var(--color-button-disabled);
       border-color: var(--color-button-disabled);
     }
@@ -85,13 +87,13 @@ button {
     background-color: transparent;
     border-color: transparent;
 
-    &:not(:disabled):hover {
+    &:not(.disabled):hover {
       color: var(--color-button-hover);
       background-color: var(--color-blue-200);
       border-color: transparent;
     }
 
-    &:not(:disabled):active {
+    &:not(.disabled):active {
       color: var(--color-blue-1200);
       text-decoration: underline;
       background-color: var(--color-blue-300);
@@ -102,7 +104,7 @@ button {
       outline-offset: -1px;
     }
 
-    &:disabled {
+    &.disabled {
       color: var(--color-button-disabled);
     }
 
@@ -139,4 +141,6 @@ button {
 
 .labelText {
   color: inherit;
+  -webkit-user-select: none;
+  user-select: none;
 }
