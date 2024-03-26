@@ -6,6 +6,8 @@ type Props = {
   label: string;
   /** ボタンのタイプです。未指定の場合はprimaryになります */
   type?: "primary" | "secondary" | "tertiary" | "custom";
+  /** ボタンのサイズです。未指定の場合はmediumになります */
+  size?: "large" | "medium" | "small" | "x-small";
   /** 非活性かどうか？ */
   disabled?: boolean;
   /** カスタムカラー。個別で指定したい場合 */
@@ -21,6 +23,7 @@ const emits = defineEmits<Emits>();
 
 const props = withDefaults(defineProps<Props>(), {
   type: "primary",
+  size: "medium",
   disabled: false,
   customColor: undefined,
 });
@@ -38,7 +41,7 @@ const {
 } = useButtonColor(props.customColor);
 </script>
 <template>
-  <button :class="type" :disabled="disabled" @click="emits('click')">
+  <button :class="[type, size]" :disabled="disabled" @click="emits('click')">
     <span class="labelText">{{ label }}</span>
   </button>
 </template>

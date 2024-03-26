@@ -59,6 +59,46 @@ export const Tertiary: Story = {
 };
 
 /**
+ * Largeサイズ
+ */
+export const Large: Story = {
+  args: {
+    label: "ボタン",
+    size: "large",
+  },
+};
+
+/**
+ * Mediumサイズ
+ */
+export const Medium: Story = {
+  args: {
+    label: "ボタン",
+    size: "medium",
+  },
+};
+
+/**
+ * Smallサイズ
+ */
+export const Small: Story = {
+  args: {
+    label: "ボタン",
+    size: "small",
+  },
+};
+
+/**
+ * X-Smallサイズ
+ */
+export const XSmall: Story = {
+  args: {
+    label: "ボタン",
+    size: "x-small",
+  },
+};
+
+/**
  * カスタムカラー（プライマリーボタンタイプ）
  */
 export const CustomColor1: Story = {
