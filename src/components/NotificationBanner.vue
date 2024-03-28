@@ -4,6 +4,7 @@ import { LinkTag, useLink } from "../composables/useLinkComponent";
 import BasicButton from "./BasicButton.vue";
 import Icon from "./Icon.vue";
 import iconClose from "@/assets/images/icon_close.svg";
+import BasicButtonLink from "./BasicButtonLink.vue";
 
 type Props = {
   /** バナースタイル */
@@ -41,7 +42,7 @@ const props = withDefaults(defineProps<Props>(), {
   date: undefined,
   customIconSrc: undefined,
   url: undefined,
-  linkTag: "a",
+  linkTag: "auto",
   hasClose: false,
   onClickClose: undefined,
   primaryButtonLabel: undefined,
@@ -118,15 +119,6 @@ const titleTag = computed(() => {
     return "span";
   }
 });
-
-console.log(
-  props.url !== undefined,
-  !props.hasClose,
-  props.primaryButtonLabel === undefined,
-  props.secondaryButtonLabel === undefined,
-  wrapperTag.value,
-  props.primaryButtonLabel,
-);
 </script>
 <template>
   <div class="notificationBannerWrapper" :class="[style, type]">
@@ -254,19 +246,26 @@ console.log(
       </div>
       <div class="buttonWrapper">
         <BasicButton
-          v-if="secondaryButtonLabel"
+          v-if="secondaryButtonLabel && onClickSecondary"
           type="custom"
           :label="secondaryButtonLabel"
           :onClick="onClickSecondary"
           :customColor="secondaryButtonColor"
         ></BasicButton>
         <BasicButton
-          v-if="primaryButtonLabel"
+          v-if="primaryButtonLabel && onClickPrimary"
           type="custom"
           :label="primaryButtonLabel"
           :onClick="onClickPrimary"
           :customColor="primaryButtonColor"
         ></BasicButton>
+        <BasicButtonLink
+          v-if="url && primaryButtonLabel"
+          type="custom"
+          :label="primaryButtonLabel"
+          :to="url"
+          :customColor="primaryButtonColor"
+        ></BasicButtonLink>
       </div>
     </component>
   </div>

@@ -133,6 +133,7 @@ export const HasLink: Story = {
     url: "#!",
   },
 };
+
 /**
  * リンク付き（タイトルとボタンがリンク）
  */
@@ -144,5 +145,19 @@ export const HasLinkWithButton: Story = {
     type: "success",
     url: "#!",
     primaryButtonLabel: "延長期間を確認して承諾する",
+    onClickPrimary: undefined,
+  },
+};
+
+/**
+ * リンク付き（ボタンなし。全体がリンク）
+ */
+export const HasLinkWithNoButtons: Story = {
+  args: {
+    title: "登録期間が延長されました",
+    description:
+      "ダミーテキストは、デザインの作成時に使用される仮の文章です。ダミーテキストは、デザインの作成時に使用される仮の文章です。ダミーテキストは、デザインの作成時に使用される仮の文章です。",
+    type: "success",
+    url: "#!",
   },
 };
