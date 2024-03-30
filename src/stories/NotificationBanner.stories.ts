@@ -11,7 +11,7 @@ const meta = {
       options: ["standard", "colorChip"],
     },
     type: {
-      control: "selector",
+      control: "select",
       options: ["success", "error", "warning", "info1", "info2"],
     },
     title: {

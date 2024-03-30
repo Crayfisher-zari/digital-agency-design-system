@@ -104,9 +104,15 @@
   --color-status-light-alert: var(--color-sun-800);
   --color-status-dark-alert: var(--color-sun-500);
   --color-status-alert: var(--color-sun-800);
+  --color-status-alert-hover: var(--color-sun-900);
+  --color-status-light-alert-hover: var(--color-sun-900);
+  --color-status-dark-alert-hover: var(--color-sun-400);
   --color-status-light-warning: var(--color-wood-800);
   --color-status-dark-warning: var(--color-wood-500);
   --color-status-warning: var(--color-wood-800);
+  --color-status-light-warning-hover: var(--color-wood-900);
+  --color-status-dark-warning-hover: var(--color-wood-600);
+  --color-status-warning-hover: var(--color-wood-900);
 
   /* Chart */
   --color-chart-light-primary: var(--color-sea-800);
@@ -169,7 +175,9 @@
     --color-status-success: var(--color-forest-600);
     --color-status-success-hover: var(--color-forest-800);
     --color-status-alert: var(--color-sun-500);
+    --color-status-alert-hover: var(--color-sun-600);
     --color-status-warning: var(--color-wood-500);
+    --color-status-warning-hover: var(--color-wood-600);
 
     /* Chart */
     --color-chart-primary: var(--color-sea-100);
@@ -223,7 +231,9 @@
   --color-status-success: var(--color-forest-600);
   --color-status-success-hover: var(--color-forest-800);
   --color-status-alert: var(--color-sun-800);
+  --color-status-alert-hover: var(--color-sun-900);
   --color-status-warning: var(--color-wood-800);
+  --color-status-warning-hover: var(--color-wood-900);
 
   /* Chart */
   --color-chart-primary: var(--color-sea-600);
@@ -274,8 +284,11 @@
 
   /* Status */
   --color-status-success: var(--color-forest-600);
+  --color-status-success-hover: var(--color-forest-800);
   --color-status-alert: var(--color-sun-500);
+  --color-status-alert-hover: var(--color-sun-600);
   --color-status-warning: var(--color-wood-500);
+  --color-status-warning-hover: var(--color-wood-600);
 
   /* Chart */
   --color-chart-primary: var(--color-sea-100);

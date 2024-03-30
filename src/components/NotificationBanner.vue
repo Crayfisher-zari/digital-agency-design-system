@@ -58,15 +58,30 @@ const primaryButtonColor = computed(() => {
   if (!props.primaryButtonLabel) {
     return undefined;
   }
-  if (props.type === "success") {
-    return {
-      backgroundColor: "var(--color-status-success)",
-      labelColor: "var(--color-text-onFill)",
-      hoverBackgroundColor: "var(--color-status-success-hover)",
-      hoverLabelColor: "var(--color-text-onFill)",
-    };
-  } else {
-    return undefined;
+  switch (props.type) {
+    case "success":
+      return {
+        backgroundColor: "var(--color-status-success)",
+        labelColor: "var(--color-text-onFill)",
+        hoverBackgroundColor: "var(--color-status-success-hover)",
+        hoverLabelColor: "var(--color-text-onFill)",
+      };
+    case "error":
+      return {
+        backgroundColor: "var(--color-status-alert)",
+        labelColor: "var(--color-text-onFill)",
+        hoverBackgroundColor: "var(--color-status-alert-hover)",
+        hoverLabelColor: "var(--color-text-onFill)",
+      };
+    case "warning":
+      return {
+        backgroundColor: "var(--color-status-warning)",
+        labelColor: "var(--color-text-onFill)",
+        hoverBackgroundColor: "var(--color-status-warning-hover)",
+        hoverLabelColor: "var(--color-text-onFill)",
+      };
+    default:
+      return undefined;
   }
 });
 
@@ -75,17 +90,38 @@ const secondaryButtonColor = computed(() => {
   if (!props.secondaryButtonLabel) {
     return undefined;
   }
-  if (props.type === "success") {
-    return {
-      backgroundColor: "var(--color-text-onFill)",
-      borderColor: "var(--color-status-success)",
-      labelColor: "var(--color-status-success)",
-      hoverBackgroundColor: "var(--custom-secondary-hover-background-success)",
-      hoverBorderColor: "var(--custom-secondary-hover-border-success)",
-      hoverLabelColor: "var(--custom-secondary-hover-label-success)",
-    };
-  } else {
-    return undefined;
+  switch (props.type) {
+    case "success":
+      return {
+        backgroundColor: "var(--color-text-onFill)",
+        borderColor: "var(--color-status-success)",
+        labelColor: "var(--color-status-success)",
+        hoverBackgroundColor:
+          "var(--custom-secondary-hover-background-success)",
+        hoverBorderColor: "var(--custom-secondary-hover-border-success)",
+        hoverLabelColor: "var(--custom-secondary-hover-label-success)",
+      };
+    case "error":
+      return {
+        backgroundColor: "var(--color-text-onFill)",
+        borderColor: "var(--color-status-alert)",
+        labelColor: "var(--color-status-alert)",
+        hoverBackgroundColor: "var(--custom-secondary-hover-background-error)",
+        hoverBorderColor: "var(--custom-secondary-hover-border-error)",
+        hoverLabelColor: "var(--custom-secondary-hover-label-error)",
+      };
+    case "warning":
+      return {
+        backgroundColor: "var(--color-text-onFill)",
+        borderColor: "var(--color-status-warning)",
+        labelColor: "var(--color-status-warning)",
+        hoverBackgroundColor:
+          "var(--custom-secondary-hover-background-warning)",
+        hoverBorderColor: "var(--custom-secondary-hover-border-warning)",
+        hoverLabelColor: "var(--custom-secondary-hover-label-warning)",
+      };
+    default:
+      return undefined;
   }
 });
 
@@ -112,6 +148,7 @@ const wrapperTag = computed(() => {
   }
 });
 
+// タイトルのタグ
 const titleTag = computed(() => {
   if (props.url && (props.primaryButtonLabel || props.secondaryButtonLabel)) {
     return LinkComponent;
@@ -274,9 +311,20 @@ const titleTag = computed(() => {
 @use "@/assets/style/utils/utils.scss" as *;
 
 .notificationBannerWrapper {
+  /* Successのカスタムボタンカラー */
   --custom-secondary-hover-background-success: var(--color-forest-200);
   --custom-secondary-hover-label-success: var(--color-forest-700);
   --custom-secondary-hover-border-success: var(--color-forest-700);
+
+  /* Errorのカスタムボタンカラー */
+  --custom-secondary-hover-background-error: var(--color-sun-50);
+  --custom-secondary-hover-label-error: var(--color-sun-900);
+  --custom-secondary-hover-border-error: var(--color-sun-900);
+
+  /* Warningのカスタムボタンカラー */
+  --custom-secondary-hover-background-warning: var(--color-wood-50);
+  --custom-secondary-hover-label-warning: var(--color-wood-900);
+  --custom-secondary-hover-border-warning: var(--color-wood-900);
 }
 
 .notificationBanner {
