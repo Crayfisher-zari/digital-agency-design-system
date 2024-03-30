@@ -80,6 +80,20 @@ const primaryButtonColor = computed(() => {
         hoverBackgroundColor: "var(--color-status-warning-hover)",
         hoverLabelColor: "var(--color-text-onFill)",
       };
+    case "info1":
+      return {
+        backgroundColor: "var(--color-button-normal)",
+        labelColor: "var(--color-text-onFill)",
+        hoverBackgroundColor: "var(--color-button-hover)",
+        hoverLabelColor: "var(--color-text-onFill)",
+      };
+    case "info2":
+      return {
+        backgroundColor: "var(--color-text-body)",
+        labelColor: "var(--color-mono-clear)",
+        hoverBackgroundColor: "var(--color-sumi-800)",
+        hoverLabelColor: "var(--color-text-onFill)",
+      };
     default:
       return undefined;
   }
@@ -119,6 +133,24 @@ const secondaryButtonColor = computed(() => {
           "var(--custom-secondary-hover-background-warning)",
         hoverBorderColor: "var(--custom-secondary-hover-border-warning)",
         hoverLabelColor: "var(--custom-secondary-hover-label-warning)",
+      };
+    case "info1":
+      return {
+        backgroundColor: "var(--color-text-onFill)",
+        borderColor: "var(--color-button-normal)",
+        labelColor: "var(--color-button-normal)",
+        hoverBackgroundColor: "var(--custom-secondary-hover-background-info1)",
+        hoverBorderColor: "var(--custom-secondary-hover-border-info1)",
+        hoverLabelColor: "var(--custom-secondary-hover-label-info1)",
+      };
+    case "info2":
+      return {
+        backgroundColor: "transparent",
+        borderColor: "var(--color-text-body)",
+        labelColor: "var(--color-text-body)",
+        hoverBackgroundColor: "var(--custom-secondary-hover-background-info2)",
+        hoverBorderColor: "var(--custom-secondary-hover-border-info2)",
+        hoverLabelColor: "var(--custom-secondary-hover-label-info2)",
       };
     default:
       return undefined;
@@ -311,20 +343,30 @@ const titleTag = computed(() => {
 @use "@/assets/style/utils/utils.scss" as *;
 
 .notificationBannerWrapper {
-  /* Successのカスタムボタンカラー */
+  /* Successの副ボタンカスタムカラー */
   --custom-secondary-hover-background-success: var(--color-forest-200);
   --custom-secondary-hover-label-success: var(--color-forest-700);
   --custom-secondary-hover-border-success: var(--color-forest-700);
 
-  /* Errorのカスタムボタンカラー */
+  /* Errorの副ボタンカスタムカラー */
   --custom-secondary-hover-background-error: var(--color-sun-50);
   --custom-secondary-hover-label-error: var(--color-sun-900);
   --custom-secondary-hover-border-error: var(--color-sun-900);
 
-  /* Warningのカスタムボタンカラー */
+  /* Warningの副ボタンカスタムカラー */
   --custom-secondary-hover-background-warning: var(--color-wood-50);
   --custom-secondary-hover-label-warning: var(--color-wood-900);
   --custom-secondary-hover-border-warning: var(--color-wood-900);
+
+  /* info1の副ボタンカスタムカラー */
+  --custom-secondary-hover-background-info1: var(--color-sea-50);
+  --custom-secondary-hover-label-info1: var(--color-sea-900);
+  --custom-secondary-hover-border-info1: var(--color-sea-900);
+
+  /* info2の副ボタンカスタムカラー */
+  --custom-secondary-hover-background-info2: var(--color-sumi-100);
+  --custom-secondary-hover-label-info2: var(--color-sumi-1000);
+  --custom-secondary-hover-border-info2: var(--color-sumi-1000);
 }
 
 .notificationBanner {
