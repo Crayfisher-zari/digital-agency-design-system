@@ -206,6 +206,7 @@ const titleTag = computed(() => {
             viewBox="0 0 36 36"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
+            class="iconSvg"
           >
             <circle cx="18" cy="18" r="18" fill="white" />
             <path
@@ -221,6 +222,7 @@ const titleTag = computed(() => {
             viewBox="0 0 36 36"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
+            class="iconSvg"
           >
             <path
               d="M24.2525 33H11.7475L3 24.2525V11.7475L11.7475 3H24.2525L33 11.7475V24.2525L24.2525 33Z"
@@ -249,6 +251,7 @@ const titleTag = computed(() => {
             viewBox="0 0 36 36"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
+            class="iconSvg"
           >
             <path d="M18 3.00098L36 34.091H0L18 3.00098Z" fill="white" />
             <path
@@ -264,6 +267,7 @@ const titleTag = computed(() => {
             viewBox="0 0 36 36"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
+            class="iconSvg"
           >
             <circle cx="18" cy="18" r="18" fill="white" />
             <path
@@ -279,6 +283,7 @@ const titleTag = computed(() => {
             viewBox="0 0 36 36"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
+            class="iconSvg"
           >
             <circle cx="18" cy="18" r="18" fill="var(--color-mono-clear)" />
             <path
@@ -298,6 +303,9 @@ const titleTag = computed(() => {
             {{ title }}
           </span>
         </component>
+      </p>
+      <p class="date" v-if="date">
+        {{ date }}
       </p>
       <p class="description">
         {{ description }}
@@ -394,6 +402,9 @@ const titleTag = computed(() => {
   &.info1 {
     border-color: var(--color-button-normal);
   }
+  @include mediaQueryDown() {
+    padding: 16px;
+  }
 }
 
 .titleWrapper {
@@ -401,12 +412,23 @@ const titleTag = computed(() => {
   column-gap: 24px;
   align-items: center;
   margin-bottom: 16px;
+  @include mediaQueryDown() {
+    column-gap: 12px;
+  }
 }
 
 .icon {
   display: block;
   width: 36px;
   height: 36px;
+  @include mediaQueryDown() {
+    width: 24px;
+    height: 24px;
+    .iconSvg{
+      width: 24px;
+    height: 24px;
+    }
+  }
 }
 
 .title {
@@ -420,6 +442,9 @@ const titleTag = computed(() => {
   &.hasUnderline {
     text-decoration: underline;
   }
+  @include mediaQueryDown() {
+    font-size: pxToRem(16);
+  }
 }
 
 .titleInner {
@@ -427,9 +452,26 @@ const titleTag = computed(() => {
   text-decoration: inherit;
 }
 
+.date{
+  padding-left: 56px;
+  font-size: pxToRem(16);
+  margin-bottom: 8px;
+  @include mediaQueryDown() {
+    padding-left: 0;
+    font-size: pxToRem(14);
+  }
+}
+
 .description {
   padding-left: 56px;
   text-decoration: none;
+  font-size: pxToRem(16);
+  line-height: 1.75;
+  letter-spacing: 0.04em;
+  @include mediaQueryDown() {
+    padding-left: 0;
+    line-height: 1.7;
+  }
 }
 
 .buttonWrapper {
