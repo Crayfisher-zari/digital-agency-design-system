@@ -297,14 +297,14 @@ const titleTag = computed(() => {
           :is="titleTag"
           :to="titleTag === 'span' ? undefined : props.url"
           class="title"
-          :class="{ hasUnderline: hasUnderline }"
+          :class="{ hasUnderline: hasUnderline, hasClose: hasClose }"
         >
           <span class="titleInner">
             {{ title }}
           </span>
         </component>
       </p>
-      <p class="date" v-if="date">
+      <p v-if="date" class="date">
         {{ date }}
       </p>
       <p class="description">
@@ -402,7 +402,8 @@ const titleTag = computed(() => {
   &.info1 {
     border-color: var(--color-button-normal);
   }
-  @include mediaQueryDown() {
+
+  @include mediaQueryDown {
     padding: 16px;
   }
 }
@@ -412,7 +413,8 @@ const titleTag = computed(() => {
   column-gap: 24px;
   align-items: center;
   margin-bottom: 16px;
-  @include mediaQueryDown() {
+
+  @include mediaQueryDown {
     column-gap: 12px;
   }
 }
@@ -421,12 +423,14 @@ const titleTag = computed(() => {
   display: block;
   width: 36px;
   height: 36px;
-  @include mediaQueryDown() {
+
+  @include mediaQueryDown {
     width: 24px;
     height: 24px;
-    .iconSvg{
+
+    .iconSvg {
       width: 24px;
-    height: 24px;
+      height: 24px;
     }
   }
 }
@@ -442,8 +446,16 @@ const titleTag = computed(() => {
   &.hasUnderline {
     text-decoration: underline;
   }
-  @include mediaQueryDown() {
+
+  @include mediaQueryDown {
+    flex-grow: 0;
     font-size: pxToRem(16);
+  }
+
+  &.hasClose {
+    @include mediaQueryDown {
+      width: calc(100% - 124px);
+    }
   }
 }
 
@@ -452,11 +464,12 @@ const titleTag = computed(() => {
   text-decoration: inherit;
 }
 
-.date{
+.date {
   padding-left: 56px;
-  font-size: pxToRem(16);
   margin-bottom: 8px;
-  @include mediaQueryDown() {
+  font-size: pxToRem(16);
+
+  @include mediaQueryDown {
     padding-left: 0;
     font-size: pxToRem(14);
   }
@@ -464,11 +477,12 @@ const titleTag = computed(() => {
 
 .description {
   padding-left: 56px;
-  text-decoration: none;
   font-size: pxToRem(16);
   line-height: 1.75;
+  text-decoration: none;
   letter-spacing: 0.04em;
-  @include mediaQueryDown() {
+
+  @include mediaQueryDown {
     padding-left: 0;
     line-height: 1.7;
   }
@@ -479,12 +493,23 @@ const titleTag = computed(() => {
   column-gap: 16px;
   justify-content: flex-end;
   margin-top: 16px;
+
+  @include mediaQueryDown {
+    flex-direction: column;
+    row-gap: 16px;
+    margin-top: 24px;
+  }
 }
 
 .closeButtonWrapper {
   position: absolute;
   top: 24px;
   right: 30px;
+
+  @include mediaQueryDown {
+    top: 8px;
+    right: 16px;
+  }
 }
 
 .closeButton {
@@ -504,6 +529,12 @@ const titleTag = computed(() => {
 
   &:hover {
     background-color: var(--color-mono-hover);
+  }
+
+  @include mediaQueryDown {
+    width: 84px;
+    padding-left: 8px;
+    font-size: pxToRem(14);
   }
 }
 

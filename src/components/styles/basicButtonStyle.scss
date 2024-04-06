@@ -115,25 +115,25 @@
 
   &.large {
     min-width: 136px;
-    height: 56px;
+    min-height: 56px;
     padding: 16px 43px;
   }
 
   &.medium {
     min-width: 96px;
-    height: 48px;
+    min-height: 48px;
     padding: 12px 23px;
   }
 
   &.small {
     min-width: 80px;
-    height: 36px;
+    min-height: 36px;
     padding: 6px 15px;
   }
 
   &.x-small {
     min-width: 72px;
-    height: 28px;
+    min-height: 28px;
     padding: 7px 14px;
     font-size: pxToRem(14);
   }
@@ -141,6 +141,7 @@
 
 .labelText {
   color: inherit;
+  text-align: center;
   -webkit-user-select: none;
   user-select: none;
 }
