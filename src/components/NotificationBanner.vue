@@ -194,7 +194,7 @@ const titleTag = computed(() => {
     <component
       :is="wrapperTag"
       class="notificationBanner"
-      :class="[type, { isLink: wrapperTag !== 'div' }]"
+      :class="[type, style, { isLink: wrapperTag !== 'div' }]"
     >
       <p class="titleWrapper">
         <span class="icon">
@@ -297,7 +297,7 @@ const titleTag = computed(() => {
           :is="titleTag"
           :to="titleTag === 'span' ? undefined : props.url"
           class="title"
-          :class="{ hasUnderline: hasUnderline, hasClose: hasClose }"
+          :class="[hasUnderline, hasClose]"
         >
           <span class="titleInner">
             {{ title }}
@@ -321,7 +321,10 @@ const titleTag = computed(() => {
           />閉じる
         </button>
       </div>
-      <div class="buttonWrapper">
+      <div
+        v-if="primaryButtonLabel || secondaryButtonLabel"
+        class="buttonWrapper"
+      >
         <BasicButton
           v-if="secondaryButtonLabel && onClickSecondary"
           type="custom"
@@ -380,7 +383,7 @@ const titleTag = computed(() => {
 .notificationBanner {
   position: relative;
   display: block;
-  padding: 24px;
+  padding: 24px 24px 32px;
   color: var(--color-text-body);
   text-decoration: none;
   border-style: solid;
@@ -403,8 +406,18 @@ const titleTag = computed(() => {
     border-color: var(--color-button-normal);
   }
 
+  &.colorChip {
+    border-width: 2px;
+    border-left-width: 16px;
+    border-radius: 0 8px 8px 0;
+
+    @include mediaQueryDown {
+      border-left-width: 6px;
+    }
+  }
+
   @include mediaQueryDown {
-    padding: 16px;
+    padding: 16px 16px 24px;
   }
 }
 
