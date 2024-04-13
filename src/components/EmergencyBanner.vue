@@ -41,10 +41,17 @@ const wrapperTag = computed(() => {
       <p class="description">
         {{ description }}
       </p>
+      <slot></slot>
       <div class="buttonWrapper" v-if="url && buttonLabel">
-        <BasicButtonLink :to="url"></BasicButtonLink>
+        <BasicButtonLink :to="url" :label="buttonLabel" />
       </div>
     </component>
   </div>
 </template>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+@use "@/assets/style/utils/utils.scss" as *;
+
+.emergencyBanner{
+  padding: 32px;
+}
+</style>
