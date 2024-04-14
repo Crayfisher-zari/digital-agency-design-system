@@ -30,6 +30,13 @@ const wrapperTag = computed(() => {
     return "div";
   }
 });
+
+const alertButtonColor = {
+  backgroundColor: "var(--color-status-alert)",
+  labelColor: "var(--color-text-onFill)",
+  hoverBackgroundColor: "var(--color-status-alert-hover)",
+  hoverLabelColor: "var(--color-text-onFill)",
+};
 </script>
 <template>
   <div class="emergencyBannerWrapper">
@@ -43,7 +50,12 @@ const wrapperTag = computed(() => {
       </p>
       <slot></slot>
       <div class="buttonWrapper" v-if="url && buttonLabel">
-        <BasicButtonLink :to="url" :label="buttonLabel" />
+        <BasicButtonLink
+          :to="url"
+          type="custom"
+          :label="buttonLabel"
+          :customColor="alertButtonColor"
+        />
       </div>
     </component>
   </div>
@@ -51,7 +63,38 @@ const wrapperTag = computed(() => {
 <style lang="scss" scoped>
 @use "@/assets/style/utils/utils.scss" as *;
 
-.emergencyBanner{
+.emergencyBanner {
   padding: 32px;
+  border: 6px solid var(--color-border-alert);
+}
+
+.title {
+  font-size: pxToRem(24);
+  line-height: 1.16;
+  letter-spacing: 0.04em;
+  font-weight: var(--weight-bold);
+  color: var(--color-status-alert);
+}
+
+.date {
+  font-size: pxToRem(16);
+  letter-spacing: 0.04em;
+  color: var(--color-text-body);
+  margin-top: 4px;
+}
+
+.description {
+  font-size: pxToRem(20);
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  color: var(--color-text-body);
+  margin-top: 16px;
+}
+
+.buttonWrapper{
+  margin-top: 28px;
+  display: flex;
+  justify-content: center;
+  
 }
 </style>

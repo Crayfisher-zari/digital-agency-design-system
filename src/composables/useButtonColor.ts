@@ -2,6 +2,7 @@ import { computed } from "vue";
 
 /** カスタムカラー。個別で指定したい場合 */
 export type CustomColor =
+  | undefined
   | {
       /** 背景色 */
       backgroundColor: string;
@@ -21,8 +22,7 @@ export type CustomColor =
       activeBorderColor?: string;
       /** アクティブ時のラベル文字色 */
       activeLabelColor?: string;
-    }
-  | undefined;
+    };
 
 export const useButtonColor = (customColor: CustomColor) => {
   const customBackgroundColor = computed<string>(
