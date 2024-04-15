@@ -29,7 +29,7 @@
     "@vitejs/plugin-vue": "5.0.4",
     "@vue/eslint-config-typescript": "13.0.0",
     "dotenv": "16.4.5",
-    "eslint": "9.0.0",
+    "eslint": "8.57.0",
     "eslint-config-prettier": "9.1.0",
     "eslint-plugin-storybook": "^0.8.0",
     "eslint-plugin-vue": "9.24.0",
