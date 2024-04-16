@@ -2,7 +2,6 @@
 import { computed } from "vue";
 import { LinkTag, useLink } from "../composables/useLinkComponent";
 import BasicButton from "./BasicButton.vue";
-import BasicButtonLink from "./BasicButtonLink.vue";
 
 type Props = {
   /** タイトル */
@@ -24,7 +23,7 @@ const { LinkComponent } = useLink({ tag: props.linkTag });
 
 // ラッパー要素のタグ
 const wrapperTag = computed(() => {
-  if (props.url !== undefined && props.buttonLabel === undefined) {
+  if (props.url !== undefined) {
     return LinkComponent;
   } else {
     return "div";
@@ -39,7 +38,7 @@ const alertButtonColor = {
 };
 </script>
 <template>
-  <div class="emergencyBannerWrapper">
+  <div class="emergencyBannerWrapper" :class="{ withLink: url !== undefined }">
     <component :is="wrapperTag" class="emergencyBanner">
       <h2 class="title">{{ title }}</h2>
       <p v-if="date" class="date">
@@ -49,9 +48,8 @@ const alertButtonColor = {
         {{ description }}
       </p>
       <slot></slot>
-      <div class="buttonWrapper" v-if="url && buttonLabel">
-        <BasicButtonLink
-          :to="url"
+      <div v-if="url && buttonLabel" class="buttonWrapper">
+        <BasicButton
           type="custom"
           :label="buttonLabel"
           :customColor="alertButtonColor"
@@ -64,37 +62,57 @@ const alertButtonColor = {
 @use "@/assets/style/utils/utils.scss" as *;
 
 .emergencyBanner {
+  display: block;
   padding: 32px;
+  text-decoration: none;
+  background-color: #fff;
   border: 6px solid var(--color-border-alert);
+  transition: background-color var(--base-duration) var(--easing-out-expo);
 }
 
 .title {
   font-size: pxToRem(24);
-  line-height: 1.16;
-  letter-spacing: 0.04em;
   font-weight: var(--weight-bold);
+  line-height: 1.16;
   color: var(--color-status-alert);
+  letter-spacing: 0.04em;
 }
 
 .date {
-  font-size: pxToRem(16);
-  letter-spacing: 0.04em;
-  color: var(--color-text-body);
   margin-top: 4px;
+  font-size: pxToRem(16);
+  color: var(--color-text-body);
+  letter-spacing: 0.04em;
 }
 
 .description {
+  margin-top: 16px;
   font-size: pxToRem(20);
   line-height: 1.5;
-  letter-spacing: 0.04em;
   color: var(--color-text-body);
-  margin-top: 16px;
+  letter-spacing: 0.04em;
 }
 
-.buttonWrapper{
-  margin-top: 28px;
+:is(.withLink) {
+  .title {
+    text-decoration: underline;
+  }
+
+  &:hover {
+    .emergencyBanner {
+      background-color: #f8f8fb;
+    }
+
+    .date,
+    .description {
+      text-decoration: underline;
+    }
+  }
+}
+
+.buttonWrapper {
   display: flex;
   justify-content: center;
-  
+  margin-top: 28px;
 }
 </style>
