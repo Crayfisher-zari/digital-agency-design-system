@@ -76,11 +76,17 @@ const alertButtonColor = {
   line-height: 1.16;
   color: var(--color-status-alert);
   letter-spacing: 0.04em;
+
+  @include mediaQueryDown {
+    font-size: pxToRem(20);
+    line-height: 1.5;
+  }
 }
 
 .date {
-  margin-top: 4px;
+  margin-top: 8px;
   font-size: pxToRem(16);
+  line-height: 1.7;
   color: var(--color-text-body);
   letter-spacing: 0.04em;
 }
@@ -91,9 +97,14 @@ const alertButtonColor = {
   line-height: 1.5;
   color: var(--color-text-body);
   letter-spacing: 0.04em;
+
+  @include mediaQueryDown {
+    font-size: pxToRem(16);
+    line-height: 1.7;
+  }
 }
 
-:is(.withLink) {
+.withLink {
   .title {
     text-decoration: underline;
   }
