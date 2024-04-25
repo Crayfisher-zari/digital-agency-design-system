@@ -6,6 +6,10 @@ const meta = {
   component: ResourceList,
   tags: ["autodocs"],
   argTypes: {
+    type: {
+      control: "select",
+      options: ["button", "checkbox", "radio", "link"],
+    },
     label: {
       control: "text",
     },
@@ -17,6 +21,7 @@ const meta = {
     },
   },
   args: {
+    type: "button",
     label: "ラベル",
     title: "リストタイトル",
     supportText: "サポートテキスト",
