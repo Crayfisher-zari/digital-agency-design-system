@@ -47,15 +47,16 @@ const stateClassName = computed<string | null>(() => {
 </script>
 <template>
   <label :class="[radioStyle, stateClassName, { checked }, { focused }]">
-    <PartsRadioButton
-      v-model="model"
-      :radioValue
-      :name
-      :isValid
-      :isDisabled
-      :isHiddenFocused="radioStyle === 'tile'"
-      class="radioButton"
-    />
+    <div class="radioButton">
+      <PartsRadioButton
+        v-model="model"
+        :radioValue
+        :name
+        :isValid
+        :isDisabled
+        :isHiddenFocused="radioStyle === 'tile'"
+      />
+    </div>
     <span class="labelText"> {{ label }} </span>
     <span
       v-if="radioStyle === 'tile' && subText !== undefined"
