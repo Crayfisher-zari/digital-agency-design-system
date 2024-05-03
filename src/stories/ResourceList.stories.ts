@@ -19,12 +19,16 @@ const meta = {
     supportText: {
       control: "text",
     },
+    subLabel: {
+      control: "text",
+    },
   },
   args: {
     type: "button",
     label: "ラベル",
     title: "リストタイトル",
     supportText: "サポートテキスト",
+    subLabel: "サブラベル",
   },
 } satisfies Meta<typeof ResourceList>;
 export default meta;
@@ -35,5 +39,6 @@ export const Base: Story = {
     label: "ラベル",
     title: "リストタイトル",
     supportText: "サポートテキスト",
+    subLabel: "サブラベル",
   },
 };

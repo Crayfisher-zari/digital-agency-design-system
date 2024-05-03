@@ -2,16 +2,33 @@
 import { computed } from "vue";
 import { useLink } from "../composables/useLinkComponent";
 import type { LinkTag } from "../composables/useLinkComponent";
+import PartsCheckbox from "./parts/PartsCheckbox.vue";
+import PartsRadioButton from "./parts/PartsRadioButton.vue";
 
 type Props = {
-  type: "button" | "checkbox" | "radio" | "link";
+  /** リソースリストの種別。未指定の場合はボタン */
+  type?: "button" | "checkbox" | "radio" | "link";
+  /** ラベル */
   label?: string;
+  /** リストタイトル */
   title?: string;
+  /** name属性の値 */
+  name: string;
+  /** 格納するリアクティブな値（v-modelでも使える） */
+  modelValue: string | null;
+  /** 選択肢固有の値です */
+  value: string;
+  /** ボタンが非活性状態か。未指定の場合はfalse */
+  isDisabled?: boolean;
+  /** サポートテキスト */
   supportText?: string;
+  /** サブラベル */
   subLabel?: string;
+  /** リンクタグの種別 */
   linkTag?: LinkTag;
 };
 const props = withDefaults(defineProps<Props>(), {
+  type: "button",
   label: undefined,
   title: undefined,
   supportText: undefined,
@@ -20,6 +37,8 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 const { LinkComponent } = useLink({ tag: props.linkTag });
+
+const model = defineModel<string | null>();
 
 const wrapperTag = computed(() => {
   const type = props.type;
@@ -43,6 +62,12 @@ const wrapperTag = computed(() => {
     class="resourceList"
     :type="type === 'button' ? 'button' : undefined"
   >
+    <div v-if="type === 'checkbox'" class="checkboxArea">
+      <PartsCheckbox v-model="model" :name :value :isDisabled />
+    </div>
+    <div v-if="type === 'radio'" class="radioArea">
+      <PartsRadioButton v-model="model" :name :radioValue="value" :isDisabled />
+    </div>
     <div v-if="$slots.frontIcon">
       <slot name="frontIcon"></slot>
     </div>
@@ -50,6 +75,8 @@ const wrapperTag = computed(() => {
       <p v-if="label" class="label">{{ label }}</p>
       <p v-if="title" class="title">{{ title }}</p>
       <p v-if="supportText" class="supportText">{{ supportText }}</p>
+    </div>
+    <div v-if="subLabel">
       <p>{{ subLabel }}</p>
     </div>
     <div v-if="$slots.endIcon">
@@ -61,11 +88,23 @@ const wrapperTag = computed(() => {
 @use "@/assets/style/utils/utils.scss" as *;
 
 .resourceList {
-  display: block;
+  display: flex;
+  column-gap: 16px;
+  align-items: center;
   width: 100%;
   text-align: left;
   appearance: none;
   background: none;
   border: none;
+}
+
+.checkboxArea {
+  width: 19px;
+  height: 19px;
+}
+
+.radioArea {
+  width: 19px;
+  height: 19px;
 }
 </style>

@@ -1,11 +1,11 @@
-<script lang="ts" setup>
+<script lang="ts" setup generic="T">
 import { computed } from "vue";
 
 type Props = {
   /** 格納するリアクティブな値（v-modelでも使える） */
-  modelValue: string | null;
+  modelValue: T;
   /** 選択肢固有の値です */
-  radioValue: string;
+  radioValue: T;
   /** name属性の値です */
   name: string;
   /** 妥当性 */
@@ -15,7 +15,7 @@ type Props = {
   /** フォーカススタイルを非表示にするか */
   isHiddenFocused?: boolean;
 };
-const model = defineModel<string | null>();
+const model = defineModel<T | undefined>();
 
 const props = withDefaults(defineProps<Props>(), {
   isDisabled: false,
