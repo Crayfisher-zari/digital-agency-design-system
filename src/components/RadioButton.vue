@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { ref, computed } from "vue";
+import PartsRadioButton from "./parts/PartsRadioButton.vue";
 
 type Props = {
   /** デフォルト型かタイル型か */
@@ -46,20 +47,22 @@ const stateClassName = computed<string | null>(() => {
 </script>
 <template>
   <label :class="[radioStyle, stateClassName, { checked }, { focused }]">
-    <input
+    <PartsRadioButton
       v-model="model"
-      type="radio"
-      class="sr-only"
-      :name="name"
-      :disabled="isDisabled"
-      :value="radioValue"
-    />{{ label }}
+      :radioValue
+      :name
+      :isValid
+      :isDisabled
+      :isHiddenFocused="radioStyle === 'tile'"
+      class="radioButton"
+    />
+    <span class="labelText"> {{ label }} </span>
     <span
       v-if="radioStyle === 'tile' && subText !== undefined"
       class="subText"
       >{{ subText }}</span
     >
-    <span class="radioIcon"></span>
+    <!-- <span class="radioIcon"></span> -->
   </label>
 </template>
 <style lang="scss" scoped>
@@ -71,58 +74,13 @@ label {
   font-size: pxToRem(16);
 }
 
-.radioIcon {
+.radioButton {
   position: absolute;
   left: 4px;
-  display: block;
-  width: 19px;
-  height: 19px;
-  background-color: #fff;
-  border: 2px solid var(--color-icon-label);
-  border-radius: 50%;
-
-  &::after {
-    position: absolute;
-    top: 3px;
-    left: 3px;
-    display: block;
-    width: 9px;
-    height: 9px;
-    content: "";
-    background-color: transparent;
-    border-radius: 50%;
-  }
-}
-
-input:checked ~ .radioIcon {
-  border-color: var(--color-icon-active);
-
-  &::after {
-    background-color: var(--color-icon-active);
-  }
-}
-
-label:not(.tile) input:focus-visible ~ .radioIcon {
-  outline: 2px solid var(--color-border-focused);
-  outline-offset: 2px;
-}
-
-input:disabled ~ .radioIcon {
-  border-color: var(--color-border-disabled);
-}
-
-input:disabled:checked ~ .radioIcon {
-  &::after {
-    background-color: var(--color-border-disabled);
-  }
 }
 
 .isInvalid {
   color: var(--color-text-alert);
-
-  .radioIcon {
-    border-color: var(--color-border-alert);
-  }
 }
 
 .isDisabled {
@@ -147,7 +105,7 @@ input:disabled:checked ~ .radioIcon {
   border: 2px solid var(--color-border-field);
   border-radius: 8px;
 
-  .radioIcon {
+  .radioButton {
     left: 20px;
     align-self: center;
   }

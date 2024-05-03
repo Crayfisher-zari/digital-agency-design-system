@@ -23,6 +23,9 @@ const meta = {
     isDisabled: {
       control: "boolean",
     },
+    subTexts: {
+      control: "object",
+    },
   },
   args: {
     labels: ["選択肢1", "選択肢2", "選択肢3"],
@@ -35,6 +38,8 @@ const meta = {
     isValid: true,
     isDisabled: false,
     name: "radio-group",
+    radioStyle: "default",
+    subTexts: ["補助説明", "補助説明", "補助説明"],
   },
 } satisfies Meta<typeof RadioGroup>;
 type Story = StoryObj<typeof meta>;
@@ -53,6 +58,8 @@ export const Base: Story = {
     isValid: true,
     isDisabled: false,
     modelValue: "",
+    radioStyle: "default",
+    subTexts: ["補助説明", "補助説明", "補助説明"],
   },
   render: (args) => ({
     components: { RadioGroup },
@@ -73,6 +80,8 @@ export const Base: Story = {
           :isValid="isValid"
           :isRequired="isRequired"
           name="radio-group"
+          :radioStyle="radioStyle"
+          :subTexts="subTexts"
         />
       </div>
     `,

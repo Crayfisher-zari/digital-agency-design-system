@@ -41,9 +41,9 @@ const stateClassName = computed<string | null>(() => {
     <PartsCheckbox
       v-model="model"
       :value="props.value"
-      :name="name"
-      :isDisabled="isDisabled"
-      :isValid="isValid"
+      :name
+      :isDisabled
+      :isValid
     />{{ label }}
   </label>
 </template>
@@ -58,53 +58,6 @@ label {
   font-size: pxToRem(16);
 }
 
-// .checkIcon {
-//   position: absolute;
-//   left: 4px;
-//   display: block;
-//   width: 19px;
-//   height: 19px;
-//   background-color: #fff;
-//   border: 2px solid var(--color-icon-label);
-//   border-radius: 3px;
-
-//   &::after {
-//     position: absolute;
-//     top: 0;
-//     left: 0;
-//     display: block;
-//     width: 100%;
-//     height: 100%;
-//     content: "";
-//     background-image: url("@/assets/images/icon_check.svg");
-//     background-position: center center;
-//     background-size: 18px 18px;
-//   }
-// }
-
-// input:checked ~ .checkIcon {
-//   background-color: var(--color-icon-active);
-//   border-color: var(--color-icon-active);
-
-//   &::after {
-//     background-color: var(--color-icon-active);
-//   }
-// }
-
-// input:focus-visible ~ .checkIcon {
-//   outline: 2px solid var(--color-border-focused);
-//   outline-offset: 2px;
-// }
-
-// input:disabled ~ .checkIcon {
-//   border-color: var(--color-border-disabled);
-// }
-
-// input:disabled:checked ~ .checkIcon {
-//   &::after {
-//     background-color: var(--color-border-disabled);
-//   }
-// }
 .isInvalid {
   color: var(--color-text-alert);
 }

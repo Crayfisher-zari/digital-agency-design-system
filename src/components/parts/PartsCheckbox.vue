@@ -37,8 +37,8 @@ const stateClassName = computed<string | null>(() => {
     v-model="model"
     type="checkbox"
     class="sr-only"
-    :value="value"
-    :name="name"
+    :value
+    :name
     :disabled="isDisabled"
   />
   <span class="checkIcon" :class="stateClassName"></span>
