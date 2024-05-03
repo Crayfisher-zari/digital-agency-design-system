@@ -5,12 +5,19 @@ import type { LinkTag } from "../composables/useLinkComponent";
 
 type Props = {
   type: "button" | "checkbox" | "radio" | "link";
-  label: string;
-  title: string;
-  supportText: string;
+  label?: string;
+  title?: string;
+  supportText?: string;
+  subLabel?: string;
   linkTag?: LinkTag;
 };
-const props = defineProps<Props>();
+const props = withDefaults(defineProps<Props>(), {
+  label: undefined,
+  title: undefined,
+  supportText: undefined,
+  subLabel: undefined,
+  linkTag: "auto",
+});
 
 const { LinkComponent } = useLink({ tag: props.linkTag });
 
@@ -36,9 +43,18 @@ const wrapperTag = computed(() => {
     class="resourceList"
     :type="type === 'button' ? 'button' : undefined"
   >
-    <p>{{ label }}</p>
-    <p>{{ title }}</p>
-    <p>{{ supportText }}</p>
+    <div v-if="$slots.frontIcon">
+      <slot name="frontIcon"></slot>
+    </div>
+    <div>
+      <p v-if="label" class="label">{{ label }}</p>
+      <p v-if="title" class="title">{{ title }}</p>
+      <p v-if="supportText" class="supportText">{{ supportText }}</p>
+      <p>{{ subLabel }}</p>
+    </div>
+    <div v-if="$slots.endIcon">
+      <slot name="endIcon"></slot>
+    </div>
   </component>
 </template>
 <style lang="scss" scoped>
