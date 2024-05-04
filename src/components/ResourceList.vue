@@ -57,45 +57,67 @@ const wrapperTag = computed(() => {
 });
 </script>
 <template>
-  <component
-    :is="wrapperTag"
-    class="resourceList"
-    :type="type === 'button' ? 'button' : undefined"
-  >
-    <div v-if="type === 'checkbox'" class="checkboxArea">
-      <PartsCheckbox v-model="model" :name :value :isDisabled />
-    </div>
-    <div v-if="type === 'radio'" class="radioArea">
-      <PartsRadioButton v-model="model" :name :radioValue="value" :isDisabled />
-    </div>
-    <div v-if="$slots.frontIcon">
-      <slot name="frontIcon"></slot>
-    </div>
-    <div>
-      <p v-if="label" class="label">{{ label }}</p>
-      <p v-if="title" class="title">{{ title }}</p>
-      <p v-if="supportText" class="supportText">{{ supportText }}</p>
-    </div>
-    <div v-if="subLabel">
-      <p>{{ subLabel }}</p>
-    </div>
-    <div v-if="$slots.endIcon">
-      <slot name="endIcon"></slot>
-    </div>
-  </component>
+  <div class="resourceListWrapper">
+    <component
+      :is="wrapperTag"
+      class="resourceList"
+      :class="type"
+      :type="type === 'button' ? 'button' : undefined"
+    >
+      <div v-if="type === 'checkbox'" class="checkboxArea">
+        <PartsCheckbox v-model="model" :name :value :isDisabled />
+      </div>
+      <div v-if="type === 'radio'" class="radioArea">
+        <PartsRadioButton
+          v-model="model"
+          :name
+          :radioValue="value"
+          :isDisabled
+        />
+      </div>
+      <div v-if="$slots.frontIcon">
+        <slot name="frontIcon"></slot>
+      </div>
+      <div>
+        <p v-if="label" class="label">{{ label }}</p>
+        <p v-if="title" class="title">{{ title }}</p>
+        <p v-if="supportText" class="supportText">{{ supportText }}</p>
+      </div>
+      <div v-if="subLabel" class="subLabelWrapper">
+        <p class="subLabel">{{ subLabel }}</p>
+      </div>
+      <div v-if="$slots.endIcon">
+        <slot name="endIcon"></slot>
+      </div>
+    </component>
+  </div>
 </template>
 <style lang="scss" scoped>
 @use "@/assets/style/utils/utils.scss" as *;
+
+.resourceListWrapper {
+  display: grid;
+}
 
 .resourceList {
   display: flex;
   column-gap: 16px;
   align-items: center;
-  width: 100%;
+  justify-self: stretch;
+  padding: 16px;
   text-align: left;
   appearance: none;
   background: none;
   border: none;
+  transition: background-color var(--base-duration) var(--easing-out-expo);
+
+  &.button {
+    cursor: pointer;
+
+    &:hover {
+      background-color: #f2f2f2;
+    }
+  }
 }
 
 .checkboxArea {
@@ -106,5 +128,37 @@ const wrapperTag = computed(() => {
 .radioArea {
   width: 19px;
   height: 19px;
+}
+
+.label {
+  font-size: pxToRem(14);
+  line-height: 1.7;
+  color: var(--color-text-body);
+  letter-spacing: 0.04em;
+}
+
+.title {
+  font-size: pxToRem(16);
+  line-height: 1.7;
+  color: var(--color-text-body);
+  letter-spacing: 0.04em;
+}
+
+.supportText {
+  font-size: pxToRem(14);
+  line-height: 1.7;
+  color: var(--color-text-description);
+  letter-spacing: 0.04em;
+}
+
+.subLabelWrapper {
+  margin-left: auto;
+}
+
+.subLabel {
+  font-size: pxToRem(14);
+  line-height: 1.7;
+  color: var(--color-text-description);
+  letter-spacing: 0.04em;
 }
 </style>

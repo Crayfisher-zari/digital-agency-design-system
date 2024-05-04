@@ -40,8 +40,8 @@ const stateClassName = computed<string | null>(() => {
       type="radio"
       class="sr-only"
       :class="[stateClassName, { isHiddenFocused: isHiddenFocused }]"
-      :name
-      :disabled="isDisabled"
+      :name="props.name"
+      :disabled="props.isDisabled"
       :value="radioValue"
     />
     <span class="radioIcon"></span>
