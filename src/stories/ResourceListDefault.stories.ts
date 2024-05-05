@@ -1,15 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/vue3";
-import ResourceList from "../components/ResourceList.vue";
+import ResourceListDefault from "../components/ResourceListDefault.vue";
 
 const meta = {
-  title: "リソースリスト",
-  component: ResourceList,
+  title: "リソースリスト（デフォルト）",
+  component: ResourceListDefault,
   tags: ["autodocs"],
   argTypes: {
-    type: {
-      control: "select",
-      options: ["button", "checkbox", "radio", "link"],
-    },
     label: {
       control: "text",
     },
@@ -24,22 +20,25 @@ const meta = {
     },
   },
   args: {
-    type: "button",
     label: "ラベル",
     title: "リストタイトル",
     supportText: "サポートテキスト",
     subLabel: "サブラベル",
   },
-} satisfies Meta<typeof ResourceList>;
+} satisfies Meta<typeof ResourceListDefault>;
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+/**
+ * リソースリスト（デフォルト）
+ * リソースリストのデフォルトのものです。このコンポーネント自体にアクションは持ちません
+ * （エンドアイコンにボタンを渡すなどは可能）
+ */
 export const Base: Story = {
   args: {
     label: "ラベル",
     title: "リストタイトル",
     supportText: "サポートテキスト",
     subLabel: "サブラベル",
-    name: "resource",
   },
 };

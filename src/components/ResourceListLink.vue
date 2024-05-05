@@ -1,23 +1,12 @@
 <script lang="ts" setup>
-import { computed } from "vue";
 import { useLink } from "../composables/useLinkComponent";
 import type { LinkTag } from "../composables/useLinkComponent";
-import PartsCheckbox from "./parts/PartsCheckbox.vue";
-import PartsRadioButton from "./parts/PartsRadioButton.vue";
 
 type Props = {
-  /** リソースリストの種別。未指定の場合はボタン */
-  type?: "button" | "checkbox" | "radio" | "link";
   /** ラベル */
   label?: string;
   /** リストタイトル */
   title?: string;
-  /** name属性の値 */
-  name: string;
-  /** 格納するリアクティブな値（v-modelでも使える） */
-  modelValue?: string | null;
-  /** 選択肢固有の値です */
-  value: string;
   /** ボタンが非活性状態か。未指定の場合はfalse */
   isDisabled?: boolean;
   /** サポートテキスト */
@@ -26,6 +15,8 @@ type Props = {
   subLabel?: string;
   /** リンクタグの種別 */
   linkTag?: LinkTag;
+  /** リンク先 */
+  to: string;
 };
 const props = withDefaults(defineProps<Props>(), {
   type: "button",
@@ -37,44 +28,10 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 const { LinkComponent } = useLink({ tag: props.linkTag });
-
-const model = defineModel<string | null>();
-
-const wrapperTag = computed(() => {
-  const type = props.type;
-  switch (type) {
-    case "button":
-      return "button";
-    case "checkbox":
-      return "label";
-    case "radio":
-      return "label";
-    case "link":
-      return LinkComponent;
-    default:
-      return "div";
-  }
-});
 </script>
 <template>
   <div class="resourceListWrapper">
-    <component
-      :is="wrapperTag"
-      class="resourceList"
-      :class="type"
-      :type="type === 'button' ? 'button' : undefined"
-    >
-      <div v-if="type === 'checkbox'" class="checkboxArea">
-        <PartsCheckbox v-model="model" :name :value :isDisabled />
-      </div>
-      <div v-if="type === 'radio'" class="radioArea">
-        <PartsRadioButton
-          v-model="model"
-          :name
-          :radioValue="value"
-          :isDisabled
-        />
-      </div>
+    <LinkComponent class="resourceList link" :to="to">
       <div v-if="$slots.frontIcon">
         <slot name="frontIcon"></slot>
       </div>
@@ -89,10 +46,34 @@ const wrapperTag = computed(() => {
       <div v-if="$slots.endIcon">
         <slot name="endIcon"></slot>
       </div>
-    </component>
+    </LinkComponent>
   </div>
 </template>
 <style lang="scss" scoped>
 @use "@/assets/style/utils/utils.scss" as *;
 @use "./styles/resourceListStyle.scss";
+
+.resourceList {
+  &.link {
+    text-decoration: none;
+
+    .label,
+    .supportText {
+      text-decoration: none;
+    }
+
+    .title {
+      color: var(--color-text-link);
+      text-decoration: underline;
+    }
+
+    &:hover {
+      background-color: var(--color-grey-50);
+
+      .title {
+        text-decoration: none;
+      }
+    }
+  }
+}
 </style>

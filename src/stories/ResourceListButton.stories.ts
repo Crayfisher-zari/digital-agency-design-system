@@ -1,15 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/vue3";
-import ResourceList from "../components/ResourceList.vue";
+import ResourceListButton from "../components/ResourceListButton.vue";
 
 const meta = {
-  title: "リソースリスト",
-  component: ResourceList,
+  title: "リソースリスト（ボタン）",
+  component: ResourceListButton,
   tags: ["autodocs"],
   argTypes: {
-    type: {
-      control: "select",
-      options: ["button", "checkbox", "radio", "link"],
-    },
     label: {
       control: "text",
     },
@@ -24,22 +20,25 @@ const meta = {
     },
   },
   args: {
-    type: "button",
     label: "ラベル",
     title: "リストタイトル",
     supportText: "サポートテキスト",
     subLabel: "サブラベル",
   },
-} satisfies Meta<typeof ResourceList>;
+} satisfies Meta<typeof ResourceListButton>;
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+/**
+ * リソースリスト（ボタン）
+ * リソースリストにクリックの処理があるものです
+ */
 export const Base: Story = {
   args: {
     label: "ラベル",
     title: "リストタイトル",
     supportText: "サポートテキスト",
     subLabel: "サブラベル",
-    name: "resource",
+    onClick: () => {},
   },
 };

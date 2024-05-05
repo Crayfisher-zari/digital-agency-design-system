@@ -1,0 +1,60 @@
+@use "@/assets/style/utils/utils.scss" as *;
+
+.resourceListWrapper {
+  display: grid;
+}
+
+.resourceList {
+  display: flex;
+  column-gap: 16px;
+  align-items: center;
+  justify-self: stretch;
+  padding: 16px;
+  text-align: left;
+  appearance: none;
+  background: none;
+  border: none;
+  transition: background-color var(--base-duration) var(--easing-out-expo);
+}
+
+.checkboxArea {
+  width: 19px;
+  height: 19px;
+}
+
+.radioArea {
+  width: 19px;
+  height: 19px;
+}
+
+.label {
+  font-size: pxToRem(14);
+  line-height: 1.7;
+  color: var(--color-text-body);
+  letter-spacing: 0.04em;
+}
+
+.title {
+  font-size: pxToRem(16);
+  line-height: 1.7;
+  color: var(--color-text-body);
+  letter-spacing: 0.04em;
+}
+
+.supportText {
+  font-size: pxToRem(14);
+  line-height: 1.7;
+  color: var(--color-text-description);
+  letter-spacing: 0.04em;
+}
+
+.subLabelWrapper {
+  margin-left: auto;
+}
+
+.subLabel {
+  font-size: pxToRem(14);
+  line-height: 1.7;
+  color: var(--color-text-description);
+  letter-spacing: 0.04em;
+}

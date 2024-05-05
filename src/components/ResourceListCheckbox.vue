@@ -6,8 +6,6 @@ import PartsCheckbox from "./parts/PartsCheckbox.vue";
 import PartsRadioButton from "./parts/PartsRadioButton.vue";
 
 type Props = {
-  /** リソースリストの種別。未指定の場合はボタン */
-  type?: "button" | "checkbox" | "radio" | "link";
   /** ラベル */
   label?: string;
   /** リストタイトル */
@@ -24,10 +22,8 @@ type Props = {
   supportText?: string;
   /** サブラベル */
   subLabel?: string;
-  /** リンクタグの種別 */
-  linkTag?: LinkTag;
 };
-const props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
   type: "button",
   label: undefined,
   title: undefined,
@@ -36,44 +32,17 @@ const props = withDefaults(defineProps<Props>(), {
   linkTag: "auto",
 });
 
-const { LinkComponent } = useLink({ tag: props.linkTag });
 
 const model = defineModel<string | null>();
 
-const wrapperTag = computed(() => {
-  const type = props.type;
-  switch (type) {
-    case "button":
-      return "button";
-    case "checkbox":
-      return "label";
-    case "radio":
-      return "label";
-    case "link":
-      return LinkComponent;
-    default:
-      return "div";
-  }
-});
 </script>
 <template>
   <div class="resourceListWrapper">
-    <component
-      :is="wrapperTag"
-      class="resourceList"
-      :class="type"
-      :type="type === 'button' ? 'button' : undefined"
+    <label
+      class="resourceList label"
     >
       <div v-if="type === 'checkbox'" class="checkboxArea">
         <PartsCheckbox v-model="model" :name :value :isDisabled />
-      </div>
-      <div v-if="type === 'radio'" class="radioArea">
-        <PartsRadioButton
-          v-model="model"
-          :name
-          :radioValue="value"
-          :isDisabled
-        />
       </div>
       <div v-if="$slots.frontIcon">
         <slot name="frontIcon"></slot>
@@ -89,7 +58,7 @@ const wrapperTag = computed(() => {
       <div v-if="$slots.endIcon">
         <slot name="endIcon"></slot>
       </div>
-    </component>
+    </label>
   </div>
 </template>
 <style lang="scss" scoped>
