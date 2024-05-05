@@ -1,6 +1,7 @@
 @use "@/assets/style/utils/utils.scss" as *;
 
 .resourceListWrapper {
+  position: relative;
   display: grid;
 }
 
@@ -18,6 +19,7 @@
 }
 
 .checkboxArea {
+  position: relative;
   width: 19px;
   height: 19px;
 }

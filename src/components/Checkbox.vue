@@ -38,13 +38,16 @@ const stateClassName = computed<string | null>(() => {
 </script>
 <template>
   <label :class="`${stateClassName ?? ''} `">
-    <PartsCheckbox
-      v-model="model"
-      :value="props.value"
-      :name
-      :isDisabled
-      :isValid
-    />{{ label }}
+    <div class="checkboxArea">
+      <PartsCheckbox
+        v-model="model"
+        :value="props.value"
+        :name
+        :isDisabled
+        :isValid
+      />
+    </div>
+    {{ label }}
   </label>
 </template>
 <style lang="scss" scoped>
@@ -56,6 +59,13 @@ label {
   align-items: center;
   padding: 8px 0 8px 40px;
   font-size: pxToRem(16);
+}
+
+.checkboxArea {
+  position: absolute;
+  left: 4px;
+  width: 19px;
+  height: 19px;
 }
 
 .isInvalid {

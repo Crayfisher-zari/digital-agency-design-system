@@ -15,6 +15,9 @@ type Props = {
 };
 const model = defineModel<T | T[] | undefined>();
 
+// チェック状態を通知します
+const isChecked = defineModel<boolean>("isChecked");
+
 const props = withDefaults(defineProps<Props>(), {
   isDisabled: false,
   name: undefined,
@@ -31,22 +34,27 @@ const stateClassName = computed<string | null>(() => {
   }
   return null;
 });
+
+const handleChange = (e: Event) => {
+  isChecked.value = (e.target as HTMLInputElement).checked;
+};
 </script>
 <template>
   <input
     v-model="model"
     type="checkbox"
     class="sr-only"
+    :checked="isChecked"
     :value
     :name
     :disabled="isDisabled"
+    @change="handleChange"
   />
   <span class="checkIcon" :class="stateClassName"></span>
 </template>
 <style scoped lang="scss">
 .checkIcon {
-  position: absolute;
-  left: 4px;
+  position: relative;
   display: block;
   width: 19px;
   height: 19px;

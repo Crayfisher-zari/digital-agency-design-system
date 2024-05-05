@@ -3,7 +3,7 @@ import ResourceListCheckbox from "../components/ResourceListCheckbox.vue";
 import { ref } from "vue";
 
 const meta = {
-  title: "リソースリスト（リンク）",
+  title: "リソースリスト（チェックボックス）",
   component: ResourceListCheckbox,
   tags: ["autodocs"],
   argTypes: {
@@ -43,7 +43,7 @@ export const Base: Story = {
       "サイバーセキュリティを強化することによってサイバーインシデントによって事業継続が困難となる事態を回避",
     subLabel: "補助金番号：A-00000000",
     value: "選択肢",
-    name:"test"
+    name: "test",
   },
   render: (args) => ({
     components: { ResourceListCheckbox },
@@ -58,6 +58,9 @@ export const Base: Story = {
           v-model="checked"
           :name
           :value
+          :title
+          :label
+          :subLabel
         />
       </div>
     `,
