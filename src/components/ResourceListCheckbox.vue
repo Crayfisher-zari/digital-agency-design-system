@@ -27,6 +27,7 @@ const props = withDefaults(defineProps<Props>(), {
   title: undefined,
   supportText: undefined,
   subLabel: undefined,
+  modelValue: undefined,
 });
 
 const model = defineModel<T | T[] | undefined>();
