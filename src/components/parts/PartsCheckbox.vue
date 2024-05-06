@@ -16,7 +16,7 @@ type Props = {
 const model = defineModel<T | T[] | undefined>();
 
 // チェック状態を通知します
-const isChecked = defineModel<boolean>("isChecked");
+const emits = defineEmits<{ changeCheck: [value: boolean] }>();
 
 const props = withDefaults(defineProps<Props>(), {
   isDisabled: false,
@@ -36,7 +36,7 @@ const stateClassName = computed<string | null>(() => {
 });
 
 const handleChange = (e: Event) => {
-  isChecked.value = (e.target as HTMLInputElement).checked;
+  emits("changeCheck", (e.target as HTMLInputElement).checked);
 };
 </script>
 <template>
@@ -44,7 +44,6 @@ const handleChange = (e: Event) => {
     v-model="model"
     type="checkbox"
     class="sr-only"
-    :checked="isChecked"
     :value
     :name
     :disabled="isDisabled"

@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import PartsResourceListInner from "./parts/PartsResourceListInner.vue";
+
 type Props = {
   /** ラベル */
   label?: string;
@@ -13,7 +15,7 @@ type Props = {
   /** サブラベル */
   subLabel?: string;
 };
-withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Props>(), {
   label: undefined,
   title: undefined,
   supportText: undefined,
@@ -26,14 +28,12 @@ withDefaults(defineProps<Props>(), {
       <div v-if="$slots.frontIcon">
         <slot name="frontIcon"></slot>
       </div>
-      <div>
-        <p v-if="label" class="label">{{ label }}</p>
-        <p v-if="title" class="title">{{ title }}</p>
-        <p v-if="supportText" class="supportText">{{ supportText }}</p>
-      </div>
-      <div v-if="subLabel" class="subLabelWrapper">
-        <p class="subLabel">{{ subLabel }}</p>
-      </div>
+      <PartsResourceListInner
+        :label="props.label"
+        :title="props.title"
+        :supportText="props.supportText"
+        :subLabel="props.subLabel"
+      />
       <div v-if="$slots.endIcon">
         <slot name="endIcon"></slot>
       </div>

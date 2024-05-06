@@ -43,6 +43,7 @@ export const Base: Story = {
       "サイバーセキュリティを強化することによってサイバーインシデントによって事業継続が困難となる事態を回避",
     subLabel: "補助金番号：A-00000000",
     value: "選択肢",
+    modelValue: "選択肢",
     name: "test",
   },
   render: (args) => ({
@@ -61,6 +62,7 @@ export const Base: Story = {
           :title
           :label
           :subLabel
+          :supportText
         />
       </div>
     `,

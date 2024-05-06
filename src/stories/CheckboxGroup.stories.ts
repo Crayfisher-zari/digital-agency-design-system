@@ -46,7 +46,7 @@ export const Base: Story = {
   render: (args) => ({
     components: { CheckboxGroup },
     setup: () => {
-      const checked = ref([]);
+      const checked = ref(["選択肢1の値"]);
       return { checked, ...args };
     },
     template: `

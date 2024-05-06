@@ -35,6 +35,9 @@ const stateClassName = computed<string | null>(() => {
   }
   return null;
 });
+const handleChangeCheck = (value: boolean) => {
+  console.log(value);
+};
 </script>
 <template>
   <label :class="`${stateClassName ?? ''} `">
@@ -45,6 +48,7 @@ const stateClassName = computed<string | null>(() => {
         :name
         :isDisabled
         :isValid
+        @changeCheck="handleChangeCheck"
       />
     </div>
     {{ label }}
