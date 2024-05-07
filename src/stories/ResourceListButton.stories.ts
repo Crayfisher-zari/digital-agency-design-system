@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/vue3";
 import ResourceListButton from "../components/ResourceListButton.vue";
 import { ref } from "vue";
 import avatar from "../assets/images/icon_avatar.svg";
+import icon3Point from "../assets/images/icon_3point.svg";
 
 const meta = {
   title: "リソースリスト（ボタン）",
@@ -50,6 +51,13 @@ export const Base: Story = {
  * リスト形式の作例
  */
 export const List: Story = {
+  args: {
+    label: "ラベル",
+    title: "リストタイトル",
+    supportText: "サポートテキスト",
+    subLabel: "サブラベル",
+    onClick: () => {},
+  },
   render: (args) => ({
     components: { ResourceListButton },
     setup: () => {
@@ -77,13 +85,13 @@ export const List: Story = {
         },
         {
           title: "電磁 多留子",
-          supportText: "taruko.dejitaru@example.jp",
+          supportText: "taruko.dejitaru@example.com",
           subLabel: "2023/12/28 06:23:12",
         },
       ];
       const iconSrc = avatar;
       console.log(avatar);
-      return { checked, resourceList, iconSrc, ...args };
+      return { checked, resourceList, iconSrc, icon3Point, ...args };
     },
     template: `
       <div>
@@ -96,6 +104,11 @@ export const List: Story = {
         >
           <template #frontIcon>
             <img :src="iconSrc" :width="40" :height="40" />
+          </template>
+          <template #endIcon>
+            <button class="clearButton">
+              <img :src="icon3Point" :width="24" :height="24" />
+            </button>
           </template>
         </ResourceListButton>
       </div>

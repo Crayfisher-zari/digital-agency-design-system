@@ -51,3 +51,14 @@ a {
     outline: 2px solid var(--color-border-focused);
   }
 }
+
+/* 見た目のないボタン */
+.clearButton {
+  background: none;
+  border: none;
+  appearance: none;
+  cursor: pointer;
+  img {
+    display: block;
+  }
+}

@@ -50,7 +50,7 @@ const isChecked = computed(() => {
       <div class="checkboxArea">
         <PartsCheckbox v-model="model" :name :value="props.value" :isDisabled />
       </div>
-      <div v-if="$slots.frontIcon">
+      <div v-if="$slots.frontIcon" class="frontIconWrapper">
         <slot name="frontIcon"></slot>
       </div>
       <PartsResourceListInner
@@ -59,7 +59,7 @@ const isChecked = computed(() => {
         :supportText="props.supportText"
         :subLabel="props.subLabel"
       />
-      <div v-if="$slots.endIcon">
+      <div v-if="$slots.endIcon" class="endIconWrapper">
         <slot name="endIcon"></slot>
       </div>
     </label>

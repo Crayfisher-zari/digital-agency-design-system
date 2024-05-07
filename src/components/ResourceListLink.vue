@@ -32,7 +32,7 @@ const { LinkComponent } = useLink({ tag: props.linkTag });
 <template>
   <div class="resourceListWrapper">
     <LinkComponent class="resourceList link" :to="to">
-      <div v-if="$slots.frontIcon">
+      <div v-if="$slots.frontIcon" class="frontIconWrapper">
         <slot name="frontIcon"></slot>
       </div>
       <div>
@@ -43,7 +43,7 @@ const { LinkComponent } = useLink({ tag: props.linkTag });
       <div v-if="subLabel" class="subLabelWrapper">
         <p class="subLabel">{{ subLabel }}</p>
       </div>
-      <div v-if="$slots.endIcon">
+      <div v-if="$slots.endIcon" class="endIconWrapper">
         <slot name="endIcon"></slot>
       </div>
     </LinkComponent>

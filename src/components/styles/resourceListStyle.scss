@@ -52,6 +52,7 @@
 }
 
 .subLabelWrapper {
+  flex-shrink: 0;
   margin-left: auto;
 }
 
@@ -60,4 +61,10 @@
   line-height: 1.7;
   color: var(--color-text-description);
   letter-spacing: 0.04em;
+}
+
+.frontIconWrapper,
+.endIconWrapper {
+  display: grid;
+  place-items: center;
 }

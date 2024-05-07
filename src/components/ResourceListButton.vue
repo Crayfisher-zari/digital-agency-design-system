@@ -25,7 +25,7 @@ const props = withDefaults(defineProps<Props>(), {
 <template>
   <div class="resourceListWrapper">
     <button class="resourceList button" type="button">
-      <div v-if="$slots.frontIcon">
+      <div v-if="$slots.frontIcon" class="frontIconWrapper">
         <slot name="frontIcon"></slot>
       </div>
       <PartsResourceListInner
@@ -34,7 +34,7 @@ const props = withDefaults(defineProps<Props>(), {
         :supportText="props.supportText"
         :subLabel="props.subLabel"
       />
-      <div v-if="$slots.endIcon">
+      <div v-if="$slots.endIcon" class="endIconWrapper">
         <slot name="endIcon"></slot>
       </div>
     </button>
