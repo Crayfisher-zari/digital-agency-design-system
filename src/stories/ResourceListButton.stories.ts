@@ -58,7 +58,7 @@ export const List: Story = {
     subLabel: "サブラベル",
     onClick: () => {},
   },
-  render: (args) => ({
+  render: () => ({
     components: { ResourceListButton },
     setup: () => {
       const checked = ref([]);
@@ -91,7 +91,7 @@ export const List: Story = {
       ];
       const iconSrc = avatar;
       console.log(avatar);
-      return { checked, resourceList, iconSrc, icon3Point, ...args };
+      return { checked, resourceList, iconSrc, icon3Point };
     },
     template: `
       <div>

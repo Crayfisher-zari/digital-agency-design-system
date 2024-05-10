@@ -17,6 +17,10 @@
   border: none;
   border-bottom: 1px solid #949494;
   transition: background-color var(--base-duration) var(--easing-out-expo);
+
+  &:focus-visible {
+    outline: 2px solid var(--color-border-focused);
+  }
 }
 
 .checkboxArea {

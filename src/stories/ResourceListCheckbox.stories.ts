@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/vue3";
 import ResourceListCheckbox from "../components/ResourceListCheckbox.vue";
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import icon3Point from "../assets/images/icon_3point.svg";
 
 const meta = {
@@ -51,19 +51,20 @@ export const Base: Story = {
     components: { ResourceListCheckbox },
     setup: () => {
       const checked = ref([]);
-      return { checked, ...args };
+      const props = computed(() => args);
+      return { checked, props: props.value };
     },
     template: `
       <div>
       <p class="mb">チェックされたもの：{{ checked }}</p>
         <ResourceListCheckbox
           v-model="checked"
-          :name
-          :value
-          :title
-          :label
-          :subLabel
-          :supportText
+          :name="props.name"
+          :value="props.value"
+          :title="props.title"
+          :label="props.label"
+          :subLabel="props.subLabel"
+          :supportText="props.supportText"
         />
       </div>
     `,
