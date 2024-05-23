@@ -1,7 +1,8 @@
 <script lang="ts" setup>
 import spinner from "@/assets/images/icon_spinner.svg";
+import spinnerSmall from "@/assets/images/icon_spinner_small.svg";
 type Props = {
-  style: "spinner" | "linear";
+  style: "spinner" | "spinner-small" | "linear";
   label?: string;
   isOverlay?: boolean;
   labelPosition?: "stacked" | "inline";
@@ -16,6 +17,12 @@ withDefaults(defineProps<Props>(), {
   <div>
     <div v-if="style === 'spinner'">
       <img :src="spinner" alt="" width="48" height="48" />
+    </div>
+    <div v-if="style === 'spinner-small'">
+      <img :src="spinnerSmall" alt="" width="24" height="24" />
+    </div>
+    <div v-if="style === 'linear'">
+      <div class="linear"></div>
     </div>
     <p class="label">{{ label }}</p>
   </div>
