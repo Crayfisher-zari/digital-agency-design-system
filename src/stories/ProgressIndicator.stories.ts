@@ -8,7 +8,7 @@ const meta = {
   argTypes: {
     style: {
       control: "radio",
-      options: ["spinner", "spinner-small", "liear"],
+      options: ["spinner", "spinner-small", "linear"],
     },
     label: {
       control: "text",
