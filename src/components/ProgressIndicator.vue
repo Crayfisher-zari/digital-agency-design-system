@@ -30,13 +30,19 @@ withDefaults(defineProps<Props>(), {
     ]"
   >
     <div v-if="style === 'spinner'">
-      <img :src="spinner" alt="" class="spinerIcon" width="48" height="48" />
+      <img
+        :src="spinner"
+        alt=""
+        class="spinerIcon spinAnimation"
+        width="48"
+        height="48"
+      />
     </div>
     <div v-if="style === 'spinner-small'">
       <img
         :src="spinnerSmall"
         alt=""
-        class="spinerIcon"
+        class="spinerIcon spinAnimation"
         width="24"
         height="24"
       />
@@ -46,7 +52,7 @@ withDefaults(defineProps<Props>(), {
         <img :src="linear" class="linearInner" alt="" width="112" height="4" />
       </div>
     </div>
-    <p class="label">{{ label }}</p>
+    <p v-if="label !== ''" class="label">{{ label }}</p>
   </div>
 </template>
 <style lang="scss" scoped>
@@ -88,6 +94,11 @@ withDefaults(defineProps<Props>(), {
   height: 4px;
   background-color: var(--color-blue-500);
   border-radius: 2px;
+
+  &.customWidth {
+    width: calc(1px * v-bind(width));
+    min-width: calc(1px * v-bind(width));
+  }
 }
 
 .linearInner {
@@ -95,5 +106,22 @@ withDefaults(defineProps<Props>(), {
   top: 0;
   left: 50%;
   width: 30%;
+}
+
+.spinAnimation {
+  animation-name: spin;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 </style>
