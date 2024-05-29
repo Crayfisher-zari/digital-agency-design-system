@@ -49,7 +49,7 @@ withDefaults(defineProps<Props>(), {
     </div>
     <div v-if="style === 'linear'">
       <div class="linear" :class="{ customWidth: width !== undefined }">
-        <img :src="linear" class="linearInner" alt="" width="112" height="4" />
+        <img :src="linear" class="linearInner lineAnimation" alt="" width="112" height="4" />
       </div>
     </div>
     <p v-if="label !== ''" class="label">{{ label }}</p>
@@ -94,7 +94,7 @@ withDefaults(defineProps<Props>(), {
   height: 4px;
   background-color: var(--color-blue-500);
   border-radius: 2px;
-
+  overflow: hidden;
   &.customWidth {
     width: calc(1px * v-bind(width));
     min-width: calc(1px * v-bind(width));
@@ -104,12 +104,19 @@ withDefaults(defineProps<Props>(), {
 .linearInner {
   position: absolute;
   top: 0;
-  left: 50%;
+  left: 0;
   width: 30%;
 }
 
 .spinAnimation {
   animation-name: spin;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.lineAnimation {
+  animation-name: linear;
   animation-duration: 1s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
@@ -122,6 +129,15 @@ withDefaults(defineProps<Props>(), {
 
   100% {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes linear {
+  0%{
+    transform: translate(-100%);
+  }
+  100%{
+    transform: translate(334%);
   }
 }
 </style>
