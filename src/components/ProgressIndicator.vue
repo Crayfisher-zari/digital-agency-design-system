@@ -18,7 +18,7 @@ withDefaults(defineProps<Props>(), {
   label: undefined,
   isOverlay: false,
   labelPosition: "stacked",
-  width: 0,
+  width: undefined,
 });
 </script>
 <template>
