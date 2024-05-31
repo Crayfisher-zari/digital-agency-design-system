@@ -4,7 +4,7 @@ import spinnerSmall from "@/assets/images/icon_indicator_spinner_small.svg";
 import linear from "@/assets/images/icon_indicator_linear.svg";
 type Props = {
   /** インジケーターの種類 */
-  style: "spinner" | "spinner-small" | "linear";
+  type: "spinner" | "spinner-small" | "linear";
   /** インジケーターのラベル */
   label?: string;
   /** オーバーレイ用かどうか？ */
@@ -18,7 +18,7 @@ withDefaults(defineProps<Props>(), {
   label: undefined,
   isOverlay: false,
   labelPosition: "stacked",
-  width: undefined,
+  width: 0,
 });
 </script>
 <template>
@@ -26,10 +26,10 @@ withDefaults(defineProps<Props>(), {
     class="wrapper"
     :class="[
       labelPosition,
-      { isOverlay, spinnerSmall: style === 'spinner-small' },
+      { isOverlay, spinnerSmall: type === 'spinner-small' },
     ]"
   >
-    <div v-if="style === 'spinner'">
+    <div v-if="type === 'spinner'">
       <img
         :src="spinner"
         alt=""
@@ -38,7 +38,7 @@ withDefaults(defineProps<Props>(), {
         height="48"
       />
     </div>
-    <div v-if="style === 'spinner-small'">
+    <div v-if="type === 'spinner-small'">
       <img
         :src="spinnerSmall"
         alt=""
@@ -47,9 +47,15 @@ withDefaults(defineProps<Props>(), {
         height="24"
       />
     </div>
-    <div v-if="style === 'linear'">
+    <div v-if="type === 'linear'">
       <div class="linear" :class="{ customWidth: width !== undefined }">
-        <img :src="linear" class="linearInner lineAnimation" alt="" width="112" height="4" />
+        <img
+          :src="linear"
+          class="linearInner lineAnimation"
+          alt=""
+          width="112"
+          height="4"
+        />
       </div>
     </div>
     <p v-if="label !== ''" class="label">{{ label }}</p>
@@ -75,6 +81,14 @@ withDefaults(defineProps<Props>(), {
   &.inline {
     flex-direction: row;
   }
+
+  &.isOverlay {
+    width: 130px;
+    height: 130px;
+    padding: 24px 16px;
+    background-color: var(--color-background-primary);
+    border-radius: 12px;
+  }
 }
 
 .spinerIcon {
@@ -92,9 +106,10 @@ withDefaults(defineProps<Props>(), {
   width: 100%;
   min-width: 240px;
   height: 4px;
+  overflow: hidden;
   background-color: var(--color-blue-500);
   border-radius: 2px;
-  overflow: hidden;
+
   &.customWidth {
     width: calc(1px * v-bind(width));
     min-width: calc(1px * v-bind(width));
@@ -133,10 +148,11 @@ withDefaults(defineProps<Props>(), {
 }
 
 @keyframes linear {
-  0%{
+  0% {
     transform: translate(-100%);
   }
-  100%{
+
+  100% {
     transform: translate(334%);
   }
 }
