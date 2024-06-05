@@ -88,10 +88,6 @@ const { isOpened, hasAnimation, handleDropDown } = useDropDownAnimation(
   display: block;
   cursor: pointer;
 
-  &:focus-visible {
-    outline: 2px solid var(--color-border-focused);
-  }
-
   &::-webkit-details-marker {
     // Safariの三角アイコン
     display: none;

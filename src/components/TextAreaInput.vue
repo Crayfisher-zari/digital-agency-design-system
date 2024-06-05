@@ -139,12 +139,6 @@ const stateClassName = computed<string | null>(() => {
   &::placeholder {
     color: var(--color-text-placeHolder);
   }
-
-  &:focus-visible {
-    border-color: var(--color-border-focused) !important;
-    outline: none !important;
-    box-shadow: 0 0 0 1px var(--color-border-focused);
-  }
 }
 
 .supportInfo {

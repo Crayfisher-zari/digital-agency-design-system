@@ -122,10 +122,6 @@ const languageList = ref(props.languageList);
     display: none;
   }
 
-  &:focus-visible {
-    outline: 2px solid var(--color-border-focused);
-  }
-
   &::-webkit-details-marker {
     // Safariの三角アイコン
     display: none;

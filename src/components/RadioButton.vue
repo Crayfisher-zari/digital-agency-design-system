@@ -126,19 +126,5 @@ label {
       color: var(--color-text-disabled);
     }
   }
-
-  @supports selector(:has(*)) {
-    &:has(input:focus-visible) {
-      outline: 2px solid var(--color-border-focused);
-      outline-offset: 2px;
-    }
-  }
-
-  @supports not selector(:has(*)) {
-    &:focus-within {
-      outline: 2px solid var(--color-border-focused);
-      outline-offset: 2px;
-    }
-  }
 }
 </style>

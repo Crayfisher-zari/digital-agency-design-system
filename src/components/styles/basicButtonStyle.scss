@@ -31,11 +31,6 @@
     content: "";
   }
 
-  &:focus-visible {
-    outline: 2px solid var(--color-border-focused);
-    outline-offset: 2px;
-  }
-
   &:not(.disabled):hover {
     text-decoration: underline;
     background-color: var(--color-button-hover);
@@ -71,11 +66,6 @@
       border-color: var(--color-blue-1200);
     }
 
-    &:focus-visible {
-      outline: 2px solid var(--color-border-focused);
-      outline-offset: 2px;
-    }
-
     &.disabled {
       color: var(--color-button-disabled);
       border-color: var(--color-button-disabled);
@@ -98,10 +88,6 @@
       text-decoration: underline;
       background-color: var(--color-blue-300);
       border-color: transparent;
-    }
-
-    &:focus-visible {
-      outline-offset: -1px;
     }
 
     &.disabled {

@@ -175,11 +175,5 @@ fieldset {
   &.year {
     width: 95px;
   }
-
-  &:focus-visible {
-    border-color: var(--color-border-focused) !important;
-    outline: none !important;
-    box-shadow: 0 0 0 1px var(--color-border-focused) !important;
-  }
 }
 </style>

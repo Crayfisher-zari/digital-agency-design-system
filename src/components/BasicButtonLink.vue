@@ -74,11 +74,6 @@ const {
       border-color: v-bind(customActiveBorderColor);
     }
 
-    &:focus-visible {
-      border-color: transparent;
-      outline-offset: -1px;
-    }
-
     &:disabled {
       color: var(--color-button-disabled);
       border-color: var(--color-button-disabled);
