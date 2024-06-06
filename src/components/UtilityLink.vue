@@ -50,6 +50,9 @@ a {
   font-size: 14px;
   color: inherit;
   text-decoration: underline;
+  &:hover{
+    text-decoration-thickness: 3px;
+  }
 
   &.hasIcon {
     padding-left: 20px;

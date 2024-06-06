@@ -1,21 +1,21 @@
 <script lang="ts" setup>
-import { LinkTag, useLink } from "../composables/useLinkComponent";
+import { LinkTag } from "../composables/useLinkComponent";
 import Icon from "./Icon.vue";
 import iconPankuzu from "@/assets/images/icon_pankuzu.svg";
+import UtilityLink from "./UtilityLink.vue";
 type Props = {
   list: { text: string; url?: string }[];
   linkTag: LinkTag;
 };
 const props = defineProps<Props>();
-const { LinkComponent } = useLink({ tag: props.linkTag });
 </script>
 <template>
   <ul>
     <li v-for="pankuzu in props.list" :key="pankuzu.text">
-      <LinkComponent v-if="pankuzu.url" :to="pankuzu.url">{{
+      <UtilityLink v-if="pankuzu.url" :to="pankuzu.url">{{
         pankuzu.text
-      }}</LinkComponent>
-      <span v-else>{{ pankuzu.text }}</span>
+      }}</UtilityLink>
+      <span v-else class="current" aria-current="page">{{ pankuzu.text }}</span>
       <span class="iconWrapper">
         <Icon
           :iconSrc="iconPankuzu"
@@ -35,6 +35,7 @@ const { LinkComponent } = useLink({ tag: props.linkTag });
 ul {
   display: flex;
   flex-wrap: wrap;
+  column-gap: 6px;
 }
 
 li {
@@ -43,12 +44,17 @@ li {
   font-size: pxToRem(14);
   line-height: 2;
   list-style: none;
+  color: var(--color-text-link);
 
   &:last-child {
     .iconWrapper {
       display: none;
     }
   }
+}
+
+.current{
+  color: var(--color-text-body);
 }
 
 .iconWrapper {
