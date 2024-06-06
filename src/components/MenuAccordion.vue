@@ -43,7 +43,7 @@ const { LinkComponent } = useLink({ tag: props.linkTag });
       </div>
     </summary>
     <div ref="contentsElement" class="menuListWrapper">
-      <ul ref="contentsInnerElement" class="menuList">
+      <ul ref="contentsInnerElement" class="menuList" :class="{ hasGap }">
         <li v-for="(item, index) in linkList" :key="index" class="menuItem">
           <LinkComponent
             :to="item.to"
@@ -100,17 +100,21 @@ const { LinkComponent } = useLink({ tag: props.linkTag });
   display: grid;
   grid-template-columns: 100%;
   grid-auto-flow: row;
-  row-gap: 16px;
-  padding-top: 16px;
+
+  &.hasGap {
+    row-gap: 16px;
+    padding-top: 16px;
+  }
 }
 
 .menuItem {
+  padding-left: 32px;
   list-style: none;
 }
 
 .link {
   display: block;
-  padding: 10px 16px 10px 48px;
+  padding: 10px 16px;
   color: var(--color-text-body);
   text-decoration: none;
   border-radius: 8px;
@@ -122,6 +126,7 @@ const { LinkComponent } = useLink({ tag: props.linkTag });
   }
 
   &.selected {
+    font-weight: var(--weight-bold);
     color: var(--color-text-link);
 
     // TODO: ダークモード時の背景カラーが不明

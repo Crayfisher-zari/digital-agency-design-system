@@ -14,6 +14,7 @@ export type Accordion = {
   accordionTitle: string;
   hasIcon?: boolean;
   linkList: Link[];
+  hasGap?: boolean;
 };
 
 type ItemDetail = {
@@ -41,7 +42,7 @@ const props = withDefaults(defineProps<Props>(), {
   menuList: undefined,
   hasIcon: false,
   linkTag: "a",
-  hasGap: true,
+  hasGap: false,
 });
 
 const { LinkComponent } = useLink({ tag: props.linkTag });
@@ -79,6 +80,7 @@ const { LinkComponent } = useLink({ tag: props.linkTag });
                 :hasIcon="(linkItem.item as Accordion).hasIcon"
                 :linkList="(linkItem.item as Accordion).linkList"
                 :linkTag="linkTag"
+                :hasGap="hasGap"
               />
             </li>
           </ul>

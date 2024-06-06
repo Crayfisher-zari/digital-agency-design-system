@@ -54,7 +54,7 @@ export const Base: Story = {
       },
     ],
     hasIcon: false,
-    hasGap: true,
+    hasGap: false,
     linkTag: "a",
   },
 };
@@ -83,7 +83,7 @@ export const Accordion: Story = {
       },
     ],
     hasIcon: true,
-    hasGap: true,
+    hasGap: false,
     linkTag: "a",
   },
 };
