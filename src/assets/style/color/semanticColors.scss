@@ -21,6 +21,9 @@
   --color-text-link: var(--color-sea-600);
   --color-text-light-hover: var(--color-sea-900);
   --color-text-dark-hover: var(--color-sea-200);
+  --color-text-link-active: var(--color-orange-700);
+  --color-text-light-link-active: var(--color-orange-700);
+  --color-text-dark-link-active: var(--color-orange-700);
   --color-text-hover: var(--color-sea-900);
   --color-text-light-active: var(--color-sea-900);
   --color-text-dark-active: var(--color-sea-200);
@@ -140,6 +143,7 @@
     --color-text-placeHolder: var(--color-sumi-500);
     --color-text-onFill: var(--color-white);
     --color-text-link: var(--color-sea-300);
+    --color-text-link-active: var(--color-orange-700);
     --color-text-hover: var(--color-sea-200);
     --color-text-active: var(--color-sea-200);
     --color-text-visited: var(--color-sea-200);
@@ -197,6 +201,7 @@
   --color-text-placeHolder: var(--color-sumi-600);
   --color-text-onFill: var(--color-white);
   --color-text-link: var(--color-sea-800);
+  --color-text-link-active: var(--color-orange-700);
   --color-text-active: var(--color-sea-900);
   --color-text-visited: var(--color-sea-900);
   --color-text-alert: var(--color-sun-800);

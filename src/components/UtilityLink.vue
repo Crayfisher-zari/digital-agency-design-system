@@ -53,6 +53,9 @@ a {
   &:hover{
     text-decoration-thickness: 3px;
   }
+  &:active{
+    color: var(--color-text-link-active);
+  }
 
   &.hasIcon {
     padding-left: 20px;
