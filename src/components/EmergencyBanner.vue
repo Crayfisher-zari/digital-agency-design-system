@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { LinkTag, useLink } from "../composables/useLinkComponent";
-import BasicButton from "./BasicButton.vue";
 
 type Props = {
   /** タイトル */
@@ -29,13 +28,6 @@ const wrapperTag = computed(() => {
     return "div";
   }
 });
-
-const alertButtonColor = {
-  backgroundColor: "var(--color-status-alert)",
-  labelColor: "var(--color-text-onFill)",
-  hoverBackgroundColor: "var(--color-status-alert-hover)",
-  hoverLabelColor: "var(--color-text-onFill)",
-};
 </script>
 <template>
   <div class="emergencyBannerWrapper" :class="{ withLink: url !== undefined }">
@@ -49,17 +41,16 @@ const alertButtonColor = {
       </p>
       <slot></slot>
       <div v-if="url && buttonLabel" class="buttonWrapper">
-        <BasicButton
-          type="custom"
-          :label="buttonLabel"
-          :customColor="alertButtonColor"
-        />
+        <div class="button custom medium">
+          <span class="labelText">{{ buttonLabel }}</span>
+        </div>
       </div>
     </component>
   </div>
 </template>
 <style lang="scss" scoped>
 @use "@/assets/style/utils/utils.scss" as *;
+@use "./styles/basicButtonStyle.scss";
 
 .emergencyBanner {
   display: block;
@@ -125,5 +116,36 @@ const alertButtonColor = {
   display: flex;
   justify-content: center;
   margin-top: 28px;
+}
+
+.button {
+  &::before {
+    position: absolute;
+    z-index: -1;
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 44px;
+    content: "";
+    border-radius: 8px;
+    outline: 4px solid var(--color-status-alert);
+    outline-offset: 2px;
+    transition: outline-color var(--base-duration) var(--easing-out-expo);
+  }
+
+  &.custom {
+    color: var(--color-text-onFill);
+    background-color: var(--color-status-alert);
+    border: none;
+
+    &:hover {
+      color: var(--color-text-onFill);
+      background-color: var(--color-status-alert-hover);
+
+      &::before {
+        outline-color: var(--color-status-alert-hover);
+      }
+    }
+  }
 }
 </style>
