@@ -43,8 +43,8 @@ li {
   align-items: center;
   font-size: pxToRem(14);
   line-height: 2;
-  list-style: none;
   color: var(--color-text-link);
+  list-style: none;
 
   &:last-child {
     .iconWrapper {
@@ -53,7 +53,7 @@ li {
   }
 }
 
-.current{
+.current {
   color: var(--color-text-body);
 }
 

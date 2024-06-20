@@ -50,10 +50,12 @@ a {
   font-size: 14px;
   color: inherit;
   text-decoration: underline;
-  &:hover{
+
+  &:hover {
     text-decoration-thickness: 3px;
   }
-  &:active{
+
+  &:active {
     color: var(--color-text-link-active);
   }
 

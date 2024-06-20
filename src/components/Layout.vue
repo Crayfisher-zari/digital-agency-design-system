@@ -1,11 +1,17 @@
 <script setup lang="ts"></script>
 <template>
-  <div class="layout">
-    <slot></slot>
+  <div class="layoutContainer">
+    <div class="layout">
+      <slot></slot>
+    </div>
   </div>
 </template>
 <style lang="scss">
 @use "@/assets/style/utils/utils.scss" as *;
+
+.layoutContainer {
+  container-type: inline-size;
+}
 
 .layout {
   display: grid;
@@ -15,6 +21,14 @@
   gap: 32px 32px;
   max-width: 1024px;
   margin: 0 auto;
+
+  @container (max-width:864px) {
+    gap: 24px 24px;
+  }
+
+  @container (max-width:736px) {
+    gap: 16px 16px;
+  }
 }
 
 @include mediaQueryUp {
