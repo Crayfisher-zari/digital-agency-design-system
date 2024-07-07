@@ -355,7 +355,7 @@ const titleTag = computed(() => {
 
 .notificationBannerWrapper {
   /* Successの副ボタンカスタムカラー */
-  --custom-secondary-hover-background-success: var(--color-green-200);
+  --custom-secondary-hover-background-success: var(--color-green-50);
   --custom-secondary-hover-label-success: var(--color-green-700);
   --custom-secondary-hover-border-success: var(--color-green-700);
 
@@ -365,9 +365,9 @@ const titleTag = computed(() => {
   --custom-secondary-hover-border-error: var(--color-red-900);
 
   /* Warningの副ボタンカスタムカラー */
-  --custom-secondary-hover-background-warning: var(--color-wood-50);
-  --custom-secondary-hover-label-warning: var(--color-wood-900);
-  --custom-secondary-hover-border-warning: var(--color-wood-900);
+  --custom-secondary-hover-background-warning: var(--color-yellow-50);
+  --custom-secondary-hover-label-warning: var(--color-yellow-900);
+  --custom-secondary-hover-border-warning: var(--color-yellow-900);
 
   /* info1の副ボタンカスタムカラー */
   --custom-secondary-hover-background-info1: var(--color-blue-50);
