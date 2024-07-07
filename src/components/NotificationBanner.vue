@@ -355,14 +355,14 @@ const titleTag = computed(() => {
 
 .notificationBannerWrapper {
   /* Successの副ボタンカスタムカラー */
-  --custom-secondary-hover-background-success: var(--color-forest-200);
-  --custom-secondary-hover-label-success: var(--color-forest-700);
-  --custom-secondary-hover-border-success: var(--color-forest-700);
+  --custom-secondary-hover-background-success: var(--color-green-200);
+  --custom-secondary-hover-label-success: var(--color-green-700);
+  --custom-secondary-hover-border-success: var(--color-green-700);
 
   /* Errorの副ボタンカスタムカラー */
-  --custom-secondary-hover-background-error: var(--color-sun-50);
-  --custom-secondary-hover-label-error: var(--color-sun-900);
-  --custom-secondary-hover-border-error: var(--color-sun-900);
+  --custom-secondary-hover-background-error: var(--color-red-50);
+  --custom-secondary-hover-label-error: var(--color-red-900);
+  --custom-secondary-hover-border-error: var(--color-red-900);
 
   /* Warningの副ボタンカスタムカラー */
   --custom-secondary-hover-background-warning: var(--color-wood-50);
@@ -370,14 +370,14 @@ const titleTag = computed(() => {
   --custom-secondary-hover-border-warning: var(--color-wood-900);
 
   /* info1の副ボタンカスタムカラー */
-  --custom-secondary-hover-background-info1: var(--color-sea-50);
-  --custom-secondary-hover-label-info1: var(--color-sea-900);
-  --custom-secondary-hover-border-info1: var(--color-sea-900);
+  --custom-secondary-hover-background-info1: var(--color-blue-50);
+  --custom-secondary-hover-label-info1: var(--color-blue-900);
+  --custom-secondary-hover-border-info1: var(--color-blue-900);
 
   /* info2の副ボタンカスタムカラー */
-  --custom-secondary-hover-background-info2: var(--color-sumi-100);
-  --custom-secondary-hover-label-info2: var(--color-sumi-1000);
-  --custom-secondary-hover-border-info2: var(--color-sumi-1000);
+  --custom-secondary-hover-background-info2: var(--color-grey-50);
+  --custom-secondary-hover-label-info2: var(--color-grey-900);
+  --custom-secondary-hover-border-info2: var(--color-grey-900);
 }
 
 .notificationBanner {
