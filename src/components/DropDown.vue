@@ -56,7 +56,7 @@ const { isOpened, hasAnimation, handleDropDown } = useDropDownAnimation(
   // アニメーションが有効な場合はタイミングを上書き
   &.isOpened {
     .contents {
-      border-color: var(--color-sumi-500);
+      border-color: var(--color-border-medium-divider);
       transition:
         height var(--base-duration),
         border-color var(--base-duration) var(--easing-out-expo);

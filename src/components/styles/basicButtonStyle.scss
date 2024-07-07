@@ -46,7 +46,7 @@
 
     &:not(.disabled):hover {
       color: var(--color-button-hover);
-      background-color: var(--color-sea-50);
+      background-color: var(--color-button-secondary-hover);
     }
 
     &:not(.disabled):active {

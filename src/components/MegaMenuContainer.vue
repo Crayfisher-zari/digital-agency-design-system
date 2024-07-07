@@ -50,7 +50,7 @@ const handleClickHamburger = () => {
   background-color: var(--color-background-primary);
 
   &.flat {
-    border-bottom: 1px solid var(--color-sumi-500);
+    border-bottom: 1px solid var(--color-border-medium-divider);
   }
 }
 

@@ -16,14 +16,14 @@ withDefaults(defineProps<Props>(), {
 <style lang="scss" scoped>
 // TODO カラーのアップデート
 .divider {
-  border: 1px solid var(--color-sumi-500);
+  border: 1px solid var(--color-border-divider);
 
   &.medium {
-    border-color: var(--color-sumi-600);
+    border-color: var(--color-border-medium-divider);
   }
 
   &.dark {
-    border-color: var(--color-sumi-700);
+    border-color: var(--color-border-strong-light-divide);
   }
 
   &.weight2 {

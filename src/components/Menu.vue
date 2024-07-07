@@ -150,9 +150,7 @@ const { LinkComponent } = useLink({ tag: props.linkTag });
 
   &.selected {
     color: var(--color-text-link);
-
-    // TODO: ダークモード時の背景カラーが不明
-    background-color: var(--color-sea-50);
+    background-color: var(--color-button-secondary-hover);
   }
 }
 </style>

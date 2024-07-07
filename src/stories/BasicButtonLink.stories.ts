@@ -115,7 +115,7 @@ export const CustomColor1: Story = {
     type: "custom",
     customColor: {
       backgroundColor: "var(--color-status-success)",
-      hoverBackgroundColor: "var(--color-forest-800)",
+      hoverBackgroundColor: "var(--color-green-800)",
       labelColor: "#FFF",
       hoverLabelColor: "#FFF",
     },
@@ -132,10 +132,10 @@ export const CustomColor2: Story = {
     customColor: {
       backgroundColor: "var(--color-text-onFill)",
       borderColor: "var(--color-status-warning)",
-      hoverBackgroundColor: "var(--color-wood-100)",
+      hoverBackgroundColor: "var(--color-yellow-100)",
       labelColor: "var(--color-status-warning)",
-      hoverLabelColor: "var(--color-wood-1000)",
-      hoverBorderColor: "var(--color-wood-1000)",
+      hoverLabelColor: "var(--color-yellow-1000)",
+      hoverBorderColor: "var(--color-yellow-1000)",
     },
   },
 };
