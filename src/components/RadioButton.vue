@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script lang="ts" setup generic="T">
 import { ref, computed } from "vue";
 import PartsRadioButton from "./parts/PartsRadioButton.vue";
 
@@ -6,9 +6,9 @@ type Props = {
   /** デフォルト型かタイル型か */
   radioStyle?: "default" | "tile";
   /** 格納するリアクティブな値（v-modelでも使える） */
-  modelValue: string | null;
+  modelValue: T;
   /** 選択肢固有の値です */
-  radioValue: string;
+  radioValue: T;
   /** ボタンのラベルです */
   label: string;
   /** name属性の値です */
@@ -21,7 +21,7 @@ type Props = {
   isDisabled?: boolean;
 };
 
-const model = defineModel<string | null>();
+const model = defineModel<T>();
 
 const props = withDefaults(defineProps<Props>(), {
   radioStyle: "default",
@@ -50,10 +50,10 @@ const stateClassName = computed<string | null>(() => {
     <div class="radioButton">
       <PartsRadioButton
         v-model="model"
-        :radioValue
-        :name
-        :isValid
-        :isDisabled
+        :radioValue="props.radioValue"
+        :name="props.name"
+        :isValid="props.isValid"
+        :isDisabled="props.isDisabled"
         :isHiddenFocused="radioStyle === 'tile'"
       />
     </div>
