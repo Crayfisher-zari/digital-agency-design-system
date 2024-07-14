@@ -72,14 +72,16 @@ const model = defineModel<[] | string[]>();
 .label {
   display: flex;
   align-items: center;
-  font-size: pxToRem(14);
+  font-size: pxToRem(16);
+  font-weight: var(--weight-bold);
   color: var(--color-text-body);
 }
 
 .requiredText {
   margin-left: 8px;
-  font-size: pxToRem(12);
+  font-size: pxToRem(16);
   color: var(--color-text-description);
+  font-weight: var(--weight-regular);
 
   &.isRequired {
     color: var(--color-text-alert);
@@ -88,7 +90,7 @@ const model = defineModel<[] | string[]>();
 
 .supportText {
   margin-top: 8px;
-  font-size: pxToRem(12);
+  font-size: pxToRem(16);
   color: var(--color-text-description);
 }
 
