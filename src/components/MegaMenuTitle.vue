@@ -49,7 +49,7 @@ const { LinkComponent } = useLink({ tag: props.linkTag });
 
 .text {
   font-size: pxToRem(16);
-  font-weight: var(--weight-regular);
+  font-weight: var(--weight-normal);
   line-height: 1.7;
   color: var(--color-text-description);
   letter-spacing: 0.04em;

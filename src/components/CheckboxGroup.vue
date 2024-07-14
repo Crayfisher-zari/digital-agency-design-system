@@ -80,7 +80,7 @@ const model = defineModel<[] | string[]>();
 .requiredText {
   margin-left: 8px;
   font-size: pxToRem(16);
-  font-weight: var(--weight-regular);
+  font-weight: var(--weight-normal);
   color: var(--color-text-description);
 
   &.isRequired {

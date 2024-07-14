@@ -17,9 +17,6 @@ body {
   font-family: "Noto Sans JP", sans-serif;
   color: var(--color-text-body);
   background-color: var(--color-background-primary);
-  transition:
-    color var(--base-duration) var(--easing-out-expo),
-    background-color var(--base-duration) var(--easing-out-expo);
 }
 
 /* スクロールバーのガタツキ対策。#appなどのコンテンツ全体のラッパーに適用する。js側で動的にscrollbar-gutterプロパティを入れる */
@@ -47,21 +44,21 @@ a {
 /* タイポグラフィ */
 .headingXXL {
   font-size: pxToRem(57);
-  font-weight: var(--weight-regular);
+  font-weight: var(--weight-normal);
   line-height: 1.4;
   letter-spacing: 0.04em;
 }
 
 .headingXL {
   font-size: pxToRem(45);
-  font-weight: var(--weight-regular);
+  font-weight: var(--weight-normal);
   line-height: 1.4;
   letter-spacing: 0.04em;
 }
 
 .headingL {
   font-size: pxToRem(36);
-  font-weight: var(--weight-regular);
+  font-weight: var(--weight-normal);
   line-height: 1.4;
   letter-spacing: 0.04em;
 
@@ -74,7 +71,7 @@ a {
 
 .headingM {
   font-size: pxToRem(32);
-  font-weight: var(--weight-regular);
+  font-weight: var(--weight-normal);
   line-height: 1.5;
   letter-spacing: 0.04em;
 
@@ -87,7 +84,7 @@ a {
 
 .headingS {
   font-size: pxToRem(28);
-  font-weight: var(--weight-regular);
+  font-weight: var(--weight-normal);
   line-height: 1.5;
   letter-spacing: 0.04em;
 
@@ -100,7 +97,7 @@ a {
 
 .headingXS {
   font-size: pxToRem(24);
-  font-weight: var(--weight-regular);
+  font-weight: var(--weight-normal);
   line-height: 1.5;
   letter-spacing: 0.04em;
 
@@ -113,7 +110,7 @@ a {
 
 .headingXXS {
   font-size: pxToRem(20);
-  font-weight: var(--weight-regular);
+  font-weight: var(--weight-normal);
   line-height: 1.5;
   letter-spacing: 0.04em;
 
@@ -126,14 +123,14 @@ a {
 
 .fontTextL {
   font-size: pxToRem(16);
-  font-weight: var(--weight-regular);
+  font-weight: var(--weight-normal);
   line-height: 1.7;
   letter-spacing: 0.04em;
 }
 
 .fontTextM {
   font-size: pxToRem(14);
-  font-weight: var(--weight-regular);
+  font-weight: var(--weight-normal);
   line-height: 1.7;
   letter-spacing: 0.04em;
 }
@@ -154,14 +151,14 @@ a {
 
 .fontSupportL {
   font-size: pxToRem(12);
-  font-weight: var(--weight-regular);
+  font-weight: var(--weight-normal);
   line-height: 1.7;
   letter-spacing: 0.02em;
 }
 
 .fontSupportM {
   font-size: pxToRem(10);
-  font-weight: var(--weight-regular);
+  font-weight: var(--weight-normal);
   line-height: 1.7;
   letter-spacing: 0.02em;
 }
