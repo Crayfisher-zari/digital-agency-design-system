@@ -1,0 +1,395 @@
+@use "@/assets/style/utils/utils.scss" as *;
+
+/** 
+ * Display
+ */
+.Dsp-64N-4 {
+  font-size: pxToRem(64);
+  font-weight: var(--weight-normal);
+  line-height: 1.4;
+}
+
+.Dsp-57N-4 {
+  font-size: pxToRem(57);
+  font-weight: var(--weight-normal);
+  line-height: 1.4;
+}
+
+.Dsp-48N-4 {
+  font-size: pxToRem(57);
+  font-weight: var(--weight-normal);
+  line-height: 1.4;
+}
+
+/** 
+ * Standard
+ */
+
+/** Bold */
+.Std-45B-4 {
+  font-size: pxToRem(45);
+  font-weight: var(--weight-bold);
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+}
+
+.Std-36B-4 {
+  font-size: pxToRem(36);
+  font-weight: var(--weight-bold);
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+}
+
+.Std-32B-5 {
+  font-size: pxToRem(32);
+  font-weight: var(--weight-bold);
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+}
+
+.Std-28B-5 {
+  font-size: pxToRem(28);
+  font-weight: var(--weight-bold);
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+}
+
+.Std-24B-5 {
+  font-size: pxToRem(24);
+  font-weight: var(--weight-bold);
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+}
+
+.Std-22B-5 {
+  font-size: pxToRem(22);
+  font-weight: var(--weight-bold);
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+}
+
+.Std-20B-6 {
+  font-size: pxToRem(20);
+  font-weight: var(--weight-bold);
+  line-height: 1.6;
+  letter-spacing: 0.02em;
+}
+
+.Std-20B-5 {
+  font-size: pxToRem(20);
+  font-weight: var(--weight-bold);
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+}
+
+.Std-17B-7 {
+  font-size: pxToRem(17);
+  font-weight: var(--weight-bold);
+  line-height: 1.7;
+  letter-spacing: 0.02em;
+}
+
+.Std-16B-7 {
+  font-size: pxToRem(16);
+  font-weight: var(--weight-bold);
+  line-height: 1.7;
+  letter-spacing: 0.02em;
+}
+
+/** Medium */
+.Std-32M-5 {
+  font-size: pxToRem(32);
+  font-weight: var(--weight-medium);
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+}
+
+.Std-28M-5 {
+  font-size: pxToRem(28);
+  font-weight: var(--weight-medium);
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+}
+
+.Std-24M-5 {
+  font-size: pxToRem(24);
+  font-weight: var(--weight-medium);
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+}
+
+.Std-20M-5 {
+  font-size: pxToRem(20);
+  font-weight: var(--weight-medium);
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+}
+
+.Std-17M-7 {
+  font-size: pxToRem(17);
+  font-weight: var(--weight-medium);
+  line-height: 1.7;
+  letter-spacing: 0.02em;
+}
+
+.Std-16M-7 {
+  font-size: pxToRem(16);
+  font-weight: var(--weight-medium);
+  line-height: 1.7;
+  letter-spacing: 0.02em;
+}
+
+/** Normal */
+.Std-45N-4 {
+  font-size: pxToRem(45);
+  font-weight: var(--weight-normal);
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+}
+
+.Std-36N-4 {
+  font-size: pxToRem(36);
+  font-weight: var(--weight-normal);
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+}
+
+.Std-32N-5 {
+  font-size: pxToRem(32);
+  font-weight: var(--weight-normal);
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+}
+
+.Std-28N-5 {
+  font-size: pxToRem(28);
+  font-weight: var(--weight-normal);
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+}
+
+.Std-26N-5 {
+  font-size: pxToRem(26);
+  font-weight: var(--weight-normal);
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+}
+
+.Std-24N-5 {
+  font-size: pxToRem(24);
+  font-weight: var(--weight-normal);
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+}
+
+.Std-22N-5 {
+  font-size: pxToRem(22);
+  font-weight: var(--weight-normal);
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+}
+
+.Std-20N-5 {
+  font-size: pxToRem(20);
+  font-weight: var(--weight-normal);
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+}
+
+.Std-18N-6 {
+  font-size: pxToRem(18);
+  font-weight: var(--weight-normal);
+  line-height: 1.6;
+  letter-spacing: 0.02em;
+}
+
+.Std-17N-7 {
+  font-size: pxToRem(17);
+  font-weight: var(--weight-normal);
+  line-height: 1.7;
+  letter-spacing: 0.02em;
+}
+
+.Std-16N-7 {
+  font-size: pxToRem(16);
+  font-weight: var(--weight-normal);
+  line-height: 1.7;
+  letter-spacing: 0.02em;
+}
+
+/** 
+ * Dense
+ */
+.Dns-17B-3 {
+  font-size: pxToRem(17);
+  font-weight: var(--weight-bold);
+  line-height: 1.3;
+}
+
+.Dns-17N-3 {
+  font-size: pxToRem(17);
+  font-weight: var(--weight-normal);
+  line-height: 1.3;
+}
+
+.Dns-17B-2 {
+  font-size: pxToRem(17);
+  font-weight: var(--weight-bold);
+  line-height: 1.2;
+}
+
+.Dns-17N-2 {
+  font-size: pxToRem(17);
+  font-weight: var(--weight-normal);
+  line-height: 1.2;
+}
+
+.Dns-16B-3 {
+  font-size: pxToRem(16);
+  font-weight: var(--weight-bold);
+  line-height: 1.3;
+}
+
+.Dns-16N-3 {
+  font-size: pxToRem(16);
+  font-weight: var(--weight-normal);
+  line-height: 1.3;
+}
+
+.Dns-16B-2 {
+  font-size: pxToRem(16);
+  font-weight: var(--weight-bold);
+  line-height: 1.2;
+}
+
+.Dns-16N-2 {
+  font-size: pxToRem(16);
+  font-weight: var(--weight-normal);
+  line-height: 1.2;
+}
+
+.Dns-14B-3 {
+  font-size: pxToRem(14);
+  font-weight: var(--weight-bold);
+  line-height: 1.3;
+}
+
+.Dns-14N-3 {
+  font-size: pxToRem(14);
+  font-weight: var(--weight-normal);
+  line-height: 1.3;
+}
+
+.Dns-14B-2 {
+  font-size: pxToRem(14);
+  font-weight: var(--weight-bold);
+  line-height: 1.2;
+}
+
+.Dns-14N-2 {
+  font-size: pxToRem(14);
+  font-weight: var(--weight-normal);
+  line-height: 1.2;
+}
+
+/** 
+ * Oneline
+ */
+.Dns-17B-1 {
+  font-size: pxToRem(17);
+  font-weight: var(--weight-bold);
+  line-height: 1;
+}
+
+.Dns-17M-1 {
+  font-size: pxToRem(17);
+  font-weight: var(--weight-medium);
+  line-height: 1;
+}
+
+.Dns-17N-1 {
+  font-size: pxToRem(17);
+  font-weight: var(--weight-normal);
+  line-height: 1;
+}
+
+.Dns-16B-1 {
+  font-size: pxToRem(16);
+  font-weight: var(--weight-bold);
+  line-height: 1;
+}
+
+.Dns-16M-1 {
+  font-size: pxToRem(16);
+  font-weight: var(--weight-medium);
+  line-height: 1;
+}
+
+.Dns-16N-1 {
+  font-size: pxToRem(16);
+  font-weight: var(--weight-normal);
+  line-height: 1;
+}
+
+.Dns-14B-1 {
+  font-size: pxToRem(14);
+  font-weight: var(--weight-bold);
+  line-height: 1;
+}
+
+.Dns-14M-1 {
+  font-size: pxToRem(14);
+  font-weight: var(--weight-medium);
+  line-height: 1;
+}
+
+.Dns-14N-1 {
+  font-size: pxToRem(14);
+  font-weight: var(--weight-normal);
+  line-height: 1;
+}
+
+/** 
+ * Mono
+ */
+.Mono-17B-5 {
+  font-family: "Noto Sans Mono", monospace;
+  font-size: pxToRem(17);
+  font-weight: var(--weight-bold);
+  line-height: 1;
+}
+
+.Mono-17N-5 {
+  font-family: "Noto Sans Mono", monospace;
+  font-size: pxToRem(17);
+  font-weight: var(--weight-normal);
+  line-height: 1;
+}
+
+.Mono-16B-5 {
+  font-family: "Noto Sans Mono", monospace;
+  font-size: pxToRem(16);
+  font-weight: var(--weight-bold);
+  line-height: 1;
+}
+
+.Mono-16N-5 {
+  font-family: "Noto Sans Mono", monospace;
+  font-size: pxToRem(16);
+  font-weight: var(--weight-normal);
+  line-height: 1;
+}
+
+.Mono-14B-5 {
+  font-family: "Noto Sans Mono", monospace;
+  font-size: pxToRem(14);
+  font-weight: var(--weight-bold);
+  line-height: 1;
+}
+
+.Mono-14N-5 {
+  font-family: "Noto Sans Mono", monospace;
+  font-size: pxToRem(14);
+  font-weight: var(--weight-normal);
+  line-height: 1;
+}
