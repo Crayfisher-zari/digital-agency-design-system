@@ -28,6 +28,24 @@ body {
   margin-bottom: 24px;
 }
 
+.story-book-preview-mb {
+  margin-bottom: 16px;
+}
+
+.story-book-preview-mb-medium {
+  margin-bottom: 32px;
+}
+
+.story-book-preview-mb-large {
+  margin-bottom: 72px;
+}
+
+.story-book-preview-row-layout {
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+}
+
 // レイアウトストーリーのスタイル
 .layoutBlock {
   display: flex;

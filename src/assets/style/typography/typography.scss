@@ -82,6 +82,13 @@
   letter-spacing: 0.02em;
 }
 
+.Std-18B-6 {
+  font-size: pxToRem(18);
+  font-weight: var(--weight-bold);
+  line-height: 1.6;
+  letter-spacing: 0.02em;
+}
+
 .Std-17B-7 {
   font-size: pxToRem(17);
   font-weight: var(--weight-bold);
@@ -295,55 +302,55 @@
 /** 
  * Oneline
  */
-.Dns-17B-1 {
+.Oln-17B-1 {
   font-size: pxToRem(17);
   font-weight: var(--weight-bold);
   line-height: 1;
 }
 
-.Dns-17M-1 {
+.Oln-17M-1 {
   font-size: pxToRem(17);
   font-weight: var(--weight-medium);
   line-height: 1;
 }
 
-.Dns-17N-1 {
+.Oln-17N-1 {
   font-size: pxToRem(17);
   font-weight: var(--weight-normal);
   line-height: 1;
 }
 
-.Dns-16B-1 {
+.Oln-16B-1 {
   font-size: pxToRem(16);
   font-weight: var(--weight-bold);
   line-height: 1;
 }
 
-.Dns-16M-1 {
+.Oln-16M-1 {
   font-size: pxToRem(16);
   font-weight: var(--weight-medium);
   line-height: 1;
 }
 
-.Dns-16N-1 {
+.Oln-16N-1 {
   font-size: pxToRem(16);
   font-weight: var(--weight-normal);
   line-height: 1;
 }
 
-.Dns-14B-1 {
+.Oln-14B-1 {
   font-size: pxToRem(14);
   font-weight: var(--weight-bold);
   line-height: 1;
 }
 
-.Dns-14M-1 {
+.Oln-14M-1 {
   font-size: pxToRem(14);
   font-weight: var(--weight-medium);
   line-height: 1;
 }
 
-.Dns-14N-1 {
+.Oln-14N-1 {
   font-size: pxToRem(14);
   font-weight: var(--weight-normal);
   line-height: 1;
