@@ -725,6 +725,7 @@ watchEffect(() => {
 
 <style scoped lang="scss">
 @use "@/assets/style/utils/utils.scss" as *;
+@use "@/assets/style/typography/typography.scss";
 
 .globalWrapper {
   max-width: 1104px;

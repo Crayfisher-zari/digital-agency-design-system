@@ -393,3 +393,55 @@
   font-weight: var(--weight-normal);
   line-height: 1;
 }
+
+
+/* Ver1.x系タイポグラフィ */
+
+.fontTextL {
+  font-size: pxToRem(16);
+  font-weight: var(--weight-normal);
+  line-height: 1.7;
+  letter-spacing: 0.04em;
+}
+
+.fontTextM {
+  font-size: pxToRem(14);
+  font-weight: var(--weight-normal);
+  line-height: 1.7;
+  letter-spacing: 0.04em;
+}
+
+.fontLabelL {
+  font-size: pxToRem(14);
+  font-weight: var(--weight-medium);
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+}
+
+.fontLabelM {
+  font-size: pxToRem(12);
+  font-weight: var(--weight-medium);
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+}
+
+.fontSupportL {
+  font-size: pxToRem(12);
+  font-weight: var(--weight-normal);
+  line-height: 1.7;
+  letter-spacing: 0.02em;
+}
+
+.fontSupportM {
+  font-size: pxToRem(10);
+  font-weight: var(--weight-normal);
+  line-height: 1.7;
+  letter-spacing: 0.02em;
+}
+
+.fontButton {
+  font-size: pxToRem(16);
+  font-weight: var(--weight-bold);
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+}

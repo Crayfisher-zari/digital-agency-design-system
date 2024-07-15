@@ -33,6 +33,86 @@ const Heading = (props: Props, context: SetupContext) => {
 export default Heading;
 </script>
 <style lang="scss" scoped>
+@use "@/assets/style/utils/utils.scss" as *;
+.headingXXL {
+  font-size: pxToRem(57);
+  font-weight: var(--weight-normal);
+  line-height: 1.4;
+  letter-spacing: 0.04em;
+}
+
+.headingXL {
+  font-size: pxToRem(45);
+  font-weight: var(--weight-normal);
+  line-height: 1.4;
+  letter-spacing: 0.04em;
+}
+
+.headingL {
+  font-size: pxToRem(36);
+  font-weight: var(--weight-normal);
+  line-height: 1.4;
+  letter-spacing: 0.04em;
+
+  @include mediaQueryDown {
+    font-size: pxToRem(32);
+    font-weight: var(--weight-medium);
+    line-height: 1.5;
+  }
+}
+
+.headingM {
+  font-size: pxToRem(32);
+  font-weight: var(--weight-normal);
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+
+  @include mediaQueryDown {
+    font-size: pxToRem(28);
+    font-weight: var(--weight-medium);
+    line-height: 1.5;
+  }
+}
+
+.headingS {
+  font-size: pxToRem(28);
+  font-weight: var(--weight-normal);
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+
+  @include mediaQueryDown {
+    font-size: pxToRem(24);
+    font-weight: var(--weight-medium);
+    line-height: 1.5;
+  }
+}
+
+.headingXS {
+  font-size: pxToRem(24);
+  font-weight: var(--weight-normal);
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+
+  @include mediaQueryDown {
+    font-size: pxToRem(20);
+    font-weight: var(--weight-medium);
+    line-height: 1.5;
+  }
+}
+
+.headingXXS {
+  font-size: pxToRem(20);
+  font-weight: var(--weight-normal);
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+
+  @include mediaQueryDown {
+    font-size: pxToRem(16);
+    font-weight: var(--weight-medium);
+    line-height: 1.7;
+  }
+}
+
 .headingXXL,
 .headingXL,
 .headingL {
