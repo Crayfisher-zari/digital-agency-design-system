@@ -34,7 +34,9 @@ export default Heading;
 </script>
 <style lang="scss" scoped>
 @use "@/assets/style/utils/utils.scss" as *;
+
 .headingXXL {
+  padding: 64px 0 24px;
   font-size: pxToRem(57);
   font-weight: var(--weight-normal);
   line-height: 1.4;
@@ -42,6 +44,7 @@ export default Heading;
 }
 
 .headingXL {
+  padding: 64px 0 24px;
   font-size: pxToRem(45);
   font-weight: var(--weight-normal);
   line-height: 1.4;
@@ -49,6 +52,7 @@ export default Heading;
 }
 
 .headingL {
+  padding: 64px 0 24px;
   font-size: pxToRem(36);
   font-weight: var(--weight-normal);
   line-height: 1.4;
@@ -62,6 +66,7 @@ export default Heading;
 }
 
 .headingM {
+  padding: 64px 0 24px;
   font-size: pxToRem(32);
   font-weight: var(--weight-normal);
   line-height: 1.5;
@@ -75,6 +80,7 @@ export default Heading;
 }
 
 .headingS {
+  padding: 40px 0 24px;
   font-size: pxToRem(28);
   font-weight: var(--weight-normal);
   line-height: 1.5;
@@ -88,6 +94,7 @@ export default Heading;
 }
 
 .headingXS {
+  padding: 40px 0 16px;
   font-size: pxToRem(24);
   font-weight: var(--weight-normal);
   line-height: 1.5;
@@ -101,6 +108,7 @@ export default Heading;
 }
 
 .headingXXS {
+  padding: 40px 0 16px;
   font-size: pxToRem(20);
   font-weight: var(--weight-normal);
   line-height: 1.5;
@@ -111,31 +119,5 @@ export default Heading;
     font-weight: var(--weight-medium);
     line-height: 1.7;
   }
-}
-
-.headingXXL,
-.headingXL,
-.headingL {
-  padding: 64px 0 24px;
-}
-
-.headingM {
-  padding: 64px 0 24px;
-}
-
-.headingS {
-  padding: 40px 0 24px;
-}
-
-.headingXS {
-  padding: 40px 0 16px;
-}
-
-.headingXXS {
-  padding: 40px 0 16px;
-}
-
-h6.headingXXS {
-  padding: 24px 0 16px;
 }
 </style>
