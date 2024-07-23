@@ -54,7 +54,7 @@ export const Base: Story = {
         <Drawer :isVisible="isVisible" :isMobileOnly="isMobileOnly" >
           <Menu :menuList="menuList" linkTag="a"></Menu>
         </Drawer>
-      <div>
+      </div>
     `,
   }),
 };
