@@ -73,6 +73,9 @@
   --color-background-light-tertiary: var(--color-grey-50);
   --color-background-dark-tertiary: var(--color-grey-50);
   --color-background-tertiary: var(--color-grey-50);
+  --color-background-light-link: var(--color-blue-100);
+  --color-background-dark-link: var(--color-blue-100);
+  --color-background-link: var(--color-blue-100);
 
   /* Border */
   --color-border-light-field: var(--color-grey-900);
@@ -167,7 +170,8 @@
     /* Background */
     --color-background-primary: var(--color-background-dark-primary);
     --color-background-secondary: var(--color-background-dark-secondary);
-    --color-background-tertiary: var(--color-background-light-tertiary);
+    --color-background-tertiary: var(--color-background-dark-tertiary);
+    --color-background-link: var(--color-background-dark-link);
 
     /* Border */
     --color-border-field: var(--color-border-dark-field);
@@ -227,6 +231,7 @@
   --color-background-primary: var(--color-background-light-primary);
   --color-background-secondary: var(--color-background-light-secondary);
   --color-background-tertiary: var(--color-background-light-tertiary);
+  --color-background-link: var(--color-background-light-link);
 
   /* Border */
   --color-border-field: var(--color-border-light-field);
@@ -284,7 +289,8 @@
   /* Background */
   --color-background-primary: var(--color-background-dark-primary);
   --color-background-secondary: var(--color-background-dark-secondary);
-  --color-background-tertiary: var(--color-background-light-tertiary);
+  --color-background-tertiary: var(--color-background-dark-tertiary);
+  --color-background-link: var(--color-background-dark-link);
 
   /* Border */
   --color-border-field: var(--color-border-dark-field);

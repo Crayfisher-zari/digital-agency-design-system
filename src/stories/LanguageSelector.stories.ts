@@ -22,6 +22,9 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+/**
+ * 小さいサイズ
+ */
 export const Base: Story = {
   args: {
     languageList: [
@@ -31,5 +34,21 @@ export const Base: Story = {
       { label: "한국어", link: "#!", isCurrent: false },
     ],
     linkTag: "a",
+  },
+};
+
+/**
+ * 大きいサイズ
+ */
+export const Large: Story = {
+  args: {
+    languageList: [
+      { label: "日本語", link: "#!", isCurrent: true },
+      { label: "English", link: "#!", isCurrent: false },
+      { label: "简体中文", link: "#!", isCurrent: false },
+      { label: "한국어", link: "#!", isCurrent: false },
+    ],
+    linkTag: "a",
+    size: "large",
   },
 };

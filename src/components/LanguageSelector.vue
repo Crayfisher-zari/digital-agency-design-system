@@ -8,11 +8,15 @@ import iconGlobe from "@/assets/images/icon_globe.svg";
 import iconCheck from "@/assets/images/icon_check.svg";
 
 type Props = {
+  /** 言語リスト */
   languageList: { label: string; link: string; isCurrent: boolean }[];
+  /** リンクタグ */
   linkTag: LinkTag;
+  /** サイズ */
+  size?: "small" | "large";
 };
 
-const props = defineProps<Props>();
+const props = withDefaults(defineProps<Props>(), { size: "small" });
 
 const languageSelectorElement = ref<HTMLDetailsElement | null>(null);
 const languageListElement = ref<HTMLElement | null>(null);
@@ -32,7 +36,7 @@ const languageList = ref(props.languageList);
   <details
     ref="languageSelectorElement"
     class="languageSelector"
-    :class="[{ isOpened: isOpened }, { hasAnimation: hasAnimation }]"
+    :class="[{ isOpened: isOpened }, { hasAnimation: hasAnimation }, size]"
   >
     <summary class="summary" @click="handleDropDown">
       <Icon
@@ -69,13 +73,15 @@ const languageList = ref(props.languageList);
               :iconSrc="iconCheck"
               :width="16"
               :height="16"
-              color="var(--color-text-body)"
+              color="var(--color-text-link)"
               class="checkIcon"
               :ariaHidden="true"
               role="img"
             />
 
-            <LinkComponent :to="item.link">{{ item.label }}</LinkComponent>
+            <LinkComponent :to="item.link" class="link">{{
+              item.label
+            }}</LinkComponent>
           </li>
         </ul>
       </div>
@@ -104,6 +110,28 @@ const languageList = ref(props.languageList);
       }
     }
   }
+
+  /** 大きいサイズ */
+  &.large {
+    .summary {
+      height: 28px;
+      padding: 0 5px 0 28px;
+    }
+
+    .globeIcon {
+      top: 5px;
+      width: 20px;
+      height: 20px;
+    }
+
+    .summaryInner {
+      font-size: pxToRem(16);
+    }
+
+    .link {
+      font-size: pxToRem(16);
+    }
+  }
 }
 
 .summary {
@@ -111,9 +139,11 @@ const languageList = ref(props.languageList);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 3px 5px 8px 24px;
+  height: 24px;
+  padding: 0 5px 0 24px;
+  margin-bottom: 6px;
   font-size: pxToRem(14);
-  line-height: 1.5;
+  line-height: 1;
   letter-spacing: 0.04em;
   border-radius: 4px;
   transition: background-color var(--base-duration) var(--easing-out-expo);
@@ -130,8 +160,8 @@ const languageList = ref(props.languageList);
 
 .globeIcon {
   position: absolute;
-  top: 7px;
-  left: 0;
+  top: 5px;
+  left: 2px;
 }
 
 .dropDownIcon {
@@ -156,6 +186,21 @@ const languageList = ref(props.languageList);
   background-color: var(--color-background-primary);
 }
 
+.link {
+  display: block;
+  width: 100%;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 20px;
+  font-size: pxToRem(14);
+  color: var(--color-text-body);
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
 .languageItem {
   position: relative;
   display: flex;
@@ -170,10 +215,12 @@ const languageList = ref(props.languageList);
   }
 
   &.isCurrent {
-    a {
+    .link {
       position: relative;
       display: block;
       font-weight: var(--weight-bold);
+      color: var(--color-text-link);
+      background-color: var(--color-background-link);
 
       &::before {
         position: absolute;
@@ -190,22 +237,8 @@ const languageList = ref(props.languageList);
   .checkIcon {
     position: absolute;
     top: 8px;
-    left: 2px;
-  }
-
-  a {
-    display: block;
-    width: 100%;
-    padding-top: 3px;
-    padding-bottom: 3px;
-    padding-left: 24px;
-    font-size: pxToRem(14);
-    color: var(--color-text-body);
-    text-decoration: none;
-
-    &:hover {
-      text-decoration: underline;
-    }
+    left: 4px;
+    z-index: 1;
   }
 }
 </style>

@@ -40,4 +40,10 @@ const id = getRandomString();
 svg {
   pointer-events: none;
 }
+
+image,
+rect {
+  width: 100%;
+  height: 100%;
+}
 </style>
