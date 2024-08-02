@@ -50,10 +50,10 @@
     }
 
     &:not(.disabled):active {
-      color: var(--color-blue-1200);
+      color: var(--color-button-active);
       text-decoration: underline;
-      background-color: var(--color-blue-300);
-      border-color: var(--color-blue-1200);
+      background-color: var(--color-button-secondary-active);
+      border-color: var(--color-button-active);
     }
 
     &.disabled {
@@ -69,14 +69,14 @@
 
     &:not(.disabled):hover {
       color: var(--color-button-hover);
-      background-color: var(--color-blue-200);
+      background-color: var(--color-button-secondary-hover);
       border-color: transparent;
     }
 
     &:not(.disabled):active {
-      color: var(--color-blue-1200);
+      color: var(--color-button-active);
       text-decoration: underline;
-      background-color: var(--color-blue-300);
+      background-color: var(--color-button-active);
       border-color: transparent;
     }
 

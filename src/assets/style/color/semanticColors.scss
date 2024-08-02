@@ -53,12 +53,15 @@
   --color-button-light-hover: var(--color-blue-1000);
   --color-button-dark-hover: var(--color-blue-1000);
   --color-button-hover: var(--color-blue-1000);
-  --color-button-secondary-light-hover: var(--color-blue-50);
-  --color-button-secondary-dark-hover: var(--color-blue-50);
-  --color-button-secondary-hover: var(--color-blue-50);
+  --color-button-secondary-light-hover: var(--color-blue-200);
+  --color-button-secondary-dark-hover: var(--color-blue-200);
+  --color-button-secondary-hover: var(--color-blue-200);
   --color-button-light-active: var(--color-blue-1200);
   --color-button-dark-active: var(--color-blue-1200);
   --color-button-active: var(--color-blue-1200);
+  --color-button-secondary-light-active: var(--color-blue-300);
+  --color-button-secondary-dark-active: var(--color-blue-300);
+  --color-button-secondary-active: var(--color-blue-300);
   --color-button-light-disabled: var(--color-grey-420);
   --color-button-dark-disabled: var(--color-grey-420);
   --color-button-disabled: var(--color-grey-420);
@@ -165,6 +168,7 @@
     --color-button-hover: var(--color-button-dark-hover);
     --color-button-secondary-hover: var(--color-button-secondary-dark-hover);
     --color-button-active: var(--color-button-dark-active);
+    --color-button-secondary-active: var(--color-button-secondary-dark-active);
     --color-button-disabled: var(--color-button-dark-disabled);
 
     /* Background */
@@ -224,6 +228,7 @@
   --color-button-normal: var(--color-button-light-normal);
   --color-button-hover: var(--color-button-light-hover);
   --color-button-secondary-hover: var(--color-button-secondary-light-hover);
+  --color-button-secondary-active: var(--color-button-secondary-light-active);
   --color-button-active: var(--color-button-light-active);
   --color-button-disabled: var(--color-button-light-disabled);
 
@@ -283,6 +288,7 @@
   --color-button-normal: var(--color-button-dark-normal);
   --color-button-hover: var(--color-button-dark-hover);
   --color-button-secondary-hover: var(--color-button-secondary-dark-hover);
+  --color-button-secondary-active: var(--color-button-secondary-dark-active);
   --color-button-active: var(--color-button-dark-active);
   --color-button-disabled: var(--color-button-dark-disabled);
 
