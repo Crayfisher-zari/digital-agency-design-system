@@ -79,6 +79,9 @@
   --color-background-light-link: var(--color-blue-100);
   --color-background-dark-link: var(--color-blue-100);
   --color-background-link: var(--color-blue-100);
+  --color-background-light-checked: var(--color-blue-50);
+  --color-background-dark-checked: var(--color-blue-50);
+  --color-background-checked: var(--color-blue-50);
 
   /* Border */
   --color-border-light-field: var(--color-grey-900);
@@ -176,6 +179,7 @@
     --color-background-secondary: var(--color-background-dark-secondary);
     --color-background-tertiary: var(--color-background-dark-tertiary);
     --color-background-link: var(--color-background-dark-link);
+    --color-background-checked: var(--color-background-dark-checked);
 
     /* Border */
     --color-border-field: var(--color-border-dark-field);
@@ -237,6 +241,7 @@
   --color-background-secondary: var(--color-background-light-secondary);
   --color-background-tertiary: var(--color-background-light-tertiary);
   --color-background-link: var(--color-background-light-link);
+  --color-background-checked: var(--color-background-light-checked);
 
   /* Border */
   --color-border-field: var(--color-border-light-field);
@@ -297,6 +302,7 @@
   --color-background-secondary: var(--color-background-dark-secondary);
   --color-background-tertiary: var(--color-background-dark-tertiary);
   --color-background-link: var(--color-background-dark-link);
+  --color-background-checked: var(--color-background-dark-checked);
 
   /* Border */
   --color-border-field: var(--color-border-dark-field);

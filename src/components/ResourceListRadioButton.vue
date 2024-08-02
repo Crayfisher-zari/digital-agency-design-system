@@ -70,6 +70,6 @@ const isChecked = computed(() => {
 @use "./styles/resourceListStyle.scss";
 
 .resourceList.label.isChecked {
-  background-color: var(--color-blue-50);
+  background-color: var(--color-background-checked);
 }
 </style>
