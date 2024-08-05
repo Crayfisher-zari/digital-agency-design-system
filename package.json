@@ -1,8 +1,14 @@
 {
-  "name": "digital-agency-design-system-vue",
+  "name": "digital-gov-design-system-vue",
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "author": "Nishihara Tsubasa",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Crayfisher-zari/digital-agency-design-system.git"
+  },
   "scripts": {
     "dev": "vite --host",
     "build": "yarn run vue-tsc && vite build",
@@ -53,5 +59,12 @@
   },
   "resolutions": {
     "jackspeak": "2.1.1"
-  }
+  },
+  "keywords": [
+    "JavaScript",
+    "TypeScript",
+    "vue",
+    "ui framework",
+    "vue framework"
+  ]
 }

@@ -1,6 +1,6 @@
 
 # デジタル庁デザインシステム Storybook Vue.js
-[デジタル庁が公開しているデザインシステム](https://www.digital.go.jp/policies/servicedesign/designsystem)をVue.jsで実装したものです。各コンポーネントは[Storybook](https://crayfisher-zari.github.io/digital-agency-design-system/)で紹介しています。一部技術的な制約で紹介されていないコンポーネントもあります（例：見出しコンポーネント）。
+[デジタル庁が公開しているデザインシステム](https://www.digital.go.jp/policies/servicedesign/designsystem)をVue.jsで実装したものです。各コンポーネントは[Storybook](https://crayfisher-zari.github.io/digital-agency-design-system/)で紹介しています。
 
 現在、ダークモードのカラースキームは対応していません。
 
