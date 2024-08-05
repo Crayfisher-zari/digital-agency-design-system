@@ -44,8 +44,8 @@ const handleChange = (e: Event) => {
     v-model="model"
     type="checkbox"
     class="sr-only"
-    :value
-    :name
+    :value="props.value"
+    :name="name"
     :disabled="isDisabled"
     @change="handleChange"
   />

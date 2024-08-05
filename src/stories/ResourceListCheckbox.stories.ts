@@ -1,7 +1,8 @@
-import type { Meta, StoryObj } from "@storybook/vue3";
+import type { StoryObj } from "@storybook/vue3";
 import ResourceListCheckbox from "../components/ResourceListCheckbox.vue";
 import { computed, ref } from "vue";
 import icon3Point from "../assets/images/icon_3point.svg";
+import { GenericMeta } from "../types/GenericMeta";
 
 const meta = {
   title: "リソースリスト（チェックボックス）",
@@ -27,8 +28,9 @@ const meta = {
     supportText:
       "サイバーセキュリティを強化することによってサイバーインシデントによって事業継続が困難となる事態を回避",
     subLabel: "補助金番号：A-00000000",
+    name: "test",
   },
-} satisfies Meta<typeof ResourceListCheckbox>;
+} satisfies GenericMeta<typeof ResourceListCheckbox<string>>;
 export default meta;
 type Story = StoryObj<typeof meta>;
 

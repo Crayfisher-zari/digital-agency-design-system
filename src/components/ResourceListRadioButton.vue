@@ -45,9 +45,9 @@ const isChecked = computed(() => {
       <div class="radioArea">
         <PartsRadioButton
           v-model="model"
-          :name
+          :name="name"
           :radioValue="value"
-          :isDisabled
+          :isDisabled="isDisabled"
         />
       </div>
       <div v-if="$slots.frontIcon" class="frontIconWrapper">

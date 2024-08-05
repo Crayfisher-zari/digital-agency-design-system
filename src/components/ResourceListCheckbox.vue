@@ -48,7 +48,12 @@ const isChecked = computed(() => {
   <div class="resourceListWrapper">
     <label class="resourceList label" :class="{ isChecked: isChecked }">
       <div class="checkboxArea">
-        <PartsCheckbox v-model="model" :name :value="props.value" :isDisabled />
+        <PartsCheckbox
+          v-model="model"
+          :name="name"
+          :value="props.value"
+          :isDisabled="isDisabled"
+        />
       </div>
       <div v-if="$slots.frontIcon" class="frontIconWrapper">
         <slot name="frontIcon"></slot>
