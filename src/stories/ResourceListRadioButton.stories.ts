@@ -1,6 +1,7 @@
-import type { Meta, StoryObj } from "@storybook/vue3";
+import type { StoryObj } from "@storybook/vue3";
 import ResourceListRadioButton from "../components/ResourceListRadioButton.vue";
 import { computed, ref } from "vue";
+import { GenericMeta } from "../types/GenericMeta";
 
 const meta = {
   title: "リソースリスト（ラジオボタン）",
@@ -25,7 +26,7 @@ const meta = {
     supportText: "25階North",
     subLabel: "利用中",
   },
-} satisfies Meta<typeof ResourceListRadioButton>;
+} satisfies GenericMeta<typeof ResourceListRadioButton<string>>;
 export default meta;
 type Story = StoryObj<typeof meta>;
 

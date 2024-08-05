@@ -45,9 +45,9 @@ const handleChangeCheck = (value: boolean) => {
       <PartsCheckbox
         v-model="model"
         :value="props.value"
-        :name
-        :isDisabled
-        :isValid
+        :name="name"
+        :isDisabled="isDisabled"
+        :isValid="isValid"
         @changeCheck="handleChangeCheck"
       />
     </div>
