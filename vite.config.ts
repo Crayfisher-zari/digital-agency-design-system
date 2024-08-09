@@ -1,3 +1,4 @@
+import { resolve } from "path";
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import "dotenv/config";
@@ -6,6 +7,25 @@ import "dotenv/config";
 export default defineConfig({
   plugins: [vue()],
   base: process.env?.BASE_PATH ?? "/",
+  build: {
+    lib: {
+      entry: [
+        resolve(__dirname, "src/index.ts"),
+        resolve(__dirname, "src/assets/style/style.scss")
+      ],
+      name: "digitalGovDesignSystemVue",
+      fileName: "digital-gov-design-system-vue",
+    },
+    rollupOptions: {
+      external: ["vue"],
+      output: {
+        globals: {
+          vue: "Vue",
+        },
+      },
+    },
+    copyPublicDir: false,
+  },
   resolve: {
     alias: {
       "@": `${__dirname}/src/`,
