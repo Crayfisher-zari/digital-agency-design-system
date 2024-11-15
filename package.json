@@ -1,10 +1,13 @@
 {
   "name": "digital-gov-design-system-vue",
-  "private": true,
   "version": "0.0.0",
   "type": "module",
   "author": "Nishihara Tsubasa",
   "license": "MIT",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": ["dist"],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Crayfisher-zari/digital-agency-design-system.git"
@@ -17,7 +20,7 @@
   },
   "scripts": {
     "dev": "vite --host",
-    "build": "yarn run vue-tsc && vite build",
+    "build": "yarn run vite build && vue-tsc",
     "preview": "vite preview",
     "typeCheck": "yarn run vue-tsc",
     "lint": "eslint \"./**/*.{ts,vue}\" && stylelint \"./**/*.{scss,vue}\" && prettier \"./**/*.{scss,vue,ts}\" --check",

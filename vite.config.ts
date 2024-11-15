@@ -13,8 +13,8 @@ export default defineConfig({
         resolve(__dirname, "src/index.ts"),
         resolve(__dirname, "src/assets/style/style.scss")
       ],
-      name: "digitalGovDesignSystemVue",
-      fileName: "digital-gov-design-system-vue",
+      name: "index",
+      fileName: "index",
     },
     rollupOptions: {
       external: ["vue"],
