@@ -6,16 +6,28 @@
   "license": "MIT",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "files": ["dist"],
+  "types": "./dist/types/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Crayfisher-zari/digital-agency-design-system.git"
   },
   "exports": {
     ".": {
-      "import": "./dist/digital-gov-design-system-vue.js",
-      "require": "./dist/digital-gov-design-system-vue.umd.cjs"
+      "import": {
+        "default": "./dist/index.js",
+        "types": "./dist/types/index.d.ts"
+      },
+      "require": {
+        "default": "./dist/index.umd.cjs",
+        "types": "./dist/types/index.d.ts"
+      }
+    },
+    "./style.css": {
+      "import": "./dist/style.css",
+      "require": "./dist/style.css"
     }
   },
   "scripts": {

@@ -9,12 +9,8 @@ export default defineConfig({
   base: process.env?.BASE_PATH ?? "/",
   build: {
     lib: {
-      entry: [
-        resolve(__dirname, "src/index.ts"),
-        resolve(__dirname, "src/assets/style/style.scss")
-      ],
+      entry: [resolve(__dirname, "src/index.ts")],
       name: "index",
-      fileName: "index",
     },
     rollupOptions: {
       external: ["vue"],

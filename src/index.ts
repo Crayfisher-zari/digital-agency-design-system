@@ -35,6 +35,7 @@ import ResourceListRadioButton from "./components/ResourceListRadioButton.vue";
 import ScrollTop from "./components/ScrollTop.vue";
 import Selector from "./components/Selector.vue";
 import TextAreaInput from "./components/TextAreaInput.vue";
+import TextInput from "./components/TextInput.vue";
 import UtilityLink from "./components/UtilityLink.vue";
 import YMDInput from "./components/YMDInput.vue";
 import YMDSelector from "./components/YMDSelector.vue";
@@ -77,7 +78,11 @@ export {
   ScrollTop,
   Selector,
   TextAreaInput,
+  TextInput,
   UtilityLink,
   YMDInput,
   YMDSelector,
 };
+
+// style
+import "./assets/style/style.scss";
