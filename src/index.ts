@@ -1,3 +1,4 @@
+// Components
 import Accordion from "./components/Accordion.vue";
 import BasicButton from "./components/BasicButton.vue";
 import BasicButtonLink from "./components/BasicButtonLink.vue";
@@ -84,5 +85,14 @@ export {
   YMDSelector,
 };
 
-// style
+// Style
 import "./assets/style/style.scss";
+
+// Composables
+export { useBirthDate } from "./composables/useBirthDate";
+export { useEmailInput } from "./composables/useEmailInput";
+export { useNameInput } from "./composables/useNameInput";
+export { usePasswordInput } from "./composables/usePasswordInput";
+export { useScrollLock } from "./composables/useScrollLock";
+export { useTelInput } from "./composables/useTelInput";
+export { useTextAreaInput } from "./composables/useTextAreaInput";
