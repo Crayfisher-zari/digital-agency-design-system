@@ -29,11 +29,11 @@ import MenuLink from "./components/MenuLink.vue";
 import HamburgerButton from "./components/HamburgerButton.vue";
 import Drawer from "./components/Drawer.vue";
 import MegaMenuContainer from "./components/MegaMenuContainer.vue";
-import DropDownSummary from "./components/DropDownSummary.vue";
 import MegaMenuTitle from "./components/MegaMenuTitle.vue";
 import Divider from "./components/Divider.vue";
 import BasicTable from "./components/BasicTable.vue";
 import { useScrollLock } from "./composables/useScrollLock";
+import MegaMenuButton from "./components/MegaMenuButton.vue";
 
 const handleClick = () => {
   console.log("click");
@@ -263,19 +263,14 @@ watchEffect(() => {
       </template>
       <template #menu>
         <NavigationContainer class="headerMenu" alignItems="end">
-          <button
-            class="megaMenuButton"
-            @click="
+          <MegaMenuButton
+            label="メガメニュー"
+            :onClick="
               () => {
                 isMegaMenuVisible = !isMegaMenuVisible;
               }
             "
-          >
-            <DropDownSummary
-              summaryText="メガメニュー"
-              :isActive="isMegaMenuVisible ?? false"
-            />
-          </button>
+          />
           <MenuLink to="#!">政策</MenuLink>
           <DropDown summary="市民向けサービス">
             <Menu :menuList="menuList2" linkTag="a"></Menu>
@@ -762,7 +757,7 @@ hr {
 }
 
 .headerNav {
-  padding-right: 160px;
+  // padding-right: 160px;
 
   @include mediaQueryDown {
     display: none;
@@ -773,16 +768,16 @@ hr {
   height: 56px;
 }
 
-.headerLanguage {
-  position: absolute;
-  top: 26px;
-  right: 4px;
-  width: 120px;
+// .headerLanguage {
+//   position: absolute;
+//   top: 26px;
+//   right: 4px;
+//   width: 120px;
 
-  @include mediaQueryDown {
-    top: 12px;
-  }
-}
+//   @include mediaQueryDown {
+//     top: 12px;
+//   }
+// }
 
 .languageWrapper {
   position: relative;
