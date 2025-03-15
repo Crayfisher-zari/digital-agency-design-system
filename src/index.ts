@@ -21,6 +21,7 @@ import MegaMenuTitle from "./components/MegaMenuTitle.vue";
 import Menu from "./components/Menu.vue";
 import MenuAccordion from "./components/MenuAccordion.vue";
 import MenuLink from "./components/MenuLink.vue";
+import Modal from "./components/Modal.vue";
 import NavigationContainer from "./components/NavigationContainer.vue";
 import NotificationBanner from "./components/NotificationBanner.vue";
 import Pagination from "./components/Pagination.vue";
@@ -64,6 +65,7 @@ export {
   Menu,
   MenuAccordion,
   MenuLink,
+  Modal,
   NavigationContainer,
   NotificationBanner,
   Pagination,
