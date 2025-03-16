@@ -99,3 +99,4 @@ export { useScrollLock } from "./composables/useScrollLock";
 export { useTelInput } from "./composables/useTelInput";
 export { useTextAreaInput } from "./composables/useTextAreaInput";
 export { usePagination } from "./composables/usePagination";
+export { useColorScheme } from "./composables/useColorScheme";
