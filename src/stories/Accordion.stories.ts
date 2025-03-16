@@ -12,12 +12,6 @@ const meta = {
     details: {
       control: "text",
     },
-    hasSummaryIcon: {
-      control: "boolean",
-    },
-    hasDetailIcon: {
-      control: "boolean",
-    },
   },
   args: {
     summary: "アコーディオンタイトル",
@@ -29,53 +23,8 @@ type Story = StoryObj<typeof meta>;
 
 export const Base: Story = {
   args: {
-    summary: "アコーディオンタイトル",
-    details: "中身",
+    summary: "ダミーテキストはどのような場合に使用されますか。",
+    details:
+      "これはダミーテキストです。ダミーテキストは、デザインやレイアウトの作成時に使用される仮の文章です。ダミーテキストを使用すると、デザインの全体像を評価したり、テキストの配置や長さを確認したりすることができます。ダミーテキストは実際の文章ではないので、内容には意味がありません。",
   },
-};
-
-/**
- * `<template #summary>`でサマリーにアイコンを組み込めます
- */
-export const WithSummaryIcon: Story = {
-  args: {
-    summary: "アコーディオンタイトル（タイトルにアイコンあり）",
-    details: "中身",
-    hasSummaryIcon: true,
-  },
-  render: (args) => ({
-    components: { Accordion },
-    setup: () => {
-      return { ...args };
-    },
-    template: `
-    <Accordion :summary="summary" :details="details" :hasSummaryIcon="hasSummaryIcon">
-      <template #summary>🤔</template>
-    </Accordion>
-    `,
-  }),
-};
-
-/**
- * `<template #detail>`で詳細にもアイコンを組み込めます
- */
-export const WithDetailIcon: Story = {
-  args: {
-    summary: "アコーディオンタイトル（中身にもアイコンあり）",
-    details: "中身",
-    hasSummaryIcon: true,
-    hasDetailIcon: true,
-  },
-  render: (args) => ({
-    components: { Accordion },
-    setup: () => {
-      return { ...args };
-    },
-    template: `
-    <Accordion :summary="summary" :details="details" :hasSummaryIcon="hasSummaryIcon" :hasDetailIcon="hasDetailIcon">
-      <template #summary>🤔</template>
-      <template #detail>😀</template>
-    </Accordion>
-    `,
-  }),
 };

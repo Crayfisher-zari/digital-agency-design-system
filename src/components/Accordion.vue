@@ -7,14 +7,9 @@ import { useDropDownAnimation } from "../composables/useDropDownAnimation";
 type Props = {
   summary: string;
   details: string;
-  hasSummaryIcon?: boolean;
-  hasDetailIcon?: boolean;
 };
 
-withDefaults(defineProps<Props>(), {
-  hasSummaryIcon: false,
-  hasDetailIcon: false,
-});
+withDefaults(defineProps<Props>(), {});
 
 const accordionElement = ref<HTMLDetailsElement | null>(null);
 const contentsElement = ref<HTMLElement | null>(null);
@@ -34,25 +29,21 @@ const { isOpened, hasAnimation, handleDropDown } = useDropDownAnimation(
       :class="[{ isOpened: isOpened }, { hasAnimation: hasAnimation }]"
     >
       <summary class="summary" @click="handleDropDown">
-        <span v-if="hasSummaryIcon" class="icon"
-          ><slot name="summary"></slot
-        ></span>
+        <span class="iconWrapper">
+          <Icon
+            :iconSrc="iconArrow"
+            :width="18"
+            :height="10"
+            color="var(--color-text-link)"
+            class="dropDownIcon"
+            :ariaHidden="true"
+            role="img"
+          />
+        </span>
         <span class="summaryInner">{{ summary }}</span>
-        <Icon
-          :iconSrc="iconArrow"
-          :width="24"
-          :height="14"
-          color="var(--color-text-body)"
-          class="dropDownIcon"
-          :ariaHidden="true"
-          role="img"
-        />
       </summary>
       <div ref="contentsElement" class="details">
         <div ref="contentsInnerElement" class="detailsInner">
-          <span v-if="hasDetailIcon" class="icon"
-            ><slot name="detail"></slot
-          ></span>
           {{ details }}
         </div>
       </div>
@@ -81,31 +72,12 @@ const { isOpened, hasAnimation, handleDropDown } = useDropDownAnimation(
   }
 }
 
-.icon {
-  display: block;
-  flex-shrink: 0;
-  align-self: flex-start;
-  width: 24px;
-  height: 24px;
-  margin-top: 4px;
-  margin-right: 38px;
-  margin-left: 6px;
-  font-size: pxToRem(24);
-  line-height: 1;
-
-  @include mediaQueryDown {
-    margin-right: 24px;
-  }
-}
-
 .summary {
   display: flex;
   align-items: center;
   justify-content: space-between;
   min-height: 68px;
-  padding-top: 19px;
-  padding-right: 28px;
-  padding-bottom: 19px;
+  padding: 19px 28px 19px 6px;
   font-size: pxToRem(20);
   line-height: 1.5;
   letter-spacing: 0.04em;
@@ -113,11 +85,21 @@ const { isOpened, hasAnimation, handleDropDown } = useDropDownAnimation(
 
   &:hover {
     background-color: var(--color-background-secondary);
+
+    .iconWrapper {
+      border-width: 3px;
+    }
   }
 
   &::-webkit-details-marker {
     // Safariの三角アイコン
-    display: none;
+    visibility: hidden;
+  }
+
+  &:focus-visible {
+    background-color: var(--color-focus);
+    border-radius: 5px;
+    outline: 4px solid var(--color-text-body);
   }
 }
 
@@ -128,10 +110,20 @@ const { isOpened, hasAnimation, handleDropDown } = useDropDownAnimation(
   width: 100%;
 }
 
+.iconWrapper {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  margin-right: 14px;
+  background-color: var(--color-background-primary);
+  border: 1px solid var(--color-text-link);
+  border-radius: 50%;
+}
+
 .dropDownIcon {
   display: block;
-  flex-shrink: 0;
-  margin-left: 16px;
   transition: transform var(--base-duration) var(--easing-out-expo);
 }
 
@@ -142,9 +134,7 @@ const { isOpened, hasAnimation, handleDropDown } = useDropDownAnimation(
 
 .detailsInner {
   display: flex;
-  padding-top: 24px;
-  padding-right: 32px;
-  padding-bottom: 40px;
+  padding: 24px 32px 40px 56px;
   font-size: pxToRem(16);
   line-height: 1.7;
 }

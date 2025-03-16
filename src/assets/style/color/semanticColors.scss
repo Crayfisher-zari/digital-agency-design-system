@@ -147,6 +147,9 @@
   --color-mono-hover: var(--color-grey-50);
   --color-mono-hover-light: var(--color-grey-50);
   --color-mono-hover-dark: var(--color-grey-50);
+  --color-focus: var(--color-yellow-300);
+  --color-focus-light: var(--color-yellow-300);
+  --color-focus-dark: var(--color-yellow-300);
 
   @media (prefers-color-scheme: dark) {
     /* Text */
@@ -207,6 +210,7 @@
     --color-mono-clear: var(--color-mono-clear-dark);
     --color-mono-reverse: var(--color-mono-reverse-dark);
     --color-mono-hover: var(--color-mono-hover-dark);
+    --color-focus: var(--color-yellow-300);
   }
 }
 
@@ -269,6 +273,7 @@
   --color-mono-clear: var(--color-mono-clear-light);
   --color-mono-reverse: var(--color-mono-reverse-light);
   --color-mono-hover: var(--color-mono-hover-light);
+  --color-focus: var(--color-yellow-300);
 }
 
 .color-scheme-dark {
@@ -330,4 +335,5 @@
   --color-mono-clear: var(--color-mono-clear-dark);
   --color-mono-reverse: var(--color-mono-reverse-dark);
   --color-mono-hover: var(--color-mono-hover-dark);
+  --color-focus: var(--color-yellow-300);
 }
