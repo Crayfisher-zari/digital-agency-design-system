@@ -7,7 +7,7 @@
 propsなどはDocsに記載しています。`modelValue`propsおよび`update:modelValue`はコンポーネントの`v-model`で利用できます。
 
 ## 必要動作環境
-Vue 3.4以上
+Vue 3.5以上
 
 ## インストール
 ```
