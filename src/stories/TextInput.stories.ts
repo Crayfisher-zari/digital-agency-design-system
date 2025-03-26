@@ -46,9 +46,34 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+/**
+ * デフォルトサイズ（ミディアム）
+ */
 export const Base: Story = {
   args: {
     label: "ラベル",
     type: "text",
+  },
+};
+
+/**
+ * ラージサイズ
+ */
+export const Large: Story = {
+  args: {
+    label: "ラベル",
+    type: "text",
+    size: "large",
+  },
+};
+
+/**
+ * スモールサイズ
+ */
+export const Small: Story = {
+  args: {
+    label: "ラベル",
+    type: "text",
+    size: "small",
   },
 };
