@@ -34,7 +34,7 @@
     border-color: var(--color-button-active);
   }
 
-  &:not(.disabled):focus-visible {
+  &:focus-visible {
     outline: 4px solid var(--color-text-body);
     outline-offset: 2px;
     box-shadow: 0 0 2px 2px var(--color-focus);

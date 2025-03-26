@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/vue3";
 import BasicButton from "../components/BasicButton.vue";
+import Icon from "../components/Icon.vue";
+import iconExternal from "@/assets/images/icon_external.svg";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 const meta = {
@@ -139,10 +141,58 @@ export const CustomColor2: Story = {
 
 /**
  * 非活性時
+ * 実装はdisabled属性ではなくフォーカス可能なaria-disabled属性を利用しています。<br>
+ * 詳しくはhttps://design.digital.go.jp/components/button/accessibility/を参照してください。
  */
 export const Disabled: Story = {
   args: {
     label: "ボタン",
     disabled: true,
   },
+};
+
+/**
+ * アイコンあり（はじめ側）
+ */
+export const StartIcon: Story = {
+  args: {
+    label: "ボタン",
+  },
+  render: () => ({
+    components: { BasicButton, Icon },
+    setup: () => {
+      const iconSrc = iconExternal;
+      return {
+        iconSrc,
+      };
+    },
+    template: `<BasicButton label="ボタン" type="primary" size="medium" @click="clicked">
+      <template v-slot:start>
+      <Icon :iconSrc="iconSrc" width="16" height="16" color="var(--color-text-onFill)" />
+      </template>
+    </BasicButton>`,
+  }),
+};
+
+/**
+ * アイコンあり（おわり側）
+ */
+export const EndIcon: Story = {
+  args: {
+    label: "ボタン",
+  },
+  render: () => ({
+    components: { BasicButton, Icon },
+    setup: () => {
+      const iconSrc = iconExternal;
+      return {
+        iconSrc,
+      };
+    },
+    template: `<BasicButton label="ボタン" type="primary" size="medium" @click="clicked">
+      <template v-slot:end>
+      <Icon :iconSrc="iconSrc" width="16" height="16" color="var(--color-text-onFill)" />
+      </template>
+    </BasicButton>`,
+  }),
 };

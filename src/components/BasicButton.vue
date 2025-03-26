@@ -8,7 +8,7 @@ type Props = {
   type?: "primary" | "secondary" | "tertiary" | "custom";
   /** ボタンのサイズです。未指定の場合はmediumになります */
   size?: "large" | "medium" | "small" | "x-small";
-  /** 非活性かどうか？ */
+  /** 非活性かどうか？実装としてはdisabled属性ではなくaria-disabledになっています。 */
   disabled?: boolean;
   /** カスタムカラー。個別で指定したい場合 */
   customColor?: CustomColor;
@@ -39,13 +39,20 @@ const {
   customActiveLabelColor,
   customActiveBorderColor,
 } = useButtonColor(props.customColor);
+
+const handleClick = () => {
+  // ボタンが非活性の場合はクリックイベントを発火しない
+  if (!props.disabled) {
+    emits("click");
+  }
+};
 </script>
 <template>
   <button
     class="button"
     :class="[type, size, { disabled: disabled }]"
-    :disabled="disabled"
-    @click="emits('click')"
+    :aria-disabled="disabled"
+    @click="handleClick"
   >
     <span class="labelText">{{ label }}</span>
   </button>
