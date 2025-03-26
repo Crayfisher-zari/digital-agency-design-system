@@ -54,7 +54,15 @@ const handleClick = () => {
     :aria-disabled="disabled"
     @click="handleClick"
   >
-    <span class="labelText">{{ label }}</span>
+    <span class="labelText">
+      <span v-if="$slots.start" class="iconWrapper">
+        <slot name="start"></slot>
+      </span>
+      {{ label }}
+      <span v-if="$slots.end" class="iconWrapper">
+        <slot name="end"></slot>
+      </span>
+    </span>
   </button>
 </template>
 

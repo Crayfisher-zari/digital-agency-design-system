@@ -128,8 +128,15 @@
 }
 
 .labelText {
+  display: flex;
+  column-gap: 8px;
+  align-items: center;
   color: inherit;
   text-align: center;
   -webkit-user-select: none;
   user-select: none;
+}
+
+.iconWrapper {
+  display: inline-flex;
 }
