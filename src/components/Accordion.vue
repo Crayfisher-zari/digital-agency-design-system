@@ -43,14 +43,14 @@ const anchorId = useId();
             role="img"
           />
         </span>
-        <span class="summaryInner">{{ summary }}</span>
+        <span class="summaryInner Std-18N-160">{{ summary }}</span>
       </summary>
       <div ref="contentsElement" class="details">
         <div ref="contentsInnerElement" class="detailsInner">
-          <p>
+          <p class="Std-16N-170">
             {{ details }}
           </p>
-          <a :href="`#${anchorId}`" class="anchor">
+          <a :href="`#${anchorId}`" class="anchor Std-16N-170">
             <Icon
               :iconSrc="iconReturn"
               :width="24"
@@ -170,9 +170,6 @@ const anchorId = useId();
   flex-direction: column;
   row-gap: 16px;
   padding: 24px 32px 40px 56px;
-  font-size: pxToRem(16);
-  line-height: 1.7;
-  letter-spacing: 0.02em;
 
   @include mediaQueryDown {
     padding: 16px 8px 16px 34px;

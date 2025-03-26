@@ -58,7 +58,7 @@ const handleClick = () => {
       <span v-if="$slots.start" class="iconWrapper">
         <slot name="start"></slot>
       </span>
-      {{ label }}
+      <span class="Oln-16B-100"> {{ label }} </span>
       <span v-if="$slots.end" class="iconWrapper">
         <slot name="end"></slot>
       </span>
