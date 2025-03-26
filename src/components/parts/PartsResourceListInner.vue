@@ -27,5 +27,5 @@ withDefaults(defineProps<Props>(), {
   </div>
 </template>
 <style lang="scss" scoped>
-@use "../styles/resourceListStyle.scss";
+@use "../styles/resourceListStyle";
 </style>

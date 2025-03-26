@@ -50,7 +50,7 @@ const wrapperTag = computed(() => {
 </template>
 <style lang="scss" scoped>
 @use "@/assets/style/utils/utils.scss" as *;
-@use "./styles/basicButtonStyle.scss";
+@use "./styles/basicButtonStyle";
 
 .emergencyBanner {
   display: block;
