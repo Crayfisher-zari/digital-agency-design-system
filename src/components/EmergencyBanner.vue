@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { computed } from "vue";
 import { LinkTag, useLink } from "../composables/useLinkComponent";
+import Icon from "./Icon.vue";
+import iconExternal from "@/assets/images/icon_external.svg";
 
 type Props = {
   /** タイトル */
@@ -11,6 +12,8 @@ type Props = {
   description: string;
   /** クリック時、およびボタンのリンク先 */
   url?: string;
+  /** 外部リンクかどうか */
+  isExternal?: boolean;
   /** リンク種別 */
   linkTag?: LinkTag;
   /** ボタンのラベル */
@@ -18,20 +21,13 @@ type Props = {
 };
 const props = defineProps<Props>();
 
-const { LinkComponent } = useLink({ tag: props.linkTag });
-
-// ラッパー要素のタグ
-const wrapperTag = computed(() => {
-  if (props.url !== undefined) {
-    return LinkComponent;
-  } else {
-    return "div";
-  }
+const { LinkComponent } = useLink({
+  tag: props.linkTag,
 });
 </script>
 <template>
-  <div class="emergencyBannerWrapper" :class="{ withLink: url !== undefined }">
-    <component :is="wrapperTag" class="emergencyBanner">
+  <div class="emergencyBannerWrapper">
+    <div class="emergencyBanner">
       <h2 class="title">{{ title }}</h2>
       <p v-if="date" class="date">
         {{ date }}
@@ -40,12 +36,27 @@ const wrapperTag = computed(() => {
         {{ description }}
       </p>
       <slot></slot>
-      <div v-if="url && buttonLabel" class="buttonWrapper">
+      <LinkComponent
+        v-if="url && buttonLabel"
+        :href="url"
+        :target="isExternal ? '_blank' : undefined"
+        class="buttonWrapper"
+      >
         <div class="button custom medium">
-          <span class="labelText">{{ buttonLabel }}</span>
+          <span class="labelText">
+            {{ buttonLabel }}
+            <span v-if="isExternal" class="iconWrapper">
+              <Icon
+                :iconSrc="iconExternal"
+                :width="16"
+                :height="16"
+                color="var(--color-text-onFill)"
+              />
+            </span>
+          </span>
         </div>
-      </div>
-    </component>
+      </LinkComponent>
+    </div>
   </div>
 </template>
 <style lang="scss" scoped>
@@ -55,22 +66,19 @@ const wrapperTag = computed(() => {
 .emergencyBanner {
   display: block;
   padding: 32px;
-  text-decoration: none;
   background-color: #fff;
-  border: 6px solid var(--color-border-alert);
+  border: 6px solid var(--color-border-alert2);
   transition: background-color var(--base-duration) var(--easing-out-expo);
 }
 
 .title {
   font-size: pxToRem(24);
   font-weight: var(--weight-bold);
-  line-height: 1.16;
-  color: var(--color-status-alert);
-  letter-spacing: 0.04em;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
 
   @include mediaQueryDown {
     font-size: pxToRem(20);
-    line-height: 1.5;
   }
 }
 
@@ -79,7 +87,7 @@ const wrapperTag = computed(() => {
   font-size: pxToRem(16);
   line-height: 1.7;
   color: var(--color-text-body);
-  letter-spacing: 0.04em;
+  letter-spacing: 0.02em;
 }
 
 .description {
@@ -87,7 +95,7 @@ const wrapperTag = computed(() => {
   font-size: pxToRem(20);
   line-height: 1.5;
   color: var(--color-text-body);
-  letter-spacing: 0.04em;
+  letter-spacing: 0.02em;
 
   @include mediaQueryDown {
     font-size: pxToRem(16);
@@ -95,27 +103,11 @@ const wrapperTag = computed(() => {
   }
 }
 
-.withLink {
-  .title {
-    text-decoration: underline;
-  }
-
-  &:hover {
-    .emergencyBanner {
-      background-color: #f8f8fb;
-    }
-
-    .date,
-    .description {
-      text-decoration: underline;
-    }
-  }
-}
-
 .buttonWrapper {
   display: flex;
   justify-content: center;
   margin-top: 28px;
+  text-decoration: none;
 }
 
 .button {
@@ -129,7 +121,7 @@ const wrapperTag = computed(() => {
     content: "";
     border-radius: 8px;
     outline: 4px solid var(--color-status-alert);
-    outline-offset: 2px;
+    outline-offset: 4px;
     transition: outline-color var(--base-duration) var(--easing-out-expo);
   }
 

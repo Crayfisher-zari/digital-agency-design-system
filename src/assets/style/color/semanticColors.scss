@@ -111,6 +111,9 @@
   --color-border-light-alert: var(--color-red-800);
   --color-border-dark-alert: var(--color-red-800);
   --color-border-alert: var(--color-red-800);
+  --color-border-light-alert2: var(--color-orange-600);
+  --color-border-dark-alert2: var(--color-orange-600);
+  --color-border-alert2: var(--color-orange-600);
   --color-border-light-disabled: var(--color-grey-420);
   --color-border-dark-disabled: var(--color-grey-420);
   --color-border-disabled: var(--color-grey-420);
@@ -198,6 +201,7 @@
     --color-border-focused: var(--color-border-dark-focused);
     --color-border-selected: var(--color-border-dark-selected);
     --color-border-alert: var(--color-border-dark-alert);
+    --color-border-alert2: var(--color-orange-600);
     --color-border-disabled: var(--color-border-dark-disabled);
 
     /* Status */
@@ -261,6 +265,7 @@
   --color-border-focused: var(--color-border-light-focused);
   --color-border-selected: var(--color-border-light-selected);
   --color-border-alert: var(--color-border-light-alert);
+  --color-border-alert2: var(--color-orange-600);
   --color-border-disabled: var(--color-border-light-disabled);
 
   /* Status */
@@ -323,6 +328,7 @@
   --color-border-focused: var(--color-border-dark-focused);
   --color-border-selected: var(--color-border-dark-selected);
   --color-border-alert: var(--color-border-dark-alert);
+  --color-border-alert2: var(--color-orange-600);
   --color-border-disabled: var(--color-border-dark-disabled);
 
   /* Status */
