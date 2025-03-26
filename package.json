@@ -17,12 +17,12 @@
   "exports": {
     ".": {
       "import": {
-        "default": "./dist/index.js",
-        "types": "./dist/types/index.d.ts"
+        "types": "./dist/types/index.d.ts",
+        "default": "./dist/index.js"
       },
       "require": {
-        "default": "./dist/index.umd.cjs",
-        "types": "./dist/types/index.d.ts"
+        "types": "./dist/types/index.d.ts",
+        "default": "./dist/index.umd.cjs"
       }
     },
     "./style.css": {
@@ -41,7 +41,7 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
-    "vue": "3.4.21"
+    "vue": "3.5.13"
   },
   "devDependencies": {
     "@storybook/addon-essentials": "8.0.6",
@@ -58,7 +58,7 @@
     "dotenv": "16.4.5",
     "eslint": "8.57.0",
     "eslint-config-prettier": "9.1.0",
-    "eslint-plugin-storybook": "^0.8.0",
+    "eslint-plugin-storybook": "0.8.0",
     "eslint-plugin-vue": "9.24.0",
     "init": "0.1.2",
     "postcss-html": "1.6.0",
@@ -74,7 +74,7 @@
     "stylelint-config-recommended-vue": "1.5.0",
     "stylelint-config-standard-scss": "13.1.0",
     "typescript": "5.4.4",
-    "vite": "5.2.8",
+    "vite": "6.2.2",
     "vue-eslint-parser": "9.4.2",
     "vue-tsc": "2.0.10"
   },
