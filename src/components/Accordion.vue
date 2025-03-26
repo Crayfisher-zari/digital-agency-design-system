@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref ,useId} from "vue";
 import Icon from "./Icon.vue";
 import iconArrow from "@/assets/images/icon_arrow_accordion.svg";
+import iconReturn from "@/assets/images/icon_return.svg";
 import { useDropDownAnimation } from "../composables/useDropDownAnimation";
 
 type Props = {
@@ -20,6 +21,8 @@ const { isOpened, hasAnimation, handleDropDown } = useDropDownAnimation(
   contentsElement,
   contentsInnerElement,
 );
+
+const anchorId = useId();
 </script>
 <template>
   <div>
@@ -28,8 +31,8 @@ const { isOpened, hasAnimation, handleDropDown } = useDropDownAnimation(
       class="accordion"
       :class="[{ isOpened: isOpened }, { hasAnimation: hasAnimation }]"
     >
-      <summary class="summary" @click="handleDropDown">
-        <span class="iconWrapper">
+      <summary :id="anchorId" class="summary" @click="handleDropDown">
+        <span class="iconWrapper" >
           <Icon
             :iconSrc="iconArrow"
             :width="18"
@@ -44,7 +47,16 @@ const { isOpened, hasAnimation, handleDropDown } = useDropDownAnimation(
       </summary>
       <div ref="contentsElement" class="details">
         <div ref="contentsInnerElement" class="detailsInner">
-          {{ details }}
+          <p>
+            {{ details }}
+          </p>
+          <a :href="`#${anchorId}`" class="anchor"> <Icon
+            :iconSrc="iconReturn"
+            :width="24"
+            :height="24"
+            color="var(--color-text-link)"
+            class="returnIcon"
+          />「{{ summary}}」の先頭に戻る</a>
         </div>
       </div>
     </details>
@@ -134,8 +146,16 @@ const { isOpened, hasAnimation, handleDropDown } = useDropDownAnimation(
 
 .detailsInner {
   display: flex;
+  flex-direction: column;
+  row-gap: 16px;
   padding: 24px 32px 40px 56px;
   font-size: pxToRem(16);
   line-height: 1.7;
+}
+
+.anchor{
+  display: flex;
+  column-gap: 8px;
+  align-items: center;
 }
 </style>

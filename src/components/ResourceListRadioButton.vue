@@ -67,7 +67,7 @@ const isChecked = computed(() => {
 </template>
 <style lang="scss" scoped>
 @use "@/assets/style/utils/utils.scss" as *;
-@use "./styles/resourceListStyle.scss";
+@use "./styles/resourceListStyle";
 
 .resourceList.label.isChecked {
   background-color: var(--color-background-checked);

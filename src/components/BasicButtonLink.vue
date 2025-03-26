@@ -53,7 +53,7 @@ const {
 
 <style lang="scss" scoped>
 @use "@/assets/style/utils/utils.scss" as *;
-@use "./styles/basicButtonStyle.scss";
+@use "./styles/basicButtonStyle";
 
 .button {
   &.custom {

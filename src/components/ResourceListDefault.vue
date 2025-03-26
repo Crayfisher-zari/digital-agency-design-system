@@ -40,7 +40,7 @@ const props = withDefaults(defineProps<Props>(), {
 </template>
 <style lang="scss" scoped>
 @use "@/assets/style/utils/utils.scss" as *;
-@use "./styles/resourceListStyle.scss";
+@use "./styles/resourceListStyle";
 
 .resourceList {
   &.default {

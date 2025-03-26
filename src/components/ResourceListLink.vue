@@ -51,7 +51,7 @@ const { LinkComponent } = useLink({ tag: props.linkTag });
 </template>
 <style lang="scss" scoped>
 @use "@/assets/style/utils/utils.scss" as *;
-@use "./styles/resourceListStyle.scss";
+@use "./styles/resourceListStyle";
 
 .resourceList {
   &.link {
