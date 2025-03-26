@@ -1,10 +1,11 @@
 <script lang="ts" setup>
-import { computed } from "vue";
-import { getRandomString } from "../utils/getRandomString";
+import { computed, useId } from "vue";
 
 type Props = {
   /** 値（v-modelでも使える） */
   modelValue: string;
+  /** サイズ */
+  size?: "large" | "medium" | "small";
   /** インプットのラベルです */
   label: string;
   /** テキスト入力のタイプです。未指定の場合はtextになります */
@@ -37,6 +38,7 @@ type Props = {
 
 const props = withDefaults(defineProps<Props>(), {
   type: "text",
+  size: "medium",
   isRequired: false,
   isValid: true,
   placeHolder: "",
@@ -49,7 +51,7 @@ const props = withDefaults(defineProps<Props>(), {
 const model = defineModel<string>();
 
 // aria-describledby用のエラー文言のid名です
-const errorIdName = `textInput${getRandomString()}`;
+const errorIdName = `textInput${useId()}`;
 
 // 状態に応じたクラス名を返します
 const stateClassName = computed<string | null>(() => {

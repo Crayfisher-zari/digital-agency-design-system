@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { computed } from "vue";
-import { getRandomString } from "../utils/getRandomString";
+import { computed, useId } from "vue";
 
 type Props = {
   /** 年の値（v-model:yearで使える） */
@@ -40,7 +39,7 @@ const modelMonth = defineModel<string>("month");
 const modelDay = defineModel<string>("day");
 
 // aria-describledby用のエラー文言のid名です
-const errorIdName = `ymdInput${getRandomString()}`;
+const errorIdName = `ymdInput${useId()}`;
 
 // 状態に応じたクラス名を返します
 const stateClassName = computed<string | null>(() => {

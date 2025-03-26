@@ -1,8 +1,7 @@
 <script lang="ts" setup>
-import { computed } from "vue";
+import { computed, useId } from "vue";
 import Icon from "./Icon.vue";
 import iconSelector from "@/assets/images/icon_selector.svg";
-import { getRandomString } from "../utils/getRandomString";
 
 type Props = {
   /** 値（v-modelでも使える） */
@@ -38,7 +37,7 @@ const props = withDefaults(defineProps<Props>(), {
 const model = defineModel<string>();
 
 // aria-describledby用のエラー文言のid名です
-const errorIdName = `selector${getRandomString()}`;
+const errorIdName = `selector${useId()}`;
 
 // 状態に応じたクラス名を返します
 const stateClassName = computed<string | null>(() => {
