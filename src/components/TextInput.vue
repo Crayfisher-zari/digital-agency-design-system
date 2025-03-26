@@ -71,21 +71,17 @@ const stateClassName = computed<string | null>(() => {
   <div :class="[stateClassName, size]">
     <label class="textInputWrapper">
       <span class="labelWrapper"
-        ><span class="label Std-17B-170">{{ props.label }}</span
-        ><span
-          class="requiredText Std-16N-170"
-          :class="isRequired ? null : 'optional'"
-          >{{ isRequired ? "※必須" : "任意" }}</span
-        ></span
+        ><span class="label">{{ props.label }}</span
+        ><span class="requiredText" :class="isRequired ? null : 'optional'">{{
+          isRequired ? "※必須" : "任意"
+        }}</span></span
       >
-      <span
-        v-if="props.supportText !== undefined"
-        class="supportText Std-16N-170"
-        >{{ props.supportText }}</span
-      >
+      <span v-if="props.supportText !== undefined" class="supportText">{{
+        props.supportText
+      }}</span>
       <input
         v-model="model"
-        class="textInput Std-16N-170"
+        class="textInput"
         :type="props.type"
         :placeholder="props.placeHolder"
         :required="props.isRequired"
@@ -101,7 +97,7 @@ const stateClassName = computed<string | null>(() => {
       v-if="props.errorText !== undefined"
       v-show="!props.isValid"
       :id="errorIdName"
-      class="errorText Std-16N-170"
+      class="errorText"
       >{{ props.errorText }}</span
     >
   </div>
@@ -135,9 +131,18 @@ const stateClassName = computed<string | null>(() => {
   justify-content: flex-start;
 }
 
+.label {
+  font-size: pxToRem(17);
+  font-weight: var(--weight-bold);
+  line-height: 1.7;
+  letter-spacing: 0.02em;
+}
+
 .requiredText {
   margin-left: 8px;
+  font-size: pxToRem(16);
   color: var(--color-text-alert);
+  letter-spacing: 0.02em;
 
   &.optional {
     color: var(--color-text-description);
@@ -146,6 +151,9 @@ const stateClassName = computed<string | null>(() => {
 
 .textInput {
   padding: 10px 16px;
+  font-size: pxToRem(16);
+  line-height: 1.7;
+  letter-spacing: 0.02em;
   border: 1px solid var(--color-border-field);
   border-radius: 8px;
 
@@ -162,13 +170,19 @@ const stateClassName = computed<string | null>(() => {
 
 .supportText {
   display: block;
+  font-size: pxToRem(16);
+  line-height: 1.7;
   color: var(--color-text-description);
+  letter-spacing: 0.02em;
 }
 
 .errorText {
   display: block;
   margin-top: 8px;
+  font-size: pxToRem(16);
+  line-height: 1.7;
   color: var(--color-text-alert);
+  letter-spacing: 0.02em;
 }
 
 // エラー時のスタイル
