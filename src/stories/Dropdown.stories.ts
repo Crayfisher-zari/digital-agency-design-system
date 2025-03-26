@@ -76,3 +76,23 @@ export const RightSide: Story = {
     `,
   }),
 };
+
+export const WithIcon: Story = {
+  args: {
+    summary: "ドロップダウン",
+    hasShadow: false,
+  },
+  render: (args) => ({
+    components: { DropDown, Menu },
+    setup: () => {
+      const icon = "🍣";
+      return { ...args, menuList, icon };
+    },
+    template: `
+    <DropDown :summary="summary" :hasShadow="hasShadow" :side="side">
+      <template #icon>{{ icon }}</template>
+      <Menu :menuList="menuList" />
+    </DropDown>
+    `,
+  }),
+};

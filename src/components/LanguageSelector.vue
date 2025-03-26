@@ -154,7 +154,7 @@ const languageList = ref(props.languageList);
 
   &::-webkit-details-marker {
     // Safariの三角アイコン
-    display: none;
+    visibility: hidden;
   }
 }
 

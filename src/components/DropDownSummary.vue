@@ -15,6 +15,9 @@ withDefaults(defineProps<Props>(), {
     class="dropDownSummary"
     :class="{ isActive: isActive, hasAnimation: hasAnimation }"
   >
+    <span v-if="$slots.icon" class="iconWrapper">
+      <slot name="icon"></slot>
+    </span>
     <span class="summaryText">{{ summaryText }}</span>
     <Icon
       :iconSrc="iconArrow"
@@ -32,11 +35,10 @@ withDefaults(defineProps<Props>(), {
 
 .dropDownSummary {
   position: relative;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   min-height: 50px;
-  padding-top: 11px;
-  padding-right: 24px;
-  padding-bottom: 13px;
+  padding: 11px 20px 13px;
   font-size: pxToRem(16);
   font-weight: var(--weight-bold);
   line-height: 1.5;
@@ -47,6 +49,10 @@ withDefaults(defineProps<Props>(), {
 
   &:hover {
     border-bottom: 2px solid var(--color-text-body);
+  }
+
+  &:focus-visible {
+    background-color: var(--color-focus);
   }
 
   &.isActive {
@@ -70,16 +76,18 @@ withDefaults(defineProps<Props>(), {
   }
 }
 
+.iconWrapper {
+  margin-right: 8px;
+}
+
 .summaryText {
   min-width: 120px;
 }
 
 .dropDownIcon {
-  position: absolute;
-  top: 50%;
-  right: 6px;
   display: block;
-  margin-top: -2px;
+  margin-top: 2px;
+  margin-left: 4px;
   transition: transform var(--base-duration) var(--easing-out-expo);
 }
 </style>

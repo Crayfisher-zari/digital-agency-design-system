@@ -82,7 +82,7 @@ const { LinkComponent } = useLink({ tag: props.linkTag });
 
   &::-webkit-details-marker {
     // Safariの三角アイコン
-    display: none;
+    visibility: hidden;
   }
 }
 

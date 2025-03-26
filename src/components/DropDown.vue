@@ -38,11 +38,15 @@ const { isOpened, hasAnimation, handleDropDown } = useDropDownAnimation(
         :summaryText="summary"
         :isActive="isOpened ?? false"
         :hasAnimation="hasAnimation"
-      />
+      >
+        <template v-if="$slots.icon" #icon>
+          <slot name="icon" />
+        </template>
+      </DropDownSummary>
     </summary>
     <div ref="contentsElement" class="contents">
       <div ref="contentsInnerElement" class="contentsInner">
-        <slot></slot>
+        <slot default></slot>
       </div>
     </div>
   </details>
@@ -90,7 +94,7 @@ const { isOpened, hasAnimation, handleDropDown } = useDropDownAnimation(
 
   &::-webkit-details-marker {
     // Safariの三角アイコン
-    display: none;
+    visibility: hidden;
   }
 }
 
