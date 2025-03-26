@@ -6,6 +6,8 @@ import "../src/assets/style/fonts/font.scss";
 import "../src/assets/style/easing/easing.scss";
 import "./previewStyle.scss";
 
+import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
+
 const preview: Preview = {
   parameters: {
     actions: { argTypesRegex: "^on[A-Z].*" },
@@ -14,6 +16,10 @@ const preview: Preview = {
         color: /(background|color)$/i,
         date: /Date$/i,
       },
+    },
+    viewport: {
+      viewports: INITIAL_VIEWPORTS,
+      defaultViewport: "ipad",
     },
     darkMode: {
       current: "light",
