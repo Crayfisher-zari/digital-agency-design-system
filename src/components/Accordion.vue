@@ -93,8 +93,8 @@ const anchorId = useId();
   min-height: 68px;
   padding: 19px 28px 19px 6px;
   font-size: pxToRem(20);
-  line-height: 1.5;
-  letter-spacing: 0.04em;
+  line-height: 1.6;
+  letter-spacing: 0.02em;
   transition: background-color var(--base-duration) var(--easing-out-expo);
 
   &:hover {
@@ -172,6 +172,7 @@ const anchorId = useId();
   padding: 24px 32px 40px 56px;
   font-size: pxToRem(16);
   line-height: 1.7;
+  letter-spacing: 0.02em;
 
   @include mediaQueryDown {
     padding: 16px 8px 16px 34px;
