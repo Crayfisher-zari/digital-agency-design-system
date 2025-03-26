@@ -3,19 +3,19 @@
 /** 
  * Display
  */
-.Dsp-64N-4 {
+.Dsp-64N-140 {
   font-size: pxToRem(64);
   font-weight: var(--weight-normal);
   line-height: 1.4;
 }
 
-.Dsp-57N-4 {
+.Dsp-57N-140 {
   font-size: pxToRem(57);
   font-weight: var(--weight-normal);
   line-height: 1.4;
 }
 
-.Dsp-48N-4 {
+.Dsp-48N-140 {
   font-size: pxToRem(48);
   font-weight: var(--weight-normal);
   line-height: 1.4;
@@ -26,42 +26,49 @@
  */
 
 /** Bold */
-.Std-45B-4 {
+.Std-45B-140 {
   font-size: pxToRem(45);
   font-weight: var(--weight-bold);
   line-height: 1.4;
   letter-spacing: 0.02em;
 }
 
-.Std-36B-4 {
+.Std-36B-140 {
   font-size: pxToRem(36);
   font-weight: var(--weight-bold);
   line-height: 1.4;
   letter-spacing: 0.02em;
 }
 
-.Std-32B-5 {
+.Std-32B-150 {
   font-size: pxToRem(32);
   font-weight: var(--weight-bold);
   line-height: 1.5;
   letter-spacing: 0.02em;
 }
 
-.Std-28B-5 {
+.Std-28B-150 {
   font-size: pxToRem(28);
   font-weight: var(--weight-bold);
   line-height: 1.5;
   letter-spacing: 0.02em;
 }
 
-.Std-24B-5 {
+.Std-26B-150 {
+  font-size: pxToRem(26);
+  font-weight: var(--weight-bold);
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+}
+
+.Std-24B-150 {
   font-size: pxToRem(24);
   font-weight: var(--weight-bold);
   line-height: 1.5;
   letter-spacing: 0.02em;
 }
 
-.Std-22B-5 {
+.Std-22B-150 {
   font-size: pxToRem(22);
   font-weight: var(--weight-bold);
   line-height: 1.5;
@@ -75,225 +82,207 @@
   letter-spacing: 0.02em;
 }
 
-.Std-20B-5 {
+.Std-20B-150 {
   font-size: pxToRem(20);
   font-weight: var(--weight-bold);
   line-height: 1.5;
   letter-spacing: 0.02em;
 }
 
-.Std-18B-6 {
+.Std-18B-160 {
   font-size: pxToRem(18);
   font-weight: var(--weight-bold);
   line-height: 1.6;
   letter-spacing: 0.02em;
 }
 
-.Std-17B-7 {
+.Std-17B-170 {
   font-size: pxToRem(17);
   font-weight: var(--weight-bold);
   line-height: 1.7;
   letter-spacing: 0.02em;
 }
 
-.Std-16B-7 {
+.Std-16B-170 {
   font-size: pxToRem(16);
   font-weight: var(--weight-bold);
   line-height: 1.7;
   letter-spacing: 0.02em;
 }
 
-/** Medium */
-.Std-32M-5 {
-  font-size: pxToRem(32);
-  font-weight: var(--weight-medium);
-  line-height: 1.5;
-  letter-spacing: 0.02em;
-}
-
-.Std-28M-5 {
-  font-size: pxToRem(28);
-  font-weight: var(--weight-medium);
-  line-height: 1.5;
-  letter-spacing: 0.02em;
-}
-
-.Std-24M-5 {
-  font-size: pxToRem(24);
-  font-weight: var(--weight-medium);
-  line-height: 1.5;
-  letter-spacing: 0.02em;
-}
-
-.Std-20M-5 {
-  font-size: pxToRem(20);
-  font-weight: var(--weight-medium);
-  line-height: 1.5;
-  letter-spacing: 0.02em;
-}
-
-.Std-17M-7 {
-  font-size: pxToRem(17);
-  font-weight: var(--weight-medium);
-  line-height: 1.7;
-  letter-spacing: 0.02em;
-}
-
-.Std-16M-7 {
+.Std-16B-175 {
   font-size: pxToRem(16);
-  font-weight: var(--weight-medium);
-  line-height: 1.7;
+  font-weight: var(--weight-bold);
+  line-height: 1.75;
   letter-spacing: 0.02em;
 }
 
 /** Normal */
-.Std-45N-4 {
+.Std-45N-140 {
   font-size: pxToRem(45);
   font-weight: var(--weight-normal);
   line-height: 1.4;
   letter-spacing: 0.02em;
 }
 
-.Std-36N-4 {
+.Std-36N-140 {
   font-size: pxToRem(36);
   font-weight: var(--weight-normal);
   line-height: 1.4;
   letter-spacing: 0.02em;
 }
 
-.Std-32N-5 {
+.Std-32N-150 {
   font-size: pxToRem(32);
   font-weight: var(--weight-normal);
   line-height: 1.5;
   letter-spacing: 0.02em;
 }
 
-.Std-28N-5 {
+.Std-28N-150 {
   font-size: pxToRem(28);
   font-weight: var(--weight-normal);
   line-height: 1.5;
   letter-spacing: 0.02em;
 }
 
-.Std-26N-5 {
+.Std-26N-150 {
   font-size: pxToRem(26);
   font-weight: var(--weight-normal);
   line-height: 1.5;
   letter-spacing: 0.02em;
 }
 
-.Std-24N-5 {
+.Std-24N-150 {
   font-size: pxToRem(24);
   font-weight: var(--weight-normal);
   line-height: 1.5;
   letter-spacing: 0.02em;
 }
 
-.Std-22N-5 {
+.Std-22N-150 {
   font-size: pxToRem(22);
   font-weight: var(--weight-normal);
   line-height: 1.5;
   letter-spacing: 0.02em;
 }
 
-.Std-20N-5 {
+.Std-20N-6 {
+  font-size: pxToRem(20);
+  font-weight: var(--weight-normal);
+  line-height: 1.6;
+  letter-spacing: 0.02em;
+}
+
+.Std-20N-150 {
   font-size: pxToRem(20);
   font-weight: var(--weight-normal);
   line-height: 1.5;
   letter-spacing: 0.02em;
 }
 
-.Std-18N-6 {
+.Std-18N-160 {
   font-size: pxToRem(18);
   font-weight: var(--weight-normal);
   line-height: 1.6;
   letter-spacing: 0.02em;
 }
 
-.Std-17N-7 {
+.Std-17N-170 {
   font-size: pxToRem(17);
   font-weight: var(--weight-normal);
   line-height: 1.7;
   letter-spacing: 0.02em;
 }
 
-.Std-16N-7 {
+.Std-16N-170 {
   font-size: pxToRem(16);
   font-weight: var(--weight-normal);
   line-height: 1.7;
+  letter-spacing: 0.02em;
+}
+
+.Std-16N-175 {
+  font-size: pxToRem(16);
+  font-weight: var(--weight-normal);
+  line-height: 1.75;
   letter-spacing: 0.02em;
 }
 
 /** 
  * Dense
  */
-.Dns-17B-3 {
+
+/** Bold */
+.Dns-17B-130 {
   font-size: pxToRem(17);
   font-weight: var(--weight-bold);
   line-height: 1.3;
 }
 
-.Dns-17N-3 {
-  font-size: pxToRem(17);
-  font-weight: var(--weight-normal);
-  line-height: 1.3;
-}
-
-.Dns-17B-2 {
+.Dns-17B-120 {
   font-size: pxToRem(17);
   font-weight: var(--weight-bold);
   line-height: 1.2;
 }
 
-.Dns-17N-2 {
-  font-size: pxToRem(17);
-  font-weight: var(--weight-normal);
-  line-height: 1.2;
-}
-
-.Dns-16B-3 {
+.Dns-16B-130 {
   font-size: pxToRem(16);
   font-weight: var(--weight-bold);
   line-height: 1.3;
 }
 
-.Dns-16N-3 {
-  font-size: pxToRem(16);
-  font-weight: var(--weight-normal);
-  line-height: 1.3;
-}
-
-.Dns-16B-2 {
+.Dns-16B-120 {
   font-size: pxToRem(16);
   font-weight: var(--weight-bold);
   line-height: 1.2;
 }
 
-.Dns-16N-2 {
-  font-size: pxToRem(16);
-  font-weight: var(--weight-normal);
-  line-height: 1.2;
-}
-
-.Dns-14B-3 {
+.Dns-14B-130 {
   font-size: pxToRem(14);
   font-weight: var(--weight-bold);
   line-height: 1.3;
 }
 
-.Dns-14N-3 {
-  font-size: pxToRem(14);
-  font-weight: var(--weight-normal);
-  line-height: 1.3;
-}
-
-.Dns-14B-2 {
+.Dns-14B-120 {
   font-size: pxToRem(14);
   font-weight: var(--weight-bold);
   line-height: 1.2;
 }
 
-.Dns-14N-2 {
+/** Normal */
+
+.Dns-17N-130 {
+  font-size: pxToRem(17);
+  font-weight: var(--weight-normal);
+  line-height: 1.3;
+}
+
+.Dns-17N-120 {
+  font-size: pxToRem(17);
+  font-weight: var(--weight-normal);
+  line-height: 1.2;
+}
+
+.Dns-16N-130 {
+  font-size: pxToRem(16);
+  font-weight: var(--weight-normal);
+  line-height: 1.3;
+}
+
+.Dns-16N-120 {
+  font-size: pxToRem(16);
+  font-weight: var(--weight-normal);
+  line-height: 1.2;
+}
+
+.Dns-14N-130 {
+  font-size: pxToRem(14);
+  font-weight: var(--weight-normal);
+  line-height: 1.3;
+}
+
+.Dns-14N-120 {
   font-size: pxToRem(14);
   font-weight: var(--weight-normal);
   line-height: 1.2;
@@ -302,55 +291,41 @@
 /** 
  * Oneline
  */
-.Oln-17B-1 {
+
+/** Bold */
+.Oln-17B-100 {
   font-size: pxToRem(17);
   font-weight: var(--weight-bold);
   line-height: 1;
 }
 
-.Oln-17M-1 {
-  font-size: pxToRem(17);
-  font-weight: var(--weight-medium);
-  line-height: 1;
-}
-
-.Oln-17N-1 {
-  font-size: pxToRem(17);
-  font-weight: var(--weight-normal);
-  line-height: 1;
-}
-
-.Oln-16B-1 {
+.Oln-16B-100 {
   font-size: pxToRem(16);
   font-weight: var(--weight-bold);
   line-height: 1;
 }
 
-.Oln-16M-1 {
-  font-size: pxToRem(16);
-  font-weight: var(--weight-medium);
-  line-height: 1;
-}
-
-.Oln-16N-1 {
-  font-size: pxToRem(16);
-  font-weight: var(--weight-normal);
-  line-height: 1;
-}
-
-.Oln-14B-1 {
+.Oln-14B-100 {
   font-size: pxToRem(14);
   font-weight: var(--weight-bold);
   line-height: 1;
 }
 
-.Oln-14M-1 {
-  font-size: pxToRem(14);
-  font-weight: var(--weight-medium);
+/** normal */
+
+.Oln-17N-100 {
+  font-size: pxToRem(17);
+  font-weight: var(--weight-normal);
   line-height: 1;
 }
 
-.Oln-14N-1 {
+.Oln-16N-100 {
+  font-size: pxToRem(16);
+  font-weight: var(--weight-normal);
+  line-height: 1;
+}
+
+.Oln-14N-100 {
   font-size: pxToRem(14);
   font-weight: var(--weight-normal);
   line-height: 1;
@@ -359,42 +334,45 @@
 /** 
  * Mono
  */
-.Mono-17B-5 {
+
+/** Bold */
+.Mono-17B-150 {
   font-family: "Noto Sans Mono", monospace;
   font-size: pxToRem(17);
   font-weight: var(--weight-bold);
   line-height: 1;
 }
 
-.Mono-17N-5 {
-  font-family: "Noto Sans Mono", monospace;
-  font-size: pxToRem(17);
-  font-weight: var(--weight-normal);
-  line-height: 1;
-}
-
-.Mono-16B-5 {
+.Mono-16B-150 {
   font-family: "Noto Sans Mono", monospace;
   font-size: pxToRem(16);
   font-weight: var(--weight-bold);
   line-height: 1;
 }
 
-.Mono-16N-5 {
-  font-family: "Noto Sans Mono", monospace;
-  font-size: pxToRem(16);
-  font-weight: var(--weight-normal);
-  line-height: 1;
-}
-
-.Mono-14B-5 {
+.Mono-14B-150 {
   font-family: "Noto Sans Mono", monospace;
   font-size: pxToRem(14);
   font-weight: var(--weight-bold);
   line-height: 1;
 }
 
-.Mono-14N-5 {
+/** Normal */
+.Mono-17N-150 {
+  font-family: "Noto Sans Mono", monospace;
+  font-size: pxToRem(17);
+  font-weight: var(--weight-normal);
+  line-height: 1;
+}
+
+.Mono-16N-150 {
+  font-family: "Noto Sans Mono", monospace;
+  font-size: pxToRem(16);
+  font-weight: var(--weight-normal);
+  line-height: 1;
+}
+
+.Mono-14N-150 {
   font-family: "Noto Sans Mono", monospace;
   font-size: pxToRem(14);
   font-weight: var(--weight-normal);
