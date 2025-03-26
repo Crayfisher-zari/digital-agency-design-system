@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref ,useId} from "vue";
+import { ref, useId } from "vue";
 import Icon from "./Icon.vue";
 import iconArrow from "@/assets/images/icon_arrow_accordion.svg";
 import iconReturn from "@/assets/images/icon_return.svg";
@@ -32,7 +32,7 @@ const anchorId = useId();
       :class="[{ isOpened: isOpened }, { hasAnimation: hasAnimation }]"
     >
       <summary :id="anchorId" class="summary" @click="handleDropDown">
-        <span class="iconWrapper" >
+        <span class="iconWrapper">
           <Icon
             :iconSrc="iconArrow"
             :width="18"
@@ -50,13 +50,15 @@ const anchorId = useId();
           <p>
             {{ details }}
           </p>
-          <a :href="`#${anchorId}`" class="anchor"> <Icon
-            :iconSrc="iconReturn"
-            :width="24"
-            :height="24"
-            color="var(--color-text-link)"
-            class="returnIcon"
-          />「{{ summary}}」の先頭に戻る</a>
+          <a :href="`#${anchorId}`" class="anchor">
+            <Icon
+              :iconSrc="iconReturn"
+              :width="24"
+              :height="24"
+              color="var(--color-text-link)"
+              class="returnIcon"
+            />「{{ summary }}」の先頭に戻る</a
+          >
         </div>
       </div>
     </details>
@@ -113,6 +115,13 @@ const anchorId = useId();
     border-radius: 5px;
     outline: 4px solid var(--color-text-body);
   }
+
+  @include mediaQueryDown {
+    align-items: flex-start;
+    min-height: 36px;
+    padding: 8px 8px 12px 2px;
+    font-size: pxToRem(16);
+  }
 }
 
 .summaryInner {
@@ -132,11 +141,23 @@ const anchorId = useId();
   background-color: var(--color-background-primary);
   border: 1px solid var(--color-text-link);
   border-radius: 50%;
+
+  @include mediaQueryDown {
+    width: 24px;
+    height: 24px;
+    margin-top: 2px;
+    margin-right: 8px;
+  }
 }
 
 .dropDownIcon {
   display: block;
   transition: transform var(--base-duration) var(--easing-out-expo);
+
+  @include mediaQueryDown {
+    width: 13px;
+    height: auto;
+  }
 }
 
 .details {
@@ -151,11 +172,25 @@ const anchorId = useId();
   padding: 24px 32px 40px 56px;
   font-size: pxToRem(16);
   line-height: 1.7;
+
+  @include mediaQueryDown {
+    padding: 16px 8px 16px 34px;
+  }
 }
 
-.anchor{
+.anchor {
   display: flex;
   column-gap: 8px;
   align-items: center;
+
+  @include mediaQueryDown {
+    align-items: flex-start;
+  }
+}
+
+.returnIcon {
+  display: block;
+  flex-shrink: 0;
+  margin-top: 2px;
 }
 </style>
