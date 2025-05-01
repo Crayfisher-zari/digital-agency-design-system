@@ -6,7 +6,6 @@ const config: StorybookConfig = {
     "@storybook/addon-links",
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
-    "@storybook/add",
     "storybook-dark-mode",
     "@storybook/addon-viewport",
   ],

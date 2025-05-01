@@ -36,6 +36,7 @@
     "preview": "vite preview",
     "typeCheck": "yarn run vue-tsc",
     "lint": "eslint \"./**/*.{ts,vue}\" && stylelint \"./**/*.{scss,vue}\" && prettier \"./**/*.{scss,vue,ts}\" --check",
+    "lint:oxlint": "oxlint . --fix -D correctness --ignore-path .gitignore",
     "lint:fix": "eslint \"./**/*.{vue,ts}\" --fix && stylelint \"./**/*.{scss,vue}\" --fix && prettier \"./**/*.{scss,vue,ts}\" --write",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
