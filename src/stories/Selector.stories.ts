@@ -6,6 +6,7 @@ const meta = {
   component: Selector,
   tags: ["autodocs"],
   argTypes: {
+    size: { control: "radio", options: ["large", "medium", "small"] },
     label: { control: "text" },
     supportText: { control: "text" },
     errorText: { control: "text" },

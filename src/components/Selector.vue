@@ -4,6 +4,8 @@ import Icon from "./Icon.vue";
 import iconSelector from "@/assets/images/icon_selector.svg";
 
 type Props = {
+  /** セレクターのサイズ */
+  size?: "large" | "small" | "medium";
   /** 値（v-modelでも使える） */
   modelValue: string | number;
   /** インプットのラベルです */
@@ -25,6 +27,7 @@ type Props = {
 };
 
 const props = withDefaults(defineProps<Props>(), {
+  size: "medium",
   label: undefined,
   supportText: undefined,
   errorText: undefined,
@@ -51,12 +54,12 @@ const stateClassName = computed<string | null>(() => {
 });
 </script>
 <template>
-  <div :class="stateClassName">
+  <div :class="[stateClassName, props.size]">
     <label class="selectorWrapper">
       <span v-if="props.label !== undefined" class="labelWrapper"
         ><span class="label">{{ props.label }}</span
         ><span class="requiredText" :class="isRequired ? null : 'optional'">{{
-          isRequired ? "必須" : "任意"
+          isRequired ? "※必須" : "任意"
         }}</span></span
       >
       <span v-if="props.supportText !== undefined" class="supportText">{{
@@ -111,7 +114,7 @@ const stateClassName = computed<string | null>(() => {
 
 .selector {
   width: 100%;
-  padding: 12px 16px;
+  padding: 16px;
   margin-top: 8px;
   font-size: pxToRem(16);
   color: var(--color-text-body);
@@ -134,20 +137,21 @@ const stateClassName = computed<string | null>(() => {
 }
 
 .label {
-  font-size: pxToRem(14);
+  font-size: pxToRem(17);
+  font-weight: var(--weight-bold);
 }
 
 .supportText {
   display: block;
   margin-top: 8px;
-  font-size: pxToRem(12);
+  font-size: pxToRem(16);
   line-height: 1.5;
   color: var(--color-text-description);
 }
 
 .requiredText {
   margin-left: 8px;
-  font-size: pxToRem(12);
+  font-size: pxToRem(16);
   color: var(--color-text-alert);
 
   &.optional {
@@ -185,6 +189,23 @@ const stateClassName = computed<string | null>(() => {
     color: var(--color-text-placeHolder);
     background-color: var(--color-background-secondary);
     border-color: var(--color-border-disabled);
+  }
+}
+
+.large {
+  .selector {
+    padding: 21px 16px;
+  }
+}
+
+.small {
+  .selector {
+    padding: 9px 16px;
+    border-radius: 4px;
+  }
+
+  .label {
+    font-size: pxToRem(16);
   }
 }
 </style>
