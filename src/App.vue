@@ -49,7 +49,7 @@ const { UseNameInputComponent: FamilyNameKanaInput } = useNameInput({
   isRequired: false,
   supportText: "住民票に記載された姓を記入します。",
 });
-const { UseTelInputComponent: UseTelInputComponent } = useTelInput();
+const { UseTelInputComponent } = useTelInput();
 const { UseTextAreaInputComponent } = useTextAreaInput({
   label: "お問い合わせ詳細",
   isRequired: true,

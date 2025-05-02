@@ -4,7 +4,7 @@ import Menu from "../components/Menu.vue";
 import { menuList } from "./stub/menulist";
 
 const meta = {
-  title: "ドロップダウン",
+  title: "ドロップダウンボタン",
   component: DropDown,
   tags: ["autodocs"],
   argTypes: {
@@ -58,6 +58,24 @@ export const HasShadow: Story = {
   }),
 };
 
+export const Selected: Story = {
+  args: {
+    summary: "ドロップダウン",
+    isSelected: true,
+  },
+  render: (args) => ({
+    components: { DropDown, Menu },
+    setup: () => {
+      return { ...args, menuList };
+    },
+    template: `
+    <DropDown :summary="summary" :isSelected="true">
+      <Menu :menuList="menuList" />
+    </DropDown>
+    `,
+  }),
+};
+
 export const RightSide: Story = {
   args: {
     summary: "ドロップダウン",
@@ -70,9 +88,11 @@ export const RightSide: Story = {
       return { ...args, menuList };
     },
     template: `
-    <DropDown :summary="summary" :hasShadow="hasShadow" :side="side">
-      <Menu :menuList="menuList" />
-    </DropDown>
+    <div style="display: flex; justify-content: flex-end; align-items: center; width: 100%;">
+      <DropDown :summary="summary" :hasShadow="hasShadow" :side="side">
+        <Menu :menuList="menuList" />
+      </DropDown>
+    </div>
     `,
   }),
 };

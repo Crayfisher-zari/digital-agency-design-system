@@ -5,6 +5,7 @@ type Props = {
   summaryText: string;
   isActive: boolean;
   hasAnimation?: boolean;
+  isSelected?: boolean;
 };
 withDefaults(defineProps<Props>(), {
   hasAnimation: true,
@@ -13,7 +14,11 @@ withDefaults(defineProps<Props>(), {
 <template>
   <span
     class="dropDownSummary"
-    :class="{ isActive: isActive, hasAnimation: hasAnimation }"
+    :class="{
+      isActive: isActive,
+      hasAnimation: hasAnimation,
+      isSelected: isSelected,
+    }"
   >
     <span v-if="$slots.icon" class="iconWrapper">
       <slot name="icon"></slot>
@@ -23,7 +28,7 @@ withDefaults(defineProps<Props>(), {
       :iconSrc="iconArrow"
       :width="12"
       :height="7"
-      color="var(--color-text-body)"
+      color="currentColor"
       class="dropDownIcon"
       :ariaHidden="!isActive"
       role="img"
@@ -44,22 +49,20 @@ withDefaults(defineProps<Props>(), {
   line-height: 1.5;
   text-align: left;
   letter-spacing: 0.04em;
-  border-bottom: 2px solid transparent;
-  transition: background-color var(--base-duration) var(--easing-out-expo);
-
-  &:hover {
-    border-bottom: 2px solid var(--color-text-body);
-  }
-
-  &:focus-visible {
-    background-color: var(--color-focus);
-  }
 
   &.isActive {
-    border-bottom: 2px solid var(--color-text-body);
-
     .dropDownIcon {
       transform: rotate(180deg);
+    }
+  }
+
+  &.isSelected {
+    color: var(--color-text-link);
+
+    @media (hover: hover) {
+      &:hover {
+        text-decoration: underline;
+      }
     }
   }
 
