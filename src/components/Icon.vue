@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { getRandomString } from "../utils/getRandomString";
+import { useId } from "vue";
 
 type Props = {
   iconSrc: string;
@@ -15,7 +15,7 @@ withDefaults(defineProps<Props>(), {
   ariaLabel: undefined,
   ariaHidden: undefined,
 });
-const id = getRandomString();
+const id = useId();
 </script>
 <template>
   <svg
