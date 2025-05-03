@@ -2,6 +2,7 @@
 import { computed, useId } from "vue";
 import Icon from "./Icon.vue";
 import iconSelector from "@/assets/images/icon_selector.svg";
+import { disabledEventHandler } from "./common/disabledEventHandler";
 
 type Props = {
   /** セレクターのサイズ */
@@ -73,7 +74,13 @@ const stateClassName = computed<string | null>(() => {
           :required="props.isRequired"
           :aria-invalid="!isValid"
           :aria-describedby="errorIdName"
-          :disabled="props.isDisabled"
+          :aria-disabled="props.isDisabled"
+          @click="
+            (e) => (props.isDisabled ? disabledEventHandler(e) : undefined)
+          "
+          @keydown="
+            (e) => (props.isDisabled ? disabledEventHandler(e) : undefined)
+          "
         >
           <option value="">選択してください</option>
           <option
@@ -86,8 +93,8 @@ const stateClassName = computed<string | null>(() => {
         </select>
         <Icon
           :iconSrc="iconSelector"
-          :width="8"
-          :height="6"
+          :width="12"
+          :height="9"
           color="var(--color-text-body)"
           class="selectorIcon"
           :ariaHidden="true"
@@ -122,6 +129,12 @@ const stateClassName = computed<string | null>(() => {
   background-color: transparent;
   border: 1px solid var(--color-border-field);
   border-radius: 8px;
+
+  &:focus-visible {
+    outline: 4px solid var(--color-text-body);
+    outline-offset: 2px;
+    box-shadow: 0 0 2px 2px var(--color-focus);
+  }
 }
 
 .selectorIcon {
@@ -175,7 +188,12 @@ const stateClassName = computed<string | null>(() => {
 
   .selector {
     border-color: var(--color-border-alert);
-    box-shadow: 0 0 0 1px var(--color-border-alert);
+
+    @media (hover: hover) {
+      &:hover {
+        border-color: var(--color-border-alert-hover);
+      }
+    }
   }
 }
 
@@ -187,6 +205,7 @@ const stateClassName = computed<string | null>(() => {
 
   .selector {
     color: var(--color-text-placeHolder);
+    pointer-events: none;
     background-color: var(--color-background-secondary);
     border-color: var(--color-border-disabled);
   }

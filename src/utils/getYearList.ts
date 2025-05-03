@@ -1,3 +1,7 @@
+/**
+ * 生年用の年リストを返します
+ * @returns
+ */
 export const getYearList = () => {
   const yearList = [];
   const d = new Date();

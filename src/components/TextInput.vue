@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { computed, useId } from "vue";
+import { disabledEventHandler } from "./common/disabledEventHandler";
 
 type Props = {
   /** 値（v-modelでも使える） */
@@ -90,6 +91,8 @@ const stateClassName = computed<string | null>(() => {
         :onBlur="onBlur"
         :aria-disabled="props.isDisabled"
         :readonly="props.isDisabled"
+        @click="props.isDisabled ? disabledEventHandler : undefined"
+        @keydown="props.isDisabled ? disabledEventHandler : undefined"
       />
     </label>
 

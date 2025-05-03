@@ -111,6 +111,9 @@
   --color-border-light-alert: var(--color-red-800);
   --color-border-dark-alert: var(--color-red-800);
   --color-border-alert: var(--color-red-800);
+  --color-border-alert-light-hover: var(--color-red-1000);
+  --color-border-alert-dark-hover: var(--color-red-1000);
+  --color-border-alert-hover: var(--color-red-1000);
   --color-border-light-alert2: var(--color-orange-600);
   --color-border-dark-alert2: var(--color-orange-600);
   --color-border-alert2: var(--color-orange-600);
@@ -201,6 +204,7 @@
     --color-border-focused: var(--color-border-dark-focused);
     --color-border-selected: var(--color-border-dark-selected);
     --color-border-alert: var(--color-border-dark-alert);
+    --color-border-alert-hover: var(--color-border-alert-dark-hover);
     --color-border-alert2: var(--color-orange-600);
     --color-border-disabled: var(--color-border-dark-disabled);
 
@@ -265,6 +269,7 @@
   --color-border-focused: var(--color-border-light-focused);
   --color-border-selected: var(--color-border-light-selected);
   --color-border-alert: var(--color-border-light-alert);
+  --color-border-alert-hover: var(--color-border-alert-light-hover);
   --color-border-alert2: var(--color-orange-600);
   --color-border-disabled: var(--color-border-light-disabled);
 
@@ -328,6 +333,7 @@
   --color-border-focused: var(--color-border-dark-focused);
   --color-border-selected: var(--color-border-dark-selected);
   --color-border-alert: var(--color-border-dark-alert);
+  --color-border-alert-hover: var(--color-border-alert-dark-hover);
   --color-border-alert2: var(--color-orange-600);
   --color-border-disabled: var(--color-border-dark-disabled);
 
