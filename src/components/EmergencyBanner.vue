@@ -36,26 +36,28 @@ const { LinkComponent } = useLink({
         {{ description }}
       </p>
       <slot></slot>
-      <LinkComponent
-        v-if="url && buttonLabel"
-        :href="url"
-        :target="isExternal ? '_blank' : undefined"
-        class="buttonWrapper"
-      >
-        <div class="button custom medium">
-          <span class="labelText">
-            {{ buttonLabel }}
-            <span v-if="isExternal" class="iconWrapper">
-              <Icon
-                :iconSrc="iconExternal"
-                :width="16"
-                :height="16"
-                color="var(--color-text-onFill)"
-              />
+      <div class="buttonContainer">
+        <LinkComponent
+          v-if="url && buttonLabel"
+          :href="url"
+          :target="isExternal ? '_blank' : undefined"
+          class="buttonWrapper"
+        >
+          <div class="button custom medium">
+            <span class="labelText">
+              {{ buttonLabel }}
+              <span v-if="isExternal" class="iconWrapper">
+                <Icon
+                  :iconSrc="iconExternal"
+                  :width="16"
+                  :height="16"
+                  color="var(--color-text-onFill)"
+                />
+              </span>
             </span>
-          </span>
-        </div>
-      </LinkComponent>
+          </div>
+        </LinkComponent>
+      </div>
     </div>
   </div>
 </template>
@@ -103,10 +105,16 @@ const { LinkComponent } = useLink({
   }
 }
 
-.buttonWrapper {
+.buttonContainer {
   display: flex;
   justify-content: center;
   margin-top: 28px;
+}
+
+.buttonWrapper {
+  display: flex;
+  justify-content: center;
+  width: max-content;
   text-decoration: none;
 }
 
