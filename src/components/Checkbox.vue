@@ -3,6 +3,8 @@ import { computed } from "vue";
 import PartsCheckbox from "./parts/PartsCheckbox.vue";
 
 type Props = {
+  /** サイズ */
+  size?: "large" | "medium" | "small";
   /** v-modelの型です */
   modelValue: T | T[];
   /** 選択肢固有の値です */
@@ -20,6 +22,7 @@ type Props = {
 const model = defineModel<T | T[] | undefined>();
 
 const props = withDefaults(defineProps<Props>(), {
+  size: "medium",
   isDisabled: false,
   isValid: true,
   name: undefined,
@@ -40,11 +43,12 @@ const handleChangeCheck = (value: boolean) => {
 };
 </script>
 <template>
-  <label :class="`${stateClassName ?? ''} `">
+  <label :class="[stateClassName ?? '', size]">
     <div class="checkboxArea">
       <PartsCheckbox
         v-model="model"
         :value="props.value"
+        :size="size"
         :name="name"
         :isDisabled="isDisabled"
         :isValid="isValid"
@@ -60,16 +64,33 @@ const handleChangeCheck = (value: boolean) => {
 label {
   position: relative;
   display: flex;
+  column-gap: 8px;
   align-items: center;
-  padding: 8px 0 8px 40px;
   font-size: pxToRem(16);
-}
 
-.checkboxArea {
-  position: absolute;
-  left: 4px;
-  width: 19px;
-  height: 19px;
+  @media (hover: hover) {
+    &:hover {
+      :deep(.checkIcon) {
+        box-shadow: 0 0 0 4px var(--color-border-divider);
+      }
+    }
+
+    &.small {
+      &:hover {
+        :deep(.checkIcon) {
+          box-shadow: 0 0 0 3px var(--color-border-divider);
+        }
+      }
+    }
+
+    &.large {
+      &:hover {
+        :deep(.checkIcon) {
+          box-shadow: 0 0 0 5px var(--color-border-divider);
+        }
+      }
+    }
+  }
 }
 
 .isInvalid {

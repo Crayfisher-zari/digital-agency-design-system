@@ -91,8 +91,10 @@ const stateClassName = computed<string | null>(() => {
         :onBlur="onBlur"
         :aria-disabled="props.isDisabled"
         :readonly="props.isDisabled"
-        @click="props.isDisabled ? disabledEventHandler : undefined"
-        @keydown="props.isDisabled ? disabledEventHandler : undefined"
+        @click="(e) => (props.isDisabled ? disabledEventHandler(e) : undefined)"
+        @keydown="
+          (e) => (props.isDisabled ? disabledEventHandler(e) : undefined)
+        "
       />
     </label>
 
@@ -201,6 +203,10 @@ const stateClassName = computed<string | null>(() => {
 
 // 非活性時のスタイル
 .isDisabled {
+  .textInputWrapper {
+    pointer-events: none;
+  }
+
   .label {
     color: var(--color-text-disabled);
   }

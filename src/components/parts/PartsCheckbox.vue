@@ -2,6 +2,8 @@
 import { computed } from "vue";
 
 type Props = {
+  /** サイズ */
+  size?: "large" | "medium" | "small";
   /** v-modelの型です */
   modelValue: T | T[];
   /** 選択肢固有の値です */
@@ -19,6 +21,7 @@ const model = defineModel<T | T[] | undefined>();
 const emits = defineEmits<{ changeCheck: [value: boolean] }>();
 
 const props = withDefaults(defineProps<Props>(), {
+  size: "medium",
   isDisabled: false,
   name: undefined,
   isValid: true,
@@ -49,7 +52,7 @@ const handleChange = (e: Event) => {
     :disabled="isDisabled"
     @change="handleChange"
   />
-  <span class="checkIcon" :class="stateClassName"></span>
+  <span class="checkIcon" :class="[stateClassName, size]"></span>
 </template>
 <style scoped lang="scss">
 .checkIcon {
@@ -59,7 +62,7 @@ const handleChange = (e: Event) => {
   height: 19px;
   background-color: #fff;
   border: 2px solid var(--color-icon-label);
-  border-radius: 3px;
+  border-radius: 2px;
 
   &::after {
     position: absolute;
@@ -70,8 +73,29 @@ const handleChange = (e: Event) => {
     height: 100%;
     content: "";
     background-image: url("@/assets/images/icon_check.svg");
+    background-repeat: no-repeat;
     background-position: center center;
     background-size: 18px 18px;
+  }
+
+  &.small {
+    width: 17px;
+    height: 17px;
+    border-radius: 2px;
+
+    &::after {
+      background-size: 16px 16px;
+    }
+  }
+
+  &.large {
+    width: 31px;
+    height: 31px;
+    border-radius: 4px;
+
+    &::after {
+      background-size: 30px 30px;
+    }
   }
 }
 

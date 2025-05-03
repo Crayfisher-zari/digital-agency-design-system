@@ -6,6 +6,10 @@ const meta = {
   component: Checkbox,
   tags: ["autodocs"],
   argTypes: {
+    size: {
+      control: "select",
+      options: ["small", "medium", "large"],
+    },
     label: {
       control: "text",
     },
