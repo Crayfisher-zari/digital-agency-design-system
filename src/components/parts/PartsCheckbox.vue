@@ -1,5 +1,6 @@
 <script lang="ts" setup generic="T">
 import { computed, useTemplateRef, watchEffect } from "vue";
+import { disabledEventHandler } from "../common/disabledEventHandler";
 
 type Props = {
   /** サイズ */
@@ -65,8 +66,11 @@ watchEffect(() => {
     class="sr-only inputCheckbox"
     :value="props.value"
     :name="name"
-    :disabled="isDisabled"
+    :aria-disabled="isDisabled"
+    :readonly="isDisabled"
     @change="handleChange"
+    @click="(e) => (props.isDisabled ? disabledEventHandler(e) : undefined)"
+    @keydown="(e) => (props.isDisabled ? disabledEventHandler(e) : undefined)"
   />
   <span class="checkIcon" :class="[stateClassName, size]"></span>
 </template>
@@ -88,7 +92,6 @@ watchEffect(() => {
     width: 100%;
     height: 100%;
     content: "";
-    background-image: url("@/assets/images/icon_check.svg");
     background-repeat: no-repeat;
     background-position: center center;
     background-size: 18px 18px;
@@ -120,7 +123,7 @@ input:checked ~ .checkIcon {
   border-color: var(--color-icon-active);
 
   &::after {
-    background-color: var(--color-icon-active);
+    background-image: url("@/assets/images/icon_check.svg");
   }
 }
 
@@ -130,11 +133,14 @@ input:focus-visible ~ .checkIcon {
   box-shadow: 0 0 2px 2px var(--color-focus) !important;
 }
 
-input:disabled ~ .checkIcon {
+input[aria-disabled="true"] ~ .checkIcon {
+  background-color: var(--color-background-tertiary);
   border-color: var(--color-border-disabled);
 }
 
-input:disabled:checked ~ .checkIcon {
+input[aria-disabled="true"]:checked ~ .checkIcon {
+  background-color: var(--color-border-disabled);
+
   &::after {
     background-color: var(--color-border-disabled);
   }
@@ -153,7 +159,7 @@ input:checked ~ .checkIcon.isInvalid {
   border-color: var(--color-border-alert);
 }
 
-input:indeterminate ~ .checkIcon {
+input:indeterminate:not([aria-disabled="true"]) ~ .checkIcon {
   background-color: var(--color-icon-active);
   border-color: var(--color-icon-active);
 
@@ -166,5 +172,15 @@ input:indeterminate ~ .checkIcon {
 input:indeterminate ~ .checkIcon.isInvalid {
   background-color: var(--color-border-alert);
   border-color: var(--color-border-alert);
+}
+
+input:indeterminate[aria-disabled="true"] ~ .checkIcon {
+  background-color: var(--color-border-disabled);
+  border-color: var(--color-border-disabled);
+
+  &::after {
+    background-image: url("@/assets/images/icon_check_indeterminate.svg");
+    background-size: 11px 2px;
+  }
 }
 </style>

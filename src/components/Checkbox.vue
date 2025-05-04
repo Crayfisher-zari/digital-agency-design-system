@@ -73,11 +73,11 @@ label {
 
   @media (hover: hover) {
     &:hover {
-      :deep(.checkIcon) {
+      :deep(.checkIcon:not(.isDisabled)) {
         box-shadow: 0 0 0 4px var(--color-border-divider);
       }
 
-      :deep(.inputCheckbox:checked ~ .checkIcon) {
+      :deep(.inputCheckbox:checked ~ .checkIcon:not(.isDisabled)) {
         border-color: var(--color-icon-active-hover);
 
         &::after {
