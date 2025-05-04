@@ -41,7 +41,13 @@
   --color-icon-active: var(--color-blue-900);
   --color-icon-light-alert: var(--color-red-800);
   --color-icon-dark-alert: var(--color-red-800);
+  --color-icon-active-hover: var(--color-blue-1100);
+  --color-icon-light-active-hover: var(--color-blue-1100);
+  --color-icon-dark-active-hover: var(--color-blue-1100);
   --color-icon-alert: var(--color-red-800);
+  --color-icon-alert-hover: var(--color-red-1000);
+  --color-icon-light-alert-hover: var(--color-red-1000);
+  --color-icon-dark-alert-hover: var(--color-red-1000);
   --color-icon-light-disabled: var(--color-grey-500);
   --color-icon-dark-disabled: var(--color-grey-500);
   --color-icon-disabled: var(--color-grey-500);
@@ -178,7 +184,9 @@
     /* Icon */
     --color-icon-label: var(--color-icon-dark-label);
     --color-icon-active: var(--color-icon-dark-active);
+    --color-icon-active-hover: var(--color-icon-dark-active-hover);
     --color-icon-alert: var(--color-icon-dark-alert);
+    --color-icon-alert-hover: var(--color-icon-dark-alert-hover);
     --color-icon-disabled: var(--color-icon-dark-disabled);
 
     /* Button */
@@ -243,7 +251,9 @@
   /* Icon */
   --color-icon-label: var(--color-icon-light-label);
   --color-icon-active: var(--color-icon-light-active);
+  --color-icon-active-hover: var(--color-icon-light-active-hover);
   --color-icon-alert: var(--color-icon-light-alert);
+  --color-icon-alert-hover: var(--color-icon-light-alert-hover);
   --color-icon-disabled: var(--color-icon-light-disabled);
 
   /* Button */
@@ -307,7 +317,9 @@
   /* Icon */
   --color-icon-label: var(--color-icon-dark-label);
   --color-icon-active: var(--color-icon-dark-active);
+  --color-icon-active-hover: var(--color-icon-dark-active-hover);
   --color-icon-alert: var(--color-icon-dark-alert);
+  --color-icon-alert-hover: var(--color-icon-dark-alert-hover);
   --color-icon-disabled: var(--color-icon-dark-disabled);
 
   /* Button */

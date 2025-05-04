@@ -62,7 +62,7 @@ watchEffect(() => {
     ref="inputRef"
     v-model="model"
     type="checkbox"
-    class="sr-only"
+    class="sr-only inputCheckbox"
     :value="props.value"
     :name="name"
     :disabled="isDisabled"
@@ -161,5 +161,10 @@ input:indeterminate ~ .checkIcon {
     background-image: url("@/assets/images/icon_check_indeterminate.svg");
     background-size: 11px 2px;
   }
+}
+
+input:indeterminate ~ .checkIcon.isInvalid {
+  background-color: var(--color-border-alert);
+  border-color: var(--color-border-alert);
 }
 </style>

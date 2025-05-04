@@ -76,6 +76,28 @@ label {
       :deep(.checkIcon) {
         box-shadow: 0 0 0 4px var(--color-border-divider);
       }
+
+      :deep(.inputCheckbox:checked ~ .checkIcon) {
+        border-color: var(--color-icon-active-hover);
+
+        &::after {
+          background-color: var(--color-icon-active-hover);
+        }
+      }
+
+      &.isInvalid {
+        :deep(.checkIcon) {
+          border-color: var(--color-icon-alert-hover);
+        }
+
+        :deep(.inputCheckbox:checked ~ .checkIcon) {
+          border-color: var(--color-icon-alert-hover);
+
+          &::after {
+            background-color: var(--color-icon-alert-hover);
+          }
+        }
+      }
     }
 
     &.small {
@@ -94,10 +116,6 @@ label {
       }
     }
   }
-}
-
-.isInvalid {
-  color: var(--color-text-alert);
 }
 
 .isDisabled {
