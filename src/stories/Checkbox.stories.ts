@@ -10,6 +10,9 @@ const meta = {
       control: "select",
       options: ["small", "medium", "large"],
     },
+    isIndeterminate: {
+      control: "boolean",
+    },
     label: {
       control: "text",
     },

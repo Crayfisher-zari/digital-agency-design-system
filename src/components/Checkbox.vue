@@ -15,6 +15,8 @@ type Props = {
   name?: string;
   /** 妥当性 */
   isValid?: boolean;
+  /** 不確定状態か */
+  isIndeterminate?: boolean;
   /** ボタンが非活性状態か。未指定の場合はfalse */
   isDisabled?: boolean;
 };
@@ -52,6 +54,7 @@ const handleChangeCheck = (value: boolean) => {
         :name="name"
         :isDisabled="isDisabled"
         :isValid="isValid"
+        :isIndeterminate="isIndeterminate"
         @changeCheck="handleChangeCheck"
       />
     </div>

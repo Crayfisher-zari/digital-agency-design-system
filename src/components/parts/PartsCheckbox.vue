@@ -1,5 +1,5 @@
 <script lang="ts" setup generic="T">
-import { computed } from "vue";
+import { computed, useTemplateRef, watchEffect } from "vue";
 
 type Props = {
   /** サイズ */
@@ -12,10 +12,14 @@ type Props = {
   name?: string;
   /** 妥当性 */
   isValid?: boolean;
+  /** 不確定状態か */
+  isIndeterminate?: boolean;
   /** ボタンが非活性状態か。未指定の場合はfalse */
   isDisabled?: boolean;
 };
 const model = defineModel<T | T[] | undefined>();
+
+const inputElement = useTemplateRef<HTMLInputElement>("inputRef");
 
 // チェック状態を通知します
 const emits = defineEmits<{ changeCheck: [value: boolean] }>();
@@ -25,6 +29,7 @@ const props = withDefaults(defineProps<Props>(), {
   isDisabled: false,
   name: undefined,
   isValid: true,
+  isIndeterminate: false,
 });
 
 // 状態に応じたクラス名を返します
@@ -41,9 +46,20 @@ const stateClassName = computed<string | null>(() => {
 const handleChange = (e: Event) => {
   emits("changeCheck", (e.target as HTMLInputElement).checked);
 };
+
+watchEffect(() => {
+  if (props.isIndeterminate && inputElement.value) {
+    inputElement.value.indeterminate = true;
+  } else {
+    if (inputElement.value) {
+      inputElement.value.indeterminate = false;
+    }
+  }
+});
 </script>
 <template>
   <input
+    ref="inputRef"
     v-model="model"
     type="checkbox"
     class="sr-only"
@@ -109,8 +125,9 @@ input:checked ~ .checkIcon {
 }
 
 input:focus-visible ~ .checkIcon {
-  outline: 2px solid var(--color-border-focused);
+  outline: 4px solid var(--color-text-body);
   outline-offset: 2px;
+  box-shadow: 0 0 2px 2px var(--color-focus) !important;
 }
 
 input:disabled ~ .checkIcon {
@@ -134,5 +151,15 @@ input:checked ~ .checkIcon.isInvalid {
 
 .checkIcon.isInvalid {
   border-color: var(--color-border-alert);
+}
+
+input:indeterminate ~ .checkIcon {
+  background-color: var(--color-icon-active);
+  border-color: var(--color-icon-active);
+
+  &::after {
+    background-image: url("@/assets/images/icon_check_indeterminate.svg");
+    background-size: 11px 2px;
+  }
 }
 </style>
