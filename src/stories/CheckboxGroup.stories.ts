@@ -7,6 +7,14 @@ const meta = {
   component: CheckboxGroup,
   tags: ["autodocs"],
   argTypes: {
+    type: {
+      control: "radio",
+      options: ["stacked", "inline"],
+    },
+    size: {
+      control: "select",
+      options: ["small", "medium", "large"],
+    },
     groupLabel: {
       control: "text",
     },
@@ -54,6 +62,7 @@ export const Base: Story = {
       <p class="mb">チェックされたもの：{{ checked }}</p>
         <CheckboxGroup
           v-model="checked"
+          :type="type"
           :groupLabel="groupLabel"
           :labels="labels"
           :values="values"
@@ -61,6 +70,8 @@ export const Base: Story = {
           :errorText="errorText"
           :isValid="isValid"
           :isRequired="isRequired"
+          :size="size"
+          :isDisabled="isDisabled"
           name="group3"
         />
       </div>

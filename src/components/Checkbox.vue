@@ -40,9 +40,6 @@ const stateClassName = computed<string | null>(() => {
   }
   return null;
 });
-const handleChangeCheck = (value: boolean) => {
-  console.log(value);
-};
 </script>
 <template>
   <label :class="[stateClassName ?? '', size]">
@@ -55,7 +52,6 @@ const handleChangeCheck = (value: boolean) => {
         :isDisabled="isDisabled"
         :isValid="isValid"
         :isIndeterminate="isIndeterminate"
-        @changeCheck="handleChangeCheck"
       />
     </div>
     {{ label }}
@@ -70,6 +66,18 @@ label {
   column-gap: 8px;
   align-items: center;
   font-size: pxToRem(16);
+
+  &.small {
+    min-height: 40px;
+  }
+
+  &.medium {
+    min-height: 48px;
+  }
+
+  &.large {
+    min-height: 60px;
+  }
 
   @media (hover: hover) {
     &:hover {
@@ -102,7 +110,7 @@ label {
 
     &.small {
       &:hover {
-        :deep(.checkIcon) {
+        :deep(.checkIcon:not(.isDisabled)) {
           box-shadow: 0 0 0 3px var(--color-border-divider);
         }
       }
@@ -110,7 +118,7 @@ label {
 
     &.large {
       &:hover {
-        :deep(.checkIcon) {
+        :deep(.checkIcon:not(.isDisabled)) {
           box-shadow: 0 0 0 5px var(--color-border-divider);
         }
       }
