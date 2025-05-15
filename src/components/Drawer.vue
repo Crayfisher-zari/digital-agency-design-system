@@ -23,7 +23,11 @@ const props = withDefaults(defineProps<Props>(), {
       appearFrom,
     ]"
   >
-    <div class="drawerContainer" :class="[appearFrom, type]">
+    <div
+      class="drawerContainer"
+      :class="[appearFrom, type]"
+      :aria-hidden="!isVisible"
+    >
       <slot></slot>
     </div>
   </div>
@@ -80,13 +84,13 @@ const props = withDefaults(defineProps<Props>(), {
 .drawerContainer {
   width: 320px;
   height: 100%;
-  padding: 20px 8px 32px;
+  padding: 20px 24px 32px;
   background-color: var(--color-background-primary);
   box-shadow: 2px 0 6px 0 rgba(0, 0, 0, 10%);
   transition: transform var(--base-duration) var(--easing-out-expo);
 
   &.sidebar {
-    width: 320px;
+    width: max-content;
   }
 
   &.overlay {
@@ -98,6 +102,7 @@ const props = withDefaults(defineProps<Props>(), {
   }
 
   &.right {
+    box-shadow: -2px 0 6px 0 rgba(0, 0, 0, 10%);
     transform: translateX(101%);
   }
 

@@ -20,7 +20,7 @@ const meta = {
       options: ["overlay", "sidebar"],
     },
     appearFrom: {
-      control: "selector",
+      control: "radio",
       options: ["left", "right", "top", "bottom", "none"],
     },
   },
@@ -51,7 +51,7 @@ export const Base: Story = {
     template: `
       <div style="overflow: hidden">
         <button @click="isVisible = !isVisible">表示切り替え</button>
-        <Drawer :isVisible="isVisible" :isMobileOnly="isMobileOnly" >
+        <Drawer :isVisible="isVisible" :isMobileOnly="isMobileOnly" :appearFrom="appearFrom" :type="type">
           <Menu :menuList="menuList" linkTag="a"></Menu>
         </Drawer>
       </div>
