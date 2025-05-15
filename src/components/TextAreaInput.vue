@@ -1,5 +1,7 @@
 <script lang="ts" setup>
 import { computed, useId } from "vue";
+import { disabledEventHandler } from "./common/disabledEventHandler";
+
 type Props = {
   /** 値（v-modelでも使える） */
   modelValue: string;
@@ -81,7 +83,12 @@ const stateClassName = computed<string | null>(() => {
         :aria-invalid="!isValid"
         :aria-describedby="errorIdName"
         :onBlur="onBlur"
-        :disabled="props.isDisabled"
+        :aria-disabled="props.isDisabled"
+        :readonly="props.isDisabled"
+        @click="(e) => (props.isDisabled ? disabledEventHandler(e) : undefined)"
+        @keydown="
+          (e) => (props.isDisabled ? disabledEventHandler(e) : undefined)
+        "
       ></textarea>
     </label>
     <div class="supportInfo">
@@ -117,12 +124,13 @@ const stateClassName = computed<string | null>(() => {
 }
 
 .label {
-  font-size: pxToRem(14);
+  font-size: pxToRem(17);
+  font-weight: var(--weight-bold);
 }
 
 .requiredText {
   margin-left: 8px;
-  font-size: pxToRem(12);
+  font-size: pxToRem(16);
   color: var(--color-text-alert);
 }
 
@@ -138,6 +146,12 @@ const stateClassName = computed<string | null>(() => {
   &::placeholder {
     color: var(--color-text-placeHolder);
   }
+
+  &:focus-visible {
+    outline: 4px solid var(--color-text-body);
+    outline-offset: 2px;
+    box-shadow: 0 0 2px 2px var(--color-focus);
+  }
 }
 
 .supportInfo {
@@ -148,8 +162,8 @@ const stateClassName = computed<string | null>(() => {
 .supportText {
   display: block;
   margin-top: 8px;
-  font-size: pxToRem(12);
-  line-height: 1.5;
+  font-size: pxToRem(16);
+  line-height: 1.7;
   color: var(--color-text-description);
 }
 
@@ -166,8 +180,8 @@ const stateClassName = computed<string | null>(() => {
   flex-shrink: 0;
   justify-self: end;
   margin-top: 8px;
-  font-size: pxToRem(12);
-  line-height: 1.5;
+  font-size: pxToRem(16);
+  line-height: 1;
   color: var(--color-text-description);
 
   &.over {
@@ -193,18 +207,17 @@ const stateClassName = computed<string | null>(() => {
 
   .textarea {
     border-color: var(--color-border-alert);
-    box-shadow: 0 0 0 1px var(--color-border-alert);
   }
 }
 
 // 非活性時のスタイル
 .isDisabled {
-  .label {
-    color: var(--color-text-disabled);
-  }
+  pointer-events: none;
 
   .textarea {
-    background-color: var(--color-background-secondary);
+    color: var(--color-text-disabled);
+    pointer-events: none;
+    background-color: var(--color-background-tertiary);
     border-color: var(--color-border-disabled);
   }
 }

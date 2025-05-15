@@ -65,6 +65,8 @@ export const Base: Story = {
         :isValid="isValid"
         :maxCount="maxCount"
         :numberOfCharacters="numberOfCharacters" 
+        :isDisabled="isDisabled"
+        :errorText="errorText"
       />
     `,
   }),

@@ -7,9 +7,9 @@
   --color-text-light-body: var(--color-grey-800);
   --color-text-dark-body: var(--color-grey-800);
   --color-text-body: var(--color-grey-800);
-  --color-text-light-description: var(--color-grey-700);
-  --color-text-dark-description: var(--color-grey-700);
-  --color-text-description: var(--color-grey-700);
+  --color-text-light-description: var(--color-grey-600);
+  --color-text-dark-description: var(--color-grey-600);
+  --color-text-description: var(--color-grey-600);
   --color-text-light-placeHolder: var(--color-grey-600);
   --color-text-dark-placeHolder: var(--color-grey-600);
   --color-text-placeHolder: var(---color-grey-600);
@@ -28,9 +28,9 @@
   --color-text-light-alert: var(--color-red-800);
   --color-text-dark-alert: var(--color-red-800);
   --color-text-alert: var(--color-red-800);
-  --color-text-light-disabled: var(--color-grey-400);
-  --color-text-dark-disabled: var(--color-grey-400);
-  --color-text-disabled: var(--color-grey-400);
+  --color-text-light-disabled: var(--color-grey-420);
+  --color-text-dark-disabled: var(--color-grey-420);
+  --color-text-disabled: var(--color-grey-420);
 
   /* Icon */
   --color-icon-light-label: var(--color-grey-900);
@@ -105,9 +105,9 @@
   --color-border-medium-light-divider: var(--color-grey-536);
   --color-border-medium-dark-divider: var(--color-grey-536);
   --color-border-medium-divider: var(--color-grey-536);
-  --color-border-dark-light-divider: var(--color-black);
-  --color-border-dark-dark-divider: var(--color-black);
-  --color-border-dark-divider: var(--color-black);
+  --color-border-strong-light-divider: var(--color-black);
+  --color-border-strong-dark-divider: var(--color-black);
+  --color-border-strong-divider: var(--color-black);
   --color-border-light-focused: var(--color-yellow-600);
   --color-border-dark-focused: var(color-yellow-600);
   --color-border-focused: var(--color-yellow-600);
@@ -208,7 +208,7 @@
     --color-border-field: var(--color-border-dark-field);
     --color-border-divider: var(--color-border-dark-divider);
     --color-border-medium-divider: var(--color-border-medium-dark-divider);
-    --color-border-dark-divider: var(--color-border-dark-dark-divider);
+    --color-border-strong-divider: var(--color-border-strong-dark-divider);
     --color-border-focused: var(--color-border-dark-focused);
     --color-border-selected: var(--color-border-dark-selected);
     --color-border-alert: var(--color-border-dark-alert);
@@ -275,7 +275,7 @@
   --color-border-field: var(--color-border-light-field);
   --color-border-divider: var(--color-border-light-divider);
   --color-border-medium-divider: var(--color-border-medium-light-divider);
-  --color-border-dark-divider: var(--color-border-dark-light-divider);
+  --color-border-strong-divider: var(--color-border-strong-light-divider);
   --color-border-focused: var(--color-border-light-focused);
   --color-border-selected: var(--color-border-light-selected);
   --color-border-alert: var(--color-border-light-alert);
@@ -341,7 +341,7 @@
   --color-border-field: var(--color-border-dark-field);
   --color-border-divider: var(--color-border-dark-divider);
   --color-border-medium-divider: var(--color-border-medium-dark-divider);
-  --color-border-dark-divider: var(--color-border-dark-dark-divider);
+  --color-border-strong-divider: var(--color-border-strong-dark-divider);
   --color-border-focused: var(--color-border-dark-focused);
   --color-border-selected: var(--color-border-dark-selected);
   --color-border-alert: var(--color-border-dark-alert);

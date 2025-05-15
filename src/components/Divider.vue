@@ -23,7 +23,7 @@ withDefaults(defineProps<Props>(), {
   }
 
   &.dark {
-    border-color: var(--color-border-dark-divider);
+    border-color: var(--color-border-strong-divider);
   }
 
   &.weight2 {
