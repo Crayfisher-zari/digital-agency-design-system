@@ -4,9 +4,12 @@
 
 :root {
   /* Text */
-  --color-text-light-body: var(--color-grey-800);
-  --color-text-dark-body: var(--color-grey-800);
-  --color-text-body: var(--color-grey-800);
+  --color-text-light-body: var(--color-grey-900);
+  --color-text-dark-body: var(--color-grey-900);
+  --color-text-body: var(--color-grey-900);
+  --color-text-light-secondary: var(--color-grey-800);
+  --color-text-dark-secondary: var(--color-grey-800);
+  --color-text-secondary: var(--color-grey-800);
   --color-text-light-description: var(--color-grey-600);
   --color-text-dark-description: var(--color-grey-600);
   --color-text-description: var(--color-grey-600);
@@ -131,18 +134,24 @@
   --color-status-light-success: var(--color-green-600);
   --color-status-dark-success: var(--color-green-600);
   --color-status-success: var(--color-green-600);
-  --color-status-success-hover: var(--color-green-800);
+  --color-status-light-success2: var(--color-green-800);
+  --color-status-dark-success2: var(--color-green-800);
+  --color-status-success2: var(--color-green-800);
   --color-status-light-success-hover: var(--color-green-800);
   --color-status-dark-success-hover: var(--color-green-800);
+  --color-status-success-hover: var(--color-green-800);
+  --color-status-light-success-hover2: var(--color-green-1000);
+  --color-status-dark-success-hover2: var(--color-green-1000);
+  --color-status-success-hover2: var(--color-green-1000);
   --color-status-light-alert: var(--color-red-800);
   --color-status-dark-alert: var(--color-red-800);
   --color-status-alert: var(--color-red-800);
   --color-status-alert-hover: var(--color-red-900);
   --color-status-light-alert-hover: var(--color-red-900);
   --color-status-dark-alert-hover: var(--color-red-900);
-  --color-status-light-warning: var(--color-yellow-700);
-  --color-status-dark-warning: var(--color-yellow-700);
-  --color-status-warning: var(--color-yellow-700);
+  --color-status-light-warning: var(--color-yellow-900);
+  --color-status-dark-warning: var(--color-yellow-900);
+  --color-status-warning: var(--color-yellow-900);
   --color-status-light-warning-hover: var(--color-yellow-1000);
   --color-status-dark-warning-hover: var(--color-yellow-1000);
   --color-status-warning-hover: var(--color-yellow-1000);
@@ -172,6 +181,7 @@
   @media (prefers-color-scheme: dark) {
     /* Text */
     --color-text-body: var(--color-text-dark-body);
+    --color-text-secondary: var(--color-text-dark-secondary);
     --color-text-description: var(--color-text-dark-description);
     --color-text-placeHolder: var(--color-text-dark-placeHolder);
     --color-text-onFill: var(-color-text-dark-onFill);
@@ -218,7 +228,9 @@
 
     /* Status */
     --color-status-success: var(--color-status-dark-success);
+    --color-status-success2: var(--color-status-dark-success2);
     --color-status-success-hover: var(--color-status-dark-success-hover);
+    --color-status-success-hover2: var(--color-status-dark-success-hover2);
     --color-status-alert: var(--color-status-dark-alert);
     --color-status-alert-hover: var(--color-status-dark-alert-hover);
     --color-status-warning: var(--color-status-dark-warning);
@@ -239,6 +251,7 @@
 .color-scheme-light {
   /* Text */
   --color-text-body: var(--color-text-light-body);
+  --color-text-secondary: var(--color-text-light-secondary);
   --color-text-description: var(--color-text-light-description);
   --color-text-placeHolder: var(--color-text-light-placeHolder);
   --color-text-onFill: var(--color-text-light-onFill);
@@ -285,7 +298,9 @@
 
   /* Status */
   --color-status-success: var(--color-status-light-success);
+  --color-status-success2: var(--color-status-light-success2);
   --color-status-success-hover: var(--color-status-light-success-hover);
+  --color-status-success-hover2: var(--color-status-light-success-hover2);
   --color-status-alert: var(--color-status-light-alert);
   --color-status-alert-hover: var(--color-status-light-alert-hover);
   --color-status-warning: var(--color-status-light-warning);
@@ -305,6 +320,7 @@
 .color-scheme-dark {
   /* Text */
   --color-text-body: var(--color-text-dark-body);
+  --color-text-secondary: var(--color-text-dark-secondary);
   --color-text-description: var(--color-text-dark-description);
   --color-text-placeHolder: var(--color-text-dark-placeHolder);
   --color-text-onFill: var(-color-text-dark-onFill);
@@ -351,7 +367,9 @@
 
   /* Status */
   --color-status-success: var(--color-status-dark-success);
+  --color-status-success2: var(--color-status-dark-success2);
   --color-status-success-hover: var(--color-status-dark-success-hover);
+  --color-status-success-hover2: var(--color-status-dark-success-hover2);
   --color-status-alert: var(--color-status-dark-alert);
   --color-status-alert-hover: var(--color-status-dark-alert-hover);
   --color-status-warning: var(--color-status-dark-warning);

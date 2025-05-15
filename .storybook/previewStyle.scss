@@ -1,3 +1,5 @@
+@use "../src/assets/style/style.scss" as *;
+
 body {
   font-family: "Noto Sans JP", sans-serif;
   color: var(--color-text-body);
@@ -12,16 +14,6 @@ body {
 
 #storybook-docs .sbdocs-content .docs-story {
   background-color: var(--color-background-primary) !important;
-}
-
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  clip-path: polygon(0 0, 0 0, 0 0, 0 0);
-  border: 0;
 }
 
 .mb {

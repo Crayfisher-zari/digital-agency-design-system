@@ -61,9 +61,9 @@ const primaryButtonColor = computed(() => {
   switch (props.type) {
     case "success":
       return {
-        backgroundColor: "var(--color-status-success)",
+        backgroundColor: "var(--color-status-success2)",
         labelColor: "var(--color-text-onFill)",
-        hoverBackgroundColor: "var(--color-status-success-hover)",
+        hoverBackgroundColor: "var(--color-status-success-hover2)",
         hoverLabelColor: "var(--color-text-onFill)",
       };
     case "error":
@@ -89,9 +89,9 @@ const primaryButtonColor = computed(() => {
       };
     case "info2":
       return {
-        backgroundColor: "var(--color-text-body)",
+        backgroundColor: "var(--color-grey-800)",
         labelColor: "var(--color-mono-clear)",
-        hoverBackgroundColor: "var(--color-sumi-800)",
+        hoverBackgroundColor: "var(--color-grey-700)",
         hoverLabelColor: "var(--color-text-onFill)",
       };
     default:
@@ -108,8 +108,8 @@ const secondaryButtonColor = computed(() => {
     case "success":
       return {
         backgroundColor: "var(--color-text-onFill)",
-        borderColor: "var(--color-status-success)",
-        labelColor: "var(--color-status-success)",
+        borderColor: "var(--color-status-success2)",
+        labelColor: "var(--color-status-success2)",
         hoverBackgroundColor:
           "var(--custom-secondary-hover-background-success)",
         hoverBorderColor: "var(--custom-secondary-hover-border-success)",
@@ -146,8 +146,8 @@ const secondaryButtonColor = computed(() => {
     case "info2":
       return {
         backgroundColor: "transparent",
-        borderColor: "var(--color-text-body)",
-        labelColor: "var(--color-text-body)",
+        borderColor: "var(--color-grey-800)",
+        labelColor: "var(--color-grey-800)",
         hoverBackgroundColor: "var(--custom-secondary-hover-background-info2)",
         hoverBorderColor: "var(--custom-secondary-hover-border-info2)",
         hoverLabelColor: "var(--custom-secondary-hover-label-info2)",
@@ -211,7 +211,7 @@ const titleTag = computed(() => {
             <circle cx="18" cy="18" r="18" fill="white" />
             <path
               d="M18 0C8.064 0 0 8.064 0 18C0 27.936 8.064 36 18 36C27.936 36 36 27.936 36 18C36 8.064 27.936 0 18 0ZM14.4 27L5.4 18L7.938 15.462L14.4 21.906L28.062 8.244L30.6 10.8L14.4 27Z"
-              fill="var(--color-status-success)"
+              fill="var(--color-status-success2)"
             />
           </svg>
           <!-- Errorの場合 -->
@@ -288,7 +288,7 @@ const titleTag = computed(() => {
             <circle cx="18" cy="18" r="18" fill="var(--color-mono-clear)" />
             <path
               d="M18 0C8.064 0 0 8.064 0 18C0 27.936 8.064 36 18 36C27.936 36 36 27.936 36 18C36 8.064 27.936 0 18 0ZM19.8 27H16.2V16.2H19.8V27ZM19.8 12.6H16.2V9H19.8V12.6Z"
-              fill="var(--color-mono-reverse)"
+              fill="var(--color-border-medium-divider)"
             />
           </svg>
         </span>
@@ -318,7 +318,8 @@ const titleTag = computed(() => {
             :height="14"
             color="var(--color-text-body)"
             class="closeButtonIcon"
-          />閉じる
+          />
+          <span class="closeButtonLabel sr-only-mobile">閉じる</span>
         </button>
       </div>
       <div
@@ -356,8 +357,8 @@ const titleTag = computed(() => {
 .notificationBannerWrapper {
   /* Successの副ボタンカスタムカラー */
   --custom-secondary-hover-background-success: var(--color-green-50);
-  --custom-secondary-hover-label-success: var(--color-green-700);
-  --custom-secondary-hover-border-success: var(--color-green-700);
+  --custom-secondary-hover-label-success: var(--color-green-1000);
+  --custom-secondary-hover-border-success: var(--color-green-1000);
 
   /* Errorの副ボタンカスタムカラー */
   --custom-secondary-hover-background-error: var(--color-red-50);
@@ -375,7 +376,7 @@ const titleTag = computed(() => {
   --custom-secondary-hover-border-info1: var(--color-blue-900);
 
   /* info2の副ボタンカスタムカラー */
-  --custom-secondary-hover-background-info2: var(--color-grey-50);
+  --custom-secondary-hover-background-info2: var(--color-grey-100);
   --custom-secondary-hover-label-info2: var(--color-grey-900);
   --custom-secondary-hover-border-info2: var(--color-grey-900);
 }
@@ -391,7 +392,7 @@ const titleTag = computed(() => {
   border-radius: 12px;
 
   &.success {
-    border-color: var(--color-status-success);
+    border-color: var(--color-status-success2);
   }
 
   &.error {
@@ -400,16 +401,39 @@ const titleTag = computed(() => {
 
   &.warning {
     border-color: var(--color-status-warning);
+
+    &.colorChip::before {
+      /* ワーニングのみ特別 */
+      border-color: var(--color-yellow-400);
+    }
   }
 
   &.info1 {
     border-color: var(--color-button-normal);
   }
 
+  &.info2 {
+    border-color: var(--color-border-medium-divider);
+  }
+
   &.colorChip {
+    position: relative;
+    padding: 24px 24px 32px 40px;
     border-width: 2px;
-    border-left-width: 16px;
-    border-radius: 0 8px 8px 0;
+    border-radius: 0;
+
+    &::before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: block;
+      width: 1px;
+      height: 100%;
+      content: "";
+      border-color: inherit;
+      border-style: solid;
+      border-width: 0 0 0 16px;
+    }
 
     @include mediaQueryDown {
       border-left-width: 6px;
@@ -454,6 +478,7 @@ const titleTag = computed(() => {
   width: auto;
   font-size: pxToRem(20);
   font-weight: var(--weight-bold);
+  line-height: 1.6;
   color: var(--color-text-body);
 
   &.hasUnderline {
@@ -462,7 +487,8 @@ const titleTag = computed(() => {
 
   @include mediaQueryDown {
     flex-grow: 0;
-    font-size: pxToRem(16);
+    font-size: pxToRem(17);
+    line-height: 1.7;
   }
 
   &.hasClose {
@@ -481,23 +507,25 @@ const titleTag = computed(() => {
   padding-left: 56px;
   margin-bottom: 8px;
   font-size: pxToRem(16);
+  line-height: 1.7;
+  color: var(--color-text-secondary);
 
   @include mediaQueryDown {
     padding-left: 0;
-    font-size: pxToRem(14);
+    font-size: pxToRem(16);
   }
 }
 
 .description {
   padding-left: 56px;
   font-size: pxToRem(16);
-  line-height: 1.75;
+  line-height: 1.7;
+  color: var(--color-text-secondary);
   text-decoration: none;
   letter-spacing: 0.04em;
 
   @include mediaQueryDown {
     padding-left: 0;
-    line-height: 1.7;
   }
 }
 
@@ -516,11 +544,11 @@ const titleTag = computed(() => {
 
 .closeButtonWrapper {
   position: absolute;
-  top: 24px;
+  top: 22px;
   right: 30px;
 
   @include mediaQueryDown {
-    top: 8px;
+    top: 10px;
     right: 16px;
   }
 }
@@ -528,25 +556,33 @@ const titleTag = computed(() => {
 .closeButton {
   display: flex;
   align-items: center;
-  width: 94px;
+  width: auto;
   height: 40px;
+  padding-right: 8px;
   padding-left: 16px;
   font-size: pxToRem(16);
   color: var(--color-text-body);
   appearance: none;
   cursor: pointer;
   background-color: transparent;
-  border: none;
+  border: 1px solid transparent;
   border-radius: 8px;
-  transition: background-color var(--base-duration) var(--easing-out-expo);
+  transition:
+    background-color var(--base-duration) var(--easing-out-expo),
+    border-color var(--base-duration) var(--easing-out-expo);
 
-  &:hover {
-    background-color: var(--color-mono-hover);
+  @media (hover: hover) {
+    &:hover {
+      background-color: var(--color-mono-hover);
+      border-color: var(--color-text-body);
+    }
   }
 
   @include mediaQueryDown {
-    width: 84px;
-    padding-left: 8px;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
     font-size: pxToRem(14);
   }
 }
@@ -554,5 +590,9 @@ const titleTag = computed(() => {
 .closeButtonIcon {
   display: block;
   margin-right: 11px;
+
+  @include mediaQueryDown {
+    margin-right: 0;
+  }
 }
 </style>
