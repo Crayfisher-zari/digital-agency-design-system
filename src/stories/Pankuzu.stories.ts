@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/vue3";
 import Pankuzu from "../components/Pankuzu.vue";
+import iconHome from "@/assets/images/icon_home.svg";
 
 const meta = {
   title: "パンくずリスト",
@@ -25,9 +26,21 @@ type Story = StoryObj<typeof meta>;
 export const Base: Story = {
   args: {
     list: [
-      { text: "ホーム", url: "#!" },
+      { text: "ホーム", url: "#!", iconSrc: iconHome },
       { text: "政策", url: "#!" },
       { text: "審議会・研究会", url: "#!" },
+      { text: "デジタル庁における入札制限等の在り方に関する検討会" },
+    ],
+    linkTag: "a",
+  },
+};
+
+export const LongText: Story = {
+  args: {
+    list: [
+      { text: "ホーム", url: "#!", iconSrc: iconHome },
+      { text: "政策", url: "#!" },
+      { text: "長いリンク長いリンク長いリンク長いリンク長いリンク", url: "#!" },
       { text: "デジタル庁における入札制限等の在り方に関する検討会" },
     ],
     linkTag: "a",

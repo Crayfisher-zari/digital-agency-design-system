@@ -27,9 +27,9 @@ const { LinkComponent } = useLink({ tag: props.linkTag });
     <Icon
       v-if="iconUrl"
       :iconSrc="iconUrl"
-      :width="11"
-      :height="11"
-      color="var(--color-text-body)"
+      :width="16"
+      :height="16"
+      color="currentColor"
       class="icon"
       :ariaHidden="true"
       role="img" /><slot name="default"></slot
@@ -38,7 +38,7 @@ const { LinkComponent } = useLink({ tag: props.linkTag });
       :iconSrc="externalIcon"
       :width="10"
       :height="10"
-      color="var(--color-text-body)"
+      color="inherit"
       class="externalIcon"
       :ariaHidden="true"
       role="img"
@@ -50,9 +50,12 @@ a {
   font-size: 14px;
   color: inherit;
   text-decoration: underline;
+  overflow-wrap: anywhere;
 
-  &:hover {
-    text-decoration-thickness: 3px;
+  @media screen and (hover: hover) {
+    &:hover:not(:active) {
+      text-decoration-thickness: 3px;
+    }
   }
 
   &:active {
@@ -64,8 +67,8 @@ a {
 
     .icon {
       position: absolute;
-      top: 6px;
-      left: 3px;
+      top: 3px;
+      left: 0;
     }
   }
 
