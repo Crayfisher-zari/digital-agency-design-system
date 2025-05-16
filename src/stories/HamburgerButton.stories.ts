@@ -8,14 +8,14 @@ const meta = {
   argTypes: {
     type: {
       control: "radio",
-      options: ["vertical", "horizontal"],
+      options: ["default", "compact"],
     },
     modelValue: {
       type: "boolean",
     },
   },
   args: {
-    type: "vertical",
+    type: "default",
     modelValue: false,
   },
 } satisfies Meta<typeof HamburgerButton>;

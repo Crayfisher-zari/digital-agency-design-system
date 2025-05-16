@@ -314,8 +314,8 @@ const titleTag = computed(() => {
         <button class="closeButton">
           <Icon
             :iconSrc="iconClose"
-            :width="14"
-            :height="14"
+            :width="24"
+            :height="24"
             color="var(--color-text-body)"
             class="closeButtonIcon"
           />
@@ -589,7 +589,7 @@ const titleTag = computed(() => {
 
 .closeButtonIcon {
   display: block;
-  margin-right: 11px;
+  margin-right: 6px;
 
   @include mediaQueryDown {
     margin-right: 0;

@@ -5,7 +5,7 @@ import iconClose from "@/assets/images/icon_close.svg";
 
 type Props = {
   /** 見た目の種類 */
-  type?: "vertical" | "horizontal";
+  type?: "default" | "compact";
   /** クリック時のイベントハンドラ */
   onClick?: () => void;
   /** 状態に関するリアクティブな値（v-modelで使える） */
@@ -13,7 +13,7 @@ type Props = {
 };
 
 const props = withDefaults(defineProps<Props>(), {
-  type: "vertical",
+  type: "default",
   onClick: undefined,
 });
 
@@ -38,8 +38,8 @@ const handleClick = () => {
         <span class="iconWrapper">
           <Icon
             :iconSrc="iconHamburger"
-            :width="18"
-            :height="14"
+            :width="24"
+            :height="24"
             color="var(--color-text-body)"
             class="icon hamburger"
           />
@@ -53,8 +53,8 @@ const handleClick = () => {
           <Icon
             v-show="model"
             :iconSrc="iconClose"
-            :width="14"
-            :height="14"
+            :width="24"
+            :height="24"
             color="var(--color-text-body)"
             class="icon close"
           />
@@ -73,8 +73,19 @@ const handleClick = () => {
   cursor: pointer;
   background-color: transparent;
   border: none;
+  &.default {
+    width: 93px;
+    height: 28px;
+    padding-left: 2px;
 
-  &.vertical {
+    .buttonInner {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+    }
+  }
+
+  &.compact {
     width: 48px;
     height: 48px;
 
@@ -85,21 +96,7 @@ const handleClick = () => {
     }
   }
 
-  &.horizontal {
-    width: 72px;
-    height: 32px;
-    padding-left: 4px;
-
-    .buttonInner {
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-    }
-
-    .iconWrapper {
-      margin-right: 4px;
-    }
-  }
+  
 }
 
 .buttonInner {
@@ -123,7 +120,7 @@ const handleClick = () => {
 
 .text {
   display: block;
-  font-size: pxToRem(10);
+  font-size: pxToRem(16);
   color: var(--color-text-body);
   text-align: center;
 }
@@ -137,15 +134,11 @@ const handleClick = () => {
 
 .icon {
   position: absolute;
-  top: 5px;
+  width: 24px;
   height: auto;
-
-  &.hamburger {
-    left: 3px;
-  }
-
-  &.close {
-    left: 5px;
+  left: 0;
+  &.close{
+    
   }
 }
 </style>
