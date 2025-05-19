@@ -13,10 +13,15 @@ const meta = {
     modelValue: {
       type: "boolean",
     },
+    lang: {
+      control: "radio",
+      options: ["ja", "en"],
+    },
   },
   args: {
     type: "default",
     modelValue: false,
+    lang: "ja",
   },
 } satisfies Meta<typeof HamburgerButton>;
 export default meta;

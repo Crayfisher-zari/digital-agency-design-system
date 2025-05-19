@@ -2,10 +2,16 @@
 import Icon from "./Icon.vue";
 import iconHamburger from "@/assets/images/icon_hamburger.svg";
 import iconClose from "@/assets/images/icon_close.svg";
+import iconHamburgerCompactJa from "@/assets/images/icon_hamburger_compact_ja.svg";
+import iconHamburgerCompactEn from "@/assets/images/icon_hamburger_compact_en.svg";
+import iconHamburgerCompactCloseJa from "@/assets/images/icon_hamburger_compact_close_ja.svg";
+import iconHamburgerCompactCloseEn from "@/assets/images/icon_hamburger_compact_close_en.svg";
 
 type Props = {
   /** 見た目の種類 */
   type?: "default" | "compact";
+  /** 言語 */
+  lang?: "ja" | "en";
   /** クリック時のイベントハンドラ */
   onClick?: () => void;
   /** 状態に関するリアクティブな値（v-modelで使える） */
@@ -14,6 +20,7 @@ type Props = {
 
 const props = withDefaults(defineProps<Props>(), {
   type: "default",
+  lang: "ja",
   onClick: undefined,
 });
 
@@ -35,31 +42,67 @@ const handleClick = () => {
   >
     <Transition mode="out-in">
       <span v-show="!model" class="buttonInner">
-        <span class="iconWrapper">
+        <template v-if="type === 'default'">
+          <span class="iconWrapper">
+            <Icon
+              :iconSrc="iconHamburger"
+              :width="24"
+              :height="24"
+              color="var(--color-text-body)"
+              class="icon hamburger"
+            />
+          </span>
+          <span class="text">メニュー</span>
+        </template>
+        <template v-if="type === 'compact'">
           <Icon
-            :iconSrc="iconHamburger"
-            :width="24"
-            :height="24"
+            :iconSrc="iconHamburgerCompactJa"
+            :width="44"
+            :height="44"
             color="var(--color-text-body)"
-            class="icon hamburger"
+            v-if="lang === 'ja'"
           />
-        </span>
-        <span class="text">メニュー</span>
+          <Icon
+            :iconSrc="iconHamburgerCompactEn"
+            :width="44"
+            :height="44"
+            color="var(--color-text-body)"
+            v-if="lang === 'en'"
+          />
+        </template>
       </span>
     </Transition>
     <Transition mode="out-in">
       <span v-show="model" class="buttonInner">
-        <span class="iconWrapper">
+        <template v-if="type === 'default'">
+          <span class="iconWrapper">
+            <Icon
+              v-show="model"
+              :iconSrc="iconClose"
+              :width="24"
+              :height="24"
+              color="var(--color-text-body)"
+              class="icon close"
+            />
+          </span>
+          <span class="text">閉じる</span>
+        </template>
+        <template v-if="type === 'compact'">
           <Icon
-            v-show="model"
-            :iconSrc="iconClose"
-            :width="24"
-            :height="24"
+            :iconSrc="iconHamburgerCompactCloseJa"
+            :width="44"
+            :height="44"
             color="var(--color-text-body)"
-            class="icon close"
+            v-if="lang === 'ja'"
           />
-        </span>
-        <span class="text">閉じる</span>
+          <Icon
+            :iconSrc="iconHamburgerCompactCloseEn"
+            :width="44"
+            :height="44"
+            color="var(--color-text-body)"
+            v-if="lang === 'en'"
+          />
+        </template>
       </span>
     </Transition>
   </button>
@@ -73,6 +116,24 @@ const handleClick = () => {
   cursor: pointer;
   background-color: transparent;
   border: none;
+  transition: background-color var(--base-duration) var(--easing-out-expo);
+
+  &:focus-visible {
+    background-color: var(--color-focus);
+    border-radius: 5px;
+    outline: 4px solid var(--color-text-body);
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      background-color: var(--color-background-tertiary);
+
+      .text {
+        text-decoration: underline;
+      }
+    }
+  }
+
   &.default {
     width: 93px;
     height: 28px;
@@ -86,17 +147,9 @@ const handleClick = () => {
   }
 
   &.compact {
-    width: 48px;
-    height: 48px;
-
-    .iconWrapper {
-      margin-top: 5px;
-      margin-right: auto;
-      margin-left: auto;
-    }
+    width: 44px;
+    height: 44px;
   }
-
-  
 }
 
 .buttonInner {
@@ -134,11 +187,8 @@ const handleClick = () => {
 
 .icon {
   position: absolute;
+  left: 0;
   width: 24px;
   height: auto;
-  left: 0;
-  &.close{
-    
-  }
 }
 </style>
