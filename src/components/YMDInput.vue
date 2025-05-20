@@ -82,7 +82,7 @@ const stateClassName = computed<string | null>(() => {
         <input
           v-model="modelMonth"
           type="text"
-          class="input"
+          class="input month"
           pattern="[1-9]|1[0-2]"
           maxlength="2"
           title="1〜12の数字で入力してください"
@@ -94,7 +94,7 @@ const stateClassName = computed<string | null>(() => {
         <input
           v-model="modelDay"
           type="text"
-          class="input"
+          class="input day"
           pattern="[1-9]|[1-2][0-9]|3[0-1]"
           maxlength="2"
           title="1〜31の数字で入力してください"
@@ -161,40 +161,53 @@ fieldset {
 
 .ymdWrapper {
   display: flex;
+  width: 223px;
   margin-top: 8px;
+  background-color: var(--color-background-primary);
+  border: 1px solid var(--color-border-field);
+  border-radius: 8px;
 }
 
 .selectorWrapper {
+  position: relative;
   display: flex;
   align-items: center;
-  margin-right: 16px;
-
-  &:last-child {
-    margin-right: 0;
-  }
+  padding-right: 16px;
 }
 
 .unit {
-  margin-left: 16px;
-  font-size: pxToRem(14);
+  position: absolute;
+  right: 4px;
+  padding: 4px;
+  font-size: pxToRem(16);
+  color: var(--color-text-body);
+  background-color: var(--color-background-primary);
 }
 
 .input {
-  width: 66px;
-  padding: 12px 16px;
+  height: 50px;
+  padding: 4px 14px 4px 4px;
   font-size: pxToRem(16);
   color: var(--color-text-body);
+  text-align: right;
   appearance: none;
   background-color: transparent;
-  border: 1px solid var(--color-border-field);
+  border: none;
   border-radius: 8px;
 
   &.year {
-    width: 95px;
+    width: 64px;
   }
 
-  &:invalid {
-    border-color: var(--color-border-alert);
+  &.month,
+  &.day {
+    width: 44px;
+  }
+
+  &:focus-visible {
+    outline: 4px solid var(--color-text-body);
+    outline-offset: 2px;
+    box-shadow: 0 0 2px 2px var(--color-focus);
   }
 }
 </style>
