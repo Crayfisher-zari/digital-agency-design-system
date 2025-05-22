@@ -126,12 +126,14 @@ const stateClassName = computed<string | null>(() => {
 .label {
   font-size: pxToRem(17);
   font-weight: var(--weight-bold);
+  letter-spacing: 0.02em;
 }
 
 .requiredText {
   margin-left: 8px;
   font-size: pxToRem(16);
   color: var(--color-text-alert);
+  letter-spacing: 0.02em;
 }
 
 .textarea {
@@ -165,6 +167,7 @@ const stateClassName = computed<string | null>(() => {
   font-size: pxToRem(16);
   line-height: 1.7;
   color: var(--color-text-description);
+  letter-spacing: 0.02em;
 }
 
 .errorText {

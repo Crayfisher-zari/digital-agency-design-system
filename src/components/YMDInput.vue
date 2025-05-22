@@ -8,6 +8,8 @@ type Props = {
   month: string;
   /** 日の値（v-model:dayで使える） */
   day: string;
+  /** サイズ */
+  size?: "large" | "medium" | "small";
   /** 年月日のラベルです */
   label?: string;
   /** 内容を補足するサポートテキスト */
@@ -25,6 +27,7 @@ type Props = {
 };
 
 const props = withDefaults(defineProps<Props>(), {
+  size: "medium",
   label: undefined,
   supportText: undefined,
   errorText: undefined,
@@ -54,7 +57,7 @@ const stateClassName = computed<string | null>(() => {
 </script>
 <template>
   <fieldset
-    :class="stateClassName"
+    :class="[stateClassName, size]"
     :aria-invalid="!isValid"
     :aria-describedby="errorIdName"
   >
@@ -62,7 +65,7 @@ const stateClassName = computed<string | null>(() => {
       <span class="labelWrapper"
         ><span class="label">{{ props.label }}</span
         ><span class="requiredText" :class="isRequired ? null : 'optional'">{{
-          isRequired ? "必須" : "任意"
+          isRequired ? "※必須" : "任意"
         }}</span></span
       >
     </legend>
@@ -103,13 +106,14 @@ const stateClassName = computed<string | null>(() => {
         <span class="unit">日</span>
       </label>
     </div>
-    <span
+    <p
       v-if="props.errorText !== undefined"
       v-show="!props.isValid"
       :id="errorIdName"
       class="errorText"
-      >{{ props.errorText }}</span
     >
+      {{ props.errorText }}
+    </p>
   </fieldset>
 </template>
 <style lang="scss" scoped>
@@ -120,6 +124,24 @@ fieldset {
   border: none;
 }
 
+.large {
+  .ymdWrapper {
+    height: 56px;
+  }
+}
+
+.medium {
+  .ymdWrapper {
+    height: 48px;
+  }
+}
+
+.small {
+  .ymdWrapper {
+    height: 40px;
+  }
+}
+
 .labelWrapper {
   display: flex;
   align-items: baseline;
@@ -127,21 +149,25 @@ fieldset {
 }
 
 .label {
-  font-size: pxToRem(14);
+  font-size: pxToRem(17);
+  line-height: 1.7;
+  letter-spacing: 0.02em;
 }
 
 .supportText {
   display: block;
   margin-top: 8px;
-  font-size: pxToRem(12);
-  line-height: 1.5;
+  font-size: pxToRem(16);
+  line-height: 1.7;
   color: var(--color-text-description);
+  letter-spacing: 0.02em;
 }
 
 .requiredText {
   margin-left: 8px;
-  font-size: pxToRem(12);
+  font-size: pxToRem(16);
   color: var(--color-text-alert);
+  letter-spacing: 0.02em;
 
   &.optional {
     color: var(--color-text-description);
@@ -149,8 +175,11 @@ fieldset {
 }
 
 .errorText {
-  font-size: pxToRem(12);
+  margin-top: 8px;
+  font-size: pxToRem(16);
+  line-height: 1.7;
   color: var(--color-text-alert);
+  letter-spacing: 0.02em;
 }
 
 .isError {

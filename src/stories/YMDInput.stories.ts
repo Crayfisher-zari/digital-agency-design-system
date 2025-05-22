@@ -6,6 +6,10 @@ const meta = {
   component: YMDInput,
   tags: ["autodocs"],
   argTypes: {
+    size: {
+      control: "radio",
+      options: ["large", "medium", "small"],
+    },
     year: {
       control: "text",
     },
@@ -50,7 +54,7 @@ export const Base: Story = {
     year: "",
     month: "",
     day: "",
-    label: "生年月日",
-    supportText: "月を選択してから日を選んでください",
+    label: "日付",
+    supportText: "例：2025年01月20日",
   },
 };

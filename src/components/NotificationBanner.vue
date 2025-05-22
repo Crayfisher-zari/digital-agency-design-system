@@ -480,6 +480,7 @@ const titleTag = computed(() => {
   font-weight: var(--weight-bold);
   line-height: 1.6;
   color: var(--color-text-body);
+  letter-spacing: 0.02em;
 
   &.hasUnderline {
     text-decoration: underline;
@@ -509,6 +510,7 @@ const titleTag = computed(() => {
   font-size: pxToRem(16);
   line-height: 1.7;
   color: var(--color-text-secondary);
+  letter-spacing: 0.02em;
 
   @include mediaQueryDown {
     padding-left: 0;
@@ -522,7 +524,7 @@ const titleTag = computed(() => {
   line-height: 1.7;
   color: var(--color-text-secondary);
   text-decoration: none;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.02em;
 
   @include mediaQueryDown {
     padding-left: 0;
