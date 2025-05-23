@@ -10,6 +10,10 @@ const meta = {
       control: "radio",
       options: ["large", "medium", "small"],
     },
+    type: {
+      control: "radio",
+      options: ["consolidated", "separate"],
+    },
     year: {
       control: "text",
     },

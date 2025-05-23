@@ -10,6 +10,8 @@ type Props = {
   day: string;
   /** サイズ */
   size?: "large" | "medium" | "small";
+  /** タイプ */
+  type?: "consolidated" | "separate";
   /** 年月日のラベルです */
   label?: string;
   /** 内容を補足するサポートテキスト */
@@ -28,6 +30,7 @@ type Props = {
 
 const props = withDefaults(defineProps<Props>(), {
   size: "medium",
+  type: "consolidated",
   label: undefined,
   supportText: undefined,
   errorText: undefined,
@@ -57,7 +60,7 @@ const stateClassName = computed<string | null>(() => {
 </script>
 <template>
   <fieldset
-    :class="[stateClassName, size]"
+    :class="[stateClassName, size, type]"
     :aria-invalid="!isValid"
     :aria-describedby="errorIdName"
   >
@@ -124,21 +127,101 @@ fieldset {
   border: none;
 }
 
-.large {
+.consolidated {
+  .ymdWrapper {
+    width: 223px;
+    border: 1px solid var(--color-border-field);
+  }
+
+  .input {
+    &.year {
+      width: 64px;
+      margin-left: -1px;
+    }
+
+    &.month,
+    &.day {
+      width: 44px;
+    }
+  }
+
+  .unit {
+    right: 4px;
+  }
+}
+
+.consolidated.large {
   .ymdWrapper {
     height: 56px;
   }
 }
 
-.medium {
+.consolidated.medium {
   .ymdWrapper {
     height: 48px;
   }
 }
 
-.small {
+.consolidated.small {
   .ymdWrapper {
     height: 40px;
+  }
+}
+
+.separate {
+  .ymdWrapper {
+    width: 216px;
+  }
+
+  .input {
+    padding: 4px;
+    text-align: center;
+    border: 1px solid var(--color-border-field);
+
+    &.year {
+      width: 72px;
+    }
+
+    &.month,
+    &.day {
+      width: 56px;
+    }
+  }
+
+  .unit {
+    top: -9px;
+    left: calc(50% - 8px);
+    transform: translateX(-50%);
+  }
+}
+
+.separate.large {
+  .ymdWrapper {
+    height: 68px;
+  }
+
+  .input {
+    height: 56px;
+  }
+}
+
+.separate.medium {
+  .ymdWrapper {
+    height: 60px;
+  }
+
+  .input {
+    height: 48px;
+  }
+}
+
+.separate.small {
+  .ymdWrapper {
+    height: 52px;
+  }
+
+  .input {
+    height: 208px;
   }
 }
 
@@ -190,10 +273,8 @@ fieldset {
 
 .ymdWrapper {
   display: flex;
-  width: 223px;
   margin-top: 8px;
   background-color: var(--color-background-primary);
-  border: 1px solid var(--color-border-field);
   border-radius: 8px;
 }
 
@@ -206,7 +287,6 @@ fieldset {
 
 .unit {
   position: absolute;
-  right: 4px;
   padding: 4px;
   font-size: pxToRem(16);
   color: var(--color-text-body);
@@ -214,7 +294,7 @@ fieldset {
 }
 
 .input {
-  height: 50px;
+  height: calc(100% + 4px);
   padding: 4px 14px 4px 4px;
   font-size: pxToRem(16);
   color: var(--color-text-body);
@@ -222,18 +302,11 @@ fieldset {
   appearance: none;
   background-color: transparent;
   border: none;
+  border: 1px solid transparent;
   border-radius: 8px;
 
-  &.year {
-    width: 64px;
-  }
-
-  &.month,
-  &.day {
-    width: 44px;
-  }
-
   &:focus-visible {
+    border-color: var(--color-text-body);
     outline: 4px solid var(--color-text-body);
     outline-offset: 2px;
     box-shadow: 0 0 2px 2px var(--color-focus);
