@@ -112,12 +112,20 @@ const stateClassName = computed<string | null>(() => {
 @use "@/assets/style/utils/utils.scss" as *;
 
 .large {
+  .label {
+    font-size: pxToRem(18);
+    line-height: 1.6;
+  }
   .textInput {
     padding: 13px 16px;
   }
 }
 
 .small {
+  .label {
+    font-size: pxToRem(16);
+    line-height: 1.7;
+  }
   .textInput {
     padding: 6px 16px;
     border-radius: 4px;

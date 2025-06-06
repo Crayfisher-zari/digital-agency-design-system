@@ -165,18 +165,33 @@ fieldset {
 }
 
 .consolidated.large {
+  .label {
+    font-size: pxToRem(18);
+    line-height: 1.6;
+  }
+
   .ymdWrapper {
     height: 56px;
   }
 }
 
 .consolidated.medium {
+  .label {
+    font-size: pxToRem(17);
+    line-height: 1.7;
+  }
+
   .ymdWrapper {
     height: 48px;
   }
 }
 
 .consolidated.small {
+  .label {
+    font-size: pxToRem(16);
+    line-height: 1.7;
+  }
+
   .ymdWrapper {
     height: 40px;
   }
@@ -210,6 +225,11 @@ fieldset {
 }
 
 .separate.large {
+  .label {
+    font-size: pxToRem(18);
+    line-height: 1.6;
+  }
+
   .ymdWrapper {
     height: 68px;
   }
@@ -220,6 +240,11 @@ fieldset {
 }
 
 .separate.medium {
+  .label {
+    font-size: pxToRem(17);
+    line-height: 1.7;
+  }
+
   .ymdWrapper {
     height: 60px;
   }
@@ -230,6 +255,11 @@ fieldset {
 }
 
 .separate.small {
+  .label {
+    font-size: pxToRem(16);
+    line-height: 1.7;
+  }
+
   .ymdWrapper {
     height: 52px;
   }
@@ -263,6 +293,7 @@ fieldset {
 .requiredText {
   margin-left: 8px;
   font-size: pxToRem(16);
+  line-height: 1;
   color: var(--color-text-alert);
   letter-spacing: 0.02em;
 
