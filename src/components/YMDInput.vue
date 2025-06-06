@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, useId } from "vue";
+import { disabledEventHandler } from "./common/disabledEventHandler";
 
 type Props = {
   /** 年の値（v-model:yearで使える） */
@@ -81,6 +82,10 @@ const stateClassName = computed<string | null>(() => {
           class="input year"
           maxlength="4"
           :onBlur="props.onBlur"
+          :aria-disabled="props.isDisabled"
+          @keydown="
+            (e) => (props.isDisabled ? disabledEventHandler(e) : undefined)
+          "
         />
         <span class="unit">年</span>
       </label>
@@ -93,6 +98,10 @@ const stateClassName = computed<string | null>(() => {
           maxlength="2"
           title="1〜12の数字で入力してください"
           :onBlur="props.onBlur"
+          :aria-disabled="props.isDisabled"
+          @keydown="
+            (e) => (props.isDisabled ? disabledEventHandler(e) : undefined)
+          "
         />
         <span class="unit">月</span>
       </label>
@@ -105,7 +114,12 @@ const stateClassName = computed<string | null>(() => {
           maxlength="2"
           title="1〜31の数字で入力してください"
           :onBlur="props.onBlur"
+          :aria-disabled="props.isDisabled"
+          @keydown="
+            (e) => (props.isDisabled ? disabledEventHandler(e) : undefined)
+          "
         />
+
         <span class="unit">日</span>
       </label>
     </div>
@@ -189,7 +203,7 @@ fieldset {
   }
 
   .unit {
-    top: -9px;
+    top: -6px;
     left: calc(50% - 8px);
     transform: translateX(-50%);
   }
@@ -221,7 +235,7 @@ fieldset {
   }
 
   .input {
-    height: 208px;
+    height: 40px;
   }
 }
 
@@ -258,17 +272,10 @@ fieldset {
 }
 
 .errorText {
-  margin-top: 8px;
   font-size: pxToRem(16);
   line-height: 1.7;
   color: var(--color-text-alert);
   letter-spacing: 0.02em;
-}
-
-.isError {
-  .label {
-    color: var(--color-text-alert);
-  }
 }
 
 .ymdWrapper {
@@ -289,6 +296,7 @@ fieldset {
   position: absolute;
   padding: 4px;
   font-size: pxToRem(16);
+  line-height: 1;
   color: var(--color-text-body);
   background-color: var(--color-background-primary);
 }
@@ -310,6 +318,46 @@ fieldset {
     outline: 4px solid var(--color-text-body);
     outline-offset: 2px;
     box-shadow: 0 0 2px 2px var(--color-focus);
+  }
+}
+
+.isInvalid.consolidated {
+  .ymdWrapper {
+    border-color: var(--color-status-alert);
+  }
+}
+
+.isInvalid.separate {
+  .input {
+    border-color: var(--color-status-alert);
+  }
+}
+
+.isDisabled.consolidated {
+  .unit {
+    color: var(--color-text-disabled);
+    background-color: var(--color-background-secondary);
+  }
+
+  .input {
+    pointer-events: none;
+  }
+
+  .ymdWrapper {
+    background-color: var(--color-background-secondary);
+    border-color: var(--color-border-disabled);
+  }
+}
+
+.isDisabled.separate {
+  .unit {
+    color: var(--color-text-disabled);
+  }
+
+  .input {
+    pointer-events: none;
+    background-color: var(--color-background-secondary);
+    border-color: var(--color-border-disabled);
   }
 }
 </style>
