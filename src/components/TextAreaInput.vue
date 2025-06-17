@@ -1,18 +1,21 @@
 <script lang="ts" setup>
 import { computed, useId } from "vue";
 import { disabledEventHandler } from "./common/disabledEventHandler";
+import FormControlLabel from "./FormControlLabel.vue";
 
 type Props = {
   /** 値（v-modelでも使える） */
   modelValue: string;
   /** インプットのラベルです */
   label: string;
+  /** サイズ */
+  size?: "large" | "medium" | "small";
   /** プレースホルダのテキストです */
   placeHolder?: string;
   /** 内容を補足するサポートテキスト */
-  supportText?: string | null;
+  supportText?: string;
   /** エラー時に表示するテキスト */
-  errorText?: string | null;
+  errorText?: string;
   /** 必須かどうか。未指定の場合はfalse */
   isRequired?: boolean;
   /** 妥当性 */
@@ -32,9 +35,10 @@ const model = defineModel<string>();
 const props = withDefaults(defineProps<Props>(), {
   isRequired: false,
   isValid: true,
+  size: "medium",
   placeHolder: "",
-  supportText: null,
-  errorText: null,
+  supportText: undefined,
+  errorText: undefined,
   onBlur: undefined,
   isDisabled: false,
   maxCount: undefined,
@@ -68,13 +72,14 @@ const stateClassName = computed<string | null>(() => {
 <template>
   <div :class="stateClassName">
     <label class="textAreaInputWrapper">
-      <span class="labelWrapper"
-        ><span class="label">{{ props.label }}</span
-        ><span v-show="props.isRequired" class="requiredText">必須</span></span
-      >
-      <span v-if="props.supportText !== null" class="supportText">{{
-        props.supportText
-      }}</span>
+      <FormControlLabel
+        :label="props.label"
+        :supportText="props.supportText"
+        :size="props.size"
+        :isRequired="props.isRequired"
+        :isValid="props.isValid"
+        :isDisabled="props.isDisabled"
+      />
       <textarea
         v-model="model"
         class="textarea"

@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { computed, useId } from "vue";
 import { disabledEventHandler } from "./common/disabledEventHandler";
+import FormControlLabel from "./FormControlLabel.vue";
 
 type Props = {
   /** 値（v-modelでも使える） */
@@ -71,15 +72,14 @@ const stateClassName = computed<string | null>(() => {
 <template>
   <div :class="[stateClassName, size]">
     <label class="textInputWrapper">
-      <span class="labelWrapper"
-        ><span class="label">{{ props.label }}</span
-        ><span class="requiredText" :class="isRequired ? null : 'optional'">{{
-          isRequired ? "※必須" : "任意"
-        }}</span></span
-      >
-      <span v-if="props.supportText !== undefined" class="supportText">{{
-        props.supportText
-      }}</span>
+      <FormControlLabel
+        :size="size"
+        :label="props.label"
+        :supportText="props.supportText"
+        :isRequired="props.isRequired"
+        :isValid="props.isValid"
+        :isDisabled="props.isDisabled"
+      />
       <input
         v-model="model"
         class="textInput"
@@ -112,20 +112,12 @@ const stateClassName = computed<string | null>(() => {
 @use "@/assets/style/utils/utils.scss" as *;
 
 .large {
-  .label {
-    font-size: pxToRem(18);
-    line-height: 1.6;
-  }
   .textInput {
     padding: 13px 16px;
   }
 }
 
 .small {
-  .label {
-    font-size: pxToRem(16);
-    line-height: 1.7;
-  }
   .textInput {
     padding: 6px 16px;
     border-radius: 4px;
@@ -136,30 +128,6 @@ const stateClassName = computed<string | null>(() => {
   display: flex;
   flex-direction: column;
   row-gap: 8px;
-}
-
-.labelWrapper {
-  display: flex;
-  align-items: baseline;
-  justify-content: flex-start;
-}
-
-.label {
-  font-size: pxToRem(17);
-  font-weight: var(--weight-bold);
-  line-height: 1.7;
-  letter-spacing: 0.02em;
-}
-
-.requiredText {
-  margin-left: 8px;
-  font-size: pxToRem(16);
-  color: var(--color-text-alert);
-  letter-spacing: 0.02em;
-
-  &.optional {
-    color: var(--color-text-description);
-  }
 }
 
 .textInput {
@@ -181,14 +149,6 @@ const stateClassName = computed<string | null>(() => {
   }
 }
 
-.supportText {
-  display: block;
-  font-size: pxToRem(16);
-  line-height: 1.7;
-  color: var(--color-text-description);
-  letter-spacing: 0.02em;
-}
-
 .errorText {
   display: block;
   margin-top: 8px;
@@ -200,10 +160,6 @@ const stateClassName = computed<string | null>(() => {
 
 // エラー時のスタイル
 .isInvalid {
-  .label {
-    color: var(--color-text-alert);
-  }
-
   .textInput {
     border-color: var(--color-border-alert);
   }
@@ -213,10 +169,6 @@ const stateClassName = computed<string | null>(() => {
 .isDisabled {
   .textInputWrapper {
     pointer-events: none;
-  }
-
-  .label {
-    color: var(--color-text-disabled);
   }
 
   .textInput {

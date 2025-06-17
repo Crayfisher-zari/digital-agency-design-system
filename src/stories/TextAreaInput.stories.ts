@@ -8,6 +8,10 @@ const meta = {
   tags: ["autodocs"],
   argTypes: {
     label: { control: "text" },
+    size: {
+      control: "radio",
+      options: ["large", "medium", "small"],
+    },
     placeHolder: { control: "text" },
     supportText: { control: "text" },
     errorText: { control: "text" },
@@ -46,6 +50,7 @@ export const Base: Story = {
     supportText: "できる限りくわしくお書きください",
     isRequired: false,
     isValid: true,
+    size: "medium",
     maxCount: 256,
   },
   render: (args) => ({
@@ -61,6 +66,7 @@ export const Base: Story = {
         :label="label" 
         :placeHolder="placeHolder" 
         :supportText="supportText" 
+        :size="size"
         :isRequired="isRequired" 
         :isValid="isValid"
         :maxCount="maxCount"

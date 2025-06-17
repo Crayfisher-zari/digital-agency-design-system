@@ -1,51 +1,30 @@
 import type { Meta, StoryObj } from "@storybook/vue3";
-import TextInput from "../components/TextInput.vue";
+import FormControlLabel from "../components/FormControlLabel.vue";
 
 const meta = {
-  title: "テキスト入力",
-  component: TextInput,
+  title: "フォームコントロールラベル",
+  component: FormControlLabel,
   tags: ["autodocs"],
   argTypes: {
     label: { control: "text" },
-    type: {
-      control: "radio",
-      options: [
-        "text",
-        "email",
-        "tel",
-        "number",
-        "password",
-        "date",
-        "detetime-local",
-        "search",
-        "url",
-        "week",
-      ],
-    },
     size: {
       control: "radio",
       options: ["large", "medium", "small"],
     },
-    placeHolder: { control: "text" },
     supportText: { control: "text" },
-    errorText: { control: "text" },
     isRequired: { control: "boolean" },
     isValid: { control: "boolean" },
     isDisabled: { control: "boolean" },
   },
   args: {
     label: "ラベル",
-    type: "text",
-    placeHolder: "プレースホルダー",
     supportText: "サポートテキスト",
-    errorText: "エラーテキスト",
+    size: "medium",
     isRequired: false,
     isValid: true,
     isDisabled: false,
-    onBlur: undefined,
-    modelValue: "",
   },
-} satisfies Meta<typeof TextInput>;
+} satisfies Meta<typeof FormControlLabel>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -56,7 +35,6 @@ type Story = StoryObj<typeof meta>;
 export const Base: Story = {
   args: {
     label: "ラベル",
-    type: "text",
   },
 };
 
@@ -66,7 +44,7 @@ export const Base: Story = {
 export const Large: Story = {
   args: {
     label: "ラベル",
-    type: "text",
+
     size: "large",
   },
 };
@@ -77,7 +55,6 @@ export const Large: Story = {
 export const Small: Story = {
   args: {
     label: "ラベル",
-    type: "text",
     size: "small",
   },
 };
