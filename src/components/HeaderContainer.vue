@@ -1,9 +1,9 @@
 <script setup lang="ts">
 type Props = {
-  type?: "full" | "slim";
+  type?: "wide-full" | "wide-slim" | "medium" | "compact";
 };
 withDefaults(defineProps<Props>(), {
-  type: "full",
+  type: "wide-full",
 });
 </script>
 <template>
@@ -32,7 +32,7 @@ withDefaults(defineProps<Props>(), {
   background-color: var(--color-background-primary);
   border-bottom: 1px solid var(--color-border-divider);
 
-  &.slim {
+  &.wide-slim {
     .inner {
       grid-template: "logo menu item" 80px / 240px auto 1fr;
     }
