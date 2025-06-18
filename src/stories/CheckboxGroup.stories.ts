@@ -12,7 +12,7 @@ const meta = {
       options: ["stacked", "inline"],
     },
     size: {
-      control: "select",
+      control: "radio",
       options: ["small", "medium", "large"],
     },
     groupLabel: {

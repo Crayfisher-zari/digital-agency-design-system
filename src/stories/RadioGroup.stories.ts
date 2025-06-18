@@ -14,6 +14,10 @@ const meta = {
       control: "radio",
       options: ["default", "tile"],
     },
+    size: {
+      control: "radio",
+      options: ["small", "medium", "large"],
+    },
     isRequired: {
       control: "boolean",
     },
@@ -31,6 +35,7 @@ const meta = {
     labels: ["選択肢1", "選択肢2", "選択肢3"],
     values: ["選択肢1の値", "選択肢2の値", "選択肢3の値"],
     groupLabel: "ラベル",
+    size: "medium",
     supportText: "サポートテキスト",
     errorText: "エラーテキスト",
     onBlur: undefined,
@@ -51,6 +56,7 @@ export const Base: Story = {
     labels: ["選択肢1", "選択肢2", "選択肢3"],
     values: ["選択肢1の値", "選択肢2の値", "選択肢3の値"],
     groupLabel: "ラベル",
+    size: "medium",
     supportText: "サポートテキスト",
     errorText: "エラーテキスト",
     onBlur: undefined,
@@ -75,6 +81,7 @@ export const Base: Story = {
           :groupLabel="groupLabel"
           :labels="labels"
           :values="values"
+          :size="size"
           :supportText="supportText"
           :errorText="errorText"
           :isValid="isValid"

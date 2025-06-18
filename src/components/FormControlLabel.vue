@@ -13,7 +13,7 @@ const props = withDefaults(
     isRequired?: boolean;
     /** 妥当性 */
     isValid?: boolean;
-    /** ボタンが非活性状態か。未指定の場合はfalse。aria-disabledで実装されています */
+    /** フォームが非活性状態か。未指定の場合はfalse */
     isDisabled?: boolean;
   }>(),
   {

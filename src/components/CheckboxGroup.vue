@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import Checkbox from "./Checkbox.vue";
+import FormControlLabel from "./FormControlLabel.vue";
 
 type Props = {
   /** タイプ */
@@ -46,14 +47,14 @@ const model = defineModel<[] | string[]>();
 </script>
 <template>
   <div class="checkboxGroup" :class="[{ isError: !isValid }, size, type]">
-    <p class="label">
-      {{ groupLabel }}
-      <span v-if="isRequired" class="requiredText isRequired">※必須</span>
-      <span v-else class="requiredText">任意</span>
-    </p>
-    <p v-if="supportText !== undefined" class="supportText">
-      {{ supportText }}
-    </p>
+    <FormControlLabel
+      :size="size"
+      :label="groupLabel"
+      :supportText="supportText"
+      :isRequired="isRequired"
+      :isValid="isValid"
+      :isDisabled="isDisabled"
+    />
     <div class="buttons">
       <Checkbox
         v-for="(label, index) in labels"
@@ -76,33 +77,6 @@ const model = defineModel<[] | string[]>();
 <style lang="scss" scoped>
 @use "@/assets/style/utils/utils.scss" as *;
 
-.label {
-  display: flex;
-  align-items: center;
-  font-size: pxToRem(16);
-  font-weight: var(--weight-bold);
-  line-height: 1.7;
-  color: var(--color-text-body);
-}
-
-.requiredText {
-  margin-left: 8px;
-  font-size: pxToRem(16);
-  font-weight: var(--weight-normal);
-  color: var(--color-text-description);
-
-  &.isRequired {
-    color: var(--color-text-alert);
-  }
-}
-
-.supportText {
-  margin-top: 4px;
-  font-size: pxToRem(16);
-  line-height: 1.7;
-  color: var(--color-text-description);
-}
-
 .buttons {
   display: flex;
   margin-top: 4px;
@@ -116,7 +90,7 @@ const model = defineModel<[] | string[]>();
   &.small {
     .buttons {
       row-gap: 0;
-      margin-top: 12px;
+      margin-top: 0;
     }
 
     .errorText {
@@ -127,7 +101,7 @@ const model = defineModel<[] | string[]>();
   &.medium {
     .buttons {
       row-gap: 8px;
-      margin-top: 16px;
+      margin-top: 8px;
     }
 
     .errorText {
@@ -138,7 +112,7 @@ const model = defineModel<[] | string[]>();
   &.large {
     .buttons {
       row-gap: 8;
-      margin-top: 24px;
+      margin-top: 8px;
     }
 
     .errorText {

@@ -1,9 +1,12 @@
 <script lang="ts" setup>
+import FormControlLabel from "./FormControlLabel.vue";
 import RadioButton from "./RadioButton.vue";
 
 type Props = {
   /** 格納するリアクティブな値（v-modelでも使える） */
   modelValue: string | null;
+  /** サイズ */
+  size?: "small" | "medium" | "large";
   /** ラジオボタングループのラベル */
   groupLabel: string;
   /** デフォルトスタイルかタイルスタイルか */
@@ -44,15 +47,14 @@ withDefaults(defineProps<Props>(), {
 </script>
 <template>
   <div class="radioGroup" :class="[{ isError: !isValid }, radioStyle]">
-    <p class="label">
-      {{ groupLabel }}
-      <span v-if="isRequired" class="requiredText isRequired">必須</span>
-      <span v-else class="requiredText">任意</span>
-    </p>
-    <p v-if="supportText !== undefined" class="supportText">
-      {{ supportText }}
-    </p>
-
+    <FormControlLabel
+      :size="size"
+      :label="groupLabel"
+      :supportText="supportText"
+      :isRequired="isRequired"
+      :isValid="isValid"
+      :isDisabled="isDisabled"
+    />
     <div class="buttons">
       <RadioButton
         v-for="(label, index) in labels"
@@ -85,31 +87,6 @@ withDefaults(defineProps<Props>(), {
   }
 }
 
-.label {
-  display: flex;
-  align-items: center;
-  font-size: pxToRem(16);
-  font-weight: var(--weight-bold);
-  color: var(--color-text-body);
-}
-
-.requiredText {
-  margin-left: 8px;
-  font-size: pxToRem(16);
-  font-weight: var(--weight-normal);
-  color: var(--color-text-description);
-
-  &.isRequired {
-    color: var(--color-text-alert);
-  }
-}
-
-.supportText {
-  margin-top: 8px;
-  font-size: pxToRem(16);
-  color: var(--color-text-description);
-}
-
 .buttons {
   margin-top: 4px;
 }
@@ -117,11 +94,5 @@ withDefaults(defineProps<Props>(), {
 .errorText {
   font-size: pxToRem(12);
   color: var(--color-text-alert);
-}
-
-.isError {
-  .label {
-    color: var(--color-text-alert);
-  }
 }
 </style>
