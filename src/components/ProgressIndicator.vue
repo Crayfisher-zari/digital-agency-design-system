@@ -18,7 +18,7 @@ withDefaults(defineProps<Props>(), {
   label: undefined,
   isOverlay: false,
   labelPosition: "stacked",
-  width: undefined,
+  width: 0,
 });
 </script>
 <template>
@@ -48,7 +48,7 @@ withDefaults(defineProps<Props>(), {
       />
     </div>
     <div v-if="type === 'linear'">
-      <div class="linear" :class="{ customWidth: width !== undefined }">
+      <div class="linear" :class="{ customWidth: width !== 0 }">
         <img
           :src="linear"
           class="linearInner lineAnimation"
@@ -83,8 +83,8 @@ withDefaults(defineProps<Props>(), {
   }
 
   &.isOverlay {
-    width: 130px;
-    height: 130px;
+    width: auto;
+    height: auto;
     padding: 24px 16px;
     background-color: var(--color-background-primary);
     border-radius: 12px;
