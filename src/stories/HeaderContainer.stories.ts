@@ -8,11 +8,11 @@ const meta = {
   argTypes: {
     type: {
       control: "radio",
-      options: ["full", "slim"],
+      options: ["wide-full", "wide-slim", "medium", "compact"],
     },
   },
   args: {
-    type: "full",
+    type: "wide-full",
   },
 } satisfies Meta<typeof HeaderContainer>;
 export default meta;
@@ -26,10 +26,10 @@ export const Base: Story = {
     },
     template: `
     <HeaderContainer :type="type">
-      <template #logo>①ロゴ</template>
-      <template #item>②ヘッダーコンテナアイテム</template>
-      <template #menu>③グローバルメニュー</template>
-      <template #hamburger>④ハンバーガーメニュー</template>
+      <template #logo>① ロゴ</template>
+      <template #item>② ヘッダーコンテナアイテム</template>
+      <template #menu>③ グローバルメニュー</template>
+      <template #hamburger>④</template>
     </HeaderContainer>
     `,
   }),
@@ -37,7 +37,7 @@ export const Base: Story = {
 
 export const Slim: Story = {
   args: {
-    type: "slim",
+    type: "wide-slim",
   },
   render: (args) => ({
     components: { HeaderContainer },

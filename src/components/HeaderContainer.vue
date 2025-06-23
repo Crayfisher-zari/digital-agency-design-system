@@ -28,30 +28,59 @@ withDefaults(defineProps<Props>(), {
 @use "@/assets/style/utils/utils.scss" as *;
 
 .header {
-  padding: 0 40px;
-  background-color: var(--color-background-primary);
-  border-bottom: 1px solid var(--color-border-divider);
+  &.wide-full {
+    padding: 28px 40px 24px;
 
-  &.wide-slim {
     .inner {
-      grid-template: "logo menu item" 80px / 240px auto 1fr;
+      grid-template: "logo item" 64px "menu menu" 64px / 240px 1fr;
+    }
+
+    .hamburger {
+      display: none;
     }
   }
 
-  @include mediaQueryDown {
-    padding: 0 16px;
+  &.wide-slim {
+    padding: 20px 40px 18px;
+
+    .inner {
+      grid-template: "logo menu item" 48px / 240px 1fr auto;
+    }
+
+    .hamburger {
+      display: none;
+    }
+  }
+
+  &.medium {
+    padding: 20px 40px 18px;
+
+    .inner {
+      grid-template: "logo item hamburger" 48px / 240px 1fr 56px;
+    }
+
+    .menu {
+      display: none;
+    }
+  }
+
+  &.compact {
+    padding: 12px 16px;
+
+    .inner {
+      grid-template: "logo item hamburger" 48px / 60px 1fr 56px;
+    }
+
+    .menu {
+      display: none;
+    }
   }
 }
 
 .inner {
   display: grid;
-  grid-template: "logo item" 80px "menu menu" 56px / 240px 1fr;
-  max-width: 1280px;
+  gap: 12px;
   margin: 0 auto;
-
-  @include mediaQueryDown {
-    grid-template: "logo item hamburger" 56px / 160px 1fr 48px;
-  }
 }
 
 .logo {
@@ -64,23 +93,16 @@ withDefaults(defineProps<Props>(), {
   display: flex;
   grid-area: item;
   align-items: center;
-  justify-content: flex-end;
 }
 
 .menu {
   grid-area: menu;
   align-self: center;
-
-  @include mediaQueryDown {
-    display: none;
-  }
 }
 
 .hamburger {
+  display: flex;
   grid-area: hamburger;
-
-  @include mediaQueryUp {
-    display: none;
-  }
+  align-items: center;
 }
 </style>
