@@ -36,7 +36,7 @@
     "preview": "vite preview",
     "typeCheck": "yarn run vue-tsc",
     "lint": "eslint \"./**/*.{ts,vue}\" && stylelint \"./**/*.{scss,vue}\" && prettier \"./**/*.{scss,vue,ts}\" --check",
-    "lint:oxlint": "oxlint . --fix -D correctness --ignore-path .gitignore",
+    "lint:oxlint": "oxlint . --fix -D correctness --ignore-path .gitignore && prettier \"./**/*.{scss,vue,ts}\" --write --experimental-cli ",
     "lint:fix": "eslint \"./**/*.{vue,ts}\" --fix && stylelint \"./**/*.{scss,vue}\" --fix && prettier \"./**/*.{scss,vue,ts}\" --write",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
@@ -45,6 +45,7 @@
     "vue": "3.5.13"
   },
   "devDependencies": {
+    "@prettier/plugin-oxc": "0.0.4",
     "@storybook/addon-essentials": "8.6.12",
     "@storybook/addon-interactions": "8.6.12",
     "@storybook/addon-links": "8.6.12",
@@ -68,7 +69,7 @@
     "jiti": "2.4.2",
     "oxlint": "0.16.8",
     "postcss-html": "1.6.0",
-    "prettier": "3.2.5",
+    "prettier": "3.6.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "sass": "1.74.1",
@@ -93,5 +94,6 @@
     "vue",
     "ui framework",
     "vue framework"
-  ]
+  ],
+  "packageManager": "pnpm@10.12.3+sha512.467df2c586056165580ad6dfb54ceaad94c5a30f80893ebdec5a44c5aa73c205ae4a5bb9d5ed6bb84ea7c249ece786642bbb49d06a307df218d03da41c317417"
 }

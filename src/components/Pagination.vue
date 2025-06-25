@@ -181,7 +181,8 @@ button {
 .dot {
   color: transparent;
   text-align: center;
-  background-image: radial-gradient(
+  background-image:
+    radial-gradient(
       circle at 2px 2px,
       var(--color-text-body) 0,
       var(--color-text-body) 1px,

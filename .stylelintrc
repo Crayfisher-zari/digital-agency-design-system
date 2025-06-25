@@ -2,7 +2,7 @@
   "extends": [
     "stylelint-config-standard-scss",
     "stylelint-config-recess-order",
-    "stylelint-config-recommended-vue/scss" 
+    "stylelint-config-recommended-vue/scss"
   ],
   "customSyntax": "postcss-scss",
   "overrides": [
