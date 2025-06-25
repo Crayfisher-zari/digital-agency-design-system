@@ -18,8 +18,8 @@ const vueConfig = defineConfigWithVueTs(
 
   pluginVue.configs["flat/essential"],
   vueTsConfigs.recommended,
-  ...pluginOxlint.configs["flat/recommended"],
   skipFormatting,
+  ...pluginOxlint.configs["flat/recommended"],
 );
 
 export default [
