@@ -13,20 +13,46 @@ const meta = {
       options: [1, 2, 3, 4, 5, 6],
       description: "Hxにあたる見出しレベルです",
     },
-    designLevel: {
+    size: {
       control: "radio",
-      options: ["XXL", "XL", "L", "M", "S", "XS", "XXS"],
+      options: [64, 57, 45, 36, 32, 28, 24, 20, 18, 16],
       description: "デザイン上のサイズレベルです",
+    },
+    shoulder: {
+      control: "text",
+      description: "ショルダー文言です",
+    },
+    designLevel: {
+      table: {
+        disable: true,
+      },
     },
   },
   args: {
     headingLevel: 1,
-    designLevel: "L",
+    size: 36,
   }, // default value
 } satisfies Meta<typeof Heading>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
+
+/**
+ * ショルダー文言付きの見出し
+ */
+export const WithShoulder: Story = {
+  args: {
+    headingLevel: 1,
+    shoulder: "ショルダー文言",
+  },
+  render: (args) => ({
+    components: { Heading },
+    setup() {
+      return { args };
+    },
+    template: `<Heading v-bind="args">ショルダー文言付きの見出し</Heading>`,
+  }),
+};
 
 /**
  * 見出しレベル1（デフォルトサイズ）
@@ -130,7 +156,7 @@ export const HeadingLevel6: Story = {
 export const DesignLevelXXL: Story = {
   args: {
     headingLevel: 1,
-    designLevel: "XXL",
+    size: 57,
   },
   render: (args) => ({
     components: { Heading },
@@ -147,7 +173,7 @@ export const DesignLevelXXL: Story = {
 export const DesignLevelXL: Story = {
   args: {
     headingLevel: 1,
-    designLevel: "XL",
+    size: 45,
   },
   render: (args) => ({
     components: { Heading },
@@ -164,7 +190,7 @@ export const DesignLevelXL: Story = {
 export const DesignLevelL: Story = {
   args: {
     headingLevel: 1,
-    designLevel: "L",
+    size: 36,
   },
   render: (args) => ({
     components: { Heading },
@@ -181,7 +207,7 @@ export const DesignLevelL: Story = {
 export const DesignLevelM: Story = {
   args: {
     headingLevel: 1,
-    designLevel: "M",
+    size: 32,
   },
   render: (args) => ({
     components: { Heading },
@@ -198,7 +224,7 @@ export const DesignLevelM: Story = {
 export const DesignLevelS: Story = {
   args: {
     headingLevel: 1,
-    designLevel: "S",
+    size: 28,
   },
   render: (args) => ({
     components: { Heading },
@@ -215,7 +241,7 @@ export const DesignLevelS: Story = {
 export const DesignLevelXS: Story = {
   args: {
     headingLevel: 1,
-    designLevel: "XS",
+    size: 24,
   },
   render: (args) => ({
     components: { Heading },
@@ -232,7 +258,7 @@ export const DesignLevelXS: Story = {
 export const DesignLevelXXS: Story = {
   args: {
     headingLevel: 1,
-    designLevel: "XXS",
+    size: 20,
   },
   render: (args) => ({
     components: { Heading },
@@ -252,13 +278,13 @@ export const CombinationExamples: Story = {
     components: { Heading },
     template: `
       <div style="display: flex; flex-direction: column; gap: 20px;">
-        <Heading :headingLevel="1" designLevel="XXL">ページタイトル（h1 + XXL）</Heading>
-        <Heading :headingLevel="2" designLevel="XL">セクションタイトル（h2 + XL）</Heading>
-        <Heading :headingLevel="3" designLevel="L">サブセクションタイトル（h3 + L）</Heading>
-        <Heading :headingLevel="4" designLevel="M">小見出し（h4 + M）</Heading>
-        <Heading :headingLevel="5" designLevel="S">ミニ見出し（h5 + S）</Heading>
-        <Heading :headingLevel="6" designLevel="XS">キャプション見出し（h6 + XS）</Heading>
-        <Heading :headingLevel="1" designLevel="XXS">小さなページタイトル（h1 + XXS）</Heading>
+        <Heading :headingLevel="1" :size="57">ページタイトル（h1 + 57）</Heading>
+        <Heading :headingLevel="2" :size="45">セクションタイトル（h2 + 45）</Heading>
+        <Heading :headingLevel="3" :size="36">サブセクションタイトル（h3 + 36）</Heading>
+        <Heading :headingLevel="4" :size="32">小見出し（h4 + 32）</Heading>
+        <Heading :headingLevel="5" :size="28">ミニ見出し（h5 + 28）</Heading>
+        <Heading :headingLevel="6" :size="24">キャプション見出し（h6 + 24）</Heading>
+        <Heading :headingLevel="1" :size="20">小さなページタイトル（h1 + 20）</Heading>
       </div>
     `,
   }),
@@ -282,4 +308,4 @@ export const DefaultSizes: Story = {
       </div>
     `,
   }),
-}; 
+};

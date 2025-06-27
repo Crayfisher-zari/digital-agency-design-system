@@ -1,11 +1,20 @@
 <script lang="ts" setup>
-import { h, computed, useSlots } from "vue";
+import { computed } from "vue";
+
+type Size = 64 | 57 | 45 | 36 | 32 | 28 | 24 | 20 | 18 | 16;
 
 type Props = {
   /** Hxにあたる見出しレベルです */
   headingLevel: 1 | 2 | 3 | 4 | 5 | 6;
-  /** デザイン上のサイズレベルです */
+  /**
+   * デザイン上のサイズレベルです
+   * @deprecated `size` プロパティを使用してください。
+   */
   designLevel?: "XXL" | "XL" | "L" | "M" | "S" | "XS" | "XXS";
+  /** ショルダー文言です */
+  shoulder?: string;
+  /** デザイン上のサイズレベルです */
+  size?: Size;
 };
 
 const props = defineProps<Props>();
@@ -20,25 +29,22 @@ const defaultHeadingLevelSize = {
   6: "XXS",
 } as const;
 
-const slots = useSlots();
-
 /**
  * 見出しのコンポーネントです。
- * propsとしてheadingLevelとdesignLevelを受け取ります。
+ * propsとしてheadingLevelとsizeを受け取ります。
  * 運用上の柔軟性をもたせるため、HTMLの見出しレベルと見た目の大きさを独立して指定できます。
- * designLevelを指定しない場合は見出しレベルに沿ったスタイルが適用されます。
+ * sizeを指定しない場合は見出しレベルに沿ったスタイルが適用されます。
  */
-const designLevel = computed(() => 
-  props.designLevel ?? defaultHeadingLevelSize[props.headingLevel]
-);
-
-const renderHeading = () => {
-  return h(`h${props.headingLevel}`, { class: `heading${designLevel.value}` }, slots.default?.());
-};
+const computedDesignLevel = computed(() => {
+  if (props.size) return props.size;
+  if (props.designLevel) return props.designLevel; // Back-compat
+  return defaultHeadingLevelSize[props.headingLevel];
+});
 </script>
 
 <template>
-  <component :is="`h${headingLevel}`" :class="`heading${designLevel}`">
+  <component :is="`h${headingLevel}`" :class="`heading${computedDesignLevel}`">
+    <span v-if="shoulder" class="shoulder">{{ shoulder }}</span>
     <slot />
   </component>
 </template>
@@ -46,6 +52,20 @@ const renderHeading = () => {
 <style lang="scss" scoped>
 @use "@/assets/style/utils/utils.scss" as *;
 
+.shoulder {
+  display: block;
+  font-weight: var(--weight-normal);
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+}
+
+.heading64 {
+  .shoulder {
+    font-size: pxToRem(28);
+  }
+}
+
+/* 古いデザインレベル */
 .headingXXL {
   padding: 64px 0 24px;
   font-size: pxToRem(57);
