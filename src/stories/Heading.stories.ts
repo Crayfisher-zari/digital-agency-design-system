@@ -31,7 +31,7 @@ const meta = {
   args: {
     headingLevel: 1,
     size: 36,
-  }, // default value
+  },
 } satisfies Meta<typeof Heading>;
 
 export default meta;

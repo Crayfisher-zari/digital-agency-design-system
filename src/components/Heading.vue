@@ -45,23 +45,149 @@ const computedDesignLevel = computed(() => {
 <template>
   <component :is="`h${headingLevel}`" :class="`heading${computedDesignLevel}`">
     <span v-if="shoulder" class="shoulder">{{ shoulder }}</span>
-    <slot />
+    <span class="headingText">
+      <slot />
+    </span>
   </component>
 </template>
 
 <style lang="scss" scoped>
 @use "@/assets/style/utils/utils.scss" as *;
 
-.shoulder {
+.shoulder,
+.headingText {
   display: block;
-  font-weight: var(--weight-normal);
-  line-height: 1.5;
-  letter-spacing: 0.01em;
+  font-weight: var(--weight-bold);
 }
 
 .heading64 {
+  .headingText {
+    font-size: pxToRem(64);
+    line-height: 1.4;
+  }
+
   .shoulder {
     font-size: pxToRem(28);
+    line-height: 1.5;
+    letter-spacing: 0.01em;
+  }
+}
+
+.heading57 {
+  .headingText {
+    font-size: pxToRem(57);
+    line-height: 1.4;
+  }
+
+  .shoulder {
+    font-size: pxToRem(24);
+    line-height: 1.5;
+    letter-spacing: 0.02em;
+  }
+}
+
+.heading45 {
+  .headingText {
+    font-size: pxToRem(45);
+    line-height: 1.4;
+  }
+
+  .shoulder {
+    font-size: pxToRem(22);
+    line-height: 1.5;
+    letter-spacing: 0.02em;
+  }
+}
+
+.heading36 {
+  .headingText {
+    font-size: pxToRem(36);
+    line-height: 1.4;
+    letter-spacing: 0.01em;
+  }
+
+  .shoulder {
+    font-size: pxToRem(20);
+    line-height: 1.6;
+    letter-spacing: 0.02em;
+  }
+}
+
+.heading32 {
+  .headingText {
+    font-size: pxToRem(32);
+    line-height: 1.5;
+    letter-spacing: 0.01em;
+  }
+
+  .shoulder {
+    font-size: pxToRem(18);
+    line-height: 1.6;
+    letter-spacing: 0.02em;
+  }
+}
+
+.heading28 {
+  .headingText {
+    font-size: pxToRem(28);
+    line-height: 1.5;
+    letter-spacing: 0.01em;
+  }
+
+  .shoulder {
+    font-size: pxToRem(16);
+    line-height: 1.7;
+    letter-spacing: 0.02em;
+  }
+}
+
+.heading24 {
+  .headingText {
+    font-size: pxToRem(24);
+    line-height: 1.5;
+    letter-spacing: 0.02em;
+  }
+
+  .shoulder {
+    font-size: pxToRem(16);
+    line-height: 1.7;
+    letter-spacing: 0.02em;
+  }
+}
+
+.heading20 {
+  .shoulder {
+    display: none;
+  }
+
+  .headingText {
+    font-size: pxToRem(20);
+    line-height: 1.5;
+    letter-spacing: 0.02em;
+  }
+}
+
+.heading18 {
+  .shoulder {
+    display: none;
+  }
+
+  .headingText {
+    font-size: pxToRem(18);
+    line-height: 1.6;
+    letter-spacing: 0.02em;
+  }
+}
+
+.heading16 {
+  .shoulder {
+    display: none;
+  }
+
+  .headingText {
+    font-size: pxToRem(16);
+    line-height: 1.7;
+    letter-spacing: 0.02em;
   }
 }
 
