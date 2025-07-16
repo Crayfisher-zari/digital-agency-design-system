@@ -15,9 +15,18 @@ type Props = {
   shoulder?: string;
   /** デザイン上のサイズレベルです */
   size?: Size;
+  /** チップがあるかどうかです */
+  hasChip?: boolean;
+  /** チップの色です */
+  chipColor?: string;
 };
 
-const props = defineProps<Props>();
+const props = withDefaults(defineProps<Props>(), {
+  size: 20,
+  shoulder: undefined,
+  hasChip: false,
+  chipColor: "var(--color-button-normal)",
+});
 
 // デフォルトの見出しサイズです
 const defaultHeadingLevelSize = {
@@ -43,7 +52,13 @@ const computedDesignLevel = computed(() => {
 </script>
 
 <template>
-  <component :is="`h${headingLevel}`" :class="`heading${computedDesignLevel}`">
+  <component
+    :is="`h${headingLevel}`"
+    :class="`heading heading${computedDesignLevel} ${hasChip ? 'hasChip' : ''} ${$slots.frontIcon ? 'hasFrontIcon' : ''}`"
+  >
+    <span v-if="$slots.frontIcon" class="frontIcon">
+      <slot name="frontIcon" />
+    </span>
     <span v-if="shoulder" class="shoulder">{{ shoulder }}</span>
     <span class="headingText">
       <slot />
@@ -188,6 +203,149 @@ const computedDesignLevel = computed(() => {
     font-size: pxToRem(16);
     line-height: 1.7;
     letter-spacing: 0.02em;
+  }
+}
+
+/* チップ付きの見出し */
+.hasChip {
+  position: relative;
+
+  &.heading::before {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    display: block;
+    height: 75%;
+    content: "";
+    border-inline-start-color: v-bind(chipcolor);
+    border-inline-start-style: solid;
+    transform: translateY(-50%);
+  }
+
+  &.heading64 {
+    padding-inline-start: 54.5px;
+
+    &::before {
+      border-inline-start-width: 22.5px;
+    }
+  }
+
+  &.heading57 {
+    padding-inline-start: 48px;
+
+    &::before {
+      border-inline-start-width: 20px;
+    }
+  }
+
+  &.heading45 {
+    padding-inline-start: 39.75px;
+
+    &::before {
+      border-inline-start-width: 15.75px;
+    }
+  }
+
+  &.heading36 {
+    padding-inline-start: 32.5px;
+
+    &::before {
+      border-inline-start-width: 12.5px;
+    }
+  }
+
+  &.heading32 {
+    padding-inline-start: 28px;
+
+    &::before {
+      border-inline-start-width: 12px;
+    }
+  }
+
+  &.heading28 {
+    padding-inline-start: 24.5px;
+
+    &::before {
+      border-inline-start-width: 10.5px;
+    }
+  }
+
+  &.heading24 {
+    padding-inline-start: 21px;
+
+    &::before {
+      border-inline-start-width: 9px;
+    }
+  }
+
+  &.heading20 {
+    padding-inline-start: 17.5px;
+
+    &::before {
+      border-inline-start-width: 7.5px;
+    }
+  }
+
+  &.heading18 {
+    padding-inline-start: 15.25px;
+
+    &::before {
+      border-inline-start-width: 7.25px;
+    }
+  }
+
+  &.heading16 {
+    padding-inline-start: 14.75px;
+
+    &::before {
+      border-inline-start-width: 6.75px;
+    }
+  }
+}
+
+/* フロントアイコン付きの見出し */
+.hasFrontIcon {
+  display: flex;
+  align-items: center;
+
+  &.heading64 {
+    column-gap: 24px;
+  }
+
+  &.heading57 {
+    column-gap: 20px;
+  }
+
+  &.heading45 {
+    column-gap: 16px;
+  }
+
+  &.heading36 {
+    column-gap: 16px;
+  }
+
+  &.heading32 {
+    column-gap: 16px;
+  }
+
+  &.heading28 {
+    column-gap: 12px;
+  }
+
+  &.heading24 {
+    column-gap: 8px;
+  }
+
+  &.heading20 {
+    column-gap: 8px;
+  }
+
+  &.heading18 {
+    column-gap: 8px;
+  }
+
+  &.heading16 {
+    column-gap: 8px;
   }
 }
 

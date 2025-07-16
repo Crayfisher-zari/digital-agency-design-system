@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/vue3";
 import Heading from "../components/Heading.vue";
+import Icon from "../components/Icon.vue";
+import AlertIcon from "../assets/images/icon_banner_info_blue.svg?url";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 const meta = {
@@ -36,7 +38,6 @@ const meta = {
 
 export default meta;
 type Story = StoryObj<typeof meta>;
-
 /**
  * ショルダー文言付きの見出し
  */
@@ -269,6 +270,40 @@ export const DesignLevelXXS: Story = {
   }),
 };
 
+/**
+ * チップ付きの見出し
+ */
+export const WithChip: Story = {
+  args: {
+    headingLevel: 1,
+    size: 20,
+    hasChip: true,
+  },
+  render: (args) => ({
+    components: { Heading },
+    setup() {
+      return { args };
+    },
+    template: `<Heading v-bind="args">チップ付きの見出し</Heading>`,
+  }),
+};
+
+/**
+ *  フロントアイコン付きの見出し
+ */
+export const WithFrontIcon: Story = {
+  args: {
+    headingLevel: 1,
+    size: 20,
+  },
+  render: (args) => ({
+    components: { Heading, Icon },
+    setup() {
+      return { args, AlertIcon };
+    },
+    template: `<Heading v-bind="args"><template #frontIcon><Icon :iconSrc="AlertIcon" color="var(--color-chart-primary)" width="24" height="24" /></template>フロントアイコン付きの見出し</Heading>`,
+  }),
+};
 /**
  * 見出しレベルとデザインレベルの組み合わせ例
  * 運用上の柔軟性をもたせるため、HTMLの見出しレベルと見た目の大きさを独立して指定できます。
