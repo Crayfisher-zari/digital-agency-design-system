@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/vue3";
 import Menu from "../components/Menu.vue";
 
 const meta = {
-  title: "メニュー",
+  title: "旧メニュー（非推奨）",
   component: Menu,
   tags: ["autodocs"],
   argTypes: {
@@ -38,6 +38,10 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+/**
+ * メニュー
+ * @deprecated
+ */
 export const Base: Story = {
   args: {
     menuList: [

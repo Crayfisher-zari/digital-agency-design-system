@@ -1,4 +1,7 @@
 <script setup lang="ts">
+/**
+ * @deprecated
+ */
 import { LinkTag, useLink } from "../composables/useLinkComponent";
 import MenuAccordion from "./MenuAccordion.vue";
 
