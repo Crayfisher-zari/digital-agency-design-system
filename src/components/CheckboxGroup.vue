@@ -58,9 +58,9 @@ const model = defineModel<[] | string[]>();
     <div class="buttons">
       <Checkbox
         v-for="(label, index) in labels"
-        :size="size"
         :key="values[index]"
         v-model="model"
+        :size="size"
         :label="label"
         :value="values[index]"
         :name="name"

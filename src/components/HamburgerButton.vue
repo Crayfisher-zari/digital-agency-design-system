@@ -56,18 +56,18 @@ const handleClick = () => {
         </template>
         <template v-if="type === 'compact'">
           <Icon
+            v-if="lang === 'ja'"
             :iconSrc="iconHamburgerCompactJa"
             :width="44"
             :height="44"
             color="var(--color-text-body)"
-            v-if="lang === 'ja'"
           />
           <Icon
+            v-if="lang === 'en'"
             :iconSrc="iconHamburgerCompactEn"
             :width="44"
             :height="44"
             color="var(--color-text-body)"
-            v-if="lang === 'en'"
           />
         </template>
       </span>
@@ -89,18 +89,18 @@ const handleClick = () => {
         </template>
         <template v-if="type === 'compact'">
           <Icon
+            v-if="lang === 'ja'"
             :iconSrc="iconHamburgerCompactCloseJa"
             :width="44"
             :height="44"
             color="var(--color-text-body)"
-            v-if="lang === 'ja'"
           />
           <Icon
+            v-if="lang === 'en'"
             :iconSrc="iconHamburgerCompactCloseEn"
             :width="44"
             :height="44"
             color="var(--color-text-body)"
-            v-if="lang === 'en'"
           />
         </template>
       </span>

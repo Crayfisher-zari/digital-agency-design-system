@@ -19,6 +19,7 @@ withDefaults(defineProps<Props>(), {
   type: "standard",
   tag: "auto",
   target: undefined,
+  description: undefined,
   isCurrent: false,
   isUnderlined: true,
 });
@@ -39,7 +40,7 @@ const { LinkComponent } = useLink();
     </span>
     <span class="text">
       <slot />
-      <span class="blank" v-if="target === '_blank'">
+      <span v-if="target === '_blank'" class="blank">
         <Icon
           :iconSrc="iconExternal"
           :width="12"
@@ -48,7 +49,7 @@ const { LinkComponent } = useLink();
         />
       </span>
     </span>
-    <span class="description" v-if="$slots.description"
+    <span v-if="$slots.description" class="description"
       ><slot name="description"
     /></span>
     <span class="iconBackward">
@@ -59,7 +60,7 @@ const { LinkComponent } = useLink();
         :height="16"
         color="currentColor"
       />
-      <slot name="iconBackward" v-else />
+      <slot v-else name="iconBackward" />
     </span>
   </LinkComponent>
 </template>
