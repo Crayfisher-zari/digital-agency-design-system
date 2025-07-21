@@ -5,13 +5,14 @@ type Props = {
   iconSrc: string;
   width: number;
   height: number;
-  color: string;
+  color?: string;
   role?: string;
   ariaLabel?: string;
   ariaHidden?: boolean;
 };
 withDefaults(defineProps<Props>(), {
   role: undefined,
+  color: "currentColor",
   ariaLabel: undefined,
   ariaHidden: undefined,
 });

@@ -12,9 +12,28 @@ const meta = {
       control: "radio",
       options: ["regular", "small"],
     },
+    type: {
+      control: "radio",
+      options: ["standard", "boxed", "thumbnail"],
+    },
+    tag: {
+      control: "radio",
+      options: ["auto", "a", "router-link", "nuxt-link"],
+    },
+    target: {
+      control: "radio",
+      options: [undefined, "_blank"],
+    },
+    isCurrent: {
+      control: "boolean",
+    },
   },
   args: {
     size: "regular",
+    type: "standard",
+    tag: "auto",
+    target: undefined,
+    isCurrent: false,
   },
 } satisfies Meta<typeof MenuListItem>;
 
@@ -27,10 +46,15 @@ type Story = StoryObj<typeof meta>;
 export const Regular: Story = {
   args: {
     size: "regular",
+    type: "standard",
+    tag: "auto",
+    target: undefined,
+    isCurrent: false,
   },
-  render: () => ({
+  render: (args) => ({
     components: { MenuListItem },
-    template: `<MenuListItem size="regular">メニューアイテム</MenuListItem>`,
+    setup: () => ({ args }),
+    template: `<MenuListItem v-bind="args">メニューアイテム</MenuListItem>`,
   }),
 };
 
@@ -40,10 +64,15 @@ export const Regular: Story = {
 export const Small: Story = {
   args: {
     size: "small",
+    type: "standard",
+    tag: "auto",
+    target: undefined,
+    isCurrent: false,
   },
-  render: () => ({
+  render: (args) => ({
     components: { MenuListItem },
-    template: `<MenuListItem size="small">メニューアイテム</MenuListItem>`,
+    setup: () => ({ args }),
+    template: `<MenuListItem v-bind="args">メニューアイテム</MenuListItem>`,
   }),
 };
 
@@ -53,18 +82,17 @@ export const Small: Story = {
 export const WithIcon: Story = {
   args: {
     size: "regular",
+    type: "standard",
+    tag: "auto",
+    target: undefined,
+    isCurrent: false,
   },
-  render: () => ({
+  render: (args) => ({
     components: { MenuListItem, Icon },
-    setup: () => {
-      const iconSrc = iconSample;
-      return {
-        iconSrc,
-      };
-    },
-    template: `<MenuListItem size="regular">
+    setup: () => ({ args, iconSrc: iconSample }),
+    template: `<MenuListItem v-bind="args">
       <template #icon>
-        <Icon :iconSrc="iconSrc" width="16" height="16" color="var(--color-text-primary)" />
+        <Icon :iconSrc="iconSrc" width="16" height="16" />
       </template>
       ホーム
     </MenuListItem>`,
@@ -77,18 +105,43 @@ export const WithIcon: Story = {
 export const SmallWithIcon: Story = {
   args: {
     size: "small",
+    type: "standard",
+    tag: "auto",
+    target: undefined,
+    isCurrent: false,
   },
-  render: () => ({
+  render: (args) => ({
     components: { MenuListItem, Icon },
-    setup: () => {
-      const iconSrc = iconSample;
-      return {
-        iconSrc,
-      };
-    },
-    template: `<MenuListItem size="small">
+    setup: () => ({ args, iconSrc: iconSample }),
+    template: `<MenuListItem v-bind="args">
       <template #icon>
-        <Icon :iconSrc="iconSrc" width="14" height="14" color="var(--color-text-primary)" />
+        <Icon :iconSrc="iconSrc" width="14" height="14" />
+      </template>
+      プロフィール
+    </MenuListItem>`,
+  }),
+};
+
+/**
+ * Boxタイプアイコン付き
+ */
+export const BoxWithIcon: Story = {
+  args: {
+    size: "regular",
+    type: "boxed",
+    tag: "auto",
+    target: undefined,
+    isCurrent: false,
+  },
+  render: (args) => ({
+    components: { MenuListItem, Icon },
+    setup: () => ({ args, iconSrc: iconSample }),
+    template: `<MenuListItem v-bind="args">
+      <template #icon>
+        <Icon :iconSrc="iconSrc" width="14" height="14" />
+      </template>
+      <template #iconBackward>
+        <Icon :iconSrc="iconSrc" width="11" height="11" />
       </template>
       プロフィール
     </MenuListItem>`,
@@ -101,32 +154,29 @@ export const SmallWithIcon: Story = {
 export const MultipleItems: Story = {
   args: {
     size: "regular",
+    type: "standard",
+    tag: "auto",
+    target: undefined,
+    isCurrent: false,
   },
-  render: () => ({
+  render: (args) => ({
     components: { MenuListItem, Icon },
-    setup: () => {
-      const homeIcon = iconSample;
-      const personIcon = iconSample;
-      return {
-        homeIcon,
-        personIcon,
-      };
-    },
+    setup: () => ({ args, iconSample }),
     template: `
       <div style="display: flex; flex-direction: column; gap: 8px;">
-        <MenuListItem size="regular">
+        <MenuListItem v-bind="args">
           <template #icon>
-            <Icon :iconSrc="homeIcon" width="16" height="16" color="var(--color-text-primary)" />
+            <Icon :iconSrc="iconSample" width="16" height="16"   />
           </template>
           ホーム
         </MenuListItem>
-        <MenuListItem size="regular">
+        <MenuListItem v-bind="args">
           <template #icon>
-            <Icon :iconSrc="personIcon" width="16" height="16" color="var(--color-text-primary)" />
+            <Icon :iconSrc="iconSample" width="16" height="16" />
           </template>
           プロフィール
         </MenuListItem>
-        <MenuListItem size="regular">
+        <MenuListItem v-bind="args">
           設定
         </MenuListItem>
       </div>

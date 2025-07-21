@@ -1,0 +1,6 @@
+---
+alwaysApply: true
+---
+
+- アイコンは/src/assets/imagesに定義されています。
+- カラーパレットは/src/assets/style/color/semanticColors.scssに定義されています。基本的にはこのセマンティックカラーからカラーを利用します。
