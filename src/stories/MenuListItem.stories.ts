@@ -149,37 +149,30 @@ export const BoxWithIcon: Story = {
 };
 
 /**
- * 複数アイテムの例
+ * サムネイルタイプ
  */
-export const MultipleItems: Story = {
+export const Thumbnail: Story = {
   args: {
     size: "regular",
-    type: "standard",
+    type: "thumbnail",
     tag: "auto",
     target: undefined,
     isCurrent: false,
   },
   render: (args) => ({
     components: { MenuListItem, Icon },
-    setup: () => ({ args, iconSample }),
-    template: `
-      <div style="display: flex; flex-direction: column; gap: 8px;">
-        <MenuListItem v-bind="args">
-          <template #icon>
-            <Icon :iconSrc="iconSample" width="16" height="16"   />
-          </template>
-          ホーム
-        </MenuListItem>
-        <MenuListItem v-bind="args">
-          <template #icon>
-            <Icon :iconSrc="iconSample" width="16" height="16" />
-          </template>
-          プロフィール
-        </MenuListItem>
-        <MenuListItem v-bind="args">
-          設定
-        </MenuListItem>
-      </div>
-    `,
+    setup: () => ({ args, iconSrc: iconSample }),
+    template: `<MenuListItem v-bind="args">
+      <template #icon>
+        <Icon :iconSrc="iconSrc" width="24" height="24" />
+      </template>
+      リストアイテム
+      <template #description>
+        <span>ディスクリプション</span>
+      </template>
+        <template #iconBackward>
+        <Icon :iconSrc="iconSrc" width="11" height="11" />
+      </template>
+    </MenuListItem>`,
   }),
 };
