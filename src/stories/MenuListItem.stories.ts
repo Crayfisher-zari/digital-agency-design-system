@@ -1,8 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/vue3";
 import MenuListItem from "../components/MenuListItem.vue";
 import Icon from "../components/Icon.vue";
-import iconHome from "@/assets/images/icon_home.svg";
-import iconPerson from "@/assets/images/icon_person.svg";
+import iconSample from "@/assets/images/icon_sample.svg";
 
 const meta = {
   title: "メニューリストアイテム",
@@ -58,7 +57,7 @@ export const WithIcon: Story = {
   render: () => ({
     components: { MenuListItem, Icon },
     setup: () => {
-      const iconSrc = iconHome;
+      const iconSrc = iconSample;
       return {
         iconSrc,
       };
@@ -82,7 +81,7 @@ export const SmallWithIcon: Story = {
   render: () => ({
     components: { MenuListItem, Icon },
     setup: () => {
-      const iconSrc = iconPerson;
+      const iconSrc = iconSample;
       return {
         iconSrc,
       };
@@ -106,8 +105,8 @@ export const MultipleItems: Story = {
   render: () => ({
     components: { MenuListItem, Icon },
     setup: () => {
-      const homeIcon = iconHome;
-      const personIcon = iconPerson;
+      const homeIcon = iconSample;
+      const personIcon = iconSample;
       return {
         homeIcon,
         personIcon,

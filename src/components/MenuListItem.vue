@@ -5,12 +5,14 @@ import { useLink, LinkTag } from "../composables/useLinkComponent";
 
 type Props = {
   size?: "regular" | "small";
+  type?: "standard" | "sectionTitle" | "boxed" | "thumbnail";
   tag?: LinkTag;
   target?: "_blank";
 };
 
 withDefaults(defineProps<Props>(), {
   size: "regular",
+  type: "standard",
   tag: "auto",
   target: undefined,
 });
@@ -19,7 +21,7 @@ const { LinkComponent } = useLink();
 </script>
 
 <template>
-  <LinkComponent :class="size" :tag="tag" :target="target" class="menuListItem">
+  <LinkComponent :class="[size, type]" :tag="tag" :target="target" class="menuListItem">
     <slot name="icon" />
     <span class="text">
       <slot />
