@@ -11,6 +11,7 @@ type Props = {
   target?: "_blank";
   isCurrent?: boolean;
   description?: string;
+  isUnderlined?: boolean;
 };
 
 withDefaults(defineProps<Props>(), {
@@ -19,6 +20,7 @@ withDefaults(defineProps<Props>(), {
   tag: "auto",
   target: undefined,
   isCurrent: false,
+  isUnderlined: true,
 });
 
 const { LinkComponent } = useLink();
@@ -26,7 +28,7 @@ const { LinkComponent } = useLink();
 
 <template>
   <LinkComponent
-    :class="[size, type, { isCurrent }]"
+    :class="[size, type, { isCurrent }, { isUnderlined }]"
     :tag="tag"
     :target="target"
     class="menuListItem"
@@ -145,6 +147,16 @@ const { LinkComponent } = useLink();
     .iconBackward {
       grid-area: iconBackward;
     }
+
+    &.isUnderlined {
+      padding: 6px 10px 9px 14px;
+      border-bottom-color: var(--color-border-dark-divider);
+      border-bottom-width: 1px;
+
+      &:focus-visible {
+        border-bottom-width: 6px;
+      }
+    }
   }
 }
 
@@ -155,6 +167,10 @@ const { LinkComponent } = useLink();
 
 .blank {
   margin-left: 4px;
+}
+
+.iconForward {
+  display: flex;
 }
 
 .iconBackward {
