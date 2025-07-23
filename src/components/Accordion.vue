@@ -12,22 +12,21 @@ type Props = {
 
 withDefaults(defineProps<Props>(), {});
 
-const accordionElement = ref<HTMLDetailsElement | null>(null);
-const contentsElement = ref<HTMLElement | null>(null);
-const contentsInnerElement = ref<HTMLElement | null>(null);
-
-const { isOpened, hasAnimation, handleDropDown } = useDropDownAnimation(
-  accordionElement,
+const {
+  detailsElement,
   contentsElement,
   contentsInnerElement,
-);
+  isOpened,
+  hasAnimation,
+  handleDropDown,
+} = useDropDownAnimation();
 
 const anchorId = useId();
 </script>
 <template>
   <div>
     <details
-      ref="accordionElement"
+      ref="detailsElement"
       class="accordion"
       :class="[{ isOpened: isOpened }, { hasAnimation: hasAnimation }]"
     >

@@ -1,4 +1,4 @@
-import { Ref, onBeforeUnmount, onMounted, ref } from "vue";
+import { Ref, onBeforeUnmount, onMounted, ref, useTemplateRef } from "vue";
 
 /**
  * ドロップダウンメニューのアニメーションを行います。
@@ -12,11 +12,15 @@ import { Ref, onBeforeUnmount, onMounted, ref } from "vue";
  *   </div>
  * </details>
  */
-export const useDropDownAnimation = (
-  detailsElement: Ref<HTMLDetailsElement | null>,
-  contentsElement: Ref<HTMLElement | null>,
-  contentsInnerElement: Ref<HTMLElement | null>,
-) => {
+export const useDropDownAnimation = () => {
+  const detailsElement = useTemplateRef<HTMLDetailsElement | null>(
+    "detailsElement",
+  );
+  const contentsElement = useTemplateRef<HTMLElement | null>("contentsElement");
+  const contentsInnerElement = useTemplateRef<HTMLElement | null>(
+    "contentsInnerElement",
+  );
+
   const isOpened = ref<boolean | null>(null);
   const hasAnimation = ref<boolean>(true);
 
@@ -84,5 +88,12 @@ export const useDropDownAnimation = (
     );
   });
 
-  return { isOpened, hasAnimation, handleDropDown };
+  return {
+    detailsElement,
+    contentsElement,
+    contentsInnerElement,
+    isOpened,
+    hasAnimation,
+    handleDropDown,
+  };
 };

@@ -7,7 +7,7 @@ import { useLink, LinkTag } from "../composables/useLinkComponent";
 type Props = {
   size?: "regular" | "small";
   type?: "standard" | "boxed" | "thumbnail";
-  tag?: LinkTag;
+  tag?: LinkTag | "button";
   target?: "_blank";
   isCurrent?: boolean;
   description?: string;
@@ -28,7 +28,7 @@ const { LinkComponent } = useLink();
 </script>
 
 <template>
-  <LinkComponent
+  <component :is="tag === 'button' ? 'button' : LinkComponent"
     :class="[size, type, { isCurrent }, { isUnderlined }]"
     :tag="tag"
     :target="target"
@@ -62,7 +62,7 @@ const { LinkComponent } = useLink();
       />
       <slot v-else name="iconBackward" />
     </span>
-  </LinkComponent>
+  </component>
 </template>
 
 <style scoped>
