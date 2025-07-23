@@ -25,13 +25,12 @@ const handleChange = (e: Event) => {
     ref="detailsElement"
     class="accordion"
     :class="[{ isOpened: isOpened }, { hasAnimation: hasAnimation }]"
-    @click="handleChange"
   >
-    <summary class="summary">
+    <summary @click="handleChange">
       <slot name="summary" />
     </summary>
-    <div ref="contentsElement" class="menuListWrapper">
-      <div ref="contentsInnerElement" class="menuList">
+    <div ref="contentsElement" class="contents">
+      <div ref="contentsInnerElement" class="contentsInner">
         <slot name="content" />
       </div>
     </div>
@@ -58,10 +57,20 @@ const handleChange = (e: Event) => {
   }
 }
 
-.summary {
-  &::-webkit-details-marker {
-    /* Safariの三角アイコン */
-    visibility: hidden;
-  }
+summary {
+  list-style: none;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+summary::marker {
+  display: none;
+}
+
+.contents {
+  overflow: hidden;
+  transition: height var(--base-duration);
 }
 </style>

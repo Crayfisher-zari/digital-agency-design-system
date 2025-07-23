@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { ref, useId } from "vue";
+import { useId } from "vue";
 import Icon from "./Icon.vue";
 import iconArrow from "@/assets/images/icon_arrow_accordion.svg";
 import iconReturn from "@/assets/images/icon_return.svg";
-import { useDropDownAnimation } from "../composables/useDropDownAnimation";
+import PartsAccordion from "./parts/PartsAccordion.vue";
 
 type Props = {
   summary: string;
@@ -12,40 +12,30 @@ type Props = {
 
 withDefaults(defineProps<Props>(), {});
 
-const {
-  detailsElement,
-  contentsElement,
-  contentsInnerElement,
-  isOpened,
-  hasAnimation,
-  handleDropDown,
-} = useDropDownAnimation();
-
 const anchorId = useId();
 </script>
 <template>
   <div>
-    <details
-      ref="detailsElement"
-      class="accordion"
-      :class="[{ isOpened: isOpened }, { hasAnimation: hasAnimation }]"
-    >
-      <summary :id="anchorId" class="summary" @click="handleDropDown">
-        <span class="iconWrapper">
-          <Icon
-            :iconSrc="iconArrow"
-            :width="18"
-            :height="10"
-            color="var(--color-text-link)"
-            class="dropDownIcon"
-            :ariaHidden="true"
-            role="img"
-          />
-        </span>
-        <span class="summaryInner">{{ summary }}</span>
-      </summary>
-      <div ref="contentsElement" class="details">
-        <div ref="contentsInnerElement" class="detailsInner">
+    <PartsAccordion :id="anchorId">
+      <template #summary>
+        <div class="summary">
+          <span class="iconWrapper">
+            <Icon
+              :iconSrc="iconArrow"
+              :width="18"
+              :height="10"
+              color="var(--color-text-link)"
+              class="dropDownIcon"
+              :ariaHidden="true"
+              role="img"
+            />
+          </span>
+          <span class="summaryInner">{{ summary }}</span>
+        </div>
+      </template>
+
+      <template #content>
+        <div class="detailsInner">
           <p>
             {{ details }}
           </p>
@@ -59,8 +49,8 @@ const anchorId = useId();
             />「{{ summary }}」の先頭に戻る</a
           >
         </div>
-      </div>
-    </details>
+      </template>
+    </PartsAccordion>
   </div>
 </template>
 <style lang="scss" scoped>

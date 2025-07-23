@@ -28,7 +28,8 @@ const { LinkComponent } = useLink();
 </script>
 
 <template>
-  <component :is="tag === 'button' ? 'button' : LinkComponent"
+  <component
+    :is="tag === 'button' ? 'button' : LinkComponent"
     :class="[size, type, { isCurrent }, { isUnderlined }]"
     :tag="tag"
     :target="target"
