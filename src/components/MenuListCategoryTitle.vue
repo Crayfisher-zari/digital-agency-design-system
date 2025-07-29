@@ -9,12 +9,14 @@ withDefaults(defineProps<Props>(), {
 </script>
 
 <template>
-  <span :class="[size]" class="menuListCategoryTitle">
-    <span class="iconForward">
-      <slot name="icon" />
-    </span>
-    <span class="text">
-      <slot />
+  <span>
+    <span :class="[size]" class="menuListCategoryTitle">
+      <span class="iconForward">
+        <slot name="icon" />
+      </span>
+      <span class="text">
+        <slot />
+      </span>
     </span>
   </span>
 </template>
@@ -25,7 +27,7 @@ withDefaults(defineProps<Props>(), {
   column-gap: 8px;
   align-items: center;
   justify-content: flex-start;
-  padding: 10px 10px 10px 14px;
+  padding: 10px 10px 18px 14px;
   color: var(--color-text-body);
   text-decoration: none;
   border: 2px solid transparent;
@@ -44,6 +46,7 @@ withDefaults(defineProps<Props>(), {
 .text {
   font-size: 1rem;
   line-height: 1.3;
+  font-weight: var(--weight-bold);
 }
 
 .iconForward {

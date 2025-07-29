@@ -6,14 +6,8 @@ import Icon from "./Icon.vue";
 import { LinkTag, useLink } from "../composables/useLinkComponent";
 import iconArrow from "@/assets/images/icon_arrow_accordion.svg";
 
-const accordionElement = ref<HTMLDetailsElement | null>(null);
-const contentsElement = ref<HTMLElement | null>(null);
-const contentsInnerElement = ref<HTMLElement | null>(null);
 
-const { isOpened, hasAnimation, handleDropDown } = useDropDownAnimation(
-  accordionElement,
-  contentsElement,
-  contentsInnerElement,
+const { isOpened, hasAnimation, handleDropDown, detailsElement, contentsElement, contentsInnerElement } = useDropDownAnimation(
 );
 
 type Props = Accordion & { linkTag: LinkTag };
@@ -23,7 +17,7 @@ const { LinkComponent } = useLink({ tag: props.linkTag });
 </script>
 <template>
   <details
-    ref="accordionElement"
+    ref="detailsElement"
     class="accordion"
     :class="[{ isOpened: isOpened }, { hasAnimation: hasAnimation }]"
     @click="handleDropDown"

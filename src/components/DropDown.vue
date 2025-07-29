@@ -13,19 +13,18 @@ type Props = {
 
 withDefaults(defineProps<Props>(), { side: "left" });
 
-const accordionElement = ref<HTMLDetailsElement | null>(null);
-const contentsElement = ref<HTMLElement | null>(null);
-const contentsInnerElement = ref<HTMLElement | null>(null);
-
-const { isOpened, hasAnimation, handleDropDown } = useDropDownAnimation(
-  accordionElement,
+const {
+  isOpened,
+  hasAnimation,
+  handleDropDown,
+  detailsElement,
   contentsElement,
   contentsInnerElement,
-);
+} = useDropDownAnimation();
 </script>
 <template>
   <details
-    ref="accordionElement"
+    ref="detailsElement"
     class="dropDown"
     :class="[
       { isOpened: isOpened },

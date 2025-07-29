@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import Icon from "./Icon.vue";
 import iconArrow from "@/assets/images/icon_arrow_right.svg";
-import iconExternal from "@/assets/images/icon_external.svg";
-import { useLink, LinkTag } from "../composables/useLinkComponent";
+import { type LinkTag } from "../composables/useLinkComponent";
+import { useDropDownAnimation } from "../composables/useDropDownAnimation";
+import MenuListItem from "./MenuListItem.vue";
 
 type Props = {
   size?: "regular" | "small";
@@ -14,7 +15,7 @@ type Props = {
   isUnderlined?: boolean;
 };
 
-const props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
   size: "regular",
   type: "standard",
   tag: "auto",
@@ -24,57 +25,28 @@ const props = withDefaults(defineProps<Props>(), {
   isUnderlined: true,
 });
 
-const { LinkComponent } = useLink();
+const { isOpened, hasAnimation, handleDropDown, detailsElement, contentsElement, contentsInnerElement } = useDropDownAnimation()
 
-const emit = defineEmits<{
-  click: [event: Event];
-}>();
 
-const handleClick = (event: Event) => {
-  if (props.tag === "button") {
-    emit("click", event);
-  }
-};
 </script>
 
 <template>
-  <component
-    :is="tag === 'button' ? 'button' : LinkComponent"
-    :class="[size, type, { isCurrent }, { isUnderlined }]"
-    :tag="tag"
-    :target="target"
-    class="menuListItem"
-    :aria-current="isCurrent ? 'page' : undefined"
-    @click="handleClick"
-  >
-    <span class="iconForward">
-      <slot name="icon" />
-    </span>
-    <span class="text">
-      <slot />
-      <span v-if="target === '_blank'" class="blank">
-        <Icon
-          :iconSrc="iconExternal"
-          :width="12"
-          :height="12"
-          color="currentColor"
-        />
-      </span>
-    </span>
-    <span v-if="$slots.description" class="description"
-      ><slot name="description"
-    /></span>
-    <span class="iconBackward">
-      <Icon
-        v-if="type === 'standard'"
-        :iconSrc="iconArrow"
-        :width="16"
-        :height="16"
-        color="currentColor"
-      />
-      <slot v-else name="iconBackward" />
-    </span>
-  </component>
+  <details ref="detailsElement" class="accordion" :class="[{ isOpened: isOpened }, { hasAnimation: hasAnimation }]" @click="handleDropDown">
+    <summary class="summary">
+     <MenuListItem @click="handleDropDown" tag="button">
+      <template #icon>
+        <slot name="icon" />
+      </template>
+      セクションタイトル
+      <template #iconBackward>
+        <Icon :iconSrc="iconArrow" :width="16" :height="16" color="currentColor" />
+      </template>
+     </MenuListItem>
+    </summary>
+    <div ref="contentsElement" class="contents">
+      <div ref="contentsInnerElement" class="contentsInner"></div>
+    </div>
+  </details>
 </template>
 
 <style scoped>

@@ -1,5 +1,5 @@
+@charset "UTF-8";
 @use "../src/assets/style/style.scss" as *;
-
 body {
   font-family: "Noto Sans JP", sans-serif;
   color: var(--color-text-body);
@@ -38,7 +38,6 @@ body {
   row-gap: 24px;
 }
 
-// レイアウトストーリーのスタイル
 .layoutBlock {
   display: flex;
   align-items: center;
@@ -63,9 +62,10 @@ a {
   border: none;
   appearance: none;
   cursor: pointer;
-  img {
-    display: block;
-  }
+}
+
+.clearButton img {
+  display: block;
 }
 
 .resetList {
