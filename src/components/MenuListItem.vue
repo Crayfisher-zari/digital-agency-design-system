@@ -91,7 +91,9 @@ const handleClick = (event: Event) => {
   cursor: pointer;
   background-color: transparent;
   border: 2px solid transparent;
-  transition: background-color var(--base-duration) var(--easing-out-expo);
+  transition:
+    background-color var(--base-duration) var(--easing-out-expo),
+    border-color var(--base-duration) var(--easing-out-expo);
 
   &:hover {
     background-color: var(--color-background-tertiary);

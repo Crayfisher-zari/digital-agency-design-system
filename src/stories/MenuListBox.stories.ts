@@ -78,6 +78,9 @@ export const WithScrollbar: Story = {
     },
     template: `
       <MenuListBox v-bind="args">
+        <template #summaryIcon>
+          <Icon :iconSrc="iconSrc" width="16" height="16" />
+        </template>
         <template #summary>
           メニューリストボックス
         </template>

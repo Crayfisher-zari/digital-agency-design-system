@@ -8,11 +8,13 @@ import { ref } from "vue";
 type Props = {
   size?: "regular" | "small";
   isCurrent?: boolean;
+  isBoxed?: boolean;
 };
 
 withDefaults(defineProps<Props>(), {
   size: "regular",
   isCurrent: false,
+  isBoxed: false,
 });
 
 const isOpened = ref(false);
@@ -24,7 +26,7 @@ const isOpened = ref(false);
       <MenuListItem
         tag="button"
         :size="size"
-        type="standard"
+        :type="isBoxed ? 'boxed' : 'standard'"
         :isCurrent="isCurrent"
       >
         <template #icon>

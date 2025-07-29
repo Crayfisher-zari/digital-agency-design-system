@@ -28,6 +28,9 @@ const isOpened = ref(false);
     <template #summary>
       <div class="summaryWrapper">
         <MenuListItem type="standard" :size="size">
+          <template #icon>
+            <slot name="summaryIcon" />
+          </template>
           <slot name="summary" />
           <template #iconBackward>
             <Icon
