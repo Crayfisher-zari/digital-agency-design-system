@@ -29,12 +29,6 @@ export const useDropDownAnimation = () => {
    * アコーディオンの開閉イベント
    */
   const handleDropDown = (e: Event) => {
-    console.log(
-      "handleDropDown",
-      detailsElement.value,
-      contentsElement.value,
-      contentsInnerElement.value,
-    );
     if (
       !detailsElement.value ||
       !contentsElement.value ||
@@ -83,12 +77,7 @@ export const useDropDownAnimation = () => {
 
       // 初期化のために閉じておく
       contents.style.height = `0px`;
-      console.log(
-        "getComputedStyle(contents).transition",
-        getComputedStyle(contents).transitionDuration,
-      );
       if (getComputedStyle(contents).transitionDuration === "0s") {
-        console.log("transition is none");
         // トランジションがない場合はアニメーションをしない
         hasAnimation.value = false;
       } else {

@@ -103,7 +103,7 @@ export const WithScrollbar: Story = {
             </MenuListCategoryTitle>
             <ul class="resetList">
               <li><MenuListItem type="boxed">メニューリストアイテム</MenuListItem></li>
-              <li><MenuListItem type="boxed">メニューリストアイテム</MenuListItem></li>
+              <li><MenuListItem type="boxed" isCurrent="true">メニューリストアイテム</MenuListItem></li>
               <li><MenuListItem type="boxed" tag="a" target="_blank">メニューリストアイテム</MenuListItem></li>
             </ul>
             <Divider :weight="1" padding="16px" />
