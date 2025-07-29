@@ -43,7 +43,6 @@ const handleClick = (event: Event) => {
   <component
     :is="tag === 'button' ? 'button' : LinkComponent"
     :class="[size, type, { isCurrent }, { isUnderlined }]"
-    :tag="tag"
     :target="target"
     class="menuListItem"
     :aria-current="isCurrent ? 'page' : undefined"

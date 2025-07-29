@@ -13,18 +13,7 @@ const meta = {
       control: "select",
       options: ["regular", "small"],
     },
-    type: {
-      control: "select",
-      options: ["standard", "boxed", "thumbnail"],
-    },
-    tag: {
-      control: "select",
-      options: ["auto", "a", "button", "div", "span"],
-    },
     isCurrent: {
-      control: "boolean",
-    },
-    isUnderlined: {
       control: "boolean",
     },
   },

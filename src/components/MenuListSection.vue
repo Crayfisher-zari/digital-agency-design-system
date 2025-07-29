@@ -1,29 +1,18 @@
 <script setup lang="ts">
 import Icon from "./Icon.vue";
 import iconArrowAccordion from "@/assets/images/icon_arrow_accordion.svg";
-import { type LinkTag } from "../composables/useLinkComponent";
 import MenuListItem from "./MenuListItem.vue";
 import PartsAccordion from "./parts/PartsAccordion.vue";
 import { ref } from "vue";
 
 type Props = {
   size?: "regular" | "small";
-  type?: "standard" | "boxed" | "thumbnail";
-  tag?: LinkTag | "button";
-  target?: "_blank";
   isCurrent?: boolean;
-  description?: string;
-  isUnderlined?: boolean;
 };
 
 withDefaults(defineProps<Props>(), {
   size: "regular",
-  type: "standard",
-  tag: "auto",
-  target: undefined,
-  description: undefined,
   isCurrent: false,
-  isUnderlined: true,
 });
 
 const isOpened = ref(false);
@@ -32,7 +21,12 @@ const isOpened = ref(false);
 <template>
   <PartsAccordion @change="isOpened = $event">
     <template #summary>
-      <MenuListItem tag="button">
+      <MenuListItem
+        tag="button"
+        :size="size"
+        type="standard"
+        :isCurrent="isCurrent"
+      >
         <template #icon>
           <slot name="icon" />
         </template>
