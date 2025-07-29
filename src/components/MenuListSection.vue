@@ -24,7 +24,7 @@ const isOpened = ref(false);
   <PartsAccordion @change="isOpened = $event">
     <template #summary>
       <MenuListItem
-        tag="button"
+        tag="span"
         :size="size"
         :type="isBoxed ? 'boxed' : 'standard'"
         :isCurrent="isCurrent"

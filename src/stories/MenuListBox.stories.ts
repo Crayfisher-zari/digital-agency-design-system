@@ -82,7 +82,7 @@ export const WithScrollbar: Story = {
           <Icon :iconSrc="iconSrc" width="16" height="16" />
         </template>
         <template #summary>
-          メニューリストボックス
+          メニューリスト
         </template>
         <template #content>
            <div>

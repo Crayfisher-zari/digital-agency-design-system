@@ -8,7 +8,7 @@ type Props = {
   size?: "regular" | "small";
   type?: "standard" | "boxed" | "thumbnail";
   hasArrow?: boolean;
-  tag?: LinkTag | "button";
+  tag?: LinkTag | "button" | "span";
   target?: "_blank";
   isCurrent?: boolean;
   description?: string;
@@ -41,7 +41,7 @@ const handleClick = (event: Event) => {
 
 <template>
   <component
-    :is="tag === 'button' ? 'button' : LinkComponent"
+    :is="tag === 'button' ? 'button' : tag === 'span' ? 'span' : LinkComponent"
     :class="[size, type, { isCurrent }, { isUnderlined }]"
     :target="target"
     class="menuListItem"

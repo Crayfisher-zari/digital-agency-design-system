@@ -6,8 +6,19 @@ const meta = {
   component: LanguageSelector,
   tags: ["autodocs"],
   argTypes: {
+    type: {
+      control: "select",
+      options: ["label", "icon"],
+    },
     languageList: {
-      control: "array",
+      control: "object",
+    },
+    size: {
+      control: "select",
+      options: ["regular", "small"],
+    },
+    contentHeight: {
+      control: "number",
     },
   },
   args: {
@@ -18,6 +29,7 @@ const meta = {
       { label: "한국어", link: "#!", isCurrent: false },
     ],
   },
+
 } satisfies Meta<typeof LanguageSelector>;
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -49,6 +61,6 @@ export const Large: Story = {
       { label: "한국어", link: "#!", isCurrent: false },
     ],
     linkTag: "a",
-    size: "large",
+    size: "regular",
   },
 };
