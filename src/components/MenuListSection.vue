@@ -4,6 +4,16 @@ import iconArrowAccordion from "@/assets/images/icon_arrow_accordion.svg";
 import MenuListItem from "./MenuListItem.vue";
 import PartsAccordion from "./parts/PartsAccordion.vue";
 import { ref } from "vue";
+import { useDropDownAnimation } from "../composables/useDropDownAnimation";
+
+const {
+  detailsElement,
+  contentsElement,
+  contentsInnerElement,
+  isOpened,
+  hasAnimation,
+  handleDropDown,
+} = useDropDownAnimation();
 
 type Props = {
   size?: "regular" | "small";
@@ -17,40 +27,23 @@ withDefaults(defineProps<Props>(), {
   isBoxed: false,
 });
 
-const isOpened = ref(false);
 </script>
 
 <template>
-  <PartsAccordion @change="isOpened = $event">
-    <template #summary>
-      <MenuListItem
-        tag="span"
-        :size="size"
-        :type="isBoxed ? 'boxed' : 'standard'"
-        :isCurrent="isCurrent"
-      >
-        <template #icon>
-          <slot name="icon" />
-        </template>
-        セクションタイトル
-        <template #iconBackward>
-          <Icon
-            class="icon"
-            :class="{ isOpened }"
-            :iconSrc="iconArrowAccordion"
-            :width="12"
-            :height="12"
-            color="currentColor"
-          />
-        </template>
-      </MenuListItem>
-    </template>
-    <template #content>
-      <div class="sectionInner">
+  <details ref="detailsElement" class="accordion" :class="[{ isOpened: isOpened }]">
+    <summary @click="handleDropDown">
+      <span>
+        <slot name="icon" />
+        <slot name="sectionTitle" />
+      </span>
+      <Icon :iconSrc="iconArrowAccordion" :width="12" :height="12" color="currentColor" class="icon" />
+    </summary>
+    <div class="contents" ref="contentsElement">
+      <div class="contentsInner" ref="contentsInnerElement">
         <slot />
       </div>
-    </template>
-  </PartsAccordion>
+    </div>
+  </details>
 </template>
 
 <style scoped>
@@ -58,12 +51,30 @@ const isOpened = ref(false);
   padding-left: 16px;
 }
 
+summary {
+  display: flex;
+}
+summary::-webkit-details-marker {
+  visibility: hidden;
+}
+
+summary::marker {
+  visibility: hidden;
+}
+
 .icon {
   transition: transform var(--base-duration) var(--easing-out-expo);
   transform: rotate(0deg);
 
-  &.isOpened {
-    transform: rotate(180deg);
-  }
+}
+
+.accordion.isOpened .icon {
+  transform: rotate(180deg);
+}
+
+
+.contents {
+  /* overflow: hidden; */
+  transition: height var(--base-duration);
 }
 </style>

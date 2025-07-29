@@ -37,6 +37,9 @@ export const Default: Story = {
         <template #icon>
           <Icon :iconSrc="iconSample" :width="24" :height="24" color="currentColor" />
         </template>
+        <template #sectionTitle>
+          セクションタイトル
+        </template>
         <MenuListItem>メニューリストアイテム</MenuListItem>
         <MenuListItem>メニューリストアイテム</MenuListItem>
         <MenuListItem>メニューリストアイテム</MenuListItem>
