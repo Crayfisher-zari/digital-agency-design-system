@@ -45,8 +45,8 @@ withDefaults(defineProps<Props>(), {
 
 .text {
   font-size: 1rem;
-  line-height: 1.3;
   font-weight: var(--weight-bold);
+  line-height: 1.3;
 }
 
 .iconForward {

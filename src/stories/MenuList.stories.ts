@@ -3,7 +3,6 @@ import MenuListItem from "../components/MenuListItem.vue";
 import MenuListCategoryTitle from "../components/MenuListCategoryTitle.vue";
 import iconSample from "@/assets/images/icon_sample.svg";
 import Icon from "../components/Icon.vue";
-import { useDropDownAnimation } from "../composables/useDropDownAnimation";
 
 const meta = {
   title: "メニューリスト",
@@ -44,9 +43,8 @@ export const WithSection: Story = {
   render: (args) => ({
     components: { MenuListItem, MenuListCategoryTitle, Icon },
     setup: () => {
-      const { isOpened, hasAnimation, handleDropDown, detailsElement, contentsElement, contentsInnerElement } = useDropDownAnimation()
-
-      return { args, iconSrc: iconSample }},
+      return { args, iconSrc: iconSample };
+    },
     template: `
     <div>
     <MenuListCategoryTitle v-bind="args">
@@ -62,4 +60,4 @@ export const WithSection: Story = {
     </ul>
     </div>`,
   }),
-}
+};

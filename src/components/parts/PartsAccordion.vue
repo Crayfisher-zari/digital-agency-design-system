@@ -39,8 +39,6 @@ const handleChange = (e: Event) => {
 
 <style scoped>
 .accordion {
-  border-bottom: 1px solid var(--color-border-divider);
-
   /* アニメーションが有効な場合はタイミングを上書き */
   &.isOpened {
     .dropDownIcon {

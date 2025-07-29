@@ -1,7 +1,8 @@
-import { Ref, onBeforeUnmount, onMounted, ref, useTemplateRef } from "vue";
+import { onBeforeUnmount, onMounted, ref, useTemplateRef } from "vue";
 
 /**
  * ドロップダウンメニューのアニメーションを行います。
+ * contentsElementにtransitionが設定されていると開閉アニメーションします。
  * exampleのようなdetails/summaryタグで作成されていることを前提としています
  * @example
  * <details ref="detailsElement">
@@ -28,6 +29,12 @@ export const useDropDownAnimation = () => {
    * アコーディオンの開閉イベント
    */
   const handleDropDown = (e: Event) => {
+    console.log(
+      "handleDropDown",
+      detailsElement.value,
+      contentsElement.value,
+      contentsInnerElement.value,
+    );
     if (
       !detailsElement.value ||
       !contentsElement.value ||
@@ -48,6 +55,9 @@ export const useDropDownAnimation = () => {
       // 閉じるとき
       isOpened.value = false;
       contents.style.height = `0px`;
+      if (!hasAnimation.value) {
+        removeOpenAttribute();
+      }
     } else {
       isOpened.value = true;
       details.setAttribute("open", "true");
@@ -73,9 +83,18 @@ export const useDropDownAnimation = () => {
 
       // 初期化のために閉じておく
       contents.style.height = `0px`;
-
-      // 閉じるトランジションが終了したらopen属性を取り除く
-      contents.addEventListener("transitionend", removeOpenAttribute);
+      console.log(
+        "getComputedStyle(contents).transition",
+        getComputedStyle(contents).transitionDuration,
+      );
+      if (getComputedStyle(contents).transitionDuration === "0s") {
+        console.log("transition is none");
+        // トランジションがない場合はアニメーションをしない
+        hasAnimation.value = false;
+      } else {
+        // 閉じるトランジションが終了したらopen属性を取り除く
+        contents.addEventListener("transitionend", removeOpenAttribute);
+      }
     }
   });
   onBeforeUnmount(() => {

@@ -7,6 +7,7 @@ import { useLink, LinkTag } from "../composables/useLinkComponent";
 type Props = {
   size?: "regular" | "small";
   type?: "standard" | "boxed" | "thumbnail";
+  hasArrow?: boolean;
   tag?: LinkTag | "button";
   target?: "_blank";
   isCurrent?: boolean;
@@ -17,6 +18,7 @@ type Props = {
 const props = withDefaults(defineProps<Props>(), {
   size: "regular",
   type: "standard",
+  hasArrow: false,
   tag: "auto",
   target: undefined,
   description: undefined,
@@ -65,14 +67,14 @@ const handleClick = (event: Event) => {
       ><slot name="description"
     /></span>
     <span class="iconBackward">
+      <slot v-if="$slots.iconBackward" name="iconBackward" />
       <Icon
-        v-if="type === 'standard'"
+        v-else-if="hasArrow"
         :iconSrc="iconArrow"
         :width="16"
         :height="16"
         color="currentColor"
       />
-      <slot v-else name="iconBackward" />
     </span>
   </component>
 </template>
@@ -83,9 +85,12 @@ const handleClick = (event: Event) => {
   column-gap: 8px;
   align-items: center;
   justify-content: flex-start;
-  padding: 10px 10px 10px 14px;
+  width: 100%;
+  padding: 10px 12px 10px 14px;
   color: var(--color-text-body);
   text-decoration: none;
+  cursor: pointer;
+  background-color: transparent;
   border: 2px solid transparent;
   transition: background-color var(--base-duration) var(--easing-out-expo);
 

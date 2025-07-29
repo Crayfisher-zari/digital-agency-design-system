@@ -1,14 +1,18 @@
 <script setup lang="ts">
-import { ref } from "vue";
 import { useDropDownAnimation } from "../composables/useDropDownAnimation";
 import { Accordion } from "./Menu.vue";
 import Icon from "./Icon.vue";
 import { LinkTag, useLink } from "../composables/useLinkComponent";
 import iconArrow from "@/assets/images/icon_arrow_accordion.svg";
 
-
-const { isOpened, hasAnimation, handleDropDown, detailsElement, contentsElement, contentsInnerElement } = useDropDownAnimation(
-);
+const {
+  isOpened,
+  hasAnimation,
+  handleDropDown,
+  detailsElement,
+  contentsElement,
+  contentsInnerElement,
+} = useDropDownAnimation();
 
 type Props = Accordion & { linkTag: LinkTag };
 

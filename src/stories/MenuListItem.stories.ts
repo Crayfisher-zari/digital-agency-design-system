@@ -18,7 +18,7 @@ const meta = {
     },
     tag: {
       control: "radio",
-      options: ["auto", "a", "router-link", "nuxt-link"],
+      options: ["auto", "a", "router-link", "nuxt-link", "button"],
     },
     target: {
       control: "radio",

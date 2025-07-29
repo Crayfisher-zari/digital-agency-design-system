@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { ref } from "vue";
-
 import { useDropDownAnimation } from "../composables/useDropDownAnimation";
 import DropDownSummary from "./DropDownSummary.vue";
 
@@ -94,8 +92,7 @@ const {
   // アニメーションなし
   &:not(.hasAnimation) {
     .contents {
-      // 0秒だとtransitionEndが反応しないため極小の値を設定
-      transition-duration: 0.1ms;
+      transition-duration: 0s;
     }
   }
 }
