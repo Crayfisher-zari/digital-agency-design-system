@@ -26,7 +26,6 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     size: "regular",
-    type: "standard",
   },
   render: (args) => ({
     components: { MenuListSection, MenuListItem, Icon },
@@ -44,54 +43,4 @@ export const Default: Story = {
       </MenuListSection>
     `,
   }),
-};
-
-// アイコン付きのセクション
-export const WithIcon: Story = {
-  args: {
-    size: "regular",
-    type: "standard",
-  },
-  render: (args) => ({
-    components: { MenuListSection, MenuListItem, Icon },
-    setup() {
-      return { args, iconSample };
-    },
-    template: `
-      <MenuListSection v-bind="args">
-        <template #icon>
-          <Icon :iconSrc="iconSample" :width="24" :height="24" color="currentColor" />
-        </template>
-        <MenuListItem>メニューリストアイテム</MenuListItem>
-        <MenuListItem>メニューリストアイテム</MenuListItem>
-        <MenuListItem>メニューリストアイテム</MenuListItem>
-      </MenuListSection>
-    `,
-  }),
-};
-
-// サイズバリエーション - Small
-export const Small: Story = {
-  args: {
-    size: "small",
-    type: "standard",
-  },
-};
-
-// タイプバリエーション - Boxed
-export const Boxed: Story = {
-  args: {
-    size: "regular",
-    type: "boxed",
-  },
-};
-
-// タイプバリエーション - Thumbnail
-export const Thumbnail: Story = {
-  args: {
-    size: "regular",
-    type: "thumbnail",
-    description: "セクションの説明文がここに入ります",
-    isUnderlined: true,
-  },
 };

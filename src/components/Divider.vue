@@ -3,20 +3,28 @@ type Props = {
   weight?: 1 | 2 | 3 | 4;
   color?: "default" | "medium" | "dark";
   borderStyle?: "solid" | "dash";
+  padding?: string;
 };
 withDefaults(defineProps<Props>(), {
   weight: 1,
   color: "default",
   borderStyle: "solid",
+  padding: "unset",
 });
 </script>
 <template>
-  <div class="divider" :class="[color, borderStyle, `weight${weight}`]"></div>
+  <div class="dividerWrapper">
+    <div class="divider" :class="[color, borderStyle, `weight${weight}`]"></div>
+  </div>
 </template>
 <style lang="scss" scoped>
 // TODO カラーのアップデート
+.dividerWrapper {
+  padding: v-bind(padding);
+}
+
 .divider {
-  border: 1px solid var(--color-border-divider);
+  border-top: 1px solid var(--color-border-divider);
 
   &.medium {
     border-color: var(--color-border-medium-divider);
@@ -27,15 +35,15 @@ withDefaults(defineProps<Props>(), {
   }
 
   &.weight2 {
-    border-width: 2px;
+    border-top-width: 2px;
   }
 
   &.weight3 {
-    border-width: 3px;
+    border-top-width: 3px;
   }
 
   &.weight4 {
-    border-width: 4px;
+    border-top-width: 4px;
   }
 
   &.dash {

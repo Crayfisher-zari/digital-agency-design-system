@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/vue3";
 import UtilityLink from "../components/UtilityLink.vue";
+import iconSample from "@/assets/images/icon_sample.svg";
 
 const meta = {
   title: "ユーティリティリンク",
@@ -57,6 +58,25 @@ export const External: Story = {
     },
     template: `
     <UtilityLink :url="url" :target="target">リンクテキスト</UtilityLink>
+    `,
+  }),
+};
+
+/**
+ * アイコン付き
+ */
+export const WithIcon: Story = {
+  args: {
+    url: "#!",
+    iconUrl: iconSample,
+  },
+  render: (args) => ({
+    components: { UtilityLink },
+    setup: () => {
+      return { ...args };
+    },
+    template: `
+    <UtilityLink :url="url" :iconUrl="iconUrl">リンクテキスト</UtilityLink>
     `,
   }),
 };
