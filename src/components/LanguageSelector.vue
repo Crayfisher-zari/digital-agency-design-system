@@ -2,10 +2,12 @@
 import { ref } from "vue";
 import Icon from "./Icon.vue";
 import { LinkTag, useLink } from "../composables/useLinkComponent";
-import { useDropDownAnimation } from "../composables/useDropDownAnimation";
+import PartsAccordion from "./parts/PartsAccordion.vue";
 import iconArrow from "@/assets/images/icon_arrow_accordion.svg";
 import iconGlobe from "@/assets/images/icon_globe.svg";
 import iconCheck from "@/assets/images/icon_check.svg";
+import iconBlankSpace from "@/assets/images/icon_blankSpace.svg";
+import MenuListItem from "./MenuListItem.vue";
 
 type Props = {
   /** 言語リスト */
@@ -13,80 +15,75 @@ type Props = {
   /** リンクタグ */
   linkTag: LinkTag;
   /** サイズ */
-  size?: "small" | "large";
+  size?: "small" | "regular";
 };
 
-const props = withDefaults(defineProps<Props>(), { size: "small" });
-
-const languageSelectorElement = ref<HTMLDetailsElement | null>(null);
-const languageListElement = ref<HTMLElement | null>(null);
-const languageItemElement = ref<HTMLElement | null>(null);
+const props = withDefaults(defineProps<Props>(), { size: "regular" });
 
 const { LinkComponent } = useLink({ tag: props.linkTag });
 
-const { isOpened, hasAnimation, handleDropDown } = useDropDownAnimation(
-  languageSelectorElement,
-  languageListElement,
-  languageItemElement,
-);
+const isOpened = ref(false);
 
 const languageList = ref(props.languageList);
 </script>
 <template>
-  <details
-    ref="languageSelectorElement"
+  <PartsAccordion
     class="languageSelector"
-    :class="[{ isOpened: isOpened }, { hasAnimation: hasAnimation }, size]"
+    :class="{ isOpened: isOpened }"
+    @change="isOpened = $event"
   >
-    <summary class="summary" @click="handleDropDown">
-      <Icon
-        :iconSrc="iconGlobe"
-        :width="16"
-        :height="16"
-        color="var(--color-text-body)"
-        class="globeIcon"
-        :ariaHidden="true"
-        role="img"
-      />
-      <span class="summaryInner">Language</span>
-      <Icon
-        :iconSrc="iconArrow"
-        :width="12"
-        :height="7"
-        color="var(--color-text-body)"
-        class="dropDownIcon"
-        :ariaHidden="true"
-        role="img"
-      />
-    </summary>
-    <div ref="languageListElement" class="languageList">
-      <div ref="languageItemElement" class="languageListInner">
+    <template #summary>
+      <span class="summaryWrapper">
+        <Icon
+          :iconSrc="iconGlobe"
+          :width="16"
+          :height="16"
+          color="var(--color-text-body)"
+          class="globeIcon"
+          :ariaHidden="true"
+          role="img"
+        />
+        <span class="summaryInner">Language</span>
+        <Icon
+          :iconSrc="iconArrow"
+          :width="12"
+          :height="7"
+          color="var(--color-text-body)"
+          class="dropDownIcon"
+          :ariaHidden="true"
+          role="img"
+        />
+      </span>
+    </template>
+    <template #content>
+      <div class="languageListInner">
         <ul>
-          <li
+          <MenuListItem
             v-for="item in languageList"
             :key="item.label"
             class="languageItem"
+            :isCurrent="item.isCurrent"
+            :tag="linkTag"
+            size="small"
+            type="boxed"
             :class="{ isCurrent: item.isCurrent }"
           >
-            <Icon
-              v-show="item.isCurrent"
-              :iconSrc="iconCheck"
-              :width="16"
-              :height="16"
-              color="var(--color-text-link)"
-              class="checkIcon"
-              :ariaHidden="true"
-              role="img"
-            />
-
-            <LinkComponent :to="item.link" class="link">{{
-              item.label
-            }}</LinkComponent>
-          </li>
+            <template #icon>
+              <Icon
+                :iconSrc="item.isCurrent ? iconCheck : iconBlankSpace"
+                :width="16"
+                :height="16"
+                color="currentColor"
+                :ariaHidden="true"
+                role="img"
+              />
+            </template>
+            {{ item.label }}
+          </MenuListItem>
         </ul>
       </div>
-    </div>
-  </details>
+    </template>
+  </PartsAccordion>
 </template>
 <style lang="scss" scoped>
 @use "@/assets/style/utils/utils.scss" as *;
@@ -134,7 +131,7 @@ const languageList = ref(props.languageList);
   }
 }
 
-.summary {
+.summaryWrapper {
   position: relative;
   display: flex;
   align-items: center;
@@ -147,15 +144,6 @@ const languageList = ref(props.languageList);
   letter-spacing: 0.04em;
   border-radius: 4px;
   transition: background-color var(--base-duration) var(--easing-out-expo);
-
-  &:-webkit-details-marker {
-    display: none;
-  }
-
-  &::-webkit-details-marker {
-    // Safariの三角アイコン
-    visibility: hidden;
-  }
 }
 
 .globeIcon {
@@ -171,74 +159,10 @@ const languageList = ref(props.languageList);
   transition: transform var(--base-duration) var(--easing-out-expo);
 }
 
-.languageList {
-  overflow: hidden;
-  border: 1px solid transparent;
-  border-radius: 6px;
-  transition:
-    height var(--base-duration),
-    border-color var(--base-duration) var(--easing-out-expo);
-}
-
 .languageListInner {
   padding-top: 8px;
   padding-bottom: 8px;
   background-color: var(--color-background-primary);
 }
 
-.link {
-  display: block;
-  width: 100%;
-  padding-top: 3px;
-  padding-bottom: 3px;
-  padding-left: 20px;
-  font-size: pxToRem(14);
-  color: var(--color-text-body);
-  text-decoration: none;
-
-  &:hover {
-    text-decoration: underline;
-  }
-}
-
-.languageItem {
-  position: relative;
-  display: flex;
-  padding-right: 2px;
-  padding-left: 2px;
-  font-size: pxToRem(16);
-  line-height: 1.7;
-  transition: background-color var(--base-duration) var(--easing-out-expo);
-
-  &:hover {
-    background-color: var(--color-background-secondary);
-  }
-
-  &.isCurrent {
-    .link {
-      position: relative;
-      display: block;
-      font-weight: var(--weight-bold);
-      color: var(--color-text-link);
-      background-color: var(--color-background-link);
-
-      &::before {
-        position: absolute;
-        top: 0;
-        left: -2px;
-        display: block;
-        width: calc(100% + 4px);
-        height: 100%;
-        content: "";
-      }
-    }
-  }
-
-  .checkIcon {
-    position: absolute;
-    top: 8px;
-    left: 4px;
-    z-index: 1;
-  }
-}
 </style>
