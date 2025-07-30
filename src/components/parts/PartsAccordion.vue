@@ -58,9 +58,10 @@ const handleChange = (e: Event) => {
 summary {
   list-style: none;
   cursor: pointer;
+
   &:focus-visible {
-    outline: 4px solid var(--color-text-body);
     background-color: var(--color-focus);
+    outline: 4px solid var(--color-text-body);
   }
 }
 

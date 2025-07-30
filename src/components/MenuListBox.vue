@@ -65,9 +65,10 @@ const isOpened = ref(false);
   </PartsListBox>
 </template>
 <style scoped>
-.summaryWrapper{
+.summaryWrapper {
   border-radius: 8px;
 }
+
 /* 影を上書き */
 .menuListBox :deep(.contents) {
   box-shadow: 0 2px 8px 1px rgba(0, 0, 0, 10%);

@@ -29,7 +29,6 @@ const meta = {
       { label: "한국어", link: "#!", isCurrent: false },
     ],
   },
-
 } satisfies Meta<typeof LanguageSelector>;
 export default meta;
 type Story = StoryObj<typeof meta>;

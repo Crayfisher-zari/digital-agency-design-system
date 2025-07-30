@@ -13,7 +13,7 @@ const meta = {
       control: "select",
       options: ["regular", "small"],
     },
-    isCurrent: {
+    hasCurrent: {
       control: "boolean",
     },
   },

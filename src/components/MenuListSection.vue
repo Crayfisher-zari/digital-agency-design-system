@@ -2,8 +2,6 @@
 import Icon from "./Icon.vue";
 import iconArrowAccordion from "@/assets/images/icon_arrow_accordion.svg";
 import MenuListItem from "./MenuListItem.vue";
-import PartsAccordion from "./parts/PartsAccordion.vue";
-import { ref } from "vue";
 import { useDropDownAnimation } from "../composables/useDropDownAnimation";
 
 const {
@@ -11,33 +9,47 @@ const {
   contentsElement,
   contentsInnerElement,
   isOpened,
-  hasAnimation,
   handleDropDown,
 } = useDropDownAnimation();
 
 type Props = {
   size?: "regular" | "small";
-  isCurrent?: boolean;
+  hasCurrent?: boolean;
   isBoxed?: boolean;
 };
 
 withDefaults(defineProps<Props>(), {
   size: "regular",
-  isCurrent: false,
+  hasCurrent: false,
   isBoxed: false,
 });
-
 </script>
 
 <template>
-  <details ref="detailsElement" class="accordion" :class="[{ isOpened: isOpened }]">
-    <summary @click="handleDropDown">
-      <span>
+  <details
+    ref="detailsElement"
+    class="accordion"
+    :class="[{ isOpened: isOpened }]"
+  >
+    <MenuListItem
+      tag="summary"
+      @click="handleDropDown"
+      :hasCurrent="hasCurrent"
+    >
+      <template #icon>
         <slot name="icon" />
-        <slot name="sectionTitle" />
-      </span>
-      <Icon :iconSrc="iconArrowAccordion" :width="12" :height="12" color="currentColor" class="icon" />
-    </summary>
+      </template>
+      <slot name="sectionTitle" />
+      <template #iconBackward>
+        <Icon
+          :iconSrc="iconArrowAccordion"
+          :width="12"
+          :height="12"
+          color="currentColor"
+          class="icon"
+        />
+      </template>
+    </MenuListItem>
     <div class="contents" ref="contentsElement">
       <div class="contentsInner" ref="contentsInnerElement">
         <slot />
@@ -54,6 +66,7 @@ withDefaults(defineProps<Props>(), {
 summary {
   display: flex;
 }
+
 summary::-webkit-details-marker {
   visibility: hidden;
 }
@@ -65,16 +78,14 @@ summary::marker {
 .icon {
   transition: transform var(--base-duration) var(--easing-out-expo);
   transform: rotate(0deg);
-
 }
 
 .accordion.isOpened .icon {
   transform: rotate(180deg);
 }
 
-
 .contents {
-  /* overflow: hidden; */
+  overflow: hidden;
   transition: height var(--base-duration);
 }
 </style>

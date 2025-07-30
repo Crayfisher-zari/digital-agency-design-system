@@ -17,6 +17,9 @@ withDefaults(defineProps<Props>(), {
       <span class="text">
         <slot />
       </span>
+      <span class="iconBackward">
+        <slot name="iconBackward" />
+      </span>
     </span>
   </span>
 </template>

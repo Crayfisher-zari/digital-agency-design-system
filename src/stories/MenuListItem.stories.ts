@@ -27,6 +27,9 @@ const meta = {
     isCurrent: {
       control: "boolean",
     },
+    hasCurrent: {
+      control: "boolean",
+    },
     isUnderlined: {
       control: "boolean",
     },

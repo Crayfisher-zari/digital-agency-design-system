@@ -29,6 +29,11 @@ export const useDropDownAnimation = () => {
    * アコーディオンの開閉イベント
    */
   const handleDropDown = (e: Event) => {
+    console.log(
+      contentsInnerElement.value,
+      contentsElement.value,
+      detailsElement.value,
+    );
     if (
       !detailsElement.value ||
       !contentsElement.value ||
@@ -57,6 +62,7 @@ export const useDropDownAnimation = () => {
       details.setAttribute("open", "true");
       // 内部の要素の高さを取得
       const height = contentsInner.offsetHeight;
+
       contents.style.height = `${height}px`;
     }
   };

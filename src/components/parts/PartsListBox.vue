@@ -34,11 +34,11 @@ const handleChange = (e: Event) => {
   emit("change", isOpened.value ?? false);
 };
 
-const offsetXPx = computed(() => {
-  return `${props.offsetX}px`
+const offsetxpx = computed(() => {
+  return `${props.offsetX}px`;
 });
 
-const offsetYPx = computed(() => {
+const offsetypx = computed(() => {
   return `${props.offsetY}px`;
 });
 </script>
@@ -64,6 +64,7 @@ const offsetYPx = computed(() => {
 .listBox {
   position: relative;
   width: max-content;
+
   /* アニメーションが有効な場合はタイミングを上書き */
   &.isOpened {
     .dropDownIcon {
@@ -82,9 +83,10 @@ const offsetYPx = computed(() => {
 
 summary {
   list-style: none;
+
   &:focus-visible {
-    outline: 4px solid var(--color-text-body);
     background-color: var(--color-focus);
+    outline: 4px solid var(--color-text-body);
   }
 }
 
@@ -99,17 +101,17 @@ summary::marker {
 .contents {
   position: absolute;
   top: auto;
-  margin-top: v-bind(offsetYPx);
   width: max-content;
+  margin-top: v-bind(offsetypx);
   overflow: hidden;
   transition: height var(--base-duration);
 }
 
 .right .contents {
-  right: v-bind(offsetXPx);
+  right: v-bind(offsetxpx);
 }
 
 .left .contents {
-  left: v-bind(offsetXPx);
+  left: v-bind(offsetxpx);
 }
 </style>

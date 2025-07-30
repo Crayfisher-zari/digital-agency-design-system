@@ -3,14 +3,16 @@ import Icon from "./Icon.vue";
 import iconArrow from "@/assets/images/icon_arrow_right.svg";
 import iconExternal from "@/assets/images/icon_external.svg";
 import { useLink, LinkTag } from "../composables/useLinkComponent";
+import { computed } from "vue";
 
 type Props = {
   size?: "regular" | "small";
   type?: "standard" | "boxed" | "thumbnail";
   hasArrow?: boolean;
-  tag?: LinkTag | "button" | "span";
+  tag?: LinkTag | string;
   target?: "_blank";
   isCurrent?: boolean;
+  hasCurrent?: boolean;
   description?: string;
   isUnderlined?: boolean;
 };
@@ -23,6 +25,7 @@ const props = withDefaults(defineProps<Props>(), {
   target: undefined,
   description: undefined,
   isCurrent: false,
+  hasCurrent: false,
   isUnderlined: true,
 });
 
@@ -33,16 +36,22 @@ const emit = defineEmits<{
 }>();
 
 const handleClick = (event: Event) => {
-  if (props.tag === "button") {
-    emit("click", event);
-  }
+  emit("click", event);
 };
+
+const tag = computed(() => {
+  const linkTags = ["a", "auto", "nuxt", "router"];
+  if (linkTags.includes(props.tag)) {
+    return LinkComponent;
+  }
+  return props.tag;
+});
 </script>
 
 <template>
   <component
-    :is="tag === 'button' ? 'button' : tag === 'span' ? 'span' : LinkComponent"
-    :class="[size, type, { isCurrent }, { isUnderlined }]"
+    :is="tag"
+    :class="[size, type, { isCurrent }, { hasCurrent }, { isUnderlined }]"
     :target="target"
     class="menuListItem"
     :aria-current="isCurrent ? 'page' : undefined"
@@ -110,11 +119,15 @@ const handleClick = (event: Event) => {
     outline: 4px solid var(--color-text-body);
   }
 
-  &[aria-current="page"] {
-    font-weight: var(--weight-bold);
+  &.isCurrent,
+  &.hasCurrent {
     color: var(--color-text-link);
     background-color: var(--color-button-tertiary-active);
     border-color: var(--color-button-tertiary-active);
+  }
+
+  &.isCurrent {
+    font-weight: var(--weight-bold);
   }
 
   &.small {

@@ -32,7 +32,7 @@ const isOpened = ref(false);
 
 const languageList = ref(props.languageList);
 
-const innerHeight = computed(() => {
+const innerheight = computed(() => {
   return props.contentHeight ? `${props.contentHeight}px` : "auto";
 });
 </script>
@@ -132,6 +132,7 @@ const innerHeight = computed(() => {
   &:hover {
     background-color: var(--color-background-tertiary);
   }
+
   &.isOpened {
     .dropDownIcon {
       transform: rotate(180deg);
@@ -146,6 +147,7 @@ const innerHeight = computed(() => {
     }
   }
 }
+
 /** サマリータグの幅を上書き */
 .languageSelector :deep(summary) {
   width: max-content;
@@ -157,39 +159,40 @@ const innerHeight = computed(() => {
 }
 
 .summaryWrapper {
-  width: 100%;
-  background-color: transparent;
-  appearance: none;
-  border: none;
   position: relative;
   display: flex;
   column-gap: 4px;
   align-items: center;
   justify-content: flex-end;
-  border-radius: 4px;
+  width: 100%;
+  appearance: none;
   cursor: pointer;
+  background-color: transparent;
+  border: none;
+  border-radius: 4px;
 
   &:focus-visible {
-    outline: 4px solid var(--color-text-body);
     background-color: var(--color-focus);
+    outline: 4px solid var(--color-text-body);
   }
 }
 
 .languageSelector :deep(.summary:focus-visible) .summaryWrapper {
-  outline: 4px solid var(--color-text-body);
   background-color: var(--color-focus);
+  outline: 4px solid var(--color-text-body);
 }
 
 .labelType {
   display: flex;
+  column-gap: 4px;
   align-items: center;
   justify-content: flex-end;
-  column-gap: 4px;
   height: 36px;
   padding: 10px 8px;
   font-size: 1rem;
   line-height: 1;
   letter-spacing: 0.04em;
+
   &:hover {
     text-decoration: underline;
   }
@@ -201,9 +204,10 @@ const innerHeight = computed(() => {
   border-radius: 4px;
 
   .summaryWrapper {
-    width: 60px;
     justify-content: center;
+    width: 60px;
   }
+
   &:hover {
     outline: 2px solid var(--color-text-body);
   }
@@ -224,18 +228,19 @@ const innerHeight = computed(() => {
 }
 
 .languageListInner {
-  background-color: var(--color-background-primary);
-  height: v-bind(innerHeight);
-  overflow-y: auto;
+  height: v-bind(innerheight);
   padding-top: 20px;
   padding-bottom: 20px;
+  overflow-y: auto;
+  background-color: var(--color-background-primary);
   border: 1px solid var(--color-border-divider);
   border-radius: 8px;
+
   ul,
   li {
-    list-style: none;
     padding: 0;
     margin: 0;
+    list-style: none;
   }
 }
 </style>
