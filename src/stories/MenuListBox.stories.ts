@@ -19,6 +19,10 @@ const meta = {
       control: "select",
       options: ["text", "outlined", "filled"],
     },
+    position: {
+      control: "select",
+      options: ["left", "right"],
+    },
     contentHeight: {
       control: "number",
     },
@@ -37,6 +41,7 @@ export const Default: Story = {
   args: {
     size: "regular",
     type: "text",
+    position: "left",
     contentHeight: undefined,
   },
   render: (args) => ({
@@ -47,7 +52,7 @@ export const Default: Story = {
     template: `
       <MenuListBox v-bind="args">
         <template #summary>
-          メニューリストボックス
+          メニューリスト
         </template>
         <template #content>
           <MenuListItem type="boxed">メニューリストアイテム1</MenuListItem>

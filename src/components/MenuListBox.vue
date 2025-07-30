@@ -1,9 +1,8 @@
 <script lang="ts" setup>
-import PartsListBox from "./parts/PartsListBox.vue";
 import MenuListItem from "./MenuListItem.vue";
 import Icon from "./Icon.vue";
 import iconArrowAccordion from "@/assets/images/icon_arrow_accordion.svg";
-import { ref } from "vue";
+import { useDropDownAnimation } from "../composables/useDropDownAnimation";
 
 type Props = {
   /** サイズ */
@@ -11,7 +10,7 @@ type Props = {
   /** タイプ */
   type: "text" | "outlined" | "filled";
   /** 出てくるメニューポジションの左右位置 */
-  position: "left" | "right";
+  position?: "left" | "right";
   /** 内部コンテンツの高さ */
   contentHeight: number | undefined;
 };
@@ -20,77 +19,74 @@ withDefaults(defineProps<Props>(), {
   size: "regular",
   type: "text",
   position: "left",
-  offsetX: 0,
-  offsetY: 0,
   contentHeight: undefined,
 });
 
-const isOpened = ref(false);
+const {
+  detailsElement,
+  contentsElement,
+  contentsInnerElement,
+  isOpened,
+  handleDropDown,
+} = useDropDownAnimation();
 </script>
 <template>
-  <PartsListBox
-    :position="position"
-    @change="isOpened = $event"
+  <details
+    ref="detailsElement"
     class="menuListBox"
-    :class="[type, position]"
+    :class="[type, position, { isOpened: isOpened }]"
   >
-    <template #summary>
-      <div class="summaryWrapper">
-        <MenuListItem type="standard" :size="size">
-          <template #icon>
-            <slot name="summaryIcon" />
-          </template>
-          <slot name="summary" />
-          <template #iconBackward>
-            <Icon
-              class="icon"
-              :class="{ isOpened }"
-              :iconSrc="iconArrowAccordion"
-              :width="12"
-              :height="12"
-              color="currentColor"
-            />
-          </template>
-        </MenuListItem>
-      </div>
-    </template>
-    <template #content>
+    <MenuListItem
+      type="standard"
+      tag="summary"
+      :size="size"
+      class="summary"
+      @click="handleDropDown"
+    >
+      <template #icon>
+        <slot name="summaryIcon" />
+      </template>
+      <slot name="summary" />
+      <template #iconBackward>
+        <Icon
+          class="icon"
+          :class="{ isOpened }"
+          :iconSrc="iconArrowAccordion"
+          :width="12"
+          :height="12"
+          color="currentColor"
+        />
+      </template>
+    </MenuListItem>
+    <div class="contents" ref="contentsElement">
       <div
-        class="contentWrapper"
+        class="contentsInner"
+        ref="contentsInnerElement"
         :style="{ height: contentHeight ? `${contentHeight}px` : undefined }"
       >
         <slot name="content" />
       </div>
-    </template>
-  </PartsListBox>
+    </div>
+  </details>
 </template>
 <style scoped>
-.summaryWrapper {
-  border-radius: 8px;
+.menuListBox {
+  position: relative;
+  z-index: 0;
+  width: max-content;
 }
 
-/* 影を上書き */
-.menuListBox :deep(.contents) {
-  box-shadow: 0 2px 8px 1px rgba(0, 0, 0, 10%);
-}
-
-.outlined .summaryWrapper {
+.outlined .summary {
   border: 1px solid var(--color-border-divider);
 }
 
-.filled .summaryWrapper :deep(.menuListItem) {
+.filled .summary {
   background-color: var(--color-background-tertiary);
 
   &:hover {
     background-color: var(--color-background-secondary);
     border-color: var(--color-background-secondary);
   }
-}
-
-.contentWrapper {
-  padding: 16px 0;
-  overflow-y: auto;
-  border: 1px solid var(--color-border-divider);
 }
 
 .icon {
@@ -100,5 +96,28 @@ const isOpened = ref(false);
   &.isOpened {
     transform: rotate(180deg);
   }
+}
+
+.contents {
+  position: absolute;
+  width: max-content;
+  overflow: hidden;
+  border: 1px solid transparent;
+  box-shadow: 0 2px 8px 1px rgba(0, 0, 0, 10%);
+  transition:
+    height var(--base-duration) var(--easing-out-expo),
+    border-color calc(var(--base-duration) * 0.8) var(--easing-in-expo);
+}
+
+.isOpened .contents {
+  border-color: var(--color-border-divider);
+  transition:
+    height var(--base-duration) var(--easing-out-expo),
+    border-color var(--base-duration) var(--easing-out-expo);
+}
+
+.contentsInner {
+  padding: 16px 0;
+  overflow-y: auto;
 }
 </style>
