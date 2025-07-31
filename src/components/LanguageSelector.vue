@@ -177,11 +177,6 @@ const innerheight = computed(() => {
   }
 }
 
-.languageSelector :deep(.summary:focus-visible) .summaryWrapper {
-  background-color: var(--color-focus);
-  outline: 4px solid var(--color-text-body);
-}
-
 .labelType {
   display: flex;
   column-gap: 4px;
@@ -201,12 +196,15 @@ const innerheight = computed(() => {
 .icon {
   width: 60px !important;
   height: 44px !important;
-  border-radius: 4px;
 
   .summaryWrapper {
     justify-content: center;
     width: 60px;
   }
+}
+
+.icon :deep(summary) {
+  border-radius: 4px;
 
   &:hover {
     outline: 2px solid var(--color-text-body);

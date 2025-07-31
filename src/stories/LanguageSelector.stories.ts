@@ -27,6 +27,7 @@ const meta = {
       { label: "English", link: "#!", isCurrent: false },
       { label: "简体中文", link: "#!", isCurrent: false },
       { label: "한국어", link: "#!", isCurrent: false },
+      { label: "Lëtzebuergesch", link: "#!", isCurrent: false },
     ],
   },
 } satisfies Meta<typeof LanguageSelector>;
@@ -43,9 +44,17 @@ export const Base: Story = {
       { label: "English", link: "#!", isCurrent: false },
       { label: "简体中文", link: "#!", isCurrent: false },
       { label: "한국어", link: "#!", isCurrent: false },
+      { label: "Lëtzebuergesch", link: "#!", isCurrent: false },
     ],
     linkTag: "a",
   },
+  render: (args) => ({
+    components: { LanguageSelector },
+    setup() {
+      return { args };
+    },
+    template: `<div style="display: flex; justify-content: center;"><LanguageSelector v-bind="args" /></div>`,
+  }),
 };
 
 /**
@@ -58,6 +67,7 @@ export const Large: Story = {
       { label: "English", link: "#!", isCurrent: false },
       { label: "简体中文", link: "#!", isCurrent: false },
       { label: "한국어", link: "#!", isCurrent: false },
+      { label: "Lëtzebuergesch", link: "#!", isCurrent: false },
     ],
     linkTag: "a",
     size: "regular",
