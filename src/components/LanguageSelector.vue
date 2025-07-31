@@ -151,6 +151,7 @@ const innerheight = computed(() => {
 /** サマリータグの幅を上書き */
 .languageSelector :deep(summary) {
   width: max-content;
+  border-radius: 4px;
 }
 
 /* 影を上書き */
@@ -204,7 +205,7 @@ const innerheight = computed(() => {
 }
 
 .icon :deep(summary) {
-  border-radius: 4px;
+  
 
   &:hover {
     outline: 2px solid var(--color-text-body);
