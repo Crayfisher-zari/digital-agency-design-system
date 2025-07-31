@@ -205,8 +205,6 @@ const innerheight = computed(() => {
 }
 
 .icon :deep(summary) {
-  
-
   &:hover {
     outline: 2px solid var(--color-text-body);
   }
