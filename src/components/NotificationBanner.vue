@@ -2,9 +2,7 @@
 import { computed } from "vue";
 import { LinkTag, useLink } from "../composables/useLinkComponent";
 import BasicButton from "./BasicButton.vue";
-import Icon from "./Icon.vue";
-import iconClose from "@/assets/images/icon_close.svg";
-import BasicButtonLink from "./BasicButtonLink.vue";
+import PartsCloseButton from "./parts/PartsCloseButton.vue";
 
 type Props = {
   /** バナースタイル */
@@ -25,6 +23,8 @@ type Props = {
   linkTag?: LinkTag;
   /** 閉じるボタンの有無 */
   hasClose?: boolean;
+  /** 閉じるボタンをコンパクトにするかどうか */
+  isCloseCompact?: boolean;
   /** 閉じるボタン押下時の処理 */
   onClickClose?: () => void;
   /** 主ボタンのラベル */
@@ -297,7 +297,7 @@ const titleTag = computed(() => {
           :is="titleTag"
           :to="titleTag === 'span' ? undefined : props.url"
           class="title"
-          :class="[hasUnderline, hasClose]"
+          :class="[hasUnderline, { hasClose }]"
         >
           <span class="titleInner">
             {{ title }}
@@ -311,16 +311,7 @@ const titleTag = computed(() => {
         {{ description }}
       </p>
       <div v-if="hasClose" class="closeButtonWrapper">
-        <button class="closeButton">
-          <Icon
-            :iconSrc="iconClose"
-            :width="24"
-            :height="24"
-            color="var(--color-text-body)"
-            class="closeButtonIcon"
-          />
-          <span class="closeButtonLabel sr-only-mobile">閉じる</span>
-        </button>
+        <PartsCloseButton @click="onClickClose" :isCompact="isCloseCompact" />
       </div>
       <div
         v-if="primaryButtonLabel || secondaryButtonLabel"
@@ -552,49 +543,6 @@ const titleTag = computed(() => {
   @include mediaQueryDown {
     top: 10px;
     right: 16px;
-  }
-}
-
-.closeButton {
-  display: flex;
-  align-items: center;
-  width: auto;
-  height: 40px;
-  padding-right: 8px;
-  padding-left: 16px;
-  font-size: pxToRem(16);
-  color: var(--color-text-body);
-  appearance: none;
-  cursor: pointer;
-  background-color: transparent;
-  border: 1px solid transparent;
-  border-radius: 8px;
-  transition:
-    background-color var(--base-duration) var(--easing-out-expo),
-    border-color var(--base-duration) var(--easing-out-expo);
-
-  @media (hover: hover) {
-    &:hover {
-      background-color: var(--color-mono-hover);
-      border-color: var(--color-text-body);
-    }
-  }
-
-  @include mediaQueryDown {
-    justify-content: center;
-    width: 44px;
-    height: 44px;
-    padding: 0;
-    font-size: pxToRem(14);
-  }
-}
-
-.closeButtonIcon {
-  display: block;
-  margin-right: 6px;
-
-  @include mediaQueryDown {
-    margin-right: 0;
   }
 }
 </style>

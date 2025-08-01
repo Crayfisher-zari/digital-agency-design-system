@@ -35,6 +35,12 @@ const meta = {
     secondaryButtonLabel: {
       control: "text",
     },
+    isCloseCompact: {
+      control: "boolean",
+    },
+    hasClose: {
+      control: "boolean",
+    },
   },
   args: {
     style: "standard",

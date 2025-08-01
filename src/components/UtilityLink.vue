@@ -36,8 +36,8 @@ const { LinkComponent } = useLink({ tag: props.linkTag });
     ><Icon
       v-if="isExternal"
       :iconSrc="externalIcon"
-      :width="10"
-      :height="10"
+      :width="12"
+      :height="12"
       color="inherit"
       class="externalIcon"
       :ariaHidden="true"
