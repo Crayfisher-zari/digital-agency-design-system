@@ -4,10 +4,12 @@ import iconClose from "@/assets/images/icon_close.svg";
 
 type Props = {
   isCompact?: boolean;
+  tag?: "button" | "span";
 };
 
 withDefaults(defineProps<Props>(), {
   isCompact: false,
+  tag: "button",
 });
 
 const emits = defineEmits<{
@@ -19,7 +21,12 @@ const handleClick = (e: Event) => {
 };
 </script>
 <template>
-  <button class="closeButton" :class="{ isCompact }" @click="handleClick">
+  <button
+    v-if="tag === 'button'"
+    class="closeButton button"
+    :class="{ isCompact }"
+    @click="handleClick"
+  >
     <Icon
       :iconSrc="iconClose"
       :width="24"
@@ -29,6 +36,16 @@ const handleClick = (e: Event) => {
     />
     <span class="closeButtonLabel">閉じる</span>
   </button>
+  <span v-else class="closeButton" :class="{ isCompact }">
+    <Icon
+      :iconSrc="iconClose"
+      :width="24"
+      :height="24"
+      color="var(--color-text-body)"
+      class="closeButtonIcon"
+    />
+    <span class="closeButtonLabel">閉じる</span>
+  </span>
 </template>
 
 <style scoped>
@@ -79,6 +96,13 @@ const handleClick = (e: Event) => {
       width: 28px;
       height: 28px;
       margin-right: 0;
+    }
+  }
+
+  &.button {
+    &:focus-visible {
+      background-color: var(--color-focus);
+      outline: 4px solid var(--color-text-body);
     }
   }
 }

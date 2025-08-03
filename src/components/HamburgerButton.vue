@@ -1,11 +1,9 @@
 <script setup lang="ts">
 import Icon from "./Icon.vue";
 import iconHamburger from "@/assets/images/icon_hamburger.svg";
-import iconClose from "@/assets/images/icon_close.svg";
 import iconHamburgerCompactJa from "@/assets/images/icon_hamburger_compact_ja.svg";
 import iconHamburgerCompactEn from "@/assets/images/icon_hamburger_compact_en.svg";
-import iconHamburgerCompactCloseJa from "@/assets/images/icon_hamburger_compact_close_ja.svg";
-import iconHamburgerCompactCloseEn from "@/assets/images/icon_hamburger_compact_close_en.svg";
+import PartsCloseButton from "./parts/PartsCloseButton.vue";
 
 type Props = {
   /** 見た目の種類 */
@@ -42,7 +40,7 @@ const handleClick = () => {
   >
     <Transition mode="out-in">
       <span v-show="!model" class="buttonInner">
-        <template v-if="type === 'default'">
+        <span v-if="type === 'default'" class="defaultStyle">
           <span class="iconWrapper">
             <Icon
               :iconSrc="iconHamburger"
@@ -53,8 +51,8 @@ const handleClick = () => {
             />
           </span>
           <span class="text">メニュー</span>
-        </template>
-        <template v-if="type === 'compact'">
+        </span>
+        <span v-if="type === 'compact'" class="compactStyle">
           <Icon
             v-if="lang === 'ja'"
             :iconSrc="iconHamburgerCompactJa"
@@ -69,40 +67,16 @@ const handleClick = () => {
             :height="44"
             color="var(--color-text-body)"
           />
-        </template>
+        </span>
       </span>
     </Transition>
     <Transition mode="out-in">
       <span v-show="model" class="buttonInner">
-        <template v-if="type === 'default'">
-          <span class="iconWrapper">
-            <Icon
-              v-show="model"
-              :iconSrc="iconClose"
-              :width="24"
-              :height="24"
-              color="var(--color-text-body)"
-              class="icon close"
-            />
-          </span>
-          <span class="text">閉じる</span>
-        </template>
-        <template v-if="type === 'compact'">
-          <Icon
-            v-if="lang === 'ja'"
-            :iconSrc="iconHamburgerCompactCloseJa"
-            :width="44"
-            :height="44"
-            color="var(--color-text-body)"
-          />
-          <Icon
-            v-if="lang === 'en'"
-            :iconSrc="iconHamburgerCompactCloseEn"
-            :width="44"
-            :height="44"
-            color="var(--color-text-body)"
-          />
-        </template>
+        <PartsCloseButton
+          :isCompact="type === 'compact'"
+          tag="span"
+          class="closeButton"
+        />
       </span>
     </Transition>
   </button>
@@ -116,13 +90,9 @@ const handleClick = () => {
   cursor: pointer;
   background-color: transparent;
   border: none;
-  transition: background-color var(--base-duration) var(--easing-out-expo);
-
-  &:focus-visible {
-    background-color: var(--color-focus);
-    border-radius: 5px;
-    outline: 4px solid var(--color-text-body);
-  }
+  transition:
+    background-color var(--base-duration) var(--easing-out-expo),
+    border-color var(--base-duration) var(--easing-out-expo);
 
   @media (hover: hover) {
     &:hover {
@@ -134,10 +104,19 @@ const handleClick = () => {
     }
   }
 
+  &:focus-visible {
+    background-color: var(--color-focus);
+    outline: 4px solid var(--color-text-body);
+
+    .closeButton {
+      background-color: var(--color-focus);
+      border-color: transparent !important;
+    }
+  }
+
   &.default {
-    width: 93px;
-    height: 28px;
-    padding-left: 2px;
+    width: 117px;
+    height: 36px;
 
     .buttonInner {
       display: flex;
@@ -157,7 +136,7 @@ const handleClick = () => {
   top: 0;
   left: 0;
   display: block;
-  width: 100%;
+  width: max-content;
   height: 100%;
 
   &.v-enter-active,
@@ -168,6 +147,31 @@ const handleClick = () => {
   &.v-enter-from,
   .v-leave-to {
     opacity: 0;
+  }
+}
+
+.defaultStyle {
+  display: flex;
+  column-gap: 4px;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 12px;
+}
+
+.compactStyle {
+  display: block;
+  width: 44px;
+  height: 44px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  transition:
+    background-color var(--base-duration) var(--easing-out-expo),
+    border-color var(--base-duration) var(--easing-out-expo);
+
+  @media (hover: hover) {
+    &:hover {
+      border-color: var(--color-text-body);
+    }
   }
 }
 
