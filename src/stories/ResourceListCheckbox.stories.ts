@@ -3,6 +3,9 @@ import ResourceListCheckbox from "../components/ResourceListCheckbox.vue";
 import { computed, ref } from "vue";
 import icon3Point from "../assets/images/icon_3point.svg";
 import { GenericMeta } from "../types/GenericMeta";
+import Icon from "../components/Icon.vue";
+import iconSample from "../assets/images/icon_sample.svg";
+
 
 const meta = {
   title: "リソースリスト（チェックボックス）",
@@ -35,10 +38,58 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 /**
- * リソースリスト（チェックボックス）<br>
+ * リソースリスト（チェックボックス）
+ * 
  * リソースリストにチェックボックス機能を持つです。
  */
 export const Base: Story = {
+  args: {
+    label: "ラベル",
+    title: "リストタイトル",
+    supportText:
+      "サポートテキスト",
+    subLabel: "サブラベル",
+    value: "選択肢",
+    modelValue: "選択肢",
+    name: "test",
+  },
+  render: (args) => ({
+    components: { ResourceListCheckbox, Icon },
+    setup: () => {
+      const checked = ref([]);
+      const props = computed(() => args);
+      return { checked, props: props.value, iconSample };
+    },
+    template: `
+      <div>
+      <p class="mb">チェックされたもの：{{ checked }}</p>
+        <ResourceListCheckbox
+          v-model="checked"
+          :name="props.name"
+          :value="props.value"
+          :title="props.title"
+          :label="props.label"
+          :subLabel="props.subLabel"
+          :supportText="props.supportText"
+        >
+          <template #frontIcon>
+            <Icon :iconSrc="iconSample" :width="24" :height="24" />
+          </template>
+          <template #endIcon>
+            <Icon :iconSrc="iconSample" :width="24" :height="24" />
+          </template>
+        </ResourceListCheckbox>
+      </div>
+    `,
+  }),
+};
+
+/**
+ * リソースリスト（チェックボックス）
+ * 
+ * サンプル例
+ */
+export const Example: Story = {
   args: {
     label: "セキュリティ",
     title: "令和5年度中小企業等セキュリティ強化推進補助金",
@@ -74,7 +125,8 @@ export const Base: Story = {
 };
 
 /**
- * リソースリスト（チェックボックス）<br>
+ * リソースリスト（チェックボックス）
+ * 
  * リスト形式の作例
  */
 export const List: Story = {

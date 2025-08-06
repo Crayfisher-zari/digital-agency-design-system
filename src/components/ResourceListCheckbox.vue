@@ -46,35 +46,36 @@ const isChecked = computed(() => {
 </script>
 <template>
   <div class="resourceListWrapper">
-    <label class="resourceList label" :class="{ isChecked: isChecked }">
-      <div class="checkboxArea">
-        <PartsCheckbox
-          v-model="model"
-          :name="name"
-          :value="props.value"
-          :isDisabled="isDisabled"
+    <label class="resourceListContainer label" :class="{ isChecked: isChecked }">
+      <div class="hoverArea resourceList">
+        <div class="checkboxArea">
+          <PartsCheckbox
+            v-model="model"
+            :name="name"
+            :value="props.value"
+            :isDisabled="isDisabled"
+          />
+        </div>
+        <div v-if="$slots.frontIcon" class="frontIconWrapper">
+          <slot name="frontIcon"></slot>
+        </div>
+        <PartsResourceListInner
+          :label="props.label"
+          :title="props.title"
+          :supportText="props.supportText"
+          :subLabel="props.subLabel"
         />
       </div>
-      <div v-if="$slots.frontIcon" class="frontIconWrapper">
-        <slot name="frontIcon"></slot>
-      </div>
-      <PartsResourceListInner
-        :label="props.label"
-        :title="props.title"
-        :supportText="props.supportText"
-        :subLabel="props.subLabel"
-      />
       <div v-if="$slots.endIcon" class="endIconWrapper">
         <slot name="endIcon"></slot>
       </div>
     </label>
   </div>
 </template>
-<style lang="scss" scoped>
-@use "@/assets/style/utils/utils.scss" as *;
-@use "./styles/resourceListStyle";
+<style scoped>
+@import "./styles/resourceListStyle.css";
 
-.resourceList.label.isChecked {
+.resourceListContainer.label.isChecked {
   background-color: var(--color-background-checked);
 }
 </style>

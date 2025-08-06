@@ -1,8 +1,30 @@
-@use "@/assets/style/utils/utils.scss" as *;
-
 .resourceListWrapper {
   position: relative;
   display: grid;
+  &:hover {
+    .hoverArea {
+      background-color: var(--color-neutral-opacity-50);
+      border-color: var(--color-mono-reverse);
+    }
+  }
+}
+
+.resourceListContainer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: none;
+  border-bottom: 1px solid #949494;
+  transition: background-color var(--base-duration) var(--easing-out-expo);
+}
+
+.hoverArea {
+  width: 100%;
+  border: 2px solid transparent;
+  transition:
+    background-color var(--base-duration) var(--easing-out-expo),
+    border-color var(--base-duration) var(--easing-out-expo);
 }
 
 .resourceList {
@@ -14,9 +36,6 @@
   text-align: left;
   appearance: none;
   background: none;
-  border: none;
-  border-bottom: 1px solid #949494;
-  transition: background-color var(--base-duration) var(--easing-out-expo);
 }
 
 .checkboxArea {
@@ -31,21 +50,22 @@
 }
 
 .label {
-  font-size: pxToRem(14);
+  font-size: 0.875rem;
   line-height: 1.7;
   color: var(--color-text-body);
   letter-spacing: 0.04em;
 }
 
 .title {
-  font-size: pxToRem(16);
+  font-size: 1rem;
   line-height: 1.7;
   color: var(--color-text-body);
+  font-weight: var(--weight-bold);
   letter-spacing: 0.04em;
 }
 
 .supportText {
-  font-size: pxToRem(14);
+  font-size: 0.875rem;
   line-height: 1.7;
   color: var(--color-text-description);
   letter-spacing: 0.04em;
@@ -57,7 +77,7 @@
 }
 
 .subLabel {
-  font-size: pxToRem(14);
+  font-size: 0.875rem;
   line-height: 1.7;
   color: var(--color-text-description);
   letter-spacing: 0.04em;
@@ -67,4 +87,8 @@
 .endIconWrapper {
   display: grid;
   place-items: center;
+}
+
+.endIconWrapper {
+  padding-right: 8px;
 }
