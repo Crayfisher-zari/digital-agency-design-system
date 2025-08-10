@@ -4,6 +4,8 @@ import PartsCheckbox from "./parts/PartsCheckbox.vue";
 import PartsResourceListInner from "./parts/PartsResourceListInner.vue";
 
 type Props = {
+  /** リソースリストのスタイル */
+  style: "list" | "form";
   /** ラベル */
   label?: string;
   /** リストタイトル */
@@ -45,7 +47,7 @@ const isChecked = computed(() => {
 });
 </script>
 <template>
-  <div class="resourceListWrapper">
+  <div class="resourceListWrapper" :class="{ style }">
     <label class="resourceListContainer label" :class="{ isChecked: isChecked }">
       <div class="hoverArea resourceList">
         <div class="checkboxArea">

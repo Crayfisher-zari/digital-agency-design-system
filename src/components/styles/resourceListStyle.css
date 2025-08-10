@@ -90,5 +90,5 @@
 }
 
 .endIconWrapper {
-  padding-right: 8px;
+  min-width: 44px;
 }

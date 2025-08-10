@@ -12,6 +12,10 @@ const meta = {
   component: ResourceListCheckbox,
   tags: ["autodocs"],
   argTypes: {
+    style: {
+      control: "select",
+      options: ["list", "form"],
+    },
     label: {
       control: "text",
     },
