@@ -4,6 +4,8 @@ import PartsRadioButton from "./parts/PartsRadioButton.vue";
 import PartsResourceListInner from "./parts/PartsResourceListInner.vue";
 
 type Props = {
+  /** リソースリストのスタイル */
+  designStyle: "list" | "form";
   /** ラベル */
   label?: string;
   /** リストタイトル */
@@ -40,25 +42,30 @@ const isChecked = computed(() => {
 });
 </script>
 <template>
-  <div class="resourceListWrapper">
-    <label class="resourceList label" :class="{ isChecked: isChecked }">
-      <div class="radioArea">
-        <PartsRadioButton
-          v-model="model"
-          :name="name"
-          :radioValue="value"
-          :isDisabled="isDisabled"
+  <div class="resourceListWrapper" :class="{ designStyle }">
+    <label
+      class="resourceListContainer label"
+      :class="[{ isChecked: isChecked }, designStyle]"
+    >
+      <div class="hoverArea resourceList">
+        <div class="radioArea">
+          <PartsRadioButton
+            v-model="model"
+            :name="name"
+            :radioValue="value"
+            :isDisabled="isDisabled"
+          />
+        </div>
+        <div v-if="$slots.frontIcon" class="frontIconWrapper">
+          <slot name="frontIcon"></slot>
+        </div>
+        <PartsResourceListInner
+          :label="props.label"
+          :title="props.title"
+          :supportText="props.supportText"
+          :subLabel="props.subLabel"
         />
       </div>
-      <div v-if="$slots.frontIcon" class="frontIconWrapper">
-        <slot name="frontIcon"></slot>
-      </div>
-      <PartsResourceListInner
-        :label="props.label"
-        :title="props.title"
-        :supportText="props.supportText"
-        :subLabel="props.subLabel"
-      />
       <div v-if="$slots.endIcon" class="endIconWrapper">
         <slot name="endIcon"></slot>
       </div>
@@ -69,7 +76,7 @@ const isChecked = computed(() => {
 @use "@/assets/style/utils/utils.scss" as *;
 @use "./styles/resourceListStyle";
 
-.resourceList.label.isChecked {
+.resourceListContainer.label.isChecked {
   background-color: var(--color-background-checked);
 }
 </style>

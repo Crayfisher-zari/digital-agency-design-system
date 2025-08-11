@@ -50,7 +50,7 @@ const isChecked = computed(() => {
   <div class="resourceListWrapper" :class="{ designStyle }">
     <label
       class="resourceListContainer label"
-      :class="[{ isChecked: isChecked }, props.designStyle]"
+      :class="[{ isChecked: isChecked }, designStyle]"
     >
       <div class="hoverArea resourceList">
         <div class="checkboxArea">

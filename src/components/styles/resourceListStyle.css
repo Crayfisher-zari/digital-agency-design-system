@@ -1,15 +1,11 @@
 .resourceListWrapper {
   position: relative;
   display: grid;
-  &:hover {
-    .hoverArea {
-      background-color: var(--color-neutral-opacity-50);
-      border-color: var(--color-mono-reverse);
-    }
-  }
+  
 }
 
 .resourceListContainer {
+  cursor: pointer;
   width: 100%;
   display: flex;
   align-items: center;
@@ -30,11 +26,27 @@
 }
 
 .hoverArea {
+  position: relative;
   width: 100%;
-  border: 2px solid transparent;
-  transition:
-    background-color var(--base-duration) var(--easing-out-expo),
-    border-color var(--base-duration) var(--easing-out-expo);
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: calc(100% + 1px);
+    border: 2px solid transparent;
+
+    transition: background-color var(--base-duration) var(--easing-out-expo),
+    border-color var(--base-duration) var(--easing-out-expo);  }
+
+
+    &:hover {
+      &:after {
+        background-color: var(--color-neutral-opacity-50);
+        border-color: var(--color-mono-reverse);
+      }
+    }
 }
 
 .resourceList {

@@ -165,6 +165,7 @@ export const Example: Story = {
       <p class="mb">チェックされたもの：{{ checked }}</p>
         <ResourceListCheckbox
           v-model="checked"
+          :designStyle="props.designStyle"
           :name="props.name"
           :value="props.value"
           :title="props.title"
@@ -200,6 +201,7 @@ export const List: Story = {
       const checked = ref([]);
       const resourceList = [
         {
+          designStyle: "list",
           label: "デジタルトランスフォーメーション",
           title: "令和5年度中小企業等デジタル化促進補助金",
           supportText:
@@ -208,6 +210,7 @@ export const List: Story = {
           value: "選択肢1",
         },
         {
+          designStyle: "list",
           label: "セキュリティ",
           title: "令和5年度中小企業等セキュリティ強化推進補助金",
           supportText:
@@ -216,6 +219,7 @@ export const List: Story = {
           value: "選択肢2",
         },
         {
+          designStyle: "list",
           label: "スマートワーク",
           title: "令和5年度中小企業等スマートワーク導入支援補助金",
           supportText:
@@ -224,6 +228,7 @@ export const List: Story = {
           value: "選択肢3",
         },
         {
+          designStyle: "list",
           label: "子育て",
           title: "令和5年度中小企業等子育て支援補助金",
           supportText:
@@ -240,6 +245,7 @@ export const List: Story = {
         <ResourceListCheckbox
           v-for="item in resourceList"
           v-model="checked"
+          :designStyle="item.designStyle"
           :name
           :value="item.value"
           :title="item.title"
