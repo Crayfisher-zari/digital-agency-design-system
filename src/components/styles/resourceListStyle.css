@@ -15,8 +15,18 @@
   align-items: center;
   justify-content: space-between;
   border: none;
-  border-bottom: 1px solid #949494;
   transition: background-color var(--base-duration) var(--easing-out-expo);
+  &.list {
+    border-bottom: 1px solid #949494;
+  }
+  &.form {
+    border: 1px solid #949494;
+    border-radius: 16px;
+    .hoverArea {
+      border-top-left-radius: 16px;
+      border-bottom-left-radius: 16px;
+    }
+  }
 }
 
 .hoverArea {

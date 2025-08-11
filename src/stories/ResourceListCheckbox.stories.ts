@@ -6,13 +6,12 @@ import { GenericMeta } from "../types/GenericMeta";
 import Icon from "../components/Icon.vue";
 import iconSample from "../assets/images/icon_sample.svg";
 
-
 const meta = {
   title: "リソースリスト（チェックボックス）",
   component: ResourceListCheckbox,
   tags: ["autodocs"],
   argTypes: {
-    style: {
+    designStyle: {
       control: "select",
       options: ["list", "form"],
     },
@@ -43,15 +42,15 @@ type Story = StoryObj<typeof meta>;
 
 /**
  * リソースリスト（チェックボックス）
- * 
- * リソースリストにチェックボックス機能を持つです。
+ *
+ * リストスタイルのリソースリストにチェックボックス機能を持つものです。
  */
 export const Base: Story = {
   args: {
+    designStyle: "list",
     label: "ラベル",
     title: "リストタイトル",
-    supportText:
-      "サポートテキスト",
+    supportText: "サポートテキスト",
     subLabel: "サブラベル",
     value: "選択肢",
     modelValue: "選択肢",
@@ -69,6 +68,7 @@ export const Base: Story = {
       <p class="mb">チェックされたもの：{{ checked }}</p>
         <ResourceListCheckbox
           v-model="checked"
+          :designStyle="props.designStyle"
           :name="props.name"
           :value="props.value"
           :title="props.title"
@@ -90,11 +90,60 @@ export const Base: Story = {
 
 /**
  * リソースリスト（チェックボックス）
- * 
+ *
+ * フォームスタイルのリソースリストにチェックボックス機能を持つものです。
+ */
+export const Form: Story = {
+  args: {
+    designStyle: "form",
+    label: "ラベル",
+    title: "リストタイトル",
+    supportText: "サポートテキスト",
+    subLabel: "サブラベル",
+    value: "選択肢",
+    modelValue: "選択肢",
+    name: "test",
+  },
+  render: (args) => ({
+    components: { ResourceListCheckbox, Icon },
+    setup: () => {
+      const checked = ref([]);
+      const props = computed(() => args);
+      return { checked, props: props.value, iconSample };
+    },
+    template: `
+      <div>
+      <p class="mb">チェックされたもの：{{ checked }}</p>
+        <ResourceListCheckbox
+          v-model="checked"
+           :designStyle="props.designStyle"
+          :name="props.name"
+          :value="props.value"
+          :title="props.title"
+          :label="props.label"
+          :subLabel="props.subLabel"
+          :supportText="props.supportText"
+        >
+          <template #frontIcon>
+            <Icon :iconSrc="iconSample" :width="24" :height="24" />
+          </template>
+          <template #endIcon>
+            <Icon :iconSrc="iconSample" :width="24" :height="24" />
+          </template>
+        </ResourceListCheckbox>
+      </div>
+    `,
+  }),
+};
+
+/**
+ * リソースリスト（チェックボックス）
+ *
  * サンプル例
  */
 export const Example: Story = {
   args: {
+    designStyle: "list",
     label: "セキュリティ",
     title: "令和5年度中小企業等セキュリティ強化推進補助金",
     supportText:
@@ -130,11 +179,12 @@ export const Example: Story = {
 
 /**
  * リソースリスト（チェックボックス）
- * 
+ *
  * リスト形式の作例
  */
 export const List: Story = {
   args: {
+    designStyle: "list",
     label: "セキュリティ",
     title: "令和5年度中小企業等セキュリティ強化推進補助金",
     supportText:
