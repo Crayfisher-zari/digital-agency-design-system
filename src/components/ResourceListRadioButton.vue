@@ -42,12 +42,12 @@ const isChecked = computed(() => {
 });
 </script>
 <template>
-  <div class="resourceListWrapper" :class="{ designStyle }">
-    <label
+  <div class="resourceListWrapper" :class="[designStyle]">
+    <div
       class="resourceListContainer label"
       :class="[{ isChecked: isChecked }, designStyle]"
     >
-      <div class="hoverArea resourceList">
+      <label class="hoverArea resourceList">
         <div class="radioArea">
           <PartsRadioButton
             v-model="model"
@@ -65,11 +65,11 @@ const isChecked = computed(() => {
           :supportText="props.supportText"
           :subLabel="props.subLabel"
         />
-      </div>
+      </label>
       <div v-if="$slots.endIcon" class="endIconWrapper">
         <slot name="endIcon"></slot>
       </div>
-    </label>
+    </div>
   </div>
 </template>
 <style lang="scss" scoped>
