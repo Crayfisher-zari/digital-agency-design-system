@@ -47,7 +47,7 @@ const isChecked = computed(() => {
 });
 </script>
 <template>
-  <div class="resourceListWrapper" :class="{ designStyle }">
+  <div class="resourceListWrapper" :class="[designStyle]">
     <label
       class="resourceListContainer label"
       :class="[{ isChecked: isChecked }, designStyle]"
