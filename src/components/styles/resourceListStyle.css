@@ -27,7 +27,7 @@
   }
 }
 
-.hoverArea {
+.resourceListContainer:not(.isDisabled) .hoverArea {
   cursor: pointer;
   position: relative;
   width: 100%;

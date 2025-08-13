@@ -45,7 +45,7 @@ const isChecked = computed(() => {
   <div class="resourceListWrapper" :class="[designStyle]">
     <div
       class="resourceListContainer label"
-      :class="[{ isChecked: isChecked }, designStyle]"
+      :class="[{ isChecked: isChecked }, designStyle, { isDisabled: isDisabled }]"
     >
       <label class="hoverArea resourceList">
         <div class="radioArea">
@@ -76,7 +76,7 @@ const isChecked = computed(() => {
 @use "@/assets/style/utils/utils.scss" as *;
 @use "./styles/resourceListStyle";
 
-.resourceListContainer.label.isChecked {
+.resourceListContainer.label.isChecked:not(.isDisabled) {
   background-color: var(--color-background-checked);
 }
 </style>

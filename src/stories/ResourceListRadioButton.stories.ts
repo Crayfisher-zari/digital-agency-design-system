@@ -70,6 +70,7 @@ export const Base: Story = {
           :label="props.label"
           :subLabel="props.subLabel"
           :supportText="props.supportText"
+          :isDisabled="props.isDisabled"
         >
            <template #frontIcon>
             <Icon :iconSrc="iconSample" :width="24" :height="24" />
@@ -116,6 +117,7 @@ export const Form: Story = {
           :label="props.label"
           :subLabel="props.subLabel"
           :supportText="props.supportText"
+          :isDisabled="props.isDisabled"
         >
            <template #frontIcon>
             <Icon :iconSrc="iconSample" :width="24" :height="24" />
@@ -162,6 +164,7 @@ export const Example: Story = {
           :label="props.label"
           :subLabel="props.subLabel"
           :supportText="props.supportText"
+          :isDisabled="props.isDisabled"
         />
       </div>
     `,
@@ -248,6 +251,7 @@ export const Link: Story = {
           :label="item.label"
           :subLabel="item.subLabel"
           :supportText="item.supportText"
+          :isDisabled="item.isDisabled"
         />
       </div>
     `,

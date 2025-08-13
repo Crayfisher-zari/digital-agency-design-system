@@ -50,7 +50,7 @@ const isChecked = computed(() => {
   <div class="resourceListWrapper" :class="[designStyle]">
     <div
       class="resourceListContainer label"
-      :class="[{ isChecked: isChecked }, designStyle]"
+      :class="[{ isChecked: isChecked }, designStyle, { isDisabled: isDisabled }]"
     >
       <label class="hoverArea resourceList">
         <div class="checkboxArea">
@@ -80,7 +80,7 @@ const isChecked = computed(() => {
 <style scoped>
 @import "./styles/resourceListStyle.css";
 
-.resourceListContainer.label.isChecked {
+.resourceListContainer.label.isChecked:not(.isDisabled) {
   background-color: var(--color-background-checked);
 }
 </style>
