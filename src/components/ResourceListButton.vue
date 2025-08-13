@@ -1,21 +1,21 @@
 <script lang="ts" setup>
-import PartsResourceListInner from "./parts/PartsResourceListInner.vue";
-
 type Props = {
+  /** デザインスタイル */
+  designStyle?: "list" | "form";
+  /** インタラクションタイプ */
+  interactionType?: "container" | "text";
   /** ラベル */
   label?: string;
   /** リストタイトル */
   title?: string;
   /** クリック時の処理 */
   onClick: () => void;
-  /** ボタンが非活性状態か。未指定の場合はfalse */
-  isDisabled?: boolean;
   /** サポートテキスト */
   supportText?: string;
   /** サブラベル */
   subLabel?: string;
 };
-const props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
   label: undefined,
   title: undefined,
   supportText: undefined,
@@ -23,34 +23,82 @@ const props = withDefaults(defineProps<Props>(), {
 });
 </script>
 <template>
-  <div class="resourceListWrapper">
-    <button class="resourceList button" type="button">
-      <div v-if="$slots.frontIcon" class="frontIconWrapper">
-        <slot name="frontIcon"></slot>
-      </div>
-      <PartsResourceListInner
-        :label="props.label"
-        :title="props.title"
-        :supportText="props.supportText"
-        :subLabel="props.subLabel"
-      />
+  <div
+    v-if="interactionType === 'container'"
+    class="resourceListWrapper"
+    :class="[designStyle, interactionType]"
+  >
+    <div class="resourceListContainer" :class="[designStyle]">
+      <button class="resourceList button hoverArea" type="button">
+        <div v-if="$slots.frontIcon" class="frontIconWrapper">
+          <slot name="frontIcon"></slot>
+        </div>
+        <div>
+          <p v-if="label" class="label">{{ label }}</p>
+          <p v-if="title" class="title">{{ title }}</p>
+          <p v-if="supportText" class="supportText">{{ supportText }}</p>
+        </div>
+        <div v-if="subLabel" class="subLabelWrapper">
+          <p class="subLabel">{{ subLabel }}</p>
+        </div>
+      </button>
       <div v-if="$slots.endIcon" class="endIconWrapper">
         <slot name="endIcon"></slot>
       </div>
-    </button>
+    </div>
+  </div>
+  <div
+    v-else
+    class="resourceListWrapper"
+    :class="[designStyle, interactionType]"
+  >
+    <div class="resourceListContainer" :class="[designStyle]">
+      <div class="resourceList button" type="button" @click="onClick">
+        <div v-if="$slots.frontIcon" class="frontIconWrapper">
+          <slot name="frontIcon"></slot>
+        </div>
+        <div>
+          <p v-if="label" class="label">{{ label }}</p>
+          <button v-if="title" class="title" @click="onClick">
+            {{ title }}
+          </button>
+          <p v-if="supportText" class="supportText">{{ supportText }}</p>
+        </div>
+        <div v-if="subLabel" class="subLabelWrapper">
+          <p class="subLabel">{{ subLabel }}</p>
+        </div>
+      </div>
+      <div v-if="$slots.endIcon" class="endIconWrapper">
+        <slot name="endIcon"></slot>
+      </div>
+    </div>
   </div>
 </template>
-<style lang="scss" scoped>
-@use "@/assets/style/utils/utils.scss" as *;
-@use "./styles/resourceListStyle";
+<style scoped>
+@import "./styles/resourceListStyle.css";
 
-.resourceList {
-  &.button {
-    cursor: pointer;
-
-    &:hover {
-      background-color: var(--color-grey-50);
+.container .button {
+  &:hover {
+    .title {
+      text-decoration: underline;
+      text-decoration-thickness: 4px;
     }
+  }
+}
+
+.title {
+  color: var(--color-text-link);
+  text-decoration: underline;
+
+  &:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 4px;
+  }
+
+  &:focus-visible {
+    background-color: var(--color-focus);
+    border-radius: 4px;
+    outline: 4px solid var(--color-text-body);
   }
 }
 </style>

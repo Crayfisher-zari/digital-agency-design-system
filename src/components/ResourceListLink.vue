@@ -38,8 +38,8 @@ const { LinkComponent } = useLink({ tag: props.linkTag });
     v-if="interactionType === 'container'"
     :class="[designStyle, interactionType]"
   >
-    <div class="resourceListContainer" :to="to" :class="[designStyle]">
-      <LinkComponent class="resourceList hoverArea link">
+    <div class="resourceListContainer" :class="[designStyle]">
+      <LinkComponent :to="to" class="resourceList hoverArea link">
         <div v-if="$slots.frontIcon" class="frontIconWrapper">
           <slot name="frontIcon"></slot>
         </div>

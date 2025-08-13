@@ -1,14 +1,24 @@
 import type { Meta, StoryObj } from "@storybook/vue3";
 import ResourceListButton from "../components/ResourceListButton.vue";
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import avatar from "../assets/images/icon_avatar.svg";
 import icon3Point from "../assets/images/icon_3point.svg";
+import Icon from "../components/Icon.vue";
+import iconSample from "../assets/images/icon_sample.svg";
 
 const meta = {
   title: "リソースリスト（ボタン）",
   component: ResourceListButton,
   tags: ["autodocs"],
   argTypes: {
+    designStyle: {
+      control: "select",
+      options: ["list", "form"],
+    },
+    interactionType: {
+      control: "select",
+      options: ["container", "text"],
+    },
     label: {
       control: "text",
     },
@@ -42,8 +52,36 @@ export const Base: Story = {
     title: "リストタイトル",
     supportText: "サポートテキスト",
     subLabel: "サブラベル",
+    designStyle: "list",
+    interactionType: "container",
     onClick: () => {},
   },
+  render: (args) => ({
+    components: { ResourceListButton, Icon },
+    setup() {
+      const props = computed(() => args);
+      return { props: props.value, iconSample };
+    },
+    template: `
+      <ResourceListButton 
+        :label="props.label"
+        :title="props.title"
+        :supportText="props.supportText"
+        :to="props.to"
+        :linkTag="props.linkTag"
+        :subLabel="props.subLabel"
+        :designStyle="props.designStyle"
+        :interactionType="props.interactionType"
+      >
+        <template #frontIcon>
+          <Icon :iconSrc="iconSample" :width="24" :height="24" />
+        </template>
+        <template #endIcon>
+          <Icon :iconSrc="iconSample" :width="24" :height="24" />
+        </template>
+      </ResourceListLink>
+    `,
+  }),
 };
 
 /**
