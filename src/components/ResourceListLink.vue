@@ -11,8 +11,6 @@ type Props = {
   label?: string;
   /** リストタイトル */
   title?: string;
-  /** ボタンが非活性状態か。未指定の場合はfalse */
-  isDisabled?: boolean;
   /** サポートテキスト */
   supportText?: string;
   /** サブラベル */
@@ -112,6 +110,21 @@ const { LinkComponent } = useLink({ tag: props.linkTag });
       text-decoration: underline;
       text-decoration-thickness: 4px;
     }
+  }
+}
+
+.text .title {
+  color: var(--color-text-link);
+
+  &:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 4px;
+  }
+
+  &:focus-visible {
+    background-color: var(--color-focus);
+    border-radius: 4px;
+    outline: 4px solid var(--color-text-body);
   }
 }
 </style>

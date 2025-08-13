@@ -19,7 +19,7 @@
     .hoverArea {
       border-top-left-radius: 16px;
       border-bottom-left-radius: 16px;
-      &:after{
+      &:after {
         border-top-left-radius: 14px;
         border-bottom-left-radius: 14px;
       }
@@ -27,7 +27,7 @@
   }
 }
 
-.resourceListContainer:not(.isDisabled) .hoverArea {
+.resourceListContainer:not(.isDisabled) .hoverArea{
   cursor: pointer;
   position: relative;
   width: 100%;
@@ -40,16 +40,17 @@
     height: calc(100% + 2px);
     border: 2px solid transparent;
 
-    transition: background-color var(--base-duration) var(--easing-out-expo),
-    border-color var(--base-duration) var(--easing-out-expo);  }
+    transition:
+      background-color var(--base-duration) var(--easing-out-expo),
+      border-color var(--base-duration) var(--easing-out-expo);
+  }
 
-
-    &:hover {
-      &:after {
-        background-color: var(--color-neutral-opacity-50);
-        border-color: var(--color-mono-reverse);
-      }
+  &:hover {
+    &:after {
+      background-color: var(--color-neutral-opacity-50);
+      border-color: var(--color-mono-reverse);
     }
+  }
 }
 
 .resourceList {
