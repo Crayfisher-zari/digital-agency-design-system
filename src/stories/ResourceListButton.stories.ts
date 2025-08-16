@@ -79,7 +79,7 @@ export const Base: Story = {
         <template #endIcon>
           <Icon :iconSrc="iconSample" :width="24" :height="24" />
         </template>
-      </ResourceListLink>
+      </ResourceListButton>
     `,
   }),
 };

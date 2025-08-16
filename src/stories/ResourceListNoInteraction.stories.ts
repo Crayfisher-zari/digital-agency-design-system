@@ -55,16 +55,15 @@ export const Base: Story = {
       return { args, iconSample };
     },
     template: `
-    
     <ResourceListNoInteraction v-bind="args">
       <template #frontIcon>
         <Icon :iconSrc="iconSample" :width="24" :height="24" />
       </template>
-       <template #endIcon>
+      <template #endIcon>
         <Icon :iconSrc="iconSample" :width="24" :height="24" />
       </template>
     </ResourceListNoInteraction>
-    </div>`,
+    `,
   }),
 };
 
