@@ -102,9 +102,9 @@ const goToToday = () => {
   <div class="calendarPanel">
     <div class="calendarHeader">
       <Selector v-model="selectedYear" :options="yearList" size="small" />
-      <button @click="prevMonth" class="navBtn">‹</button>
+      <button @click="prevMonth" class="navigationButton">‹</button>
       <span class="monthDisplay">{{ monthNames[selectedMonth] }}</span>
-      <button @click="nextMonth" class="navBtn">›</button>
+      <button @click="nextMonth" class="navigationButton">›</button>
     </div>
 
     <div class="calendarGrid">
@@ -160,14 +160,14 @@ const goToToday = () => {
   background: white;
 }
 
-.navBtn {
-  width: 32px;
-  height: 32px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  background: white;
+.navigationButton {
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--color-text-link);
+  border-radius: 6px;
   cursor: pointer;
   display: flex;
+  background: transparent;
   align-items: center;
   justify-content: center;
   font-size: 16px;
@@ -179,8 +179,9 @@ const goToToday = () => {
 }
 
 .monthDisplay {
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 1rem;
+  font-weight: var(--weight-bold);
+  color: var(--color-text-secondary);
   min-width: 40px;
   text-align: center;
 }
@@ -194,16 +195,15 @@ const goToToday = () => {
 
 .weekday {
   text-align: center;
-  font-size: 12px;
-  color: #666;
+  font-size: 1rem;
+  color: var(--color-text-description);
   padding: 4px;
-  font-weight: 500;
+  font-weight: var(--weight-bold);
 }
 
 .calendarBody {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 2px;
 }
 
 .calendarDay {
@@ -211,14 +211,15 @@ const goToToday = () => {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 14px;
+  font-size: 1rem;
+  color: var(--color-text-body);
   cursor: pointer;
-  border-radius: 4px;
-  transition: background-color 0.2s;
+  border-radius: 50%;
+  transition: background-color var(--base-duration) var(--easing-out-expo);
 }
 
 .calendarDay:hover {
-  background: #f5f5f5;
+  background: var(--color-mono-hover);
 }
 
 .calendarDay.otherMonth {
@@ -226,13 +227,12 @@ const goToToday = () => {
 }
 
 .calendarDay.today {
-  background: #2563eb;
-  color: white;
-  font-weight: 600;
+  background: var(--color-button-normal);
+  color: var(--color-text-onFill);
 }
 
 .calendarDay.today:hover {
-  background: #1d4ed8;
+  background: var(--color-button-hover);
 }
 
 .calendarFooter {
