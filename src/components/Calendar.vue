@@ -1,14 +1,54 @@
 <script lang="ts" setup>
 import { ref, computed } from 'vue'
+import BasicButton from './BasicButton.vue'
+import Selector from './Selector.vue'
 
 const currentDate = new Date()
-const selectedYear = ref(currentDate.getFullYear())
+const selectedYear = ref(2025)
 const selectedMonth = ref(currentDate.getMonth())
 
 const monthNames = ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
 const weekdays = ['日', '月', '火', '水', '木', '金', '土']
 
 const displayYearMonth = computed(() => `${selectedYear.value}年(令和${selectedYear.value - 2018}年)`)
+
+const yearList = computed(() => {
+  return [
+    {
+      label: '令和7年',
+      value: 2025
+    },
+    {
+      label: '令和6年',
+      value: 2024
+    },
+    {
+      label: '令和5年',
+      value: 2023
+    },
+    {
+      label: '令和4年',
+      value: 2022
+    },
+    {
+      label: '令和3年',
+      value: 2021
+    },
+    {
+      label: '令和2年',
+      value: 2020
+    },
+    {
+      label: '令和元年 / 平成31年',
+      value: 2019
+    },
+    {
+      label: '平成30年',
+      value: 2018
+    },
+    
+  ]
+})
 
 const calendarDays = computed(() => {
   const year = selectedYear.value
@@ -59,32 +99,27 @@ const goToToday = () => {
 }
 </script>
 <template>
-  <div class="calendar-panel">
-    <div class="calendar-header">
-      <select v-model="selectedYear" class="year-select">
-        <option v-for="year in Array.from({length: 10}, (_, i) => currentDate.getFullYear() - 5 + i)" 
-                :key="year" :value="year">
-          {{ year }}年(令和{{ year - 2018 }}年)
-        </option>
-      </select>
-      <button @click="prevMonth" class="nav-btn">‹</button>
-      <span class="month-display">{{ monthNames[selectedMonth] }}</span>
-      <button @click="nextMonth" class="nav-btn">›</button>
+  <div class="calendarPanel">
+    <div class="calendarHeader">
+      <Selector v-model="selectedYear" :options="yearList" size="small" />
+      <button @click="prevMonth" class="navBtn">‹</button>
+      <span class="monthDisplay">{{ monthNames[selectedMonth] }}</span>
+      <button @click="nextMonth" class="navBtn">›</button>
     </div>
 
-    <div class="calendar-grid">
-      <div class="weekday-header">
+    <div class="calendarGrid">
+      <div class="weekdayHeader">
         <div v-for="day in weekdays" :key="day" class="weekday">
           {{ day }}
         </div>
       </div>
       
-      <div class="calendar-body">
+      <div class="calendarBody">
         <div v-for="(day, index) in calendarDays" 
              :key="index" 
-             class="calendar-day"
+             class="calendarDay"
              :class="{ 
-               'other-month': !day.isCurrentMonth,
+               'otherMonth': !day.isCurrentMonth,
                'today': day.isToday && day.isCurrentMonth
              }">
           {{ day.date }}
@@ -92,31 +127,31 @@ const goToToday = () => {
       </div>
     </div>
 
-    <div class="calendar-footer">
-      <button class="footer-btn delete-btn">削除</button>
-      <button @click="goToToday" class="footer-btn today-btn">今日</button>
+    <div class="calendarFooter">
+      <BasicButton size="x-small" type="tertiary" label="削除" class="footerBtn deleteBtn" />
+      <BasicButton size="x-small" type="secondary" label="今日" class="footerBtn todayBtn" @click="goToToday" />
     </div>
   </div>
 </template>
 <style scoped>
-.calendar-panel {
-  width: 280px;
-  background: white;
-  border: 1px solid #e0e0e0;
+.calendarPanel {
+  width: 360px;
+  background: var(--color-background-primary);
+  border: 1px solid var(--color-border-divider);
   border-radius: 8px;
   padding: 16px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px 1px rgba(0, 0, 0, 0.1);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
-.calendar-header {
+.calendarHeader {
   display: flex;
   align-items: center;
   gap: 8px;
   margin-bottom: 16px;
 }
 
-.year-select {
+.yearSelect {
   flex: 1;
   padding: 4px 8px;
   border: 1px solid #ccc;
@@ -125,7 +160,7 @@ const goToToday = () => {
   background: white;
 }
 
-.nav-btn {
+.navBtn {
   width: 32px;
   height: 32px;
   border: 1px solid #ccc;
@@ -139,18 +174,18 @@ const goToToday = () => {
   color: #666;
 }
 
-.nav-btn:hover {
+.navBtn:hover {
   background: #f5f5f5;
 }
 
-.month-display {
+.monthDisplay {
   font-size: 14px;
   font-weight: 500;
   min-width: 40px;
   text-align: center;
 }
 
-.weekday-header {
+.weekdayHeader {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   gap: 2px;
@@ -165,13 +200,13 @@ const goToToday = () => {
   font-weight: 500;
 }
 
-.calendar-body {
+.calendarBody {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   gap: 2px;
 }
 
-.calendar-day {
+.calendarDay {
   aspect-ratio: 1;
   display: flex;
   align-items: center;
@@ -182,31 +217,31 @@ const goToToday = () => {
   transition: background-color 0.2s;
 }
 
-.calendar-day:hover {
+.calendarDay:hover {
   background: #f5f5f5;
 }
 
-.calendar-day.other-month {
-  color: #ccc;
+.calendarDay.otherMonth {
+  visibility: hidden;
 }
 
-.calendar-day.today {
+.calendarDay.today {
   background: #2563eb;
   color: white;
   font-weight: 600;
 }
 
-.calendar-day.today:hover {
+.calendarDay.today:hover {
   background: #1d4ed8;
 }
 
-.calendar-footer {
+.calendarFooter {
   display: flex;
   justify-content: space-between;
   margin-top: 16px;
 }
 
-.footer-btn {
+.footerBtn {
   padding: 6px 12px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -216,16 +251,16 @@ const goToToday = () => {
   color: #666;
 }
 
-.footer-btn:hover {
+.footerBtn:hover {
   background: #f5f5f5;
 }
 
-.today-btn {
+.todayBtn {
   border-color: #2563eb;
   color: #2563eb;
 }
 
-.today-btn:hover {
+.todayBtn:hover {
   background: #eff6ff;
 }
 </style>

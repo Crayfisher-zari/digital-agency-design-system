@@ -38,7 +38,7 @@ const props = withDefaults(defineProps<Props>(), {
   isDisabled: false,
 });
 
-const model = defineModel<string>();
+const model = defineModel<string | number>();
 
 // aria-describledby用のエラー文言のid名です
 const errorIdName = `selector${useId()}`;
