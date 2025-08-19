@@ -122,7 +122,6 @@ const stateClassName = computed<string | null>(() => {
 .selector {
   width: 100%;
   padding: 16px;
-  margin-top: 8px;
   font-size: pxToRem(16);
   color: var(--color-text-body);
   appearance: none;
@@ -141,12 +140,14 @@ const stateClassName = computed<string | null>(() => {
   position: absolute;
   top: 50%;
   right: 24px;
+  margin-top: -3px;
 }
 
 .labelWrapper {
   display: flex;
   align-items: baseline;
   justify-content: flex-start;
+  margin-bottom: 8px;
 }
 
 .label {
@@ -156,7 +157,7 @@ const stateClassName = computed<string | null>(() => {
 
 .supportText {
   display: block;
-  margin-top: 8px;
+  margin-bottom: 8px;
   font-size: pxToRem(16);
   line-height: 1.5;
   color: var(--color-text-description);
