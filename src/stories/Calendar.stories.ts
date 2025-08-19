@@ -6,7 +6,7 @@ const meta = {
   component: Calendar,
   tags: ["autodocs"],
   argTypes: {},
-  args: {}, 
+  args: {},
 } satisfies Meta<typeof Calendar>;
 
 export default meta;
