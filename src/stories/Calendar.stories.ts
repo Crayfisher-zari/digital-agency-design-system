@@ -5,8 +5,20 @@ const meta = {
   title: "カレンダー",
   component: Calendar,
   tags: ["autodocs"],
-  argTypes: {},
-  args: {},
+  argTypes: {
+    startYear: {
+      control: { type: "number" },
+      description: "開始年（デフォルト: 現在年）",
+    },
+    yearCount: {
+      control: { type: "number", min: 1, max: 100 },
+      description: "生成する年数（デフォルト: 8年）",
+    },
+  },
+  args: {
+    startYear: new Date().getFullYear(),
+    yearCount: 8,
+  },
 } satisfies Meta<typeof Calendar>;
 
 export default meta;
@@ -34,4 +46,15 @@ export const CalendarPanel: Story = {
       </div>
     `,
   }),
+};
+
+/**
+ * カスタム年数範囲
+ * 2020年から過去15年分の年セレクターを表示
+ */
+export const CustomYearRange: Story = {
+  args: {
+    startYear: 2020,
+    yearCount: 15,
+  },
 };

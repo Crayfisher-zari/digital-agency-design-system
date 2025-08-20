@@ -5,9 +5,20 @@ import Selector from "./Selector.vue";
 import Icon from "./Icon.vue";
 import iconArrowLeft from "@/assets/images/icon_arrow_left.svg";
 import iconArrowRight from "@/assets/images/icon_arrow_right.svg";
+import { getEraYearList } from "@/utils/getEraYearList";
+
+interface Props {
+  startYear?: number;
+  yearCount?: number;
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  startYear: () => new Date().getFullYear(),
+  yearCount: 8,
+});
 
 const currentDate = new Date();
-const selectedYear = ref(2025);
+const selectedYear = ref(props.startYear);
 const selectedMonth = ref(currentDate.getMonth());
 
 const monthNames = [
@@ -27,40 +38,7 @@ const monthNames = [
 const weekdays = ["日", "月", "火", "水", "木", "金", "土"];
 
 const yearList = computed(() => {
-  return [
-    {
-      label: "令和7年",
-      value: 2025,
-    },
-    {
-      label: "令和6年",
-      value: 2024,
-    },
-    {
-      label: "令和5年",
-      value: 2023,
-    },
-    {
-      label: "令和4年",
-      value: 2022,
-    },
-    {
-      label: "令和3年",
-      value: 2021,
-    },
-    {
-      label: "令和2年",
-      value: 2020,
-    },
-    {
-      label: "令和元年 / 平成31年",
-      value: 2019,
-    },
-    {
-      label: "平成30年",
-      value: 2018,
-    },
-  ];
+  return getEraYearList(props.startYear, props.yearCount);
 });
 
 const calendarDays = computed(() => {
@@ -113,14 +91,18 @@ const goToToday = () => {
 <template>
   <div class="calendarPanel">
     <div class="calendarHeader">
+      <div class="yearSelectorWrapper">
       <Selector v-model="selectedYear" :options="yearList" size="small" />
-      <button @click="prevMonth" class="navigationButton">
-        <Icon :iconSrc="iconArrowLeft" :width="16" :height="16" />
-      </button>
-      <span class="monthDisplay">{{ monthNames[selectedMonth] }}</span>
-      <button @click="nextMonth" class="navigationButton">
-        <Icon :iconSrc="iconArrowRight" :width="16" :height="16" />
-      </button>
+      </div>
+      <div class="navigationButtonWrapper">
+        <button @click="prevMonth" class="navigationButton">
+          <Icon :iconSrc="iconArrowLeft" :width="16" :height="16" />
+        </button>
+        <span class="monthDisplay">{{ monthNames[selectedMonth] }}</span>
+        <button @click="nextMonth" class="navigationButton">
+          <Icon :iconSrc="iconArrowRight" :width="16" :height="16" />
+        </button>
+      </div>
     </div>
 
     <div class="calendarGrid">
@@ -181,13 +163,14 @@ const goToToday = () => {
   margin-bottom: 16px;
 }
 
-.yearSelect {
-  flex: 1;
-  padding: 4px 8px;
-  font-size: 14px;
-  background: white;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+.yearSelectorWrapper {
+  width: 180px;
+}
+
+.navigationButtonWrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .navigationButton {
@@ -204,11 +187,11 @@ const goToToday = () => {
 }
 
 .navBtn:hover {
-  background: #f5f5f5;
+  background:var(--color-text-link-);
 }
 
 .monthDisplay {
-  min-width: 40px;
+  min-width: 35px;
   font-size: 1rem;
   font-weight: var(--weight-bold);
   color: var(--color-text-secondary);

@@ -30,5 +30,5 @@ const convertToEraLabel = (year: number): string => {
     era: 'long',
     year: 'numeric'
   });
-  return `${eraYear}（${year}年）`;
+  return `${year}年(${eraYear})`;
 };

@@ -139,7 +139,7 @@ const stateClassName = computed<string | null>(() => {
 .selectorIcon {
   position: absolute;
   top: 50%;
-  right: 24px;
+  right: min(7%,24px);
   margin-top: -3px;
 }
 
