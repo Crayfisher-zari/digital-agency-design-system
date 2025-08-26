@@ -17,9 +17,15 @@ const props = withDefaults(defineProps<Props>(), {
   yearCount: 8,
 });
 
-const currentDate = new Date();
-const selectedYear = ref(props.startYear);
-const selectedMonth = ref(currentDate.getMonth());
+const selectedYear = defineModel<number>("selectedYear", {
+  default: () => 2025,
+});
+const selectedMonth = defineModel<number>("selectedMonth", {
+  default: () => 0,
+});
+const selectedDate = defineModel<number>("selectedDate", {
+  default: () => 1,
+});
 
 const monthNames = [
   "1月",
@@ -42,6 +48,8 @@ const yearList = computed(() => {
 });
 
 const calendarDays = computed(() => {
+  const currentDate = new Date();
+
   const year = selectedYear.value;
   const month = selectedMonth.value;
   const firstDay = new Date(year, month, 1);
@@ -114,9 +122,16 @@ const nextMonth = () => {
 };
 
 const goToToday = () => {
+  const currentDate = new Date();
   selectedYear.value = currentDate.getFullYear();
   selectedMonth.value = currentDate.getMonth();
+  selectedDate.value = currentDate.getDate() + 1;
 };
+
+const handleDateClick = (date: number) => {
+  selectedDate.value = date;
+}
+
 </script>
 <template>
   <div class="calendarPanel">
@@ -154,6 +169,7 @@ const goToToday = () => {
               otherMonth: !day.isCurrentMonth,
               today: day.isToday && day.isCurrentMonth,
             }"
+            @click="handleDateClick(day.date)"
           >
             {{ day.date }}
           </button>

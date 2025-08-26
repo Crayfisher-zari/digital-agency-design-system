@@ -14,6 +14,17 @@ const meta = {
       control: { type: "number", min: 1, max: 100 },
       description: "生成する年数（デフォルト: 8年）",
     },
+    selectedYear: {
+      control: { type: "number" },
+      description: "選択された年（デフォルト: 現在年）",
+    },
+    selectedMonth: {
+      control: { type: "number" },
+    },
+    selectedDate: {
+      control: { type: "number" },
+      description: "選択された日（デフォルト: 現在日）",
+    },
   },
   args: {
     startYear: new Date().getFullYear(),
@@ -42,7 +53,7 @@ export const CalendarPanel: Story = {
     components: { Calendar },
     template: `
       <div style="padding: 20px; background: #f5f5f5; display: inline-block;">
-        <Calendar />
+        <Calendar v-model:selectedYear="selectedYear" v-model:selectedMonth="selectedMonth" v-model:selectedDate="selectedDate" />
       </div>
     `,
   }),
