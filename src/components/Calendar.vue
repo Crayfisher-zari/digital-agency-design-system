@@ -9,23 +9,19 @@ import { getEraYearList } from "../utils/getEraYearList";
 
 interface Props {
   startYear?: number;
+  startMonth?: number;
   yearCount?: number;
 }
 
 const props = withDefaults(defineProps<Props>(), {
   startYear: () => new Date().getFullYear(),
+  startMonth: () => new Date().getMonth(),
   yearCount: 8,
 });
 
-const selectedYear = defineModel<number>("selectedYear", {
-  default: () => 2025,
-});
-const selectedMonth = defineModel<number>("selectedMonth", {
-  default: () => 0,
-});
-const selectedDate = defineModel<number>("selectedDate", {
-  default: () => 1,
-});
+const selectedYear = defineModel<number|undefined>("selectedYear");
+const selectedMonth = defineModel<number|undefined>("selectedMonth");
+const selectedDate = defineModel<number|undefined>("selectedDate");
 
 const monthNames = [
   "1月",
@@ -47,11 +43,16 @@ const yearList = computed(() => {
   return getEraYearList(props.startYear, props.yearCount);
 });
 
+const currentDisplayYear = ref(props.startYear);
+const currentDisplayMonth = ref(props.startMonth);
+
+
+
 const calendarDays = computed(() => {
   const currentDate = new Date();
 
-  const year = selectedYear.value;
-  const month = selectedMonth.value;
+  const year = currentDisplayYear.value;
+  const month = currentDisplayMonth.value;
   const firstDay = new Date(year, month, 1);
   const startDate = new Date(firstDay);
   startDate.setDate(startDate.getDate() - firstDay.getDay());
@@ -78,8 +79,8 @@ const maxYear = computed(() => props.startYear);
 const minYear = computed(() => props.startYear - props.yearCount + 1);
 
 const canGoPrev = computed(() => {
-  const currentYear = selectedYear.value;
-  const currentMonth = selectedMonth.value;
+  const currentYear = currentDisplayYear.value;
+  const currentMonth = currentDisplayMonth.value;
   
   // 最小年の1月より前に行こうとしている場合は無効化
   if (currentYear === minYear.value && currentMonth === 0) {
@@ -89,8 +90,8 @@ const canGoPrev = computed(() => {
 });
 
 const canGoNext = computed(() => {
-  const currentYear = selectedYear.value;
-  const currentMonth = selectedMonth.value;
+  const currentYear = currentDisplayYear.value;
+  const currentMonth = currentDisplayMonth.value;
   
   // 最大年の12月より後に行こうとしている場合は無効化
   if (currentYear === maxYear.value && currentMonth === 11) {
@@ -102,22 +103,22 @@ const canGoNext = computed(() => {
 const prevMonth = () => {
   if (!canGoPrev.value) return;
   
-  if (selectedMonth.value === 0) {
-    selectedMonth.value = 11;
-    selectedYear.value--;
+  if (currentDisplayMonth.value === 0) {
+    currentDisplayMonth.value = 11;
+    currentDisplayYear.value--;
   } else {
-    selectedMonth.value--;
+    currentDisplayMonth.value--;
   }
 };
 
 const nextMonth = () => {
   if (!canGoNext.value) return;
   
-  if (selectedMonth.value === 11) {
-    selectedMonth.value = 0;
-    selectedYear.value++;
+  if (currentDisplayMonth.value === 11) {
+    currentDisplayMonth.value = 0;
+    currentDisplayYear.value++;
   } else {
-    selectedMonth.value++;
+    currentDisplayMonth.value++;
   }
 };
 
@@ -132,18 +133,20 @@ const handleDateClick = (date: number) => {
   selectedDate.value = date;
 }
 
+console.log(selectedMonth.value);
+
 </script>
 <template>
   <div class="calendarPanel">
     <div class="calendarHeader">
       <div class="yearSelectorWrapper">
-        <Selector v-model="selectedYear" :options="yearList" size="small" />
+        <Selector v-model="currentDisplayYear" :options="yearList" size="small" />
       </div>
       <div class="navigationButtonWrapper">
         <button @click="prevMonth" class="navigationButton" :disabled="!canGoPrev">
           <Icon :iconSrc="iconArrowLeft" :width="16" :height="16" />
         </button>
-        <span class="monthDisplay">{{ monthNames[selectedMonth] }}</span>
+        <span class="monthDisplay">{{ monthNames[currentDisplayMonth] }}</span>
         <button @click="nextMonth" class="navigationButton" :disabled="!canGoNext">
           <Icon :iconSrc="iconArrowRight" :width="16" :height="16" />
         </button>

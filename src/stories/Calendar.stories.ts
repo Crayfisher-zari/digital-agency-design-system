@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/vue3";
 import Calendar from "../components/Calendar.vue";
+import { ref } from "vue";
 
 const meta = {
   title: "カレンダー",
@@ -48,12 +49,24 @@ export const Default: Story = {
  * 年月の切り替え、今日の日付へのジャンプ機能を含みます。
  */
 export const CalendarPanel: Story = {
-  args: {},
-  render: () => ({
+  args: {
+    selectedYear: 2025,
+    selectedMonth: 7,
+    selectedDate: 1,
+    startYear: 2025,
+    yearCount: 2,
+  },
+  render: (args) => ({
     components: { Calendar },
+    setup() {
+      const selectedYear = ref(args.selectedYear);
+      const selectedMonth = ref(args.selectedMonth);
+      const selectedDate = ref(args.selectedDate);
+      return { selectedYear, selectedMonth, selectedDate, ...args };
+    },
     template: `
-      <div style="padding: 20px; background: #f5f5f5; display: inline-block;">
-        <Calendar v-model:selectedYear="selectedYear" v-model:selectedMonth="selectedMonth" v-model:selectedDate="selectedDate" />
+      <div style="padding: 20px;  display: inline-block;">
+        <Calendar v-model:selectedYear="selectedYear" v-model:selectedMonth="selectedMonth" v-model:selectedDate="selectedDate" :startYear="startYear" :yearCount="yearCount" />
       </div>
     `,
   }),
