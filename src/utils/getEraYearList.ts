@@ -6,16 +6,16 @@
  */
 export const getEraYearList = (startYear: number, yearCount: number) => {
   const yearList = [];
-  
+
   for (let i = 0; i < yearCount; i++) {
     const year = startYear - i;
     const eraLabel = convertToEraLabel(year);
     yearList.push({
       label: eraLabel,
-      value: year
+      value: year,
     });
   }
-  
+
   return yearList;
 };
 
@@ -35,12 +35,12 @@ const convertToEraLabel = (year: number): string => {
   } else if (year === 1912) {
     return `${year}年(大正元年/明治45年)`;
   }
-  
+
   // 通常の年の処理
   const date = new Date(year, 0, 1);
-  const eraYear = date.toLocaleString('ja-JP-u-ca-japanese', { 
-    era: 'long',
-    year: 'numeric'
+  const eraYear = date.toLocaleString("ja-JP-u-ca-japanese", {
+    era: "long",
+    year: "numeric",
   });
   return `${year}年(${eraYear})`;
 };

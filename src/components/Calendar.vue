@@ -92,7 +92,7 @@ const goToToday = () => {
   <div class="calendarPanel">
     <div class="calendarHeader">
       <div class="yearSelectorWrapper">
-      <Selector v-model="selectedYear" :options="yearList" size="small" />
+        <Selector v-model="selectedYear" :options="yearList" size="small" />
       </div>
       <div class="navigationButtonWrapper">
         <button @click="prevMonth" class="navigationButton">
@@ -114,15 +114,19 @@ const goToToday = () => {
 
       <div class="calendarBody">
         <div
+          class="calendarDayWrapper"
           v-for="(day, index) in calendarDays"
           :key="index"
-          class="calendarDay"
-          :class="{
-            otherMonth: !day.isCurrentMonth,
-            today: day.isToday && day.isCurrentMonth,
-          }"
         >
-          {{ day.date }}
+          <button
+            class="calendarDay"
+            :class="{
+              otherMonth: !day.isCurrentMonth,
+              today: day.isToday && day.isCurrentMonth,
+            }"
+          >
+            {{ day.date }}
+          </button>
         </div>
       </div>
     </div>
@@ -169,8 +173,8 @@ const goToToday = () => {
 
 .navigationButtonWrapper {
   display: flex;
-  align-items: center;
   gap: 8px;
+  align-items: center;
 }
 
 .navigationButton {
@@ -184,10 +188,16 @@ const goToToday = () => {
   background: transparent;
   border: 1px solid var(--color-text-link);
   border-radius: 6px;
+
+  &:focus-visible {
+    outline: 4px solid var(--color-border-strong-divider);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 2px var(--color-focus);
+  }
 }
 
 .navBtn:hover {
-  background:var(--color-text-link-);
+  background: var(--color-text-link-);
 }
 
 .monthDisplay {
@@ -218,20 +228,38 @@ const goToToday = () => {
   grid-template-columns: repeat(7, 1fr);
 }
 
+.calendarDayWrapper {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+}
+
 .calendarDay {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 40px;
+  height: 40px;
   aspect-ratio: 1;
   font-size: 1rem;
   color: var(--color-text-body);
+  appearance: none;
   cursor: pointer;
+  background-color: transparent;
+  border: none;
   border-radius: 50%;
   transition: background-color var(--base-duration) var(--easing-out-expo);
-}
 
-.calendarDay:hover {
-  background: var(--color-mono-hover);
+  &:hover {
+    text-decoration: underline;
+    background-color: var(--color-mono-hover);
+  }
+
+  &:focus-visible {
+    background-color: var(--color-focus);
+    outline: 4px solid var(--color-border-strong-divider);
+  }
 }
 
 .calendarDay.otherMonth {
@@ -240,11 +268,11 @@ const goToToday = () => {
 
 .calendarDay.today {
   color: var(--color-text-onFill);
-  background: var(--color-button-normal);
-}
+  background-color: var(--color-button-normal);
 
-.calendarDay.today:hover {
-  background: var(--color-button-hover);
+  &:focus-visible {
+    border: 2px solid var(--color-focus);
+  }
 }
 
 .calendarFooter {
