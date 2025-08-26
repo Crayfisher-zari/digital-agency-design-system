@@ -55,6 +55,6 @@ export const CalendarPanel: Story = {
 export const CustomYearRange: Story = {
   args: {
     startYear: 2020,
-    yearCount: 15,
+    yearCount: 1,
   },
 };

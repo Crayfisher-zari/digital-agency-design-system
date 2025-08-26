@@ -5,7 +5,7 @@ import Selector from "./Selector.vue";
 import Icon from "./Icon.vue";
 import iconArrowLeft from "@/assets/images/icon_arrow_left.svg";
 import iconArrowRight from "@/assets/images/icon_arrow_right.svg";
-import { getEraYearList } from "@/utils/getEraYearList";
+import { getEraYearList } from "../utils/getEraYearList";
 
 interface Props {
   startYear?: number;
@@ -65,7 +65,35 @@ const calendarDays = computed(() => {
   return days;
 });
 
+// 年の範囲制限のための computed properties
+const maxYear = computed(() => props.startYear);
+const minYear = computed(() => props.startYear - props.yearCount + 1);
+
+const canGoPrev = computed(() => {
+  const currentYear = selectedYear.value;
+  const currentMonth = selectedMonth.value;
+  
+  // 最小年の1月より前に行こうとしている場合は無効化
+  if (currentYear === minYear.value && currentMonth === 0) {
+    return false;
+  }
+  return true;
+});
+
+const canGoNext = computed(() => {
+  const currentYear = selectedYear.value;
+  const currentMonth = selectedMonth.value;
+  
+  // 最大年の12月より後に行こうとしている場合は無効化
+  if (currentYear === maxYear.value && currentMonth === 11) {
+    return false;
+  }
+  return true;
+});
+
 const prevMonth = () => {
+  if (!canGoPrev.value) return;
+  
   if (selectedMonth.value === 0) {
     selectedMonth.value = 11;
     selectedYear.value--;
@@ -75,6 +103,8 @@ const prevMonth = () => {
 };
 
 const nextMonth = () => {
+  if (!canGoNext.value) return;
+  
   if (selectedMonth.value === 11) {
     selectedMonth.value = 0;
     selectedYear.value++;
@@ -95,11 +125,11 @@ const goToToday = () => {
         <Selector v-model="selectedYear" :options="yearList" size="small" />
       </div>
       <div class="navigationButtonWrapper">
-        <button @click="prevMonth" class="navigationButton">
+        <button @click="prevMonth" class="navigationButton" :disabled="!canGoPrev">
           <Icon :iconSrc="iconArrowLeft" :width="16" :height="16" />
         </button>
         <span class="monthDisplay">{{ monthNames[selectedMonth] }}</span>
-        <button @click="nextMonth" class="navigationButton">
+        <button @click="nextMonth" class="navigationButton" :disabled="!canGoNext">
           <Icon :iconSrc="iconArrowRight" :width="16" :height="16" />
         </button>
       </div>
@@ -188,11 +218,24 @@ const goToToday = () => {
   background: transparent;
   border: 1px solid var(--color-text-link);
   border-radius: 6px;
+  transition: all var(--base-duration) var(--easing-out-expo);
+
+  &:hover:not(:disabled) {
+    background: var(--color-background-secondary);
+  }
 
   &:focus-visible {
     outline: 4px solid var(--color-border-strong-divider);
     outline-offset: 2px;
     box-shadow: 0 0 0 2px var(--color-focus);
+  }
+
+  &:disabled {
+    color: var(--color-text-disabled);
+    background: transparent;
+    border-color: var(--color-text-disabled);
+    cursor: not-allowed;
+    opacity: 0.5;
   }
 }
 
