@@ -21,6 +21,7 @@ const meta = {
     },
     selectedMonth: {
       control: { type: "number" },
+      description: "選択された月（デフォルト: 現在月）",
     },
     selectedDate: {
       control: { type: "number" },
@@ -72,7 +73,7 @@ export const Default: Story = {
 
 /**
  * カスタム年数範囲
- * 2020年から過去15年分の年セレクターを表示
+ * 2020年から過去1年分の年セレクターを表示
  */
 export const CustomYearRange: Story = {
   args: {

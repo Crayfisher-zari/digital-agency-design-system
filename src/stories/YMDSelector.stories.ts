@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/vue3";
 import YMDSelctor from "../components/YMDSelector.vue";
 
 const meta = {
-  title: "年月日セレクター",
+  title: "年月日セレクター（非推奨）",
   component: YMDSelctor,
   tags: ["autodocs"],
   argTypes: {

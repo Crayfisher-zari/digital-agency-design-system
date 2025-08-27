@@ -10,8 +10,11 @@ import { getEraYearList } from "../utils/getEraYearList";
 type Month = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 
 interface Props {
+  /** 開始年 */
   startYear?: number;
+  /** 開始月 */
   startMonth?: Month;
+  /** セレクターの年数。開始年から下る。省略した場合は10年 */
   yearCount?: number;
 }
 
