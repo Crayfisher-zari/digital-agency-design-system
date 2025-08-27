@@ -37,36 +37,34 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 /**
- * デフォルト
- */
-export const Default: Story = {
-  args: {},
-};
-
-/**
  * カレンダーパネル
  * 日付選択に使用するカレンダーコンポーネントです。
  * 年月の切り替え、今日の日付へのジャンプ機能を含みます。
  */
-export const CalendarPanel: Story = {
-  args: {
-    selectedYear: 2025,
-    selectedMonth: 7,
-    selectedDate: 1,
-    startYear: 2025,
-    yearCount: 2,
-  },
+export const Default: Story = {
   render: (args) => ({
     components: { Calendar },
     setup() {
-      const selectedYear = ref(args.selectedYear);
-      const selectedMonth = ref(args.selectedMonth);
-      const selectedDate = ref(args.selectedDate);
-      return { selectedYear, selectedMonth, selectedDate, ...args };
+      const selectedYear = ref();
+      const selectedMonth = ref();
+      const selectedDate = ref();
+      const handleDelete = () => {
+        selectedYear.value = undefined;
+        selectedMonth.value = undefined;
+        selectedDate.value = undefined;
+      };
+      return {
+        selectedYear,
+        selectedMonth,
+        selectedDate,
+        handleDelete,
+        ...args,
+      };
     },
     template: `
       <div style="padding: 20px;  display: inline-block;">
-        <Calendar v-model:selectedYear="selectedYear" v-model:selectedMonth="selectedMonth" v-model:selectedDate="selectedDate" :startYear="startYear" :yearCount="yearCount" />
+        <p>選択された日付：{{ selectedYear }}年{{ selectedMonth }}月{{ selectedDate }}日</p>
+        <Calendar v-model:selectedYear="selectedYear" v-model:selectedMonth="selectedMonth" v-model:selectedDate="selectedDate" :startYear="startYear" :yearCount="yearCount" @delete="handleDelete" />
       </div>
     `,
   }),
@@ -81,4 +79,30 @@ export const CustomYearRange: Story = {
     startYear: 2020,
     yearCount: 1,
   },
+  render: (args) => ({
+    components: { Calendar },
+    setup() {
+      const selectedYear = ref();
+      const selectedMonth = ref();
+      const selectedDate = ref();
+      const handleDelete = () => {
+        selectedYear.value = undefined;
+        selectedMonth.value = undefined;
+        selectedDate.value = undefined;
+      };
+      return {
+        selectedYear,
+        selectedMonth,
+        selectedDate,
+        handleDelete,
+        ...args,
+      };
+    },
+    template: `
+      <div style="padding: 20px;  display: inline-block;">
+        <p>選択された日付：{{ selectedYear }}年{{ selectedMonth }}月{{ selectedDate }}日</p>
+        <Calendar v-model:selectedYear="selectedYear" v-model:selectedMonth="selectedMonth" v-model:selectedDate="selectedDate" :startYear="startYear" :yearCount="yearCount" @delete="handleDelete" />
+      </div>
+    `,
+  }),
 };

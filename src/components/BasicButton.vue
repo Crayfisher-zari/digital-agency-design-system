@@ -16,7 +16,7 @@ type Props = {
 
 type Emits = {
   /** クリック時のイベントハンドラ */
-  click: [];
+  click: [e: MouseEvent];
 };
 
 const emits = defineEmits<Emits>();
@@ -40,10 +40,10 @@ const {
   customActiveBorderColor,
 } = useButtonColor(props.customColor);
 
-const handleClick = () => {
+const handleClick = (e: MouseEvent) => {
   // ボタンが非活性の場合はクリックイベントを発火しない
   if (!props.disabled) {
-    emits("click");
+    emits("click", e);
   }
 };
 </script>
@@ -52,7 +52,7 @@ const handleClick = () => {
     class="button"
     :class="[type, size, { disabled: disabled }]"
     :aria-disabled="disabled"
-    @click="handleClick"
+    @click="handleClick($event)"
   >
     <span class="labelText">
       <span v-if="$slots.start" class="iconWrapper">

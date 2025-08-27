@@ -7,21 +7,27 @@ import iconArrowLeft from "@/assets/images/icon_arrow_left.svg";
 import iconArrowRight from "@/assets/images/icon_arrow_right.svg";
 import { getEraYearList } from "../utils/getEraYearList";
 
+type Month = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+
 interface Props {
   startYear?: number;
-  startMonth?: number;
+  startMonth?: Month;
   yearCount?: number;
 }
 
 const props = withDefaults(defineProps<Props>(), {
   startYear: () => new Date().getFullYear(),
-  startMonth: () => new Date().getMonth(),
-  yearCount: 8,
+  startMonth: () => (new Date().getMonth() + 1) as Month,
+  yearCount: 10,
 });
 
-const selectedYear = defineModel<number|undefined>("selectedYear");
-const selectedMonth = defineModel<number|undefined>("selectedMonth");
-const selectedDate = defineModel<number|undefined>("selectedDate");
+const emits = defineEmits<{
+  delete: [event: MouseEvent];
+}>();
+
+const selectedYear = defineModel<number | undefined>("selectedYear");
+const selectedMonth = defineModel<number | undefined>("selectedMonth");
+const selectedDate = defineModel<number | undefined>("selectedDate");
 
 const monthNames = [
   "1月",
@@ -43,17 +49,16 @@ const yearList = computed(() => {
   return getEraYearList(props.startYear, props.yearCount);
 });
 
+// 表示用の年月
 const currentDisplayYear = ref(props.startYear);
 const currentDisplayMonth = ref(props.startMonth);
-
-
 
 const calendarDays = computed(() => {
   const currentDate = new Date();
 
   const year = currentDisplayYear.value;
   const month = currentDisplayMonth.value;
-  const firstDay = new Date(year, month, 1);
+  const firstDay = new Date(year, month - 1, 1);
   const startDate = new Date(firstDay);
   startDate.setDate(startDate.getDate() - firstDay.getDay());
 
@@ -65,7 +70,7 @@ const calendarDays = computed(() => {
       date: current.getDate(),
       month: current.getMonth(),
       year: current.getFullYear(),
-      isCurrentMonth: current.getMonth() === month,
+      isCurrentMonth: current.getMonth() === month - 1,
       isToday: current.toDateString() === currentDate.toDateString(),
     });
     current.setDate(current.getDate() + 1);
@@ -74,16 +79,16 @@ const calendarDays = computed(() => {
   return days;
 });
 
-// 年の範囲制限のための computed properties
+// 年の範囲制限のための上限下限
 const maxYear = computed(() => props.startYear);
 const minYear = computed(() => props.startYear - props.yearCount + 1);
 
 const canGoPrev = computed(() => {
   const currentYear = currentDisplayYear.value;
   const currentMonth = currentDisplayMonth.value;
-  
+
   // 最小年の1月より前に行こうとしている場合は無効化
-  if (currentYear === minYear.value && currentMonth === 0) {
+  if (currentYear === minYear.value && currentMonth === 1) {
     return false;
   }
   return true;
@@ -92,7 +97,7 @@ const canGoPrev = computed(() => {
 const canGoNext = computed(() => {
   const currentYear = currentDisplayYear.value;
   const currentMonth = currentDisplayMonth.value;
-  
+
   // 最大年の12月より後に行こうとしている場合は無効化
   if (currentYear === maxYear.value && currentMonth === 11) {
     return false;
@@ -102,8 +107,8 @@ const canGoNext = computed(() => {
 
 const prevMonth = () => {
   if (!canGoPrev.value) return;
-  
-  if (currentDisplayMonth.value === 0) {
+
+  if (currentDisplayMonth.value === 1) {
     currentDisplayMonth.value = 11;
     currentDisplayYear.value--;
   } else {
@@ -113,41 +118,65 @@ const prevMonth = () => {
 
 const nextMonth = () => {
   if (!canGoNext.value) return;
-  
-  if (currentDisplayMonth.value === 11) {
-    currentDisplayMonth.value = 0;
+
+  if (currentDisplayMonth.value === 12) {
+    currentDisplayMonth.value = 1;
     currentDisplayYear.value++;
   } else {
     currentDisplayMonth.value++;
   }
 };
 
+/**
+ * 今日の日付に移動
+ */
 const goToToday = () => {
   const currentDate = new Date();
   selectedYear.value = currentDate.getFullYear();
-  selectedMonth.value = currentDate.getMonth();
-  selectedDate.value = currentDate.getDate() + 1;
+  selectedMonth.value = currentDate.getMonth() + 1;
+  selectedDate.value = currentDate.getDate();
 };
 
+/**
+ * 日付をクリックした時の処理
+ * @param date クリックした日付
+ */
 const handleDateClick = (date: number) => {
+  selectedYear.value = currentDisplayYear.value;
+  selectedMonth.value = currentDisplayMonth.value;
   selectedDate.value = date;
-}
+};
 
-console.log(selectedMonth.value);
-
+const handleDelete = (e: MouseEvent) => {
+  emits("delete", e);
+};
 </script>
 <template>
   <div class="calendarPanel">
     <div class="calendarHeader">
       <div class="yearSelectorWrapper">
-        <Selector v-model="currentDisplayYear" :options="yearList" size="small" />
+        <Selector
+          v-model="currentDisplayYear"
+          :options="yearList"
+          size="small"
+        />
       </div>
       <div class="navigationButtonWrapper">
-        <button @click="prevMonth" class="navigationButton" :disabled="!canGoPrev">
+        <button
+          @click="prevMonth"
+          class="navigationButton"
+          :aria-disabled="!canGoPrev"
+        >
           <Icon :iconSrc="iconArrowLeft" :width="16" :height="16" />
         </button>
-        <span class="monthDisplay">{{ monthNames[currentDisplayMonth] }}</span>
-        <button @click="nextMonth" class="navigationButton" :disabled="!canGoNext">
+        <span class="monthDisplay">{{
+          monthNames[currentDisplayMonth - 1]
+        }}</span>
+        <button
+          @click="nextMonth"
+          class="navigationButton"
+          :aria-disabled="!canGoNext"
+        >
           <Icon :iconSrc="iconArrowRight" :width="16" :height="16" />
         </button>
       </div>
@@ -186,6 +215,7 @@ console.log(selectedMonth.value);
         type="tertiary"
         label="削除"
         class="footerBtn deleteBtn"
+        @click="handleDelete"
       />
       <BasicButton
         size="x-small"
@@ -237,9 +267,9 @@ console.log(selectedMonth.value);
   background: transparent;
   border: 1px solid var(--color-text-link);
   border-radius: 6px;
-  transition: all var(--base-duration) var(--easing-out-expo);
+  transition: background-color var(--base-duration) var(--easing-out-expo);
 
-  &:hover:not(:disabled) {
+  &:hover:not([aria-disabled="true"]) {
     background: var(--color-background-secondary);
   }
 
@@ -249,12 +279,11 @@ console.log(selectedMonth.value);
     box-shadow: 0 0 0 2px var(--color-focus);
   }
 
-  &:disabled {
+  &[aria-disabled="true"] {
     color: var(--color-text-disabled);
+    pointer-events: none;
     background: transparent;
     border-color: var(--color-text-disabled);
-    cursor: not-allowed;
-    opacity: 0.5;
   }
 }
 
