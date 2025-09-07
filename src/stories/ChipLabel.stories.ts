@@ -9,13 +9,30 @@ const meta = {
   tags: ["autodocs"],
   argTypes: {
     color: {
-      control: { type: "color" },
-      description: "チップの色（デフォルト: --color-icon-label）",
+      control: { type: "select" },
+      options: [
+        "gray",
+        "blue",
+        "lightBlue",
+        "cyan",
+        "green",
+        "lime",
+        "yellow",
+        "orange",
+        "red",
+        "magenta",
+        "purple",
+      ],
     },
     type: {
       control: { type: "select" },
       options: ["textOnly", "outlined", "outlinedWithFill", "fill", "fillOnly"],
       description: "チップの表示スタイル",
+    },
+    borderRadius: {
+      control: { type: "select" },
+      options: ["none", "small", "rounded"],
+      description: "チップの角丸の大きさ",
     },
   },
   args: {
@@ -38,7 +55,7 @@ export const Default: Story = {
       return { ...args, iconSample };
     },
     template: `
-      <ChipLabel :color="color" :type="type">
+      <ChipLabel :color="color" :type="type" :borderRadius="borderRadius">
         <template #frontIcon>
           <Icon :iconSrc="iconSample" :width="24" :height="24" />
         </template>
@@ -62,7 +79,7 @@ export const Outlined: Story = {
       return { ...args, iconSample };
     },
     template: `
-      <ChipLabel :color="color" :type="type">
+      <ChipLabel :color="color" :type="type" :borderRadius="borderRadius">
         <template #frontIcon>
           <Icon :iconSrc="iconSample" :width="24" :height="24" />
         </template>
@@ -110,7 +127,7 @@ export const FillOnly: Story = {
       return { ...args, iconSample };
     },
     template: `
-      <ChipLabel :color="color" :type="type">
+      <ChipLabel :color="color" :type="type" :borderRadius="borderRadius">
         <template #frontIcon>
           <Icon :iconSrc="iconSample" :width="24" :height="24" />
         </template>
@@ -126,6 +143,7 @@ export const FillOnly: Story = {
  */
 export const CustomColor: Story = {
   args: {
+    type: "outlinedWithFill",
     customColor: "#304970",
     customBackgroundColor: "#d9e4f6",
   },
@@ -135,7 +153,7 @@ export const CustomColor: Story = {
       return { ...args, iconSample };
     },
     template: `
-      <ChipLabel :customColor="customColor" :customBackgroundColor="customBackgroundColor" :type="type">
+      <ChipLabel :customColor="customColor" :customBackgroundColor="customBackgroundColor" :type="type" :borderRadius="borderRadius">
         <template #frontIcon>
           <Icon :iconSrc="iconSample" :width="24" :height="24" />
         </template>
@@ -157,35 +175,29 @@ export const Multiple: Story = {
     },
     template: `
         <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
-          <ChipLabel type="textOnly" color="#3B82F6">
+          <ChipLabel type="textOnly" :color="color" :borderRadius="borderRadius">
             <template #frontIcon>
               <Icon :iconSrc="iconSample" :width="24" :height="24" />
             </template>
             テキストのみ
           </ChipLabel>
-          <ChipLabel type="outlined" color="#10B981">
+          <ChipLabel type="outlined" :color="color" :borderRadius="borderRadius">
             <template #frontIcon>
               <Icon :iconSrc="iconSample" :width="24" :height="24" />
             </template>
             アウトライン
           </ChipLabel>
-          <ChipLabel type="outlinedWithFill" color="#F59E0B">
+          <ChipLabel type="outlinedWithFill" :color="color" :borderRadius="borderRadius">
             <template #frontIcon>
               <Icon :iconSrc="iconSample" :width="24" :height="24" />
             </template>
             背景色あり
           </ChipLabel>
-          <ChipLabel type="fillOnly" color="#EF4444">
+          <ChipLabel type="fillOnly" :color="color" :borderRadius="borderRadius">
             <template #frontIcon>
               <Icon :iconSrc="iconSample" :width="24" :height="24" />
             </template>
             塗りつぶし
-          </ChipLabel>
-          <ChipLabel type="outlined" color="#8B5CF6">
-            <template #frontIcon>
-              <Icon :iconSrc="iconSample" :width="24" :height="24" />
-            </template>
-            アイコン付き
           </ChipLabel>
         </div>
       `,
