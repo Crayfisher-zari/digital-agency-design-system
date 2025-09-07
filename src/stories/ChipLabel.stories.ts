@@ -145,7 +145,7 @@ export const CustomColor: Story = {
   args: {
     type: "outlinedWithFill",
     customColor: "#304970",
-    customBackgroundColor: "#d9e4f6",
+    customBackgroundColor: "#edf3fc",
   },
   render: (args) => ({
     components: { ChipLabel, Icon },
@@ -168,6 +168,9 @@ export const CustomColor: Story = {
  * 異なるスタイルのチップラベルを複数表示した例です。
  */
 export const Multiple: Story = {
+  args: {
+    color: "gray",
+  },
   render: (args) => ({
     components: { ChipLabel, Icon },
     setup() {
@@ -200,6 +203,82 @@ export const Multiple: Story = {
             塗りつぶし
           </ChipLabel>
         </div>
+      `,
+  }),
+};
+
+export const Colors: Story = {
+  args: {
+    type: "outlinedWithFill",
+  },
+  render: (args) => ({
+    components: { ChipLabel, Icon },
+    setup() {
+      return { ...args, iconSample };
+    },
+    template: `
+      <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
+        <ChipLabel color="gray" :type="type" :borderRadius="borderRadius">
+          <template #frontIcon>
+            <Icon :iconSrc="iconSample" :width="24" :height="24" />
+          </template>
+          ラベル
+        </ChipLabel>
+        <ChipLabel color="blue" :type="type" :borderRadius="borderRadius">
+          <template #frontIcon>
+            <Icon :iconSrc="iconSample" :width="24" :height="24" />
+          </template>
+          ラベル
+        </ChipLabel>
+        <ChipLabel color="lightBlue" :type="type" :borderRadius="borderRadius">
+          <template #frontIcon>
+            <Icon :iconSrc="iconSample" :width="24" :height="24" />
+          </template>
+          ラベル
+        </ChipLabel>
+        <ChipLabel color="cyan" :type="type" :borderRadius="borderRadius">
+          <template #frontIcon>
+            <Icon :iconSrc="iconSample" :width="24" :height="24" />
+          </template>
+          ラベル
+        </ChipLabel>
+        <ChipLabel color="green" :type="type" :borderRadius="borderRadius">
+          <template #frontIcon>
+            <Icon :iconSrc="iconSample" :width="24" :height="24" />
+          </template>
+          ラベル
+        </ChipLabel>
+        <ChipLabel color="lime" :type="type" :borderRadius="borderRadius">
+          <template #frontIcon>
+            <Icon :iconSrc="iconSample" :width="24" :height="24" />
+          </template>
+          ラベル
+        </ChipLabel>
+        <ChipLabel color="yellow" :type="type" :borderRadius="borderRadius">
+          <template #frontIcon>
+            <Icon :iconSrc="iconSample" :width="24" :height="24" />
+          </template>
+          ラベル
+        </ChipLabel>
+        <ChipLabel color="orange" :type="type" :borderRadius="borderRadius">
+          <template #frontIcon>
+            <Icon :iconSrc="iconSample" :width="24" :height="24" />
+          </template>
+          ラベル
+        </ChipLabel>
+        <ChipLabel color="red" :type="type" :borderRadius="borderRadius">
+          <template #frontIcon>
+            <Icon :iconSrc="iconSample" :width="24" :height="24" />
+          </template>
+          ラベル
+        </ChipLabel>
+        <ChipLabel color="magenta" :type="type" :borderRadius="borderRadius">
+          <template #frontIcon>
+            <Icon :iconSrc="iconSample" :width="24" :height="24" />
+          </template>
+          ラベル
+        </ChipLabel>
+      </div>
       `,
   }),
 };

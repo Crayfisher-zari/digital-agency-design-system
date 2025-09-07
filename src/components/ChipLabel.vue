@@ -37,6 +37,14 @@ const colorClassName = computed(() => {
   }
   return props.color;
 });
+
+const custom_color = computed(() => {
+  return props.customColor;
+});
+
+const custom_background_color = computed(() => {
+  return props.customBackgroundColor;
+});
 </script>
 
 <template>
@@ -156,14 +164,14 @@ const colorClassName = computed(() => {
   }
 
   &.customColor {
-    --active-color: v-bind(customcolor);
+    --active-color: v-bind(custom_color);
 
     &.outlinedWithFill {
-      background-color: v-bind(custombackgroundcolor);
+      background-color: v-bind(custom_background_color);
     }
 
     &.fill {
-      background-color: v-bind(custombackgroundcolor);
+      background-color: v-bind(custom_background_color);
     }
   }
 
