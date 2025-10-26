@@ -6,10 +6,10 @@ const meta = {
   component: SearchBox,
   tags: ["autodocs"],
   argTypes: {
-    searchWord: { control: "text" },
+    label: { control: "text" },
   },
   args: {
-    searchWord: "",
+    label: "",
   },
 } satisfies Meta<typeof SearchBox>;
 
@@ -18,14 +18,13 @@ type Story = StoryObj<typeof meta>;
 
 export const Base: Story = {
   args: {
-    searchWord: "",
+    label: "",
+    onClick: () => {
+      console.log("clicked");
+    },
   },
 };
 
-export const WithText: Story = {
-  args: {
-    searchWord: "デジタル庁",
-  },
-};
+
 
 
