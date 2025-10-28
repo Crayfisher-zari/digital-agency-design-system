@@ -19,12 +19,22 @@ type Story = StoryObj<typeof meta>;
 export const Base: Story = {
   args: {
     label: "",
-    onClick: () => {
-      console.log("clicked");
+    onClickSearch: () => {
+      console.log("clicked search");
     },
   },
 };
 
-
-
-
+export const WithTarget: Story = {
+  args: {
+    label: "サイト検索",
+    targetLabel: "検索対象",
+    targetList: [
+      { label: "すべて", value: "all" },
+      { label: "画像", value: "image" },
+      { label: "ファイル", value: "file" },
+      { label: "地図", value: "map" },
+      { label: "動画", value: "video" },
+    ],
+  },
+};
