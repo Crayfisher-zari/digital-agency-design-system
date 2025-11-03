@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import { computed } from "vue";
 import BasicButton from "./BasicButton.vue";
 import PartsListBox from "./parts/PartsListBox.vue";
+import MenuListItem from "./MenuListItem.vue";
 
 type Target = {
   label: string;
@@ -19,51 +21,76 @@ type Props = {
 type Emits = {
   /** 検索ボタンクリック時のイベントハンドラ */
   clickSearch: [searchText: string];
-  /** 検索対象クリック時のイベントハンドラ */
-  clickTarget: [targetValue: string];
 };
 
 const props = withDefaults(defineProps<Props>(), {});
 
 const emits = defineEmits<Emits>();
 
-const searchText = defineModel<string>("searchText");
+const searchText = defineModel<string>("search");
+
+const selectedTarget = defineModel<Target["value"]>("target");
 
 const handleClickSearch = () => {
   emits("clickSearch", searchText.value ?? "");
 };
 
 const handleClickTarget = (targetValue: Target["value"]) => {
-  emits("clickTarget", targetValue);
+  selectedTarget.value = targetValue;
 };
+
+const selectedTargetLabel = computed(() => {
+  return props.targetList?.find((item) => item.value === selectedTarget.value)
+    ?.label;
+});
 </script>
 
 <template>
   <div class="searchbox">
     <div class="searchInputWrapper">
-      <div class="targetLabelWrapper" v-if="props.targetLabel !== undefined">
-        <PartsListBox>
-          <template #summary>
-            {{ props.targetLabel }}
-          </template>
-          <template #content>
-            <ul>
-              <li v-for="item in props.targetList" :key="item.value">
-                <button type="button" @click="handleClickTarget(item.value)">
-                  {{ item.label }}
-                </button>
-              </li>
-            </ul>
-          </template>
-        </PartsListBox>
+      <div class="searchInputAndTarget">
+        <div class="targetContainer" v-if="props.targetLabel !== undefined">
+          <PartsListBox position="left" hasShadow>
+            <template #summary>
+              <span class="targetLabelWrapper">
+                <span class="targetLabel">
+                  {{ props.targetLabel }}
+                </span>
+                <span class="selectedTargetLabel">
+                  {{ selectedTargetLabel }}
+                </span>
+              </span>
+            </template>
+            <template #content>
+              <ul class="targetList">
+                <li v-for="item in props.targetList" :key="item.value">
+                  <!-- <button type="button" @click="handleClickTarget(item.value)" class="itemButton">
+                    <span class="itemName">
+                      {{ item.label }}
+                    </span>
+                  </button> -->
+                  <MenuListItem
+                    type="boxed"
+                    tag="button"
+                    :isCurrent="selectedTarget === item.value"
+                    @click="handleClickTarget(item.value)"
+                    class="itemButton"
+                  >
+                    {{ item.label }}</MenuListItem
+                  >
+                </li>
+              </ul>
+            </template>
+          </PartsListBox>
+        </div>
+        <input
+          type="text"
+          v-model="searchText"
+          :aria-label="props.label || undefined"
+          class="searchInput"
+          :class="{ withTarget: props.targetLabel !== undefined }"
+        />
       </div>
-      <input
-        type="text"
-        v-model="searchText"
-        :aria-label="props.label || undefined"
-        class="searchInput"
-        :class="{ withTarget: props.targetLabel !== undefined }"
-      />
       <BasicButton
         type="primary"
         label="検索"
@@ -80,6 +107,11 @@ const handleClickTarget = (targetValue: Target["value"]) => {
   column-gap: 16px;
 }
 
+.searchInputAndTarget {
+  display: flex;
+  flex-grow: 1;
+}
+
 .searchInput {
   width: 100%;
   height: 56px;
@@ -89,7 +121,73 @@ const handleClickTarget = (targetValue: Target["value"]) => {
   background-repeat: no-repeat;
   background-position: left 16px center;
   background-size: 24px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--color-border-field);
   border-radius: 12px;
+
+  &.withTarget {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
 }
+
+.targetContainer {
+  width: 160px;
+  height: 56px;
+  background-color: var(--color-background-tertiary);
+  border: 1px solid var(--color-border-field);
+  border-right: none;
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+}
+
+.targetLabelWrapper {
+  display: block;
+  width: 160px;
+  height: 54px;
+  padding: 10px 16px;
+}
+
+.targetLabel {
+  display: block;
+  margin-bottom: 3px;
+  font-size: 1rem;
+  line-height: 1;
+  color: var(--color-text-description);
+}
+
+.selectedTargetLabel {
+  display: block;
+  font-size: 1.0625rem;
+  line-height: 1;
+  color: var(--color-text-body);
+}
+
+.targetList {
+  width: 160px;
+  padding: 16px 0;
+  list-style: none;
+  border: 1px solid var(--color-border-divider);
+}
+
+.itemButton {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 10px 16px;
+  text-align: left;
+  appearance: none;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+/* .targetList li{
+  width: 160px;
+  height: 56px;
+}
+
+.targetList li button{
+  width: 160px;
+  height: 56px;
+} */
 </style>

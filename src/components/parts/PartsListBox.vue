@@ -9,6 +9,8 @@ type Props = {
   offsetX?: number;
   /** 出てくるメニューの上下位置のオフセット */
   offsetY?: number;
+  /** 影を付けるかどうか */
+  hasShadow?: boolean;
 };
 
 const props = withDefaults(defineProps<Props>(), {
@@ -52,7 +54,11 @@ const offsetypx = computed(() => {
     <summary @click="handleChange">
       <slot name="summary" />
     </summary>
-    <div ref="contentsElement" class="contents">
+    <div
+      ref="contentsElement"
+      class="contents"
+      :class="{ 'elevation-1': hasShadow }"
+    >
       <div ref="contentsInnerElement" class="contentsInner">
         <slot name="content" />
       </div>
