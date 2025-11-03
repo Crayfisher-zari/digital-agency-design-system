@@ -53,6 +53,7 @@ export const WithTarget: Story = {
     template: `
       <div>
         <p>検索文字列：{{ searchText }}</p>
+        <p>選択された対象：{{ target }}</p>
         <SearchBox :targetLabel="props.targetLabel" :targetList="props.targetList" v-model:target="target" v-model:search="searchText" />
       </div>
       `,
@@ -62,19 +63,16 @@ export const WithTarget: Story = {
 export const WithIcon: Story = {
   args: {
     label: "サイト検索",
-    targetLabel: "検索対象",
+    targetLabel: "検索条件",
     targetList: [
-      { label: "すべて", value: "all" },
-      { label: "画像", value: "image" },
-      { label: "ファイル", value: "file" },
-      { label: "地図", value: "map" },
-      { label: "動画", value: "video" },
+      { label: "部分一致", value: "partial" },
+      { label: "前方一致", value: "prefix" },
     ],
   },
   render: (args) => ({
     components: { SearchBox, Icon },
     setup: () => {
-      const target = ref("all");
+      const target = ref("partial");
       const searchText = ref("");
       const props = computed(() => args);
 
@@ -83,6 +81,7 @@ export const WithIcon: Story = {
     template: `
       <div>
         <p>検索文字列：{{ searchText }}</p>
+        <p>選択された対象：{{ target }}</p>
         <SearchBox :targetLabel="props.targetLabel" :targetList="props.targetList" v-model:target="target" v-model:search="searchText" >
           <template #icon>
             <div class="icons" style="display: flex; align-items: center; justify-content: flex-end; column-gap: 8px; height: 40px;">
