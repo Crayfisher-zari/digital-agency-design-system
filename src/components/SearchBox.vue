@@ -73,11 +73,6 @@ const selectedTargetLabel = computed(() => {
             <template #content>
               <ul class="targetList">
                 <li v-for="item in props.targetList" :key="item.value">
-                  <!-- <button type="button" @click="handleClickTarget(item.value)" class="itemButton">
-                    <span class="itemName">
-                      {{ item.label }}
-                    </span>
-                  </button> -->
                   <MenuListItem
                     type="boxed"
                     tag="button"
@@ -99,6 +94,9 @@ const selectedTargetLabel = computed(() => {
           class="searchInput"
           :class="{ withTarget: props.targetLabel !== undefined }"
         />
+        <div class="iconArea" v-if="$slots.icon">
+          <slot name="icon" />
+        </div>
       </div>
       <BasicButton
         type="primary"
@@ -117,6 +115,7 @@ const selectedTargetLabel = computed(() => {
 }
 
 .searchInputAndTarget {
+  position: relative;
   display: flex;
   flex-grow: 1;
 }
@@ -145,6 +144,13 @@ const selectedTargetLabel = computed(() => {
   }
 }
 
+.iconArea {
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  transform: translateY(-50%);
+}
+
 .targetContainer {
   width: 160px;
   height: 56px;
@@ -160,7 +166,7 @@ const selectedTargetLabel = computed(() => {
   display: block;
   width: 160px;
   height: 54px;
-  padding: 10px 16px;
+  padding: 9px 16px 10px;
   cursor: pointer;
 }
 
