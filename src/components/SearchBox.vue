@@ -3,6 +3,8 @@ import { computed } from "vue";
 import BasicButton from "./BasicButton.vue";
 import PartsListBox from "./parts/PartsListBox.vue";
 import MenuListItem from "./MenuListItem.vue";
+import Icon from "./Icon.vue";
+import iconArrowDown from "../assets/images/icon_arrow_accordion.svg";
 
 type Target = {
   label: string;
@@ -59,6 +61,13 @@ const selectedTargetLabel = computed(() => {
                 <span class="selectedTargetLabel">
                   {{ selectedTargetLabel }}
                 </span>
+                <Icon
+                  :iconSrc="iconArrowDown"
+                  :width="16"
+                  :height="16"
+                  color="var(--color-mono-reverse)"
+                  class="targetIcon"
+                />
               </span>
             </template>
             <template #content>
@@ -128,6 +137,12 @@ const selectedTargetLabel = computed(() => {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
   }
+
+  &:focus-visible {
+    outline: 4px solid var(--color-text-body);
+    outline-offset: 2px;
+    box-shadow: 0 0 2px 2px var(--color-focus);
+  }
 }
 
 .targetContainer {
@@ -141,10 +156,12 @@ const selectedTargetLabel = computed(() => {
 }
 
 .targetLabelWrapper {
+  position: relative;
   display: block;
   width: 160px;
   height: 54px;
   padding: 10px 16px;
+  cursor: pointer;
 }
 
 .targetLabel {
@@ -160,6 +177,14 @@ const selectedTargetLabel = computed(() => {
   font-size: 1.0625rem;
   line-height: 1;
   color: var(--color-text-body);
+}
+
+.targetIcon {
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  pointer-events: none;
+  transform: translateY(-50%);
 }
 
 .targetList {
