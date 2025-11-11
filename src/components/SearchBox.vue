@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, useTemplateRef } from "vue";
 import BasicButton from "./BasicButton.vue";
 import PartsListBox from "./parts/PartsListBox.vue";
 import MenuListItem from "./MenuListItem.vue";
 import Icon from "./Icon.vue";
 import iconArrowDown from "../assets/images/icon_arrow_accordion.svg";
+import { useClickOutside } from "../composables/useClickOutside";
 
 type Target = {
   label: string;
@@ -45,6 +46,21 @@ const selectedTargetLabel = computed(() => {
   return props.targetList?.find((item) => item.value === selectedTarget.value)
     ?.label;
 });
+
+const listBoxRef = useTemplateRef<InstanceType<typeof PartsListBox> | null>(
+  "listBox",
+);
+
+const handleCloseListBox = () => {
+  if (listBoxRef.value?.detailsElement) {
+    listBoxRef.value.detailsElement.removeAttribute("open");
+  }
+};
+
+useClickOutside(
+  computed(() => listBoxRef.value?.detailsElement ?? null),
+  handleCloseListBox,
+);
 </script>
 
 <template>
@@ -52,7 +68,7 @@ const selectedTargetLabel = computed(() => {
     <div class="searchInputWrapper">
       <div class="searchInputAndTarget">
         <div class="targetContainer" v-if="props.targetLabel !== undefined">
-          <PartsListBox position="left" hasShadow>
+          <PartsListBox ref="listBox" position="left" hasShadow>
             <template #summary>
               <span class="targetLabelWrapper">
                 <span class="targetLabel">

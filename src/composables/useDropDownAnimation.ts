@@ -29,11 +29,7 @@ export const useDropDownAnimation = () => {
    * アコーディオンの開閉イベント
    */
   const handleDropDown = (e: Event) => {
-    console.log(
-      contentsInnerElement.value,
-      contentsElement.value,
-      detailsElement.value,
-    );
+
     if (
       !detailsElement.value ||
       !contentsElement.value ||

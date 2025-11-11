@@ -43,6 +43,10 @@ const offsetxpx = computed(() => {
 const offsetypx = computed(() => {
   return `${props.offsetY}px`;
 });
+
+defineExpose({
+  detailsElement,
+});
 </script>
 
 <template>
