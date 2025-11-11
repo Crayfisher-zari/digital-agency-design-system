@@ -28,8 +28,7 @@ export const useDropDownAnimation = () => {
   /**
    * アコーディオンの開閉イベント
    */
-  const handleDropDown = (e: Event) => {
-
+  const handleDropDown = (e?: Event) => {
     if (
       !detailsElement.value ||
       !contentsElement.value ||
@@ -37,7 +36,7 @@ export const useDropDownAnimation = () => {
     ) {
       return;
     }
-    e.preventDefault();
+    e?.preventDefault();
 
     // 補足：クリック実行時はその直前の状態なので、開く動作のときはisOpenがfalseになる
     const isOpen = detailsElement.value.open;

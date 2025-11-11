@@ -8,11 +8,15 @@ import {
 
 /**
  * 指定された要素の外側をクリックしたときにコールバックを実行します
- * @param targetRef 監視対象の要素の参照（RefまたはComputedRef）
+ * @param targetRef 監視対象の要素の参照（RefまたはComputedRef、HTMLElement）
  * @param callback 外側をクリックしたときに実行するコールバック関数
  */
 export const useClickOutside = (
-  targetRef: Ref<HTMLElement | null | undefined> | ComputedRef<HTMLElement | null | undefined>,
+  targetRef:
+    | Ref<HTMLElement | null | undefined>
+    | HTMLElement
+    | null
+    | undefined,
   callback: () => void,
 ) => {
   const handleClickOutside = (event: MouseEvent) => {
@@ -35,4 +39,3 @@ export const useClickOutside = (
     document.removeEventListener("click", handleClickOutside);
   });
 };
-

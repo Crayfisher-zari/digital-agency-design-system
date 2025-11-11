@@ -53,7 +53,7 @@ const listBoxRef = useTemplateRef<InstanceType<typeof PartsListBox> | null>(
 
 const handleCloseListBox = () => {
   if (listBoxRef.value?.detailsElement) {
-    listBoxRef.value.detailsElement.removeAttribute("open");
+    listBoxRef.value.handleDropDown();
   }
 };
 

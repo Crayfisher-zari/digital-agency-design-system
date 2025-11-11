@@ -18,6 +18,7 @@ const props = withDefaults(defineProps<Props>(), {
   offsetX: 0,
   offsetY: 0,
 });
+
 const {
   detailsElement,
   contentsElement,
@@ -46,6 +47,7 @@ const offsetypx = computed(() => {
 
 defineExpose({
   detailsElement,
+  handleDropDown,
 });
 </script>
 
