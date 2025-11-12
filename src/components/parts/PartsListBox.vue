@@ -9,6 +9,8 @@ type Props = {
   offsetX?: number;
   /** 出てくるメニューの上下位置のオフセット */
   offsetY?: number;
+  /** 影を付けるかどうか */
+  hasShadow?: boolean;
 };
 
 const props = withDefaults(defineProps<Props>(), {
@@ -16,6 +18,7 @@ const props = withDefaults(defineProps<Props>(), {
   offsetX: 0,
   offsetY: 0,
 });
+
 const {
   detailsElement,
   contentsElement,
@@ -41,23 +44,32 @@ const offsetxpx = computed(() => {
 const offsetypx = computed(() => {
   return `${props.offsetY}px`;
 });
+
+defineExpose({
+  detailsElement,
+  handleDropDown,
+});
 </script>
 
 <template>
-  <details
+  <div
     ref="detailsElement"
     class="listBox"
     :class="[{ isOpened: isOpened }, { hasAnimation: hasAnimation }, position]"
   >
-    <summary @click="handleChange">
+    <button @click="handleChange" class="listBoxButton"  aria-haspopup="listbox" :aria-expanded="isOpened">
       <slot name="summary" />
-    </summary>
-    <div ref="contentsElement" class="contents">
+    </button>
+    <div
+      ref="contentsElement"
+      class="contents"
+      :class="{ 'elevation-1': hasShadow }"
+    >
       <div ref="contentsInnerElement" class="contentsInner">
         <slot name="content" />
       </div>
     </div>
-  </details>
+  </div>
 </template>
 
 <style scoped>
@@ -81,22 +93,18 @@ const offsetypx = computed(() => {
   }
 }
 
-summary {
-  list-style: none;
-
+.listBoxButton {
+  display: block;
+  appearance: none;
+  border: none;
+  background-color: transparent;
+  text-align: left;
   &:focus-visible {
     background-color: var(--color-focus);
     outline: 4px solid var(--color-text-body);
   }
 }
 
-summary::-webkit-details-marker {
-  display: none;
-}
-
-summary::marker {
-  display: none;
-}
 
 .contents {
   position: absolute;

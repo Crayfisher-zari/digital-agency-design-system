@@ -22,18 +22,13 @@ export const useDropDownAnimation = () => {
     "contentsInnerElement",
   );
 
-  const isOpened = ref<boolean | null>(null);
+  const isOpened = ref<boolean>(false);
   const hasAnimation = ref<boolean>(true);
 
   /**
    * アコーディオンの開閉イベント
    */
-  const handleDropDown = (e: Event) => {
-    console.log(
-      contentsInnerElement.value,
-      contentsElement.value,
-      detailsElement.value,
-    );
+  const handleDropDown = (e?: Event) => {
     if (
       !detailsElement.value ||
       !contentsElement.value ||
@@ -41,7 +36,7 @@ export const useDropDownAnimation = () => {
     ) {
       return;
     }
-    e.preventDefault();
+    e?.preventDefault();
 
     // 補足：クリック実行時はその直前の状態なので、開く動作のときはisOpenがfalseになる
     const isOpen = detailsElement.value.open;
@@ -49,8 +44,7 @@ export const useDropDownAnimation = () => {
     const details = detailsElement.value;
     const contents = contentsElement.value;
     const contentsInner = contentsInnerElement.value;
-
-    if (isOpen) {
+    if (isOpened.value === true) {
       // 閉じるとき
       isOpened.value = false;
       contents.style.height = `0px`;

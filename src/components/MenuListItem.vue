@@ -46,6 +46,13 @@ const tag = computed(() => {
   }
   return props.tag;
 });
+
+const ariaCurrent = computed(() => {
+  if(tag.value === 'button') {
+    return undefined
+  }
+  return props.isCurrent ? 'page' : undefined;
+});
 </script>
 
 <template>
@@ -54,7 +61,7 @@ const tag = computed(() => {
     :class="[size, type, { isCurrent }, { hasCurrent }, { isUnderlined }]"
     :target="target"
     class="menuListItem"
-    :aria-current="isCurrent ? 'page' : undefined"
+    :aria-current="ariaCurrent"
     @click="handleClick"
   >
     <span class="iconForward">
