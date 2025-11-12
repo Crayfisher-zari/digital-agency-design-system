@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, useTemplateRef } from "vue";
+import { computed, useId, useTemplateRef } from "vue";
 import BasicButton from "./BasicButton.vue";
 import PartsListBox from "./parts/PartsListBox.vue";
 import MenuListItem from "./MenuListItem.vue";
@@ -61,6 +61,9 @@ useClickOutside(
   computed(() => listBoxRef.value?.detailsElement ?? null),
   handleCloseListBox,
 );
+
+const ariaDescribedById = useId();
+const ariaControlsId = useId();
 </script>
 
 <template>
@@ -74,7 +77,7 @@ useClickOutside(
                 <span class="targetLabel">
                   {{ props.targetLabel }}
                 </span>
-                <span class="selectedTargetLabel">
+                <span class="selectedTargetLabel" :id="ariaDescribedById" :aria-controls="ariaControlsId">
                   {{ selectedTargetLabel }}
                 </span>
                 <Icon
@@ -87,19 +90,20 @@ useClickOutside(
               </span>
             </template>
             <template #content>
-              <ul class="targetList">
-                <li v-for="item in props.targetList" :key="item.value">
-                  <MenuListItem
+              <div :id="ariaControlsId" class="targetList" role="listbox" :aria-describedby="ariaDescribedById" >
+                <MenuListItem
+                  v-for="item in props.targetList" :key="item.value"
                     type="boxed"
                     tag="button"
                     :isCurrent="selectedTarget === item.value"
                     @click="handleClickTarget(item.value)"
                     class="itemButton"
+                    :aria-selected="selectedTarget === item.value"
+                    role="option"
                   >
                     {{ item.label }}</MenuListItem
                   >
-                </li>
-              </ul>
+              </div>
             </template>
           </PartsListBox>
         </div>

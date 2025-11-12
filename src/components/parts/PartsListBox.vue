@@ -52,14 +52,14 @@ defineExpose({
 </script>
 
 <template>
-  <details
+  <div
     ref="detailsElement"
     class="listBox"
     :class="[{ isOpened: isOpened }, { hasAnimation: hasAnimation }, position]"
   >
-    <summary @click="handleChange">
+    <button @click="handleChange" class="listBoxButton"  aria-haspopup="listbox" :aria-expanded="isOpened">
       <slot name="summary" />
-    </summary>
+    </button>
     <div
       ref="contentsElement"
       class="contents"
@@ -69,7 +69,7 @@ defineExpose({
         <slot name="content" />
       </div>
     </div>
-  </details>
+  </div>
 </template>
 
 <style scoped>
@@ -93,22 +93,18 @@ defineExpose({
   }
 }
 
-summary {
-  list-style: none;
-
+.listBoxButton {
+  display: block;
+  appearance: none;
+  border: none;
+  background-color: transparent;
+  text-align: left;
   &:focus-visible {
     background-color: var(--color-focus);
     outline: 4px solid var(--color-text-body);
   }
 }
 
-summary::-webkit-details-marker {
-  display: none;
-}
-
-summary::marker {
-  display: none;
-}
 
 .contents {
   position: absolute;

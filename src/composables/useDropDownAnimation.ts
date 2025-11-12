@@ -22,7 +22,7 @@ export const useDropDownAnimation = () => {
     "contentsInnerElement",
   );
 
-  const isOpened = ref<boolean | null>(null);
+  const isOpened = ref<boolean>(false);
   const hasAnimation = ref<boolean>(true);
 
   /**
@@ -44,8 +44,7 @@ export const useDropDownAnimation = () => {
     const details = detailsElement.value;
     const contents = contentsElement.value;
     const contentsInner = contentsInnerElement.value;
-
-    if (isOpen) {
+    if (isOpened.value === true) {
       // 閉じるとき
       isOpened.value = false;
       contents.style.height = `0px`;
