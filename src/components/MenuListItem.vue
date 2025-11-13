@@ -48,10 +48,10 @@ const tag = computed(() => {
 });
 
 const ariaCurrent = computed(() => {
-  if(tag.value === 'button') {
-    return undefined
+  if (tag.value === "button") {
+    return undefined;
   }
-  return props.isCurrent ? 'page' : undefined;
+  return props.isCurrent ? "page" : undefined;
 });
 </script>
 

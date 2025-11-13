@@ -1,10 +1,4 @@
-import {
-  onBeforeUnmount,
-  onMounted,
-  type ComputedRef,
-  type Ref,
-  unref,
-} from "vue";
+import { onBeforeUnmount, onMounted, type Ref, unref } from "vue";
 
 /**
  * 指定された要素の外側をクリックしたときにコールバックを実行します

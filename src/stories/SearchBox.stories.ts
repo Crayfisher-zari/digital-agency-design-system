@@ -52,8 +52,10 @@ export const WithTarget: Story = {
     },
     template: `
       <div>
-        <p>検索文字列：{{ searchText }}</p>
-        <p>選択された対象：{{ target }}</p>
+        <div style="margin-bottom: 16px;">
+          <p>検索文字列：{{ searchText }}</p>
+          <p>選択された対象：{{ target }}</p>
+        </div>
         <SearchBox :targetLabel="props.targetLabel" :targetList="props.targetList" v-model:target="target" v-model:search="searchText" />
       </div>
       `,

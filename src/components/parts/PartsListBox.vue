@@ -26,6 +26,7 @@ const {
   isOpened,
   hasAnimation,
   handleDropDown,
+  closeDropDown,
 } = useDropDownAnimation();
 
 const emit = defineEmits<{
@@ -48,6 +49,7 @@ const offsetypx = computed(() => {
 defineExpose({
   detailsElement,
   handleDropDown,
+  closeDropDown,
 });
 </script>
 
@@ -57,7 +59,12 @@ defineExpose({
     class="listBox"
     :class="[{ isOpened: isOpened }, { hasAnimation: hasAnimation }, position]"
   >
-    <button @click="handleChange" class="listBoxButton"  aria-haspopup="listbox" :aria-expanded="isOpened">
+    <button
+      @click="handleChange"
+      class="listBoxButton"
+      aria-haspopup="listbox"
+      :aria-expanded="isOpened"
+    >
       <slot name="summary" />
     </button>
     <div
@@ -95,16 +102,16 @@ defineExpose({
 
 .listBoxButton {
   display: block;
-  appearance: none;
-  border: none;
-  background-color: transparent;
   text-align: left;
+  appearance: none;
+  background-color: transparent;
+  border: none;
+
   &:focus-visible {
     background-color: var(--color-focus);
     outline: 4px solid var(--color-text-body);
   }
 }
-
 
 .contents {
   position: absolute;

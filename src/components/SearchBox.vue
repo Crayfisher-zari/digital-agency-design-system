@@ -53,7 +53,7 @@ const listBoxRef = useTemplateRef<InstanceType<typeof PartsListBox> | null>(
 
 const handleCloseListBox = () => {
   if (listBoxRef.value?.detailsElement) {
-    listBoxRef.value.handleDropDown();
+    listBoxRef.value.closeDropDown();
   }
 };
 
@@ -77,7 +77,11 @@ const ariaControlsId = useId();
                 <span class="targetLabel">
                   {{ props.targetLabel }}
                 </span>
-                <span class="selectedTargetLabel" :id="ariaDescribedById" :aria-controls="ariaControlsId">
+                <span
+                  class="selectedTargetLabel"
+                  :id="ariaDescribedById"
+                  :aria-controls="ariaControlsId"
+                >
                   {{ selectedTargetLabel }}
                 </span>
                 <Icon
@@ -90,19 +94,25 @@ const ariaControlsId = useId();
               </span>
             </template>
             <template #content>
-              <div :id="ariaControlsId" class="targetList" role="listbox" :aria-describedby="ariaDescribedById" >
+              <div
+                :id="ariaControlsId"
+                class="targetList"
+                role="listbox"
+                :aria-describedby="ariaDescribedById"
+              >
                 <MenuListItem
-                  v-for="item in props.targetList" :key="item.value"
-                    type="boxed"
-                    tag="button"
-                    :isCurrent="selectedTarget === item.value"
-                    @click="handleClickTarget(item.value)"
-                    class="itemButton"
-                    :aria-selected="selectedTarget === item.value"
-                    role="option"
-                  >
-                    {{ item.label }}</MenuListItem
-                  >
+                  v-for="item in props.targetList"
+                  :key="item.value"
+                  type="boxed"
+                  tag="button"
+                  :isCurrent="selectedTarget === item.value"
+                  @click="handleClickTarget(item.value)"
+                  class="itemButton"
+                  :aria-selected="selectedTarget === item.value"
+                  role="option"
+                >
+                  {{ item.label }}</MenuListItem
+                >
               </div>
             </template>
           </PartsListBox>

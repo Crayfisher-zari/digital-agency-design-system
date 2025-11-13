@@ -29,36 +29,50 @@ export const useDropDownAnimation = () => {
    * アコーディオンの開閉イベント
    */
   const handleDropDown = (e?: Event) => {
-    if (
-      !detailsElement.value ||
-      !contentsElement.value ||
-      !contentsInnerElement.value
-    ) {
+    e?.preventDefault();
+    // 補足：クリック実行時はその直前の状態なので、開く動作のときはisOpenがfalseになる
+    if (isOpened.value === true) {
+      closeDropDown();
+    } else {
+      openDropDown();
+    }
+  };
+
+  /**
+   * アコーディオンを閉じます。
+   * @param e
+   */
+  const closeDropDown = (e?: Event) => {
+    e?.preventDefault();
+    const contents = contentsElement.value;
+    if (!contents) {
       return;
     }
+    isOpened.value = false;
+    contents.style.height = `0px`;
+    if (!hasAnimation.value) {
+      removeOpenAttribute();
+    }
+  };
+
+  /**
+   * アコーディオンを開きます。
+   * @param e
+   */
+  const openDropDown = (e?: Event) => {
     e?.preventDefault();
-
-    // 補足：クリック実行時はその直前の状態なので、開く動作のときはisOpenがfalseになる
-    const isOpen = detailsElement.value.open;
-
     const details = detailsElement.value;
     const contents = contentsElement.value;
     const contentsInner = contentsInnerElement.value;
-    if (isOpened.value === true) {
-      // 閉じるとき
-      isOpened.value = false;
-      contents.style.height = `0px`;
-      if (!hasAnimation.value) {
-        removeOpenAttribute();
-      }
-    } else {
-      isOpened.value = true;
-      details.setAttribute("open", "true");
-      // 内部の要素の高さを取得
-      const height = contentsInner.offsetHeight;
-
-      contents.style.height = `${height}px`;
+    if (!details || !contents || !contentsInner) {
+      return;
     }
+    isOpened.value = true;
+    details.setAttribute("open", "true");
+    // 内部の要素の高さを取得
+    const height = contentsInner.offsetHeight;
+
+    contents.style.height = `${height}px`;
   };
 
   const removeOpenAttribute = () => {
@@ -103,5 +117,7 @@ export const useDropDownAnimation = () => {
     isOpened,
     hasAnimation,
     handleDropDown,
+    openDropDown,
+    closeDropDown,
   };
 };
