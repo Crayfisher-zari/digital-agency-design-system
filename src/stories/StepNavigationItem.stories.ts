@@ -10,20 +10,22 @@ const meta = {
       control: { type: "number" },
       description: "ステップ番号",
     },
-    process: {
-      control: { type: "select" },
-      options: ["deafault", "skipped", "reached"],
-      description: "プロセス状態",
-    },
     state: {
       control: { type: "select" },
-      options: [undefined, "editing", "error"],
+      options: [
+        "default",
+        "skipped",
+        "reached",
+        "completed",
+        "editing",
+        "error",
+      ],
       description: "ステップの状態",
     },
   },
   args: {
     step: 1,
-    process: "deafault",
+    state: "default",
   },
 } satisfies Meta<typeof StepNavigationItem>;
 
@@ -37,7 +39,18 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     step: 1,
-    process: "deafault",
+    state: "default",
+  },
+};
+
+/**
+ * スキップ済み
+ * スキップされたステップです。
+ */
+export const Completed: Story = {
+  args: {
+    step: 2,
+    state: "completed",
   },
 };
 
@@ -48,7 +61,7 @@ export const Default: Story = {
 export const Skipped: Story = {
   args: {
     step: 2,
-    process: "skipped",
+    state: "skipped",
   },
 };
 
@@ -59,7 +72,7 @@ export const Skipped: Story = {
 export const Reached: Story = {
   args: {
     step: 3,
-    process: "reached",
+    state: "reached",
   },
 };
 
@@ -70,7 +83,6 @@ export const Reached: Story = {
 export const Editing: Story = {
   args: {
     step: 4,
-    process: "reached",
     state: "editing",
   },
 };
@@ -82,7 +94,6 @@ export const Editing: Story = {
 export const Error: Story = {
   args: {
     step: 5,
-    process: "reached",
     state: "error",
   },
 };
@@ -96,14 +107,12 @@ export const Multiple: Story = {
     components: { StepNavigationItem },
     template: `
       <div style="display: flex; gap: 16px; align-items: center;">
-        <StepNavigationItem :step="1" process="reached" />
-        <StepNavigationItem :step="2" process="reached" state="editing" />
-        <StepNavigationItem :step="3" process="deafault" />
-        <StepNavigationItem :step="4" process="skipped" />
-        <StepNavigationItem :step="5" process="deafault" />
+        <StepNavigationItem :step="1" state="reached" />
+        <StepNavigationItem :step="2" state="editing" />
+        <StepNavigationItem :step="3" state="default" />
+        <StepNavigationItem :step="4" state="skipped" />
+        <StepNavigationItem :step="5" state="default" />
       </div>
     `,
   }),
 };
-
-
